@@ -1,3 +1,4 @@
+using RGiesecke.DllExport;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,7 +41,7 @@ namespace CMIHelper
                             }
                             else
                             {
-                                System.Windows.Forms.MessageBox.Show("Your game version was successfully checked and you are not on an acceptable version! Please update your game and try again.", "Version Check Failed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                System.Windows.Forms.MessageBox.Show("Your game version was successfully checked and you are not on an acceptable version! Please update your game and try again. \n\nExpected Version: " + ver +" or higher\nFound Version: "+ngver, "Version Check Failed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return false;
                             }
 
@@ -53,7 +54,7 @@ namespace CMIHelper
                     }
                 }
             }
-            
+
             if (File.Exists(@path + @"\update.lst") && File.Exists(@path + @"\COM3D2x64.exe"))
             {
                 System.Windows.Forms.MessageBox.Show("While we managed to find the Update.lst file, the assembly version could not be found! If you are on the Japanese version, this is a real problem! Please update immediately!", "Version Check Failed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -98,14 +99,14 @@ namespace CMIHelper
             if (File.Exists(@path + @"\GameData\product.arc") || File.Exists(@path + @"\GameData\language.arc"))
             {
                 System.Windows.Forms.MessageBox.Show("English version was found!! Be advised, English versions are not as feature full or as supported as the Japanese version! Some components will be disabled for your safety!", "English!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;   
+                return false;
             }
             //System.Windows.Forms.MessageBox.Show("Game type was checked! JP version was found!!", "Caption Here!", MessageBoxButtons.OK);
             return true;
         }
 
         [DllExport("CMIHelperM", CallingConvention = CallingConvention.StdCall)]
-        public static bool MoveOld ([MarshalAs(UnmanagedType.BStr)] string path)
+        public static bool MoveOld([MarshalAs(UnmanagedType.BStr)] string path)
         {
             List<string> corefiles = new List<string>();
             corefiles.Add(@"\Sybaris");
@@ -118,6 +119,7 @@ namespace CMIHelper
             corefiles.Add(@"\version.dll");
             corefiles.Add(@"\opengl32.dll");
             corefiles.Add(@"\EngSybarisArcEditor.exe");
+            corefiles.Add(@"\CMI Documentation");
 
             foreach (string file in corefiles)
             {
