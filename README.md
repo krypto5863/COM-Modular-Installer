@@ -23,6 +23,6 @@ Ever since the CM3d2 Days, I maintained a very spiffy and personalized Sybaris f
 
 Any information related to the various plugins and components can be located in the readme included. Basic troubleshooting information and hotkey lookups can also be found there.
 
-This installer was made in Inno Setup by Kryp- I mean... Todd Howard! Any problems, DM or ping @Buy My Game on the meido discord server!
+This installer was made in Inno Setup by Kryp- I mean... The Doctor! Any problems, DM or ping @𝕺𝖙𝖕𝖞𝖗𝖐#1133 on the meido discord server!
 
 All of the assets used were made by their respective authors, I take credit for nothing but the installer.
