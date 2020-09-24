@@ -60,7 +60,7 @@
 		WizardForm.TypesCombo.OnChange := @TypesComboChange;
 		PresetFile := 'Custom.CMIType';
 		
-		DownloadTemporaryFile('https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/manifest.json','manifest.txt','',nil);
+		DownloadTemporaryFile('https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/Assets/manifest.txt','manifest.txt','',nil);
 		
 		if (IsAssetOld(ExpandConstant('{src}'),ExpandConstant('{tmp}'),'Installer','{#MyAppVersion}')) then
 		begin
