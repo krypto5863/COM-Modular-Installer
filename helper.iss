@@ -35,6 +35,9 @@
 	//Read manifests and decide if an update for an asset file is in order
 	function IsAssetOld(path: WideString; tpath: WideString; file: WideString; version: WideString): Boolean;
 	external 'CMIHelperUA@files:CMIHelper.dll stdcall delayload';
+	//Read manifests and decide if the installer is outdated or not
+	function IsInstallerOld(tpath: WideString; version: WideString): Boolean;
+	external 'CMIHelperCI@files:CMIHelper.dll stdcall delayload';
 
 	function GameFileExists(DirName: String): Boolean;
 	begin
@@ -213,21 +216,38 @@
 	
 		DownloadPage.Clear();
 		
-		//Primary Assets		
-		if (ComponentSelected('Mod Loader (Required for just about everything)')) then
-		begin		
-			if (FileExists(ExpandConstant('{src}\Loader.casf'))) then
-			begin			
-				if (IsAssetOld(ExpandConstant('{src}'),ExpandConstant('{tmp}'),'Loader','null')) then
-				begin
-					DeleteFile(ExpandConstant('{src}\Loader.casf'))
-					DownloadPage.Add('https://drive.google.com/uc?export=download&id=18l78lFQ4ihJlfVArJpMVZE9N16o-vTYn', 'Loader.casf', '');
-				end			
-			end
-			else
+		if (FileExists(ExpandConstant('{src}\manifest.txt')))then
 			begin
-				DownloadPage.Add('https://drive.google.com/uc?export=download&id=18l78lFQ4ihJlfVArJpMVZE9N16o-vTYn', 'Loader.casf', '');
+			//Primary Assets		
+			if (ComponentSelected('Mod Loader (Required for just about everything)')) then
+			begin		
+				if (FileExists(ExpandConstant('{src}\Loader.casf'))) then
+				begin			
+					if (IsAssetOld(ExpandConstant('{src}'),ExpandConstant('{tmp}'),'Loader','null')) then
+					begin
+						DeleteFile(ExpandConstant('{src}\Loader.casf'))
+						DownloadPage.Add('https://drive.google.com/uc?export=download&id=18l78lFQ4ihJlfVArJpMVZE9N16o-vTYn', 'Loader.casf', '');
+					end			
+				end
+				else
+				begin
+					DownloadPage.Add('https://drive.google.com/uc?export=download&id=18l78lFQ4ihJlfVArJpMVZE9N16o-vTYn', 'Loader.casf', '');
+				end;
 			end;
+		end 
+		else
+		begin
+			DeleteFile(ExpandConstant('{src}\Loader.casf'))
+			DownloadPage.Add('https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Loader.casf', 'Loader.casf', '');
+			
+			DeleteFile(ExpandConstant('{src}\Patcher.casf'))
+			DownloadPage.Add('https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Patchers.casf', 'Patcher.casf', '');
+			
+			DeleteFile(ExpandConstant('{src}\Plugin.casf'))
+			DownloadPage.Add('https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Plugins.casf', 'Plugin.casf', '');
+			
+			DeleteFile(ExpandConstant('{src}\Misc.casf'))
+			DownloadPage.Add('https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Misc.casf', 'Misc.casf', '');
 		end;
 		
 		//External Assets	
@@ -260,6 +280,21 @@
 		if (FileExists(ExpandConstant('{src}\Loader.casf')) = false) AND (FileExists(ExpandConstant('{tmp}\Loader.casf'))) then
 		begin
 			FileCopy(ExpandConstant('{tmp}\Loader.casf'),ExpandConstant('{src}\Loader.casf'), False)
+		end;
+		
+		if (FileExists(ExpandConstant('{src}\Patcher.casf')) = false) AND (FileExists(ExpandConstant('{tmp}\Patcher.casf'))) then
+		begin
+			FileCopy(ExpandConstant('{tmp}\Patcher.casf'),ExpandConstant('{src}\Patcher.casf'), False)
+		end;
+		
+		if (FileExists(ExpandConstant('{src}\Plugin.casf')) = false) AND (FileExists(ExpandConstant('{tmp}\Plugin.casf'))) then
+		begin
+			FileCopy(ExpandConstant('{tmp}\Plugin.casf'),ExpandConstant('{src}\Plugin.casf'), False)
+		end;
+		
+		if (FileExists(ExpandConstant('{src}\Misc.casf')) = false) AND (FileExists(ExpandConstant('{tmp}\Misc.casf'))) then
+		begin
+			FileCopy(ExpandConstant('{tmp}\Misc.casf'),ExpandConstant('{src}\Misc.casf'), False)
 		end;
 		
 		//if (FileExists(ExpandConstant('{tmp}\FemaleSkin.zip'))) then
