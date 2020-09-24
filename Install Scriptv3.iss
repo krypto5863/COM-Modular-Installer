@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.3.48.2"
+#define MyAppVersion "2.3.54"
 #define MyAppPublisher "Nobody"
 #define MyAppURL "http://www.tesin.com/"
 #define MyAppExeName "COM Modular AIO Installer"
@@ -23,11 +23,15 @@ InfoBeforeFile=Documentation\info.txt
 PrivilegesRequired=admin
 PrivilegesRequiredOverridesAllowed=commandline
 OutputDir=Compiled EXE
-OutputBaseFilename=COM Modular Installer 2.3.48.2
+OutputBaseFilename=COM Modular Installer 2.3.54
 DefaultDirName=COM3d2 Modular Installer
 AppendDefaultDirName=no
-Compression=lzma
+Compression=lzma2/ultra64
 SolidCompression=yes
+LZMAUseSeparateProcess=yes
+//LZMANumBlockThreads=6
+LZMADictionarySize=1048576
+LZMANumFastBytes=273
 WizardStyle=modern
 Uninstallable=no
 DisableDirPage=no
@@ -65,152 +69,164 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [Types]
 Name:"full"; Description: "Similar to Noctsoul's AIO";
-Name:"eng"; Description: "English Game Version AIO-Like"
+Name:"eng"; Description: "English Game Version AIO-Like (Only Plugin Translations)"
+Name:"notr"; Description: "No Translations AIO-Like"
 Name:"compact"; Description: "Minimalist Install"
 Name:"pic"; Description: "I just take pictures"
 Name:"hen"; Description: "I just play, I don't take pictures"
 Name:"self"; Description: "My Recommendations"
 Name:"custom"; Description: "Okay, make your own choices"; Flags:iscustom
+Name:"preset"; Description: "Custom Preset";
 Name:"none"; Description: "I want nothing!";
 
 [Components]
+
 Name: Loader; Description: Mod Loader (Required for just about everything); Types: full compact;
-  Name: Loader/bepinEX; Description: BepInEX (Recommended); Types: full compact eng pic self hen; Flags:Exclusive checkablealone
+  Name: Loader/bepinEX; Description: BepInEX (Recommended); Types: full notr compact eng pic self hen; Flags:Exclusive checkablealone
 
     Name: Loader/bepinEX/Translations; Description: Translation Plugins; Types: Full compact pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/Translations/i18nEx; Description: i18nEx;  Types: full compact pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/Translations/resredir; Description: Resource Redirector; Flags: dontinheritcheck;
         Name: Loader/bepinEX/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen; Flags: dontinheritcheck;
 
-    Name: Loader/bepinEX/scriptloader; Description: ScriptLoader; Types: Full compact eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/dupe; Description: Dedupe Items Script; Types: Full compact eng pic self hen; Flags: dontinheritcheck;
-        Name: Loader/bepinEX/scriptloader/dupe/redupe; Description: Dupe Report Script; Types: Full compact eng pic self hen; Flags: checkablealone Exclusive;
-        Name: Loader/bepinEX/scriptloader/dupe/dedupe; Description: Dedupe Items Script; Types:; Flags: checkablealone Exclusive;
-      Name: Loader/bepinEX/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full compact eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/editname; Description: EditableNames Script; Types: Full compact eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/enascout; Description: Enable Scout Mode Script; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/thumbs; Description: LoadSmallThumbs Script; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
+    Name: Loader/bepinEX/FPSUn; Description: FPSUnlock; Types: self; Flags: dontinheritcheck;
+
+    Name: Loader/bepinEX/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/wrapmode; Description: WrapModeExtend Script; Types: Full compact eng pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/enascout; Description: Enable Scout Mode Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/errtex; Description: Error Texture Placeholder Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/thumbs; Description: Load Small Thumbs Script; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
 
 
   Name: Loader/Sybaris; Description: Sybaris 2.1 (Not Recommended, JUST DON'T USE IT);Flags: Exclusive checkablealone
 
-    Name: Loader/Sybaris/Translations; Description: Translation Plugins; Flags: dontinheritcheck
-      Name: Loader/Sybaris/Translations/i18nEx; Description: i18nEx;       
-      Name: Loader/Sybaris/Translations/xuat; Description: XUnity AutoTranslator;
+    Name: Loader/Sybaris/Translations; Description: Translation Plugins (Syb); Flags: dontinheritcheck
+      Name: Loader/Sybaris/Translations/i18nEx; Description: i18nEx (Syb);       
+      Name: Loader/Sybaris/Translations/xuat; Description: XUnity AutoTranslator(Syb);
 
 
 Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 
+  Name: Patchers/addscreen; Description: AddScreenSize; Types: full eng notr self ;
+  Name: Patchers/allprivate; Description: AllMaidsInPrivateMode; Types: self;
+  Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng notr pic self hen;
+  Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full eng notr pic self hen;
+  Name: Patchers/cacheedit; Description: CacheEditMenu;
+  Name: Patchers/CCfix; Description: CreatorSaveFix;
+  Name: Patchers/blinkstop; Description: EditBlinkStop; Types: full eng notr pic self hen;
+  Name: Patchers/extsave; Description: ExternalSaveData; Types: Full self pic eng notr hen; Flags: checkablealone;
+    Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng notr hen; Flags: checkablealone;
+      Name: Patchers/extsave/maidvoice/addmod; Description: AddModsSlider; Types: full self pic eng notr hen; Flags: checkablealone;
+        Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng notr hen; Flags: checkablealone;
+        Name: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Description:EyelashesAlpha; Types:; Flags: checkablealone;
+        Name: Patchers/extsave/maidvoice/addmod/seperateeye; Description:SeperateEyeParams; Types:full self pic eng notr hen; Flags: checkablealone;
+  Name: Patchers/facetype; Description: FaceType; Types:full compact self pic eng notr hen;
+  Name: Patchers/fastfade; Description: FastFade; Types: self pic;
   Name: Patchers/imgui; Description: IMGUITranslationLoader; types: full compact eng pic hen; Flags: checkablealone;
     Name:Patchers/imgui/translations; Description: Plugin Translation Files; Types:full compact eng pic self hen;
-
-  Name: Patchers/addscreen; Description: AddScreenSizes; Types: full self ;
-  Name: Patchers/allprivate; Description: AllMaidsInPrivateMode; Types: self;
-  Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng pic self hen;
-  Name: Patchers/bodycat; Description: Body Category Add; Types: full eng pic self hen;
-  Name: Patchers/cacheedit; Description: CacheEditMenu;
-  Name: Patchers/CCfix; Description: CategoryCreatorSaveFix(Only needed if you had CategoryCreator and removed it!;
-  Name: Patchers/blinkstop; Description: EditBlinkStop; Types: full eng pic self hen;
-  Name: Patchers/extsave; Description: External Save; Types: Full self pic eng hen; Flags: checkablealone;
-    Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng hen; Flags: checkablealone;
-      Name: Patchers/extsave/maidvoice/addmod; Description: AddModSlider; Types: full self pic eng hen; Flags: checkablealone;
-        Name: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Description:EyelashesAlpha; Types:; Flags: checkablealone;
-        Name: Patchers/extsave/maidvoice/addmod/seperateeye; Description:SeperateEyeParams; Types:full self pic eng hen; Flags: checkablealone;
-        Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng hen; Flags: checkablealone;
-  Name: Patchers/facetype; Description: FaceTypePatcher; Types:full compact self pic eng hen;
-  Name: Patchers/fastfade; Description: Fast Fade; Types: full compact self pic eng hen;
-  Name: Patchers/modloader; Description: Mod Loader; types: full compact eng pic self hen;
-  Name: Patchers/namext; Description: Name Extender; Types: full compact self pic eng hen;
-  Name: Patchers/neighuncen; Description: NeighUncensor; Types: full compact eng pic self hen;
+  Name: Patchers/modloader; Description: ModLoader; types: full compact eng notr pic self hen;
+  Name: Patchers/namext; Description: NameExtender; Types: full compact self pic eng notr hen;
+  Name: Patchers/neighuncen; Description: NeighUncensor; Types: full compact eng notr pic self hen;
   Name: Patchers/ntrlight; Description: NTRLight; Types:;
   ;Name: Patchers/prelabellite; Description: PresetLabeler(NoOverlays);
-  Name: Patchers/quickedit; Description: QuickEdit; Types: full pic self eng hen;
+  Name: Patchers/quickedit; Description: QuickEditStart; Types: full pic self eng notr hen;
   Name: Patchers/rgbpal; Description: RGBPalette;
-  Name: Patchers/saveset; Description: SaveSettingsInGame; Types: full compact self pic eng hen;
-  Name: Patchers/smoothanim; Description: SmoothAnimation; Types:self;
+  Name: Patchers/saveset; Description: SaveSettingsInGame; Types: full compact self pic eng notr hen;
 
 Name: plugins; Description: Unityinjector Plugins; Types: full compact;
-  ;Name: plugins/addbone; Description: AddBoneSlider; Types: ; Other posers are better
-  Name: plugins/addyot; Description: AddYotogiSlider; Types: Full eng hen self;
-  Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng hen;
-  Name: plugins/eraseout; Description: AutoEraseOutline; types: full pic eng hen;
-  Name: plugins/cameracon; Description:CameraControlEx; Types:full pic self;
-  Name: plugins/camerautil; Description: CameraUtility; Types: Full pic self eng hen;
+	Name: plugins/boneslide; Description: AddBoneSlider; Types:;
+  Name: plugins/addyot; Description: AddYotogiSliderSE; Types: Full eng notr hen self;
+  Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng notr hen;
+  Name: plugins/eraseout; Description: AutoEraseOutline; types: full pic eng notr hen;
+  Name: plugins/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
+  Name: plugins/camerautil; Description: CameraUtility; Types: Full pic self eng notr hen;
+  Name: plugins/hudclock; Description:ClockHud;
   ;Name: plugins/changedress; Description:ChangeDressPlugin; Types:; PropmyItem is better
   ;Name: plugins/clothstate; Description:ClothingState; Types:; HalfUndressing is better
-  Name: plugins/colorhelp; Description: ColorPaletteHelper; Types:full self pic eng hen;
-  Name: plugins/conwindow; Description:ConsistentWindowPosition; Types:full self pic eng hen;
+  Name: plugins/colorhelp; Description: ColorPaletteHelper; Types:full self pic eng notr hen;
+  Name: plugins/conwindow; Description:ConsistentWindowPosition; Types:full self pic eng notr hen;
   Name: plugins/nyou; Description:CustomNyou(Why...);
   Name: plugins/dancecamadjust; Description:DanceCameraAdjust;
   Name: plugins/derim; Description:DeRim; Types: self;
   Name: plugins/dressdam; Description:DressDamage; Types:self pic;
-  Name: plugins/editmenufilt; Description: EditMenuFilter; Types:full self pic eng hen;
-  Name: plugins/editselanim; Description: EditMenuSelectedAnime; Types:full self pic eng compact hen;
+  Name: plugins/editmenufilt; Description: EditMenuFilter; Types:full self pic eng notr hen;
+  Name: plugins/editselanim; Description: EditMenuSelectedAnime; Types:full self pic eng notr compact hen;
   Name: plugins/editundo; Description:EditSceneUndo;
   Name: plugins/emoears; Description:EmotionalEars(and tails); Types:self; Flags:checkablealone
     Name: plugins/emoears/aho; Description:Ahoge meshes; Types:; Flags:dontinheritcheck
     Name: plugins/emoears/mod; Description:Ear and tail meshes; Types:self; Flags:dontinheritcheck
-  Name: plugins/extendrender; Description:ExtendRenderingRange; Types:full self pic;
+  Name: plugins/extendrender; Description:ExtendRenderingRange; Types:full eng notr self pic;
     Name: plugins/extendrender/config; Description:x10 Extend Config; Types:self; Flags:dontinheritcheck
   Name: plugins/facecon; Description:FaceControl; Types:pic;
-  Name: plugins/freeapp; Description:FreeModeApp; Types:full self eng hen;
-  Name: plugins/freedress; Description:FreeModeDressKeeper; Types:full self eng hen;
+  Name: plugins/freeapp; Description:FreeModeApp; Types:full self eng notr hen;
+  Name: plugins/freedress; Description:FreeModeDressKeeper; Types:full self eng notr hen;
   ;Name: plugins/futa; Description:FUTA; Types:;
-  Name: plugins/halfundress; Description:HalfUndressingPlugin; Types:full hen;
-  Name: plugins/hudclock; Description:HudClock;
-  Name: plugins/inout; Description:InOutAnimation; Types:full eng self hen;
+  Name: plugins/halfundress; Description:HalfUnDressing; Types:full eng notr hen;
+  Name: plugins/inout; Description:InOutAnimation; Types:full eng notr self hen;
   Name: plugins/lookmaid; Description:LookAtYourMaid;
   Name: plugins/lookmaster; Description:LookAtYourMaster;
-  Name: plugins/mirror; Description:Mirror Props; Types:full eng;
-  Name: plugins/mtacc; Description: MtAccelerator (May Cause Crashes);
-  Name: plugins/MM; Description:Multiple Maids; Types:full pic self eng;
+  Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
+  Name: plugins/mtacc; Description: MtAccelerator;
+		Name: plugins/mtacc/AllScene; Description: AllScene Version;
+  Name: plugins/MM; Description:MultipleMaids; Types:full pic self eng notr;
     Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
-  Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng self hen;
-  Name: plugins/notecolor; Description:NoteColor; Types:full self eng hen;
+  Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
+  Name: plugins/notecolor; Description:NoteColor; Types:full self eng notr hen;
   ;Name: plugins/olddance; Description:OldDancePlay; Types:full self eng hen;
-  Name: plugins/objexp; Description:ObjectExplorer; Types:full self eng pic;
-  Name: plugins/partsedit; Description:PartsEdit; Types:full pic self eng;
-  Name: plugins/personaledit; Description:PersonalizedEditSceneSettings; Types:full pic self eng hen;
-  Name: plugins/plugmanage; Description:Plugin Manager; Types:full pic eng;
-  Name: plugins/PluginExt; Description:PluginExt (Required by a few other plugins. Recommended.); Types:full pic self eng compact;
-  Name: plugins/pngplace; Description:PNGPlacement; Types:full pic self eng; Flags: checkablealone;
-    Name: plugins/pngplace/expng; Description:More PNGs; Types:full self pic eng; Flags: dontinheritcheck
-  ;Name: plugins/propitem; Description:PropMyItem; Types:full eng pic;
-  Name: plugins/rhythmoption; Description: RhythmExtraOption; Types:full eng self hen;
-  Name: plugins/scenecap; Description:SceneCapture; Types:full pic self eng; Flags: checkablealone;
+  Name: plugins/objexp; Description:ObjectExplorer; Types:full self eng notr pic;
+  Name: plugins/partsedit; Description:PartsEdit; Types:full pic self eng notr;
+  Name: plugins/personaledit; Description:PersonalizedEditSceneSettings; Types:full pic self eng notr hen;
+  Name: plugins/plugmanage; Description:PluginManager; Types:full pic eng notr;
+  Name: plugins/PluginExt; Description:PluginExt (Required by a few other plugins. Recommended.); Types:full pic self eng notr compact;
+  Name: plugins/pngplace; Description:PNGPlacement; Types:full pic self eng notr; Flags: checkablealone;
+    Name: plugins/pngplace/expng; Description:More PNGs; Types:full self pic eng notr; Flags: dontinheritcheck
+  Name: plugins/propitem; Description:PropMyItem; Types:full eng notr pic;
+  Name: plugins/rhythmoption; Description: RhythmExtraOption; Types:full eng notr self hen;
+  Name: plugins/scenecap; Description:SceneCapture; Types:full pic self eng notr; Flags: checkablealone;
     Name: plugins/scenecap/mpmats; Description:Modified Pmats; Flags: dontinheritcheck
     ;Name: plugins/scenecap/nocon; Description:Remove Conflicting Effects; Flags: dontinheritcheck Causes errors.
     Name: plugins/scenecap/VR; Description:VR Ini File; Flags: dontinheritcheck
-  Name: plugins/seieki; Description:Seieki Plugin; Types:pic;
-  Name: plugins/shaderchange; Description:ShaderChange; Types:full pic self eng;
-  Name: plugins/shapeanimator; Description:ShapeAnimator; Types:full pic self eng hen;
-    Name: plugins/shapeanimator/norm; Description:ShapeAnimator; Types:full pic self eng hen; Flags: exclusive;
-    Name: plugins/shapeanimator/doc; Description:ShapeAnimator (Doc's Edit); Types:full pic self eng hen; Flags: exclusive;
-  Name: plugins/skillcomshort; Description:SkillCommandShortcut; Types:full eng hen;
+  Name: plugins/seieki; Description:Seieki; Types:pic;
+  Name: plugins/shaderchange; Description:ShaderChange; Types:full pic self eng notr;
+  Name: plugins/shapeanimator; Description:ShapeAnimator; Types:full pic self eng notr hen;
+    Name: plugins/shapeanimator/norm; Description:ShapeAnimator; Types:full pic self eng notr hen; Flags: exclusive;
+    Name: plugins/shapeanimator/doc; Description:ShapeAnimator (Doc's Edit); Types:full pic self eng notr hen; Flags: exclusive;
+  Name: plugins/SKAcc; Description:SKAccelerator; Types:full pic self eng notr hen;
+  Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
   Name: plugins/slimeshade; Description:SlimeShader; Types:;
-  Name: plugins/toukaScreen; Description:Touka Screenshot; Types:full pic self eng;
+	Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
+  Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
   Name: plugins/ureye; Description:UruuruEye; Types:;
   Name: plugins/vibemaid; Description:VibeYourMaid;
-  Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng hen;
-  Name: plugins/xtms; Description:XTMasterSlave; Types:full self hen;
-  Name: plugins/yotutil; Description:YotogiUtil; Types:full;
+  Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
+  Name: plugins/xtms; Description:XTMasterSlave; Types:full eng notr self hen;
+  Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
 
 
 
-Name: misc; Description: Miscelleanous Files; Types: full compact;
+Name: misc; Description:Miscelleanous Files; Types: full compact;
   Name:misc/extrans; Description:Extra Translations; Types:full compact self pic hen;
-  Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full eng self pic;
+  Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full eng notr self pic;
+	Name:misc/dlccheck; Description:DLC Checker (Kry Fork); Types:Full eng notr self pic;
+	Name:misc/maidfiddle; Description:Maid Fiddler (Dangerous!);
   Name:misc/mmposes; Description:1900+ Poses for Studio Mode;
-  Name:misc/uncensor; Description:Uncensored Vanilla Textures; Types:full eng compact self pic hen;
-  Name:misc/uncensormale; Description:Uncensored Male Penis; Types:full eng compact self pic hen;
-  Name:misc/extrauncensormale; Description:More Penis Variants; Types:full eng compact self pic hen;
+  Name:misc/bgnei; Description:Add More Game BGs to Photo Mode(And MM); Types:Full eng notr self pic;
+  Name:misc/uncensor; Description:Uncensored Vanilla Textures; Types:full eng notr compact self pic hen;
+  Name:misc/uncensormale; Description:Male Penis Replacer; Types:full eng notr compact self pic hen;
+  Name:misc/extrauncensormale; Description:More Penis Variants; Types:full eng notr compact self pic hen;
 
   Name: misc/body; Description:Body Replacers; Types:full eng compact self pic hen;
-    Name: misc/body/LoMobBody; Description:LoMobChara; Types:full eng compact self pic hen; Flags: Exclusive checkablealone
+    Name: misc/body/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen; Flags: Exclusive checkablealone
     Name: misc/body/analkupa; Description:AnalKupa; Types:; Flags: Exclusive checkablealone
+		
+	Name: ext; Description:External Files; Types: full compact;
+		Name:ext/dlccheck; Description:DLC Checker (Kry Fork); Types:Full eng notr self pic;
+		Name:ext/maidfiddle; Description:Maid Fiddler (Dangerous!);
 
 
 [Tasks]
@@ -218,17 +234,14 @@ Name: misc; Description: Miscelleanous Files; Types: full compact;
 Name:reg; Description: Fix Registry Directory; Flags:unchecked
 
 Name:clean; Description: Cleaning Tasks; GroupDescription: Cleaning tasks to execute before installing.; Flags:unchecked
-  Name:clean/moveold; Description: Move old installations to old folder (Warning: The OldInstalls folder will be cleared!); Flags:checkablealone exclusive
+  Name:clean/moveold; Description: Move old installations to old folder; Flags:checkablealone exclusive
     Name:clean/moveold/mods; Description: Also move installer installed Mods (This will also move any saved MM poses); Flags:unchecked dontinheritcheck
-    ;Name:clean/moveold/config; Description: Place the Config Folder Back after Install; Flags:unchecked
+    Name:clean/moveold/config; Description: Place configurations back (Warning! This can overwrite updated configs. Not suggested.); Flags:unchecked
   Name:clean/deleteold; Description: Delete previous installations (WARNING: VERY DESTRUCTIVE, YOU WILL LOSE ANY SYBARIS OR BEPINEX FOLDERS); Flags:unchecked exclusive checkablealone
     Name:clean/deleteold/mods; Description: Delete any mods installed by the Installer too(This will delete all of your saved MM Poses too); Flags:unchecked dontinheritcheck
     Name:clean/deleteold/old; Description: Delete any old installs aswell; Flags:unchecked dontinheritcheck
 
-[Registry]
-
-Root: HKCU; Subkey: "Software\KISS\カスタムオーダーメイド3D2"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Tasks:reg;
-Root: HKCU; Subkey: "Software\KISS\カスタムオーダーメイド3D2"; ValueType: Dword; ValueName: "DskSht"; ValueData: "1"  ;Tasks:reg;
+Name:readonly; Description: Remove Read-Only Flag On All Files; GroupDescription: Many users experience issues thanks to irroneously set Read-Only flags by the system. This fixes that.;
 
 [InstallDelete]
 
@@ -241,8 +254,10 @@ Type:filesandordirs; Name: "{app}\doorstop_config.ini"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\winhttp.dll"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\version.dll"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\EngSybarisArcEditor.exe"; Tasks:clean/deleteold;
+Type:filesandordirs; Name: "{app}\SybarisArcEditor.exe"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\IMGUITranslationLoader"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\CMI Documentation"; Tasks:clean/deleteold;
+Type:filesandordirs; Name: "{app}\CMI.ver"; Tasks:clean/deleteold;
 
 Type:filesandordirs; Name: "{app}\Mod\Extra Desk Items"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\Mirror_props"; Tasks:clean/deleteold/mods;
@@ -258,357 +273,12 @@ Type:filesandordirs; Name: "{app}\Mod\CinemacicBloom_StreakPmats(SceneCapture)";
 
 Type:filesandordirs; Name: "{app}\OldInstall*"; Tasks:clean/deleteold/old;
 
+[Run]
+Filename: "https://forms.gle/PrXjqck2dQYMHvyY8"; Flags: shellexec runasoriginaluser postinstall; Description: "Open the Feedback Survey for CMI"
 
-[Files]
+Filename: "{tmp}\MFInstall.exe"; Flags: runasoriginaluser skipifdoesntexist waituntilterminated; StatusMsg: "Waiting for Maid Fiddler installer to finish... (Users must follow the installer that opens!)"
 
-;Modloaders stuffs
-Source: "bepinEX\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs
-
-Source: "Sybaris\*"; DestDir: "{app}"; Components: Loader/Sybaris; Flags: ignoreversion recursesubdirs createallsubdirs
-
-;Loader dependent translators
-Source: "i18nEx\bep\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "i18nEx\Syb\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "i18nEx\Syb\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nExWXuat; Flags: ignoreversion recursesubdirs createallsubdirs
-
-Source: "Xuat\Bep\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/resredir/xuat; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "ResourceRedirector\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/Resredir; Flags: ignoreversion recursesubdirs createallsubdirs
-
-Source: "Xuat\Syb\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/xuat; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Xuat\SybXuat&i18\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nExWXuat; Flags: ignoreversion recursesubdirs createallsubdirs
-
-;Script Loader
-
-Source: "ScriptLoader\*"; DestDir: "{app}\BepinEx\plugins"; Components: Loader/bepinEX/scriptloader; Flags: ignoreversion recursesubdirs createallsubdirs
-
-Source: "Scripts\dedupe\*"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/dupe/dedupe; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Scripts\redupe\*"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/dupe/redupe; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Scripts\enascout\*"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/enascout; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Scripts\editname\*"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/editname; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Scripts\dumpinfo\*"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/dumpinfo; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Scripts\thumbs\*"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/thumbs; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Scripts\quickedit\*"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/quickedit; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Scripts\oldsubs\*"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/oldsubs; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Scripts\wrapmode\*"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/wrapmode; Flags: ignoreversion recursesubdirs createallsubdirs
-
-
-;Patchers
-Source: "Patchers\IMGUITranslator\*"; DestDir: "{app}"; Components: Patchers/imgui; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\ModLoader\Sybaris\*"; DestDir: "{app}\Sybaris"; Components: Patchers/modloader; Flags: ignoreversion recursesubdirs createallsubdirs
-  Source: "Patchers\ModLoader\Mod\*"; DestDir: "{app}\Mod"; Components: Patchers/modloader; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\NeighUnce\*"; DestDir: "{app}\Sybaris"; Components: Patchers/neighuncen; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\AutoConverter\*"; DestDir: "{app}\Sybaris"; Components: Patchers/autocon; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\smoothanim\*"; DestDir: "{app}\Sybaris"; Components: Patchers/smoothanim; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\BodyCategoryAdd\*"; DestDir: "{app}\Sybaris"; Components: Patchers/bodycat; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\CacheEdit\*"; DestDir: "{app}\Sybaris"; Components: Patchers/cacheedit; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\blinkstop\*"; DestDir: "{app}\Sybaris"; Components: Patchers/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\ExternalSave\*"; DestDir: "{app}\Sybaris"; Components: Patchers/extsave; Flags: ignoreversion recursesubdirs createallsubdirs
-  Source: "Plugins\MaidVoice\*"; DestDir: "{app}\Sybaris"; Components: Patchers/extsave/maidvoice; Flags: ignoreversion recursesubdirs createallsubdirs
-    Source: "Plugins\AddMod\*"; DestDir: "{app}\Sybaris"; Components: Patchers/extsave/maidvoice/addmod; Flags: ignoreversion recursesubdirs createallsubdirs
-      Source: "Plugins\Lashalpha\*"; DestDir: "{app}\Sybaris"; Components: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Flags: ignoreversion recursesubdirs
-      Source: "Plugins\Seperateeye\*"; DestDir: "{app}\Sybaris"; Components: Patchers/extsave/maidvoice/addmod/seperateeye; Flags: ignoreversion recursesubdirs
-      Source: "Plugins\distortcorrect\*"; DestDir: "{app}\Sybaris"; Components: Patchers/extsave/maidvoice/addmod/distort; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\FaceType\*"; DestDir: "{app}\Sybaris"; Components: Patchers/facetype; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\FastFade\*"; DestDir: "{app}\Sybaris"; Components: Patchers/fastfade; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\NameExt\*"; DestDir: "{app}\Sybaris"; Components: Patchers/namext; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\ntrlight\*"; DestDir: "{app}\Sybaris"; Components: Patchers/ntrlight; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\QuickEdit\*"; DestDir: "{app}\Sybaris"; Components: Patchers/QuickEdit; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\addscreen\*"; DestDir: "{app}\Sybaris"; Components: Patchers/addscreen; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\allprivate\*"; DestDir: "{app}\Sybaris"; Components: Patchers/allprivate; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\ccfix\*"; DestDir: "{app}\Sybaris"; Components: Patchers/ccfix; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Patchers\prelabellite\*"; DestDir: "{app}\Sybaris"; Components: Patchers/prelabellite; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\saveset\*"; DestDir: "{app}\Sybaris"; Components: Patchers/saveset; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Patchers\rgbpal\*"; DestDir: "{app}\Sybaris"; Components: Patchers/rgbpal; Flags: ignoreversion recursesubdirs createallsubdirs
-
-
-;Plugins
-Source: "Plugins\ACCex\*"; DestDir: "{app}\Sybaris"; Components: plugins/accex; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Plugins\Addbone\*"; DestDir: "{app}\Sybaris"; Components: plugins/addbone; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\addyot\*"; DestDir: "{app}\Sybaris"; Components: plugins/addyot; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\camerautil\*"; DestDir: "{app}\Sybaris"; Components: plugins/camerautil; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\colorhelp\*"; DestDir: "{app}\Sybaris"; Components: plugins/colorhelp; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\derim\*"; DestDir: "{app}\Sybaris"; Components: plugins/derim; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\editmenufilt\*"; DestDir: "{app}\Sybaris"; Components: plugins/editmenufilt; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\editselanime\*"; DestDir: "{app}\Sybaris"; Components: plugins/editselanim; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\extendrender\norm\*"; DestDir: "{app}\Sybaris"; Components: plugins/extendrender; Flags: ignoreversion recursesubdirs createallsubdirs
-  Source: "Plugins\extendrender\optional\*"; DestDir: "{app}\Sybaris\Unityinjector\Config"; Components: plugins/extendrender/config; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\eraseout\*"; DestDir: "{app}\Sybaris"; Components: plugins/eraseout; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Plugins\futa\*"; DestDir: "{app}\Sybaris"; Components: plugins/futa; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\halfundress\*"; DestDir: "{app}\Sybaris"; Components: plugins/halfundress; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\InOut\*"; DestDir: "{app}\Sybaris"; Components: plugins/inout; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\mirrorprops\Sybaris\*"; DestDir: "{app}\Sybaris"; Components: plugins/mirror; Flags: ignoreversion recursesubdirs createallsubdirs
-  Source: "Plugins\mirrorprops\Mod\*"; DestDir: "{app}\Mod"; Components: plugins/mirror; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\MM\*"; DestDir: "{app}\Sybaris"; Components: plugins/MM; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\MTAcc\*"; DestDir: "{app}\Sybaris"; Components: plugins/mtacc; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\NormExcite\*"; DestDir: "{app}\Sybaris"; Components: plugins/normexcite; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\partsedit\*"; DestDir: "{app}\Sybaris"; Components: plugins/partsedit; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\pluginext\*"; DestDir: "{app}\Sybaris"; Components: plugins/pluginext; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\plugmanage\*"; DestDir: "{app}\Sybaris"; Components: plugins/plugmanage; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\pngplace\*"; DestDir: "{app}\Sybaris"; Components: plugins/pngplace; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Plugins\propitem\*"; DestDir: "{app}\Sybaris"; Components: plugins/propitem; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\rythmoption\*"; DestDir: "{app}\Sybaris"; Components: plugins/rhythmoption; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\scenecap\Norm\*"; DestDir: "{app}\Sybaris"; Components: plugins/scenecap; Flags: ignoreversion recursesubdirs createallsubdirs
-  Source: "Plugins\scenecap\VR\*"; DestDir: "{app}\Sybaris"; Components: plugins/scenecap/VR; Flags: ignoreversion recursesubdirs createallsubdirs
-  ;Source: "Plugins\scenecap\NoCON\*"; DestDir: "{app}\Sybaris"; Components: plugins/scenecap/NoCON; Flags: ignoreversion recursesubdirs createallsubdirs
-  Source: "Plugins\scenecap\Modpmats\*"; DestDir: "{app}\Mod"; Components: plugins/scenecap/mpmats; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\shaderchange\*"; DestDir: "{app}\Sybaris"; Components: plugins/shaderchange; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\shapeanim\*"; DestDir: "{app}\Sybaris"; Components: plugins/shapeanimator/norm; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\shapeanimdoc\*"; DestDir: "{app}\Sybaris"; Components: plugins/shapeanimator/doc; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\toukascreen\*"; DestDir: "{app}\Sybaris"; Components: plugins/toukascreen; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\voicenormalizer\*"; DestDir: "{app}\Sybaris"; Components: plugins/voicenorm; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\xtms\*"; DestDir: "{app}\Sybaris"; Components: plugins/xtms; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\yotutil\*"; DestDir: "{app}\Sybaris"; Components: plugins/yotutil; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\cameracon\*"; DestDir: "{app}\Sybaris"; Components: plugins/cameracon; Flags: ignoreversion recursesubdirs createallsubdirs
-
-;Source: "Plugins\changedress\*"; DestDir: "{app}\Sybaris"; Components: plugins/changedress; Flags: ignoreversion recursesubdirs createallsubdirs
-
-Source: "Plugins\dressdam\*"; DestDir: "{app}\Sybaris"; Components: plugins/dressdam; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\skillcomshort\*"; DestDir: "{app}\Sybaris"; Components: plugins/skillcomshort; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\editundo\*"; DestDir: "{app}\Sybaris"; Components: plugins/editundo; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\conwindow\*"; DestDir: "{app}\Sybaris"; Components: plugins/conwindow; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\personaledit\*"; DestDir: "{app}\Sybaris"; Components: plugins/personaledit; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\freeapp\*"; DestDir: "{app}\Sybaris"; Components: plugins/freeapp; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Plugins\olddance\*"; DestDir: "{app}\Sybaris"; Components: plugins/olddance; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\objexp\*"; DestDir: "{app}\Sybaris"; Components: plugins/objexp; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\notecolor\*"; DestDir: "{app}\Sybaris"; Components: plugins/notecolor; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\nyou\*"; DestDir: "{app}\Sybaris"; Components: plugins/nyou; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\lookmaid\*"; DestDir: "{app}\Sybaris"; Components: plugins/lookmaid; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\lookmaster\*"; DestDir: "{app}\Sybaris"; Components: plugins/lookmaster; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Plugins\clothstate\*"; DestDir: "{app}\Sybaris"; Components: plugins/clothstate; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\freedress\*"; DestDir: "{app}\Sybaris"; Components: plugins/freedress; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\dancecamadjust\*"; DestDir: "{app}\Sybaris"; Components: plugins/dancecamadjust; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\seieki\*"; DestDir: "{app}\Sybaris"; Components: plugins/seieki; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\facecon\*"; DestDir: "{app}\Sybaris"; Components: plugins/facecon; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\ureye\*"; DestDir: "{app}\Sybaris"; Components: plugins/ureye; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\slimeshade\*"; DestDir: "{app}\Sybaris"; Components: plugins/slimeshade; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\hudclock\*"; DestDir: "{app}\Sybaris\Unityinjector"; Components: plugins/hudclock; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Plugins\vibemaid\*"; DestDir: "{app}\Sybaris"; Components: plugins/vibemaid; Flags: ignoreversion recursesubdirs createallsubdirs
-;Emo Ears
-Source: "Plugins\emoears\norm\COM3D2.EmotionalEars.Plugin.dll"; DestDir: "{app}\Sybaris\Unityinjector"; Components: plugins/emoears; Flags: ignoreversion
-Source: "Plugins\emoears\norm\Mod\*"; DestDir: "{app}\Mod\EmotionalEars"; Components: plugins/emoears/mod; Flags: ignoreversion recursesubdirs createallsubdirs
-;Aho Files!
-Source: "Plugins\emoears\aho\Mod\*"; DestDir: "{app}\Mod\EmotionalEars"; Components: plugins/emoears/aho; Flags: ignoreversion recursesubdirs createallsubdirs
-
-
-;Translations files
-
-
-
-Source: "Translation Files\IMGUI\plugins\*"; DestDir: "{app}\IMGUITranslationLoader\IMGUIStrings"; Components: Patchers/imgui/translations; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\addyot\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/addyot; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\autocon\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/autocon; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\dancecam\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/dancecam; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\dancestudio\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/dancestudio; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\dressdam\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/dressdam; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\dynboneedit\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/dynboneedit; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\eraseout\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/eraseout; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\facecon\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/facecon; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\halfundress\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/halfundress; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\inout\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/inout; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\limitfps\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/limitfps; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\MM\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/MM; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\mtacc\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/mtacc; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\partedit\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/partedit; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\pngplace\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/pngplace; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\propitem\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/propitem; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\shaderchan\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/shaderchan; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\shapeanim\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/shapeanim; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\slimeshade\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/slimeshade; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\vibemaid\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/vibemaid; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\xtms\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/xtms; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\yotutil\*"; DestDir: "{app}"; Components: Patchers/imgui/translations/yotutil; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "Translation Files\IMGUI\uruurueye\*"; DestDir: "{app}\IMGUITranslationLoader\IMGUIStrings"; Components: Patchers/imgui/translations/ureye; Flags: ignoreversion recursesubdirs createallsubdirs
-
-Source: "Translation Files\i18\*"; DestDir: "{app}"; Components: misc/extrans; Flags: ignoreversion recursesubdirs createallsubdirs
-
-;Misc Files
-
-Source: "Misc\MMPoses\*"; DestDir: "{app}\Mod"; Components: plugins/mm/mmposes; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Misc\MMPoses\MultipleMaidsPose\*"; DestDir: "{app}\PhotoModeData\MyPose"; Components: misc/mmposes; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Misc\ExtraPNGs\*"; DestDir: "{app}\Sybaris\Unityinjector\config"; Components: plugins/pngplace/expng; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Misc\SybArc\*"; DestDir: "{app}"; Components: misc/sybarc; Flags: recursesubdirs
-
-Source: "Misc\TextureUncensors\FemaleSkinUncensor\*"; DestDir: "{app}\Mod\[CMI]Uncensors\FemaleSkinUncensor"; Components: misc/uncensor; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Misc\TextureUncensors\MaleReplacer\*"; DestDir: "{app}\Mod\[CMI]Uncensors\MaleUncensor\Replacer"; Components: misc/uncensormale; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Misc\TextureUncensors\DLCMaleReplacer\*"; DestDir: "{app}\Mod\[CMI]Uncensors\MaleUncensor\Replacer"; Components: misc/uncensormale; Flags: ignoreversion recursesubdirs createallsubdirs; Check:FileExists(ExpandConstant('{app}\GameData\parts_dlc219.arc'))
-Source: "Misc\TextureUncensors\MoreMaleUncensor\*"; DestDir: "{app}\Mod\[CMI]Uncensors\MaleUncensor\MoreVariants"; Components: misc/extrauncensormale; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Misc\TextureUncensors\DLCMoreMaleUncensor\*"; DestDir: "{app}\Mod\[CMI]Uncensors\MaleUncensor\MoreVariants"; Components: misc/extrauncensormale; Flags: ignoreversion recursesubdirs createallsubdirs; Check:FileExists(ExpandConstant('{app}\GameData\parts_dlc219.arc'))
-
-
-Source: "Misc\TextureUncensors\body_analkupa\*"; DestDir: "{app}\Mod\[CMI]Uncensors\body_analkupa"; Components: misc/body/analkupa; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Misc\TextureUncensors\lomob\*"; DestDir: "{app}\Mod\[CMI]Uncensors\LoMobBody"; Components: misc/body/LoMobBody; Flags: ignoreversion recursesubdirs createallsubdirs
-
-;DLL file
-Source:"DLL\CMIHelper.dll"; DestDir: "{app}"; Flags:dontcopy
-
-;Readme
-
-
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-Source: "Documentation\CMI_Readme.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme
-Source: "Documentation\MM_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/MM; Flags: isreadme
-Source: "Documentation\DeRim_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/derim; Flags: isreadme
-
-
-[Code]
-var
-//Made it global incase it's required in the future n a larger scale.
-  path: WideString;
-//Calls for function that facilitate version checking from C# DLL
-function VersionCheck(path: WideString; gver: Integer): Boolean;
-external 'CMIHelper@files:CMIHelper.dll stdcall delayload';
-//This functions checks if the game is INM or not.
-function INMCheck(path: WideString): Boolean;
-external 'CMIHelperIN@files:CMIHelper.dll stdcall delayload';
-//This function checks for game type, eng or JP.
-function TypeCheck(path: WideString): Boolean;
-external 'CMIHelperT@files:CMIHelper.dll stdcall delayload';
-//This function moves old files into the OldInstall Folder during install
-function MoveOld(path: WideString): Boolean;
-external 'CMIHelperM@files:CMIHelper.dll stdcall delayload';
-//This function moves old mods into the old install folder during install
-function MoveOldMod(path: WideString): Boolean;
-external 'CMIHelperMO@files:CMIHelper.dll stdcall delayload';
-function RenameOldInstall(path: WideString): Boolean;
-external 'CMIHelperOR@files:CMIHelper.dll stdcall delayload';
-
-
-function GameFileExists(DirName: String): Boolean;
-begin
-  MsgBox('We are checking if the file exists: ' + DirName , mbInformation, MB_OK);
-    Result := FileExists(DirName)
-end;
-
-
-procedure InitializeWizard();
-var
-  Value: String;
-  ErrorCode: Integer;
-begin
-
-  if MsgBox('Did you read the readme? Failure to read it will void you any chance of receiving support.', mbConfirmation, MB_YESNO) = IDNO then
-    begin
-      MsgBox('Go back and read it before installing CMI.', mbCriticalError, MB_OK)
-      ExtractTemporaryFile('CMI_Readme.pdf');
-      ShellExecAsOriginalUser('open',
-      AddQuotes(ExpandConstant('{tmp}\CMI_Readme.pdf')), '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
-      abort
-    end;
-
-//Tries to find the path of the game via the registry and if it suceeds, pushes it to the value var.
-  if RegQueryStringValue(HKEY_CURRENT_USER, 'Software\KISS\カスタムオーダーメイド3D2','InstallPath', Value) then
-  //Sets the wizard dir field to default to what is found in the registry
-  begin
-    WizardForm.DirEdit.Text := (Value);
-  end
-  //If no registry key is found, it will blank the field to force users to select their path.
-    else
-  begin
-    WizardForm.DirEdit.Text := '';
-  end;
-end;
-procedure CurPageChanged(CurPageID: Integer);
-begin
-//Only run the code if wizard is on the components page
-if CurPageID=wpSelectComponents then
-begin
-  //Saves path to global var.
-  path := ExpandConstant('{app}');
-  //If english version is detected, run the below code.
-  if TypeCheck(path) then
-  begin
-  end else begin
-  //Unchecks the components for English version
-    Wizardform.ComponentsList.Checked[2] := false
-    Wizardform.ComponentsList.Checked[3] := false
-    Wizardform.ComponentsList.Checked[4] := false
-    Wizardform.ComponentsList.Checked[5] := false
-    //Grays out components that shouldn't be used on english version
-    Wizardform.ComponentsList.ItemEnabled[2] := false
-    Wizardform.ComponentsList.ItemEnabled[3] := false
-    Wizardform.ComponentsList.ItemEnabled[4] := false
-    Wizardform.ComponentsList.ItemEnabled[5] := false
-    Wizardform.ComponentsList.ItemEnabled[16] := false
-    Wizardform.ComponentsList.ItemEnabled[17] := false
-    Wizardform.ComponentsList.ItemEnabled[18] := false
-    //Removes types that could potentially install non-eng version components
-    Wizardform.TypesCombo.Items.Delete(0);
-    //When an entry is deleted, any higher entries cascade down. Thus we just delete the same entry multiple times.
-    Wizardform.TypesCombo.Items.Delete(1);
-    Wizardform.TypesCombo.Items.Delete(1);
-    Wizardform.TypesCombo.Items.Delete(1);
-    Wizardform.TypesCombo.Items.Delete(1);
-    //Selects a functioning english type
-    WizardForm.TypesCombo.ItemIndex := 0;
-    //Updates checkboxes.
-    WizardForm.TypesCombo.OnChange(WizardForm.TypesCombo);
-    end;
-  end;
-end;
-function NextButtonClick(CurPageID: Integer): Boolean;
-begin
-//Prevents code from running if not on the directory selection page
-  if CurPageID = wpSelectDir then
-  begin
-    //path := ExpandConstant('{app}');
-    if INMCheck(WizardForm.DirEdit.Text) then
-    begin
-      if VersionCheck(WizardForm.DirEdit.Text,1480) then
-      begin
-        //MsgBox('We should be returning true', mbInformation, MB_OK);
-        //Small advisory, hope users follow it.
-        MsgBox('Please ensure no game folders or game instances are open or you will have a bad install!', mbInformation, MB_OK);
-        Result := true
-      end else begin
-        //MsgBox('We should be returning false', mbInformation, MB_OK);
-        Result := false
-      end;
-    end;                          
-  end else begin
-  //MsgBox('Default' + path, mbInformation, MB_OK);
-  //If not on the correct page, just default to true.
-  Result := true;
-  end;
-end;
-procedure CurStepChanged(CurStep: TSetupStep);
-begin
-  case CurStep of
-    ssInstall:
-    begin
-      //Will now begin the move old install to backup folder if task was selected.
-      if WizardForm.TasksList.Checked[3] then
-      begin
-        //MsgBox('File moving was selected', mbInformation, MB_OK);
-        if RenameOldInstall(path) = false then
-        begin
-          abort                   
-        end;
-        if MoveOld(path) = false then
-        begin
-          MsgBox('An exception was tossed while trying to move the old installation to the old folder! Ensure that no game application is open and that none of the files or folders are open anywhere!! We are quitting to keep your data safe! Refer to the readme for troubleshooting steps!!!', mbCriticalError, MB_OK);
-          abort       
-        end;
-      end;
-      if WizardForm.TasksList.Checked[4] then
-        begin
-          //MsgBox('mod moving was chosen', mbInformation, MB_OK);
-          //Checks if mod moving was selected and if so will execute that.
-          if MoveOldMod(path) = false then
-          begin
-            MsgBox('An exception was tossed while trying to move the old mods to the old folder! Ensure that no game application is open and that none of the files or folders are open anywhere!! We are quitting to keep your data safe! Refer to the readme for troubleshooting steps!!!', mbCriticalError, MB_OK);
-            abort
-          end;
-        end;//Mod Move
-      end;                                                                               
-    end;//Case
-    case CurStep of
-      ssPostInstall:
-      begin
-        if RenameOldInstall(path) = false then
-        begin
-          MsgBox('The OldInstall folder could not be renamed but the installation is already complete. As a result, we will not abort as the error is harmless. It should be automatically renamed the next time CMI is run', mbInformation, MB_OK);
-        end;
-      end;
-    end;
-  end;//First begin
-end.//Code end. Fuck Pascal.
+//Very large, moved to secondary script to make management easier.
+#include "files.iss"
+//Very large, moved to tertiary script to make management easier.
+#include "code.iss"
