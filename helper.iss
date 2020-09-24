@@ -212,42 +212,98 @@
 	procedure DownloadAssets();
 	var
 		i : Integer;
+		Mnfst: String;
+		Load: String;
+		LoadSite: String;
+		Pat: String;
+		PatSite: String;
+		Plug: String;
+		PlugSite: String;
+		Misc: String;
+		MiscSite: String;
+		
 	begin
+	
+	Mnfst := 'manifest.txt'
+	Load := 'Loader.casf'
+	LoadSite := 'https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Loader.casf'
+	Pat := 'Patcher.casf'
+	PatSite := 'https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Patchers.casf'
+	Plug := 'Plugin.casf'
+	PlugSite := 'https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Plugins.casf'
+	Misc := 'Misc.casf'
+	MiscSite := 'https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Misc.casf'
 	
 		DownloadPage.Clear();
 		
-		if (FileExists(ExpandConstant('{src}\manifest.txt')))then
+		if (FileExists(ExpandConstant('{src}\' + Mnfst)))then
 			begin
-			//Primary Assets		
-			if (ComponentSelected('Mod Loader (Required for just about everything)')) then
-			begin		
-				if (FileExists(ExpandConstant('{src}\Loader.casf'))) then
-				begin			
-					if (IsAssetOld(ExpandConstant('{src}'),ExpandConstant('{tmp}'),'Loader','null')) then
-					begin
-						DeleteFile(ExpandConstant('{src}\Loader.casf'))
-						DownloadPage.Add('https://drive.google.com/uc?export=download&id=18l78lFQ4ihJlfVArJpMVZE9N16o-vTYn', 'Loader.casf', '');
-					end			
-				end
-				else
+			//Primary Assets			
+			if (FileExists(ExpandConstant('{src}\' + Load))) then
+			begin			
+				if (IsAssetOld(ExpandConstant('{src}'),ExpandConstant('{tmp}'),'Loader','null')) then
 				begin
-					DownloadPage.Add('https://drive.google.com/uc?export=download&id=18l78lFQ4ihJlfVArJpMVZE9N16o-vTYn', 'Loader.casf', '');
-				end;
+					DeleteFile(ExpandConstant('{src}\' + Load))
+					DownloadPage.Add(LoadSite, Load, '');
+				end			
+			end
+			else
+			begin
+				DownloadPage.Add(LoadSite, Load, '');
+			end;
+			
+			if (FileExists(ExpandConstant('{src}\' + Pat))) then
+			begin			
+				if (IsAssetOld(ExpandConstant('{src}'),ExpandConstant('{tmp}'),'Patcher','null')) then
+				begin
+					DeleteFile(ExpandConstant('{src}\' + Pat))
+					DownloadPage.Add(PatSite, Pat, '');
+				end			
+			end
+			else
+			begin
+				DownloadPage.Add(PatSite, Pat, '');
+			end;
+			
+			if (FileExists(ExpandConstant('{src}\' + Plug))) then
+			begin			
+				if (IsAssetOld(ExpandConstant('{src}'),ExpandConstant('{tmp}'),'Plugin','null')) then
+				begin
+					DeleteFile(ExpandConstant('{src}\' + Plug))
+					DownloadPage.Add(PlugSite, Plug, '');
+				end			
+			end
+			else
+			begin
+				DownloadPage.Add(PlugSite, Plug, '');
+			end;
+			
+			if (FileExists(ExpandConstant('{src}\' + Misc))) then
+			begin			
+				if (IsAssetOld(ExpandConstant('{src}'),ExpandConstant('{tmp}'),'Misc','null')) then
+				begin
+					DeleteFile(ExpandConstant('{src}\' + Misc))
+					DownloadPage.Add(MiscSite, Misc, '');
+				end			
+			end
+			else
+			begin
+				DownloadPage.Add(MiscSite, Misc, '');
 			end;
 		end 
 		else
 		begin
-			DeleteFile(ExpandConstant('{src}\Loader.casf'))
-			DownloadPage.Add('https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Loader.casf', 'Loader.casf', '');
+			DeleteFile(ExpandConstant('{src}\' + Load))
+			DownloadPage.Add(LoadSite, Load, '');
 			
-			DeleteFile(ExpandConstant('{src}\Patcher.casf'))
-			DownloadPage.Add('https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Patchers.casf', 'Patcher.casf', '');
+			DeleteFile(ExpandConstant('{src}\' + Pat))
+			DownloadPage.Add(PatSite, Pat, '');
 			
-			DeleteFile(ExpandConstant('{src}\Plugin.casf'))
-			DownloadPage.Add('https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Plugins.casf', 'Plugin.casf', '');
+			DeleteFile(ExpandConstant('{src}\' + Plug))
+			DownloadPage.Add(PlugSite, Plug, '');
 			
-			DeleteFile(ExpandConstant('{src}\Misc.casf'))
-			DownloadPage.Add('https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Misc.casf', 'Misc.casf', '');
+			DeleteFile(ExpandConstant('{src}\' + Misc))
+			DownloadPage.Add(MiscSite, Misc, '');
 		end;
 		
 		//External Assets	
@@ -272,34 +328,50 @@
 			DownloadPage.Hide;
 		end;
 		
-		if (FileExists(ExpandConstant('{src}\manifest.txt')) = false) AND (FileExists(ExpandConstant('{tmp}\manifest.txt'))) then
+		if (FileExists(ExpandConstant('{src}\' + Mnfst)) = false) AND (FileExists(ExpandConstant('{tmp}\' + Mnfst))) then
 		begin
-			FileCopy(ExpandConstant('{tmp}\manifest.txt'),ExpandConstant('{src}\manifest.txt'), False)
+			FileCopy(ExpandConstant('{tmp}\' + Mnfst),ExpandConstant('{src}\' + Mnfst), False)
 		end;
 		
-		if (FileExists(ExpandConstant('{src}\Loader.casf')) = false) AND (FileExists(ExpandConstant('{tmp}\Loader.casf'))) then
+		if (FileExists(ExpandConstant('{src}\' + Load)) = false) AND (FileExists(ExpandConstant('{tmp}\' + Load))) then
 		begin
-			FileCopy(ExpandConstant('{tmp}\Loader.casf'),ExpandConstant('{src}\Loader.casf'), False)
+			FileCopy(ExpandConstant('{tmp}\' + Load),ExpandConstant('{src}\' + Load), False)
 		end;
 		
-		if (FileExists(ExpandConstant('{src}\Patcher.casf')) = false) AND (FileExists(ExpandConstant('{tmp}\Patcher.casf'))) then
+		if (FileExists(ExpandConstant('{src}\' + Pat)) = false) AND (FileExists(ExpandConstant('{tmp}\' + Pat))) then
 		begin
-			FileCopy(ExpandConstant('{tmp}\Patcher.casf'),ExpandConstant('{src}\Patcher.casf'), False)
+			FileCopy(ExpandConstant('{tmp}\' + Pat),ExpandConstant('{src}\' + Pat), False)
 		end;
 		
-		if (FileExists(ExpandConstant('{src}\Plugin.casf')) = false) AND (FileExists(ExpandConstant('{tmp}\Plugin.casf'))) then
+		if (FileExists(ExpandConstant('{src}\' + Plug)) = false) AND (FileExists(ExpandConstant('{tmp}\' + Plug))) then
 		begin
-			FileCopy(ExpandConstant('{tmp}\Plugin.casf'),ExpandConstant('{src}\Plugin.casf'), False)
+			FileCopy(ExpandConstant('{tmp}\' + Plug),ExpandConstant('{src}\' + Plug), False)
 		end;
 		
-		if (FileExists(ExpandConstant('{src}\Misc.casf')) = false) AND (FileExists(ExpandConstant('{tmp}\Misc.casf'))) then
+		if (FileExists(ExpandConstant('{src}\' + Misc)) = false) AND (FileExists(ExpandConstant('{tmp}\' + Misc))) then
 		begin
-			FileCopy(ExpandConstant('{tmp}\Misc.casf'),ExpandConstant('{src}\Misc.casf'), False)
+			FileCopy(ExpandConstant('{tmp}\' + Misc),ExpandConstant('{src}\' + Misc), False)
+		end;
+
+//Extract asset files for usage.		
+		if (FileExists(ExpandConstant('{src}\' + Load))) then
+		begin
+			DoUnzip(ExpandConstant('{src}\' + Load),ExpandConstant('{tmp}'))
 		end;
 		
-		//if (FileExists(ExpandConstant('{tmp}\FemaleSkin.zip'))) then
-		//begin
-			//DoPUnzip(ExpandConstant('{tmp}\FemaleSkin.zip'),ExpandConstant('{tmp}'),'cmiassetspass')
-		//end;
+		if (FileExists(ExpandConstant('{src}\' + Pat))) then
+		begin
+			DoUnzip(ExpandConstant('{src}\' + Pat),ExpandConstant('{tmp}'))
+		end;
+		
+		if (FileExists(ExpandConstant('{src}\' + Plug))) then
+		begin
+			DoUnzip(ExpandConstant('{src}\' + Plug),ExpandConstant('{tmp}'))
+		end;
+		
+		if (FileExists(ExpandConstant('{src}\' + Misc))) then
+		begin
+			DoUnzip(ExpandConstant('{src}\' + Misc),ExpandConstant('{tmp}'))
+		end;
 	end;
 [/Code]
