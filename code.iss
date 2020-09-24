@@ -2,6 +2,7 @@
 
 	//Bringing the file reference for the DLL here to keep code stuff together.
 	Source:"Utility\DLL\CMIHelper.dll"; DestDir: "{tmp}"; Permissions: everyone-full; Flags:dontcopy deleteafterinstall nocompression noencryption
+	Source:"Utility\DLL\Newtonsoft.Json.dll"; DestDir: "{tmp}"; Permissions: everyone-full; Flags:dontcopy deleteafterinstall nocompression noencryption
 
 [/Files]
 
