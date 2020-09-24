@@ -22,7 +22,7 @@ InfoBeforeFile=Documentation\info.txt
 ;Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=admin
 PrivilegesRequiredOverridesAllowed=commandline
-OutputDir=Compiled EXE
+OutputDir=Compiled_EXE
 OutputBaseFilename=COM Modular Installer 2.3.54
 DefaultDirName=COM3d2 Modular Installer
 AppendDefaultDirName=no

@@ -1,8 +1,7 @@
 ﻿[Files]
 
 	//Bringing the file reference for the DLL here to keep code stuff together.
-	Source:"Utility\DLL\CMIHelper.dll"; DestDir: "{tmp}"; Permissions: everyone-full; Flags:dontcopy deleteafterinstall nocompression noencryption
-	Source:"Utility\DLL\Newtonsoft.Json.dll"; DestDir: "{tmp}"; Permissions: everyone-full; Flags:dontcopy deleteafterinstall nocompression noencryption
+	Source:"Utility\DLL\CMIHelper.dll"; DestDir: "{tmp}"; Permissions: everyone-full; Flags: dontcopy deleteafterinstall nocompression noencryption
 
 [/Files]
 
@@ -61,7 +60,7 @@
 		WizardForm.TypesCombo.OnChange := @TypesComboChange;
 		PresetFile := 'Custom.CMIType';
 		
-		DownloadTemporaryFile('https://drive.google.com/uc?export=download&id=1IkJLgZxEew4TuQYN-Nfp4lp1-r8AWnKx','manifest.txt','',nil);
+		DownloadTemporaryFile('https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/manifest.json','manifest.txt','',nil);
 		
 		if (IsAssetOld(ExpandConstant('{src}'),ExpandConstant('{tmp}'),'Installer','{#MyAppVersion}')) then
 		begin
