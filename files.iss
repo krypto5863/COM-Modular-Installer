@@ -43,7 +43,7 @@ Source: "{#IPatch}\BodyCategoryAdd\*"; DestDir: "{#syb}"; Components: Patchers/b
 Source: "{#IPatch}\CacheEdit\*"; DestDir: "{#syb}"; Components: Patchers/cacheedit; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\ccfix\*"; DestDir: "{#syb}"; Components: Patchers/ccfix; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\blinkstop\*"; DestDir: "{#syb}"; Components: Patchers/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPatch}\Save\*"; DestDir: "{#syb}"; Components: Patchers/extsave; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#IPatch}\ExternalSave\*"; DestDir: "{#syb}"; Components: Patchers/extsave; Flags: ignoreversion recursesubdirs createallsubdirs 
   Source: "{#IPlugin}\MaidVoice\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice; Flags: ignoreversion recursesubdirs createallsubdirs 
     Source: "{#IPlugin}\AddMod\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod; Flags: ignoreversion recursesubdirs createallsubdirs 
       Source: "{#IPlugin}\Lashalpha\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Flags: ignoreversion recursesubdirs 

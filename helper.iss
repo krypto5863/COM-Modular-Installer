@@ -132,23 +132,39 @@
 	var
 	i : Integer;
 	lv : Integer;
+	SiteSt: String;
 	site : String;
 	ErrorCode: Integer;
-	begin					
+	begin
+	
+	if MsgBox('Would you like us to try to download the latest update and run the updater? You will still need to follow the instructions in the installer that shows up, and this way of updating is not as safe or as reliable as manually updating.' + #13#10#13#10 + 'The update may take a while to download (usually a few minutes) so be patient.', mbInformation, MB_YESNO) = MrNO then
+	begin				
+		exit;
+	end;
+	
+	if (IsEng(WizardForm.DirEdit.Text)) then
+	begin
+		MinVer := 1000;
+		i := MinVer/10+20
+		SiteSt := 'http://7.242.238.202.static.iijgio.jp/com3d2_up'
+	end else
+	begin
 		i := MinVer/10+20;
+		SiteST := 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up'
+	end;
 
 		while (i >= MinVer/10) do
 		begin
 
 			//MsgBox('testing: ' + 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up' + IntToStr(i) + '.zip', mbInformation, MB_OK);
-			if (SiteValid('http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up' + IntToStr(i) + '.zip') = true) AND (lv <= 0) then
+			if (SiteValid(SiteSt + IntToStr(i) + '.zip') = true) AND (lv <= 0) then
 			begin
 				lv := i;
 				//MsgBox('Returning update ' + IntToStr(lv) + ' as latest', mbInformation, MB_OK);
 			end
 			else if (lv > 0) then
 			begin
-				site :=  'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up' + IntToStr(lv) + '.zip';
+				site :=  SiteSt + IntToStr(lv) + '.zip';
 				break;
 			end;
 			
@@ -210,7 +226,9 @@
 	end;
 	
 	procedure DownloadAssets();
+	(*	
 	var
+
 		i : Integer;
 		Mnfst: String;
 		Load: String;
@@ -221,9 +239,10 @@
 		PlugSite: String;
 		Misc: String;
 		MiscSite: String;
-		
+	*)	
 	begin
 	
+	(*	
 	Mnfst := 'manifest.txt'
 	Load := 'Loader.casf'
 	LoadSite := 'https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Loader.casf'
@@ -233,9 +252,12 @@
 	PlugSite := 'https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Plugins.casf'
 	Misc := 'Misc.casf'
 	MiscSite := 'https://github.com/krypto5863/COM-Modular-Installer/raw/master/Assets/Misc.casf'
+	*)
+	
 	
 		DownloadPage.Clear();
 		
+		(*		
 		if (FileExists(ExpandConstant('{src}\' + Mnfst)))then
 			begin
 			//Primary Assets			
@@ -305,6 +327,7 @@
 			DeleteFile(ExpandConstant('{src}\' + Misc))
 			DownloadPage.Add(MiscSite, Misc, '');
 		end;
+		*)
 		
 		//External Assets	
 		if (ComponentSelected('DLC Checker (Kry Fork)')) then
@@ -328,6 +351,7 @@
 			DownloadPage.Hide;
 		end;
 		
+		(*		
 		if (FileExists(ExpandConstant('{src}\' + Mnfst)) = false) AND (FileExists(ExpandConstant('{tmp}\' + Mnfst))) then
 		begin
 			FileCopy(ExpandConstant('{tmp}\' + Mnfst),ExpandConstant('{src}\' + Mnfst), False)
@@ -373,5 +397,6 @@
 		begin
 			DoUnzip(ExpandConstant('{src}\' + Misc),ExpandConstant('{tmp}'))
 		end;
+		*)
 	end;
 [/Code]

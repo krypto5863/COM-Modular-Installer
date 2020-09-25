@@ -219,14 +219,13 @@ Name: misc; Description:Miscelleanous Files; Types: full compact;
   Name:misc/uncensor; Description:Uncensored Vanilla Textures; Types:full eng notr compact self pic hen;
   Name:misc/uncensormale; Description:Male Penis Replacer; Types:full eng notr compact self pic hen;
   Name:misc/extrauncensormale; Description:More Penis Variants; Types:full eng notr compact self pic hen;
-
   Name: misc/body; Description:Body Replacers; Types:full eng compact self pic hen;
     Name: misc/body/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen; Flags: Exclusive checkablealone
     Name: misc/body/analkupa; Description:AnalKupa; Types:; Flags: Exclusive checkablealone
 		
-	Name: ext; Description:External Files; Types: full compact;
-		Name:ext/dlccheck; Description:DLC Checker (Kry Fork); Types:Full eng notr self pic;
-		Name:ext/maidfiddle; Description:Maid Fiddler (Dangerous!);
+Name: ext; Description:External Files; Types: full compact;
+	Name:ext/dlccheck; Description:DLC Checker (Kry Fork); Types:Full eng notr self pic;
+	Name:ext/maidfiddle; Description:Maid Fiddler (Dangerous!);
 
 
 [Tasks]

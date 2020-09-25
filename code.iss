@@ -54,7 +54,6 @@
 		Value: String;
 		ErrorCode: Integer;
 	begin
-
 		DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
 		OGEvent :=  WizardForm.TypesCombo.OnChange;
 		WizardForm.TypesCombo.OnChange := @TypesComboChange;
@@ -64,18 +63,17 @@
 		
 		if (IsInstallerOld(ExpandConstant('{tmp}'),'{#MyAppVersion}')) then
 		begin
-			MsgBox('This installer is outdated and likely incompatible with new assets! Please download the latest installer version.' , mbCriticalError, MB_OK);
-			abort
+			MsgBox('This installer is outdated and likely incompatible with new assets/versions! You may continue the download but you continue at your own risk!' , mbCriticalError, MB_OK);
 		end;
 
 		if MsgBox('Did you read the readme? Failure to read it will void you any chance of receiving support.', mbConfirmation, MB_YESNO) = IDNO then
-			begin
-				MsgBox('Go back and read it before installing CMI.', mbCriticalError, MB_OK)
-				ExtractTemporaryFile('CMI_Readme.pdf');
-				ShellExecAsOriginalUser('open',
-				AddQuotes(ExpandConstant('{tmp}\CMI_Readme.pdf')), '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
-				abort
-			end;
+		begin
+			MsgBox('Go back and read it before installing CMI.', mbCriticalError, MB_OK)
+			ExtractTemporaryFile('CMI_Readme.pdf');
+			ShellExecAsOriginalUser('open',
+			AddQuotes(ExpandConstant('{tmp}\CMI_Readme.pdf')), '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
+			abort
+		end;
 
 	//Tries to find the path of the game via the registry and if it suceeds, pushes it to the value var.
 		if RegQueryStringValue(HKEY_CURRENT_USER, 'Software\KISS\カスタムオーダーメイド3D2','InstallPath', Value) then
@@ -168,14 +166,7 @@
 				else 
 				begin
 					//MsgBox('We should be returning false', mbInformation, MB_OK);
-					
-					if (IsEng(WizardForm.DirEdit.Text) = false) then
-					begin	
-						if MsgBox('Would you like us to try to download the latest update and run the updater? You will still need to follow the instructions in the installer that shows up, and this way of updating is not as safe or as reliable as manually updating.' + #13#10 + 'Do we proceeed?', mbInformation, MB_YESNO) = MrYES then
-						begin				
-							DownloadUpdate(MinVer);
-						end;				
-					end;
+					DownloadUpdate(MinVer);
 					Result := false
 				end;                                                                          
 			end;
