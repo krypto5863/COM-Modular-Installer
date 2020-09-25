@@ -8,5 +8,10 @@ Old
 Patchers
 Plugins
 UI
-Utility
+Utility/7zip
+Utility/DLL
+Utility/CMI Helper DLL/packages
+Utility/CMI Helper DLL/obj
+Utility/CMI Helper DLL/*
+!Utility/CMI Helper DLL/**.cs
 *.docx
