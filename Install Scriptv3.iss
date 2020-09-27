@@ -240,7 +240,7 @@ Name:clean; Description: Cleaning Tasks; GroupDescription: Cleaning tasks to exe
     Name:clean/deleteold/mods; Description: Delete any mods installed by the Installer too(This will delete all of your saved MM Poses too); Flags:unchecked dontinheritcheck
     Name:clean/deleteold/old; Description: Delete any old installs aswell; Flags:unchecked dontinheritcheck
 
-Name:readonly; Description: Remove Read-Only Flag On All Files; GroupDescription: Many users experience issues thanks to irroneously set Read-Only flags by the system. This fixes that.;
+Name:readonly; Description: Remove Read-Only Flag On All Files; GroupDescription: Many users experience issues thanks to irroneously set Read-Only flags by the system. This tries to fix that, though due to permissions, UAC or other factors, it may not always work. It can always be done manually, however.;
 
 [InstallDelete]
 

@@ -117,14 +117,21 @@
 		end;
 	end;
 
-	function IsEng(path: String): Boolean;
+	function IsEng(path: String): Integer;
 	begin
-		if (FileExists(path + '\GameData\product.arc')) OR (FileExists(path + '\GameData\language.arc')) then
+		if (FileExists(path + '\localize.dat')) then
 		begin
-			result := true
+			if ((FileExists(path + '\GameData\system_en.arc')) = false) AND ((FileExists(path + '\GameData\bg_en.arc')) = false) then
+			begin
+				result := 2;
+			end else
+			begin
+				result := 1;
+			end;
 		end
-		else begin
-			result := false
+		else
+		begin
+			result := 0;
 		end;
 	end;
 
@@ -142,7 +149,7 @@
 		exit;
 	end;
 	
-	if (IsEng(WizardForm.DirEdit.Text)) then
+	if (IsEng(WizardForm.DirEdit.Text)) = 1 then
 	begin
 		MinVer := 1000;
 		i := MinVer/10+20

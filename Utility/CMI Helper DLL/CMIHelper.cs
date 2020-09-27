@@ -113,13 +113,32 @@ namespace CMIHelper
 		[DllExport("CMIHelperIN", CallingConvention = CallingConvention.StdCall)]
 		public static bool INMCheck([MarshalAs(UnmanagedType.BStr)] string path)
 		{
-			if (File.Exists(@path + @"\GameData\product.arc") || File.Exists(@path + @"\GameData\language.arc"))
+
+			string msg = "We found some files that belong in INM but other files are missing indicating this is actually a JP game!\n\nThis is possibly dangerous and if you have not installed english version DLC and your game is not of any english version, please fix your game now... Otherwise, if your game is an english version, then you are missing files! In any case, refer to the readme on fixing instructions and continue at your own risk!";
+
+			if (File.Exists(@path + @"\GameData\product.arc") && File.Exists(@path + @"\GameData\language.arc"))
 			{
 				if (!File.Exists(@path + @"\GameData\system_en.arc") && !File.Exists(@path + @"\GameData\bg-en.arc"))
 				{
-					System.Windows.Forms.MessageBox.Show("INM was found! Modular does not officially support INM due to known incompatibilities. Please install the R18(Adult) patch if you wish to use this installer.", "INM was found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return false;
+					if (File.Exists(@path + @"\localize.dat"))
+					{
+						System.Windows.Forms.MessageBox.Show("INM was found! Modular does not officially support INM due to known incompatibilities. Please install the R18(Adult) patch if you wish to use this installer. If your game is not actually INM, please refer to the readme for a fix.", "INM was found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return false;
+					} else
+					{
+						System.Windows.Forms.MessageBox.Show(msg, "Possible use of INM files in JP Game!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return true;
+					}
+				} else if (!File.Exists(@path + @"\GameData\system_en.arc") ^ !File.Exists(@path + @"\GameData\bg-en.arc"))
+				{
+					System.Windows.Forms.MessageBox.Show(msg, "Possible use of INM files in JP Game!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return true;
 				}
+			}
+			else if (File.Exists(@path + @"\GameData\product.arc") || File.Exists(@path + @"\GameData\language.arc"))
+			{
+				System.Windows.Forms.MessageBox.Show(msg,"Possible use of INM files in JP Game!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return true;
 			}
 			//System.Windows.Forms.MessageBox.Show("Game type was checked! JP version was found!!", "Caption Here!", MessageBoxButtons.OK);
 			return true;

@@ -101,7 +101,7 @@
 			//Saves path to global var.
 			path := ExpandConstant('{app}');
 			//If english version is detected, run the below code.
-			if (IsEng(path)) then
+			if (IsEng(path)) > 0 then
 			begin
 				MsgBox('If you are not on an English version of the game quit the install right now and refer to the readme!!'+ #13#10#13#10 +'English version was found!! Be advised, English versions are not as feature full or as supported as the Japanese version!', mbInformation, MB_OK)
 				if (MsgBox('Some components here can be harmful or incompatible to your English game. Should we disable these components in order to keep you safe?', mbConfirmation, MB_YESNO) = IDYES) then
@@ -151,7 +151,7 @@
 		if CurPageID = wpSelectDir then
 		begin
 			//Checks if the game is not INM version. If it's not, installation continues.
-			if INMCheck(WizardForm.DirEdit.Text) then
+			if IsEng(WizardForm.DirEdit.Text) < 2 then
 			begin
 				//Checks the version of the game but also checks if the install folder has a game instance and lets the installer know for future reference.
 				MinVer := 1480
@@ -169,8 +169,12 @@
 					DownloadUpdate(MinVer);
 					Result := false
 				end;                                                                          
+			end
+			else begin
+				MsgBox('We have detected INM! INM is not supported by CMI due to technical differences.' + #13#10#13#10 + 'To use CMI, please install the R18/Adult Content Supplement Patch.' + #13#10#13#10 + 'If your are not actually on an INM version of the game, then you have likely installed Eng DLC/files into your japanese game. Please refer to the readme on repair instructions.', mbCriticalError, MB_OK);
 			end;
-		end 
+		end
+		 
 		else if (CurPageID = wpSelectComponents) then
 		begin
 			Result := true
