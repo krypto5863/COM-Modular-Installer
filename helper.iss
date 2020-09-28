@@ -232,6 +232,24 @@
 		result := res
 	end;
 	
+	function GetComponentIndex(name: String): Integer;
+	var
+		I: Integer;
+	begin
+
+		for I := 0 to Wizardform.ComponentsList.items.count-1 do
+		begin
+			//MsgBox('Component was selected name of: ' + Wizardform.ComponentsList.ItemCaption[I], mbInformation, MB_OK);
+			if (CompareText(Wizardform.ComponentsList.ItemCaption[I], name) = 0) then
+			begin
+				//MsgBox('Component was selected, returning true', mbInformation, MB_OK);
+				result := I
+				exit;
+			end
+		end;	
+		result := -1;
+	end;
+	
 	procedure DownloadAssets();
 	(*	
 	var

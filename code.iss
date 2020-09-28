@@ -10,6 +10,7 @@
 	var
 		PresetFile: String;
 		DownloadPage: TDownloadWizardPage;
+		discard: Integer;
 [/Code]
 
 //The following script file has a rather large function for using 7zip to unzip files via the installer. It was moved to a seperate script to make things easier.
@@ -107,29 +108,33 @@
 				if (MsgBox('Some components here can be harmful or incompatible to your English game. Should we disable these components in order to keep you safe?', mbConfirmation, MB_YESNO) = IDYES) then
 				begin
 					//Unchecks the components for English version
-					Wizardform.ComponentsList.Checked[2] := false
-					Wizardform.ComponentsList.Checked[3] := false
-					Wizardform.ComponentsList.Checked[4] := false
-					Wizardform.ComponentsList.Checked[5] := false
+					Wizardform.ComponentsList.Checked[GetComponentIndex('Translation Plugins')] := false
+					Wizardform.ComponentsList.Checked[GetComponentIndex('i18nEx')] := false
+					Wizardform.ComponentsList.Checked[GetComponentIndex('Resource Redirector')] := false
+					Wizardform.ComponentsList.Checked[GetComponentIndex('XUnity AutoTranslator')] := false
 					//Grays out components that shouldn't be used on english version
-					Wizardform.ComponentsList.ItemEnabled[2] := false
-					Wizardform.ComponentsList.ItemEnabled[3] := false
-					Wizardform.ComponentsList.ItemEnabled[4] := false
-					Wizardform.ComponentsList.ItemEnabled[5] := false
-					Wizardform.ComponentsList.ItemEnabled[18] := false
-					Wizardform.ComponentsList.ItemEnabled[19] := false
-					Wizardform.ComponentsList.ItemEnabled[20] := false
+					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('Translation Plugins')] := false
+					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('i18nEx')] := false
+					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('Extra Translations')] := false
+					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('Resource Redirector')] := false
+					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('XUnity AutoTranslator')] := false
+					//Syb Section
+					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('Translation Plugins (Syb)')] := false
+					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('i18nEx (Syb)')] := false
+					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('Extra Translations (Syb)')] := false
+					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('XUnity AutoTranslator (Syb)')] := false
 					//Removes types that could potentially install non-eng version components
 					Wizardform.TypesCombo.Items.Delete(0);
 					//When an entry is deleted, any higher entries cascade down. Thus we just delete the same entry multiple times.
-					Wizardform.TypesCombo.Items.Delete(1);
-					Wizardform.TypesCombo.Items.Delete(1);
-					Wizardform.TypesCombo.Items.Delete(1);
-					Wizardform.TypesCombo.Items.Delete(1);
+					Wizardform.TypesCombo.Items.Delete(2);
+					Wizardform.TypesCombo.Items.Delete(2);
+					Wizardform.TypesCombo.Items.Delete(2);
+					Wizardform.TypesCombo.Items.Delete(2);
 					//Selects a functioning english type                        
 					WizardForm.TypesCombo.ItemIndex := 0;
 					//Updates checkboxes.                                                
-					WizardForm.TypesCombo.OnChange(WizardForm.TypesCombo);
+					//WizardForm.TypesCombo.OnChange(WizardForm.TypesCombo);
+					//MsgBox('Debug!', mbInformation, MB_OK);
 				end;
 			end;
 		end;

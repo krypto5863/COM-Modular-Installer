@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.3.54"
+#define MyAppVersion "2.4"
 #define MyAppPublisher "Nobody"
 #define MyAppURL "http://www.tesin.com/"
 #define MyAppExeName "COM Modular AIO Installer"
@@ -23,7 +23,7 @@ InfoBeforeFile=Documentation\info.txt
 PrivilegesRequired=admin
 PrivilegesRequiredOverridesAllowed=commandline
 OutputDir=Compiled_EXE
-OutputBaseFilename=COM Modular Installer 2.3.54
+OutputBaseFilename=COM Modular Installer 2.4
 DefaultDirName=COM3d2 Modular Installer
 AppendDefaultDirName=no
 Compression=lzma2/ultra64
@@ -83,13 +83,10 @@ Name:"none"; Description: "I want nothing!";
 
 Name: Loader; Description: Mod Loader (Required for just about everything); Types: full compact;
   Name: Loader/bepinEX; Description: BepInEX (Recommended); Types: full notr compact eng pic self hen; Flags:Exclusive checkablealone
-
-    Name: Loader/bepinEX/Translations; Description: Translation Plugins; Types: Full compact pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/Translations/i18nEx; Description: i18nEx;  Types: full compact pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/Translations/resredir; Description: Resource Redirector; Flags: dontinheritcheck;
-        Name: Loader/bepinEX/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen; Flags: dontinheritcheck;
-
-    Name: Loader/bepinEX/FPSUn; Description: FPSUnlock; Types: self; Flags: dontinheritcheck;
+	
+		Name: Loader/bepinEX/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+	
+	  Name: Loader/bepinEX/FPSUn; Description: FPSUnlock; Types: self; Flags: dontinheritcheck;
 
     Name: Loader/bepinEX/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
@@ -102,12 +99,19 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
       Name: Loader/bepinEX/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
 
+    Name: Loader/bepinEX/Translations; Description: Translation Plugins; Types: Full compact pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/Translations/i18nEx; Description: i18nEx;  Types: full compact pic self hen; Flags: dontinheritcheck;
+				Name:Loader/bepinEX/Translations/i18nEx/extrans; Description:Extra Translations; Types:full compact self pic hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/Translations/resredir; Description: Resource Redirector; Flags: dontinheritcheck;
+        Name: Loader/bepinEX/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen; Flags: dontinheritcheck;
+
 
   Name: Loader/Sybaris; Description: Sybaris 2.1 (Not Recommended, JUST DON'T USE IT);Flags: Exclusive checkablealone
 
     Name: Loader/Sybaris/Translations; Description: Translation Plugins (Syb); Flags: dontinheritcheck
-      Name: Loader/Sybaris/Translations/i18nEx; Description: i18nEx (Syb);       
-      Name: Loader/Sybaris/Translations/xuat; Description: XUnity AutoTranslator(Syb);
+      Name: Loader/Sybaris/Translations/i18nEx; Description: i18nEx (Syb);
+				Name:Loader/Sybaris/Translations/i18nEx/extrans; Description:Extra Translations (Syb); Flags: dontinheritcheck;
+      Name: Loader/Sybaris/Translations/xuat; Description: XUnity AutoTranslator (Syb);
 
 
 Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
@@ -210,7 +214,6 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 
 
 Name: misc; Description:Miscelleanous Files; Types: full compact;
-  Name:misc/extrans; Description:Extra Translations; Types:full compact self pic hen;
   Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full eng notr self pic;
 	//Name:misc/dlccheck; Description:DLC Checker (Kry Fork); Types:Full eng notr self pic;
 	//Name:misc/maidfiddle; Description:Maid Fiddler (Dangerous!);
