@@ -3,9 +3,9 @@
 
 #define MyAppName "COM Modular Installer"
 #define MyAppVersion "2.4"
-#define MyAppPublisher "Nobody"
-#define MyAppURL "http://www.tesin.com/"
-#define MyAppExeName "COM Modular AIO Installer"
+//#define MyAppPublisher "Nobody"
+//#define MyAppURL "http://www.tesin.com/"
+//#define MyAppExeName 'COM Modular Installer'
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
@@ -13,17 +13,17 @@ AppId={{8143E460-C581-40B8-9D11-2FFC2DD35ADF}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
-AppPublisher={#MyAppPublisher}
-AppPublisherURL={#MyAppURL}
-AppSupportURL={#MyAppURL}
-AppUpdatesURL={#MyAppURL}
+//AppPublisher={#MyAppPublisher}
+//AppPublisherURL={#MyAppURL}
+//AppSupportURL={#MyAppURL}
+//AppUpdatesURL={#MyAppURL}
 LicenseFile=Documentation\license.txt
 InfoBeforeFile=Documentation\info.txt
 ;Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=admin
 PrivilegesRequiredOverridesAllowed=commandline
 OutputDir=Compiled_EXE
-OutputBaseFilename=COM Modular Installer 2.4
+OutputBaseFilename={#MyAppName} {#MyAppVersion}
 DefaultDirName=COM3d2 Modular Installer
 AppendDefaultDirName=no
 Compression=lzma2/ultra64

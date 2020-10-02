@@ -192,7 +192,7 @@
 				try
 					DownloadPage.Download;
 				except
-					SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
+					//SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
 				end;
 			finally
 			
@@ -370,7 +370,8 @@
 			try
 				DownloadPage.Download;
 			except
-				SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
+				MsgBox('We failed to download files for some of the components selected. Please ensure that you are connected to the internet and have a functioning connection before trying again. Otherwise, you can continue the installation, the missing assets simply will not be installed.' , mbInformation, MB_OK);
+				//SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
 			end;
 		finally
 			DownloadPage.Hide;

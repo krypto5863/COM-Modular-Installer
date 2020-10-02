@@ -460,7 +460,7 @@ namespace CMIHelper
 				lines = File.ReadAllLines(tpath + @"\manifest.txt");
 				foreach (string line in lines)
 				{
-					System.Windows.Forms.MessageBox.Show(line, "debug", MessageBoxButtons.OK);
+					//System.Windows.Forms.MessageBox.Show(line, "debug", MessageBoxButtons.OK);
 					if (line.Contains(file))
 					{
 						newversion = line.Replace(file + ":", "");
@@ -470,7 +470,7 @@ namespace CMIHelper
 
 				if (Version.Parse(oldversion) < Version.Parse(newversion))
 				{
-					System.Windows.Forms.MessageBox.Show(oldversion + " | " + newversion, "debug", MessageBoxButtons.OK);
+					//System.Windows.Forms.MessageBox.Show(oldversion + " | " + newversion, "debug", MessageBoxButtons.OK);
 					return true;
 				} else
 				{
@@ -493,7 +493,7 @@ namespace CMIHelper
 				lines = File.ReadAllLines(tpath + @"\manifest.txt");
 				foreach (string line in lines)
 				{
-					System.Windows.Forms.MessageBox.Show(line, "debug", MessageBoxButtons.OK);
+					//System.Windows.Forms.MessageBox.Show(line, "debug", MessageBoxButtons.OK);
 					if (line.Contains("Installer"))
 					{
 						newversion = line.Replace("Installer:", "");
@@ -503,7 +503,7 @@ namespace CMIHelper
 
 				if (Version.Parse(version) < Version.Parse(newversion))
 				{
-					System.Windows.Forms.MessageBox.Show(version + " | " + newversion, "debug", MessageBoxButtons.OK);
+					//System.Windows.Forms.MessageBox.Show(version + " | " + newversion, "debug", MessageBoxButtons.OK);
 					return true;
 				}
 				else

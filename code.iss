@@ -10,7 +10,6 @@
 	var
 		PresetFile: String;
 		DownloadPage: TDownloadWizardPage;
-		discard: Integer;
 [/Code]
 
 //The following script file has a rather large function for using 7zip to unzip files via the installer. It was moved to a seperate script to make things easier.
@@ -60,7 +59,11 @@
 		WizardForm.TypesCombo.OnChange := @TypesComboChange;
 		PresetFile := 'Custom.CMIType';
 		
+		
+		if (SiteValid('https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/Assets/manifest.txt')) then
+		begin
 		DownloadTemporaryFile('https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/Assets/manifest.txt','manifest.txt','',nil);
+		end;
 		
 		if (IsInstallerOld(ExpandConstant('{tmp}'),'{#MyAppVersion}')) then
 		begin
