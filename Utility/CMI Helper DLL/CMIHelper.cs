@@ -124,12 +124,14 @@ namespace CMIHelper
 					{
 						System.Windows.Forms.MessageBox.Show("INM was found! Modular does not officially support INM due to known incompatibilities. Please install the R18(Adult) patch if you wish to use this installer. If your game is not actually INM, please refer to the readme for a fix.", "INM was found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return false;
-					} else
+					}
+					else
 					{
 						System.Windows.Forms.MessageBox.Show(msg, "Possible use of INM files in JP Game!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return true;
 					}
-				} else if (!File.Exists(@path + @"\GameData\system_en.arc") ^ !File.Exists(@path + @"\GameData\bg-en.arc"))
+				}
+				else if (!File.Exists(@path + @"\GameData\system_en.arc") ^ !File.Exists(@path + @"\GameData\bg-en.arc"))
 				{
 					System.Windows.Forms.MessageBox.Show(msg, "Possible use of INM files in JP Game!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return true;
@@ -137,33 +139,33 @@ namespace CMIHelper
 			}
 			else if (File.Exists(@path + @"\GameData\product.arc") || File.Exists(@path + @"\GameData\language.arc"))
 			{
-				System.Windows.Forms.MessageBox.Show(msg,"Possible use of INM files in JP Game!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				System.Windows.Forms.MessageBox.Show(msg, "Possible use of INM files in JP Game!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return true;
 			}
 			//System.Windows.Forms.MessageBox.Show("Game type was checked! JP version was found!!", "Caption Here!", MessageBoxButtons.OK);
 			return true;
 		}
 
-/*		[DllExport("CMIHelperT", CallingConvention = CallingConvention.StdCall)]
-		public static bool TypeCheck([MarshalAs(UnmanagedType.BStr)] string path)
-		{
-			//path = @"D:\KISS\COM3D2";
-			if (File.Exists(@path + @"\GameData\product.arc") || File.Exists(@path + @"\GameData\language.arc"))
-			{
-				System.Windows.Forms.MessageBox.Show("If you are not on an English version of the game quit the install right now and refer to the readme!!\n\nEnglish version was found!! Be advised, English versions are not as feature full or as supported as the Japanese version!", "English!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				var result = System.Windows.Forms.MessageBox.Show("Some components here can be harmful or incompatible to your English game. Should we disable these components in order to keep you safe?", "Disable components?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-				if (result == DialogResult.No)
+		/*		[DllExport("CMIHelperT", CallingConvention = CallingConvention.StdCall)]
+				public static bool TypeCheck([MarshalAs(UnmanagedType.BStr)] string path)
 				{
+					//path = @"D:\KISS\COM3D2";
+					if (File.Exists(@path + @"\GameData\product.arc") || File.Exists(@path + @"\GameData\language.arc"))
+					{
+						System.Windows.Forms.MessageBox.Show("If you are not on an English version of the game quit the install right now and refer to the readme!!\n\nEnglish version was found!! Be advised, English versions are not as feature full or as supported as the Japanese version!", "English!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+						var result = System.Windows.Forms.MessageBox.Show("Some components here can be harmful or incompatible to your English game. Should we disable these components in order to keep you safe?", "Disable components?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+						if (result == DialogResult.No)
+						{
+							return true;
+						}
+						else if (result == DialogResult.Yes)
+						{
+							return false;
+						}
+					}
+					//System.Windows.Forms.MessageBox.Show("Game type was checked! JP version was found!!", "Caption Here!", MessageBoxButtons.OK);
 					return true;
-				}
-				else if (result == DialogResult.Yes)
-				{
-					return false;
-				}
-			}
-			//System.Windows.Forms.MessageBox.Show("Game type was checked! JP version was found!!", "Caption Here!", MessageBoxButtons.OK);
-			return true;
-		}*/
+				}*/
 
 		[DllExport("CMIHelperM", CallingConvention = CallingConvention.StdCall)]
 		public static bool MoveOld([MarshalAs(UnmanagedType.BStr)] string path)
@@ -270,18 +272,18 @@ namespace CMIHelper
 		[DllExport("CMIHelperRO", CallingConvention = CallingConvention.StdCall)]
 		public static void RemoveRO([MarshalAs(UnmanagedType.BStr)] string path)
 		{
-			var di = new DirectoryInfo(path);
+			try
+			{
+				var di = new DirectoryInfo(path);
 
-			foreach (var f in di.GetFiles("*", SearchOption.AllDirectories))
-			{				
-				try
+				foreach (var f in di.GetFiles("*", SearchOption.AllDirectories))
 				{
 					f.Attributes &= ~FileAttributes.ReadOnly;
 				}
-				catch
-				{
-					//To do
-				}
+			}
+			catch
+			{
+				System.Windows.Forms.MessageBox.Show("We ran into an error while attempting to remove read-only in the path: " + path + "\n\nYou may continue the installation, though you will have to manually remove the read-only flag from your game folder." , "Error while removing Read-Only", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
@@ -311,12 +313,13 @@ namespace CMIHelper
 							if (s.Equals(o))
 							{
 								//System.Windows.Forms.MessageBox.Show("Was equal!", "debug", MessageBoxButtons.OK);
-								res += (Array.IndexOf(opt, o)-1 + "|");
+								res += (Array.IndexOf(opt, o) - 1 + "|");
 							}
 						}
 					}
 				}
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				System.Windows.Forms.MessageBox.Show("Encountered an error while reading the CMI Preset File! Delete the CMI Preset file in your game folder if the error persists!\n\n" + e.ToString(), "Error Reading the CMI Preset!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
@@ -350,7 +353,8 @@ namespace CMIHelper
 				CMD.Copy(path + "\\OldInstall\\Sybaris\\Unityinjector\\Config", path + "\\Sybaris\\Unityinjector\\Config");
 			}
 
-			if (Directory.Exists(path + "\\OldInstall\\i18nEx") && Directory.Exists(path + "\\i18nEx")) {
+			if (Directory.Exists(path + "\\OldInstall\\i18nEx") && Directory.Exists(path + "\\i18nEx"))
+			{
 
 				//System.Windows.Forms.MessageBox.Show("Fetching files for i18nEx", "debug", MessageBoxButtons.OK);
 
@@ -436,7 +440,7 @@ namespace CMIHelper
 			string oldversion = "";
 			string newversion = "";
 
-				if (File.Exists(path + @"\manifest.txt") && File.Exists(tpath + @"\manifest.txt"))
+			if (File.Exists(path + @"\manifest.txt") && File.Exists(tpath + @"\manifest.txt"))
 			{
 
 				string[] lines;
@@ -452,7 +456,8 @@ namespace CMIHelper
 							break;
 						}
 					}
-				} else
+				}
+				else
 				{
 					oldversion = version;
 				}
@@ -472,7 +477,8 @@ namespace CMIHelper
 				{
 					//System.Windows.Forms.MessageBox.Show(oldversion + " | " + newversion, "debug", MessageBoxButtons.OK);
 					return true;
-				} else
+				}
+				else
 				{
 					return false;
 				}

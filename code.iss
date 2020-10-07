@@ -10,6 +10,7 @@
 	var
 		PresetFile: String;
 		DownloadPage: TDownloadWizardPage;
+		EngDisable: Boolean;
 [/Code]
 
 //The following script file has a rather large function for using 7zip to unzip files via the installer. It was moved to a seperate script to make things easier.
@@ -104,8 +105,14 @@
 		begin
 			//Saves path to global var.
 			path := ExpandConstant('{app}');
+			//Quits if the users are found to have updated their game incorrectly. This should help bring more awareness to incorrect updating and stop people from blaming CMI if they update incorrectly and then install CMI.
+			if (FileExists(path + '\update.exe')) OR (FileExists(path + '\selector.exe')) OR (DirExists(path + '\data')) then
+			begin
+				MsgBox('We have detected that this game instance was updated improperly!(Usually by a drag and drop process) This is completely unsafe and WILL break your game.' + #13#10#13#10 + 'Due to this CMI will not install as you may encounter further errors and bugs if we continue. Please reinstall your game and update CORRECTLY (By placing the update/DLC files in an empty directory and using the provided update.exe or selector.exe) to continue.', mbCriticalError, MB_OK)
+				abort;
+			end;
 			//If english version is detected, run the below code.
-			if (IsEng(path)) > 0 then
+			if (IsEng(path) > 0) AND (EngDisable <> true) then
 			begin
 				MsgBox('If you are not on an English version of the game quit the install right now and refer to the readme!!'+ #13#10#13#10 +'English version was found!! Be advised, English versions are not as feature full or as supported as the Japanese version!', mbInformation, MB_OK)
 				if (MsgBox('Some components here can be harmful or incompatible to your English game. Should we disable these components in order to keep you safe?', mbConfirmation, MB_YESNO) = IDYES) then
@@ -135,7 +142,8 @@
 					Wizardform.TypesCombo.Items.Delete(2);
 					//Selects a functioning english type                        
 					WizardForm.TypesCombo.ItemIndex := 0;
-					//Updates checkboxes.                                                
+					//Updates checkboxes.
+					EngDisable := true;																								
 					//WizardForm.TypesCombo.OnChange(WizardForm.TypesCombo);
 					//MsgBox('Debug!', mbInformation, MB_OK);
 				end;
@@ -150,6 +158,25 @@
 				Wizardform.TasksList.Checked[10] := false
 				Wizardform.TasksList.ItemEnabled[10] := false
 			end;
+		end;
+	end;
+	
+	function BackButtonClick(CurPageID: Integer): Boolean;
+	begin
+		if CurPageID = wpSelectComponents then
+		begin		
+			if (EngDisable = true) then
+			begin
+				if MsgBox('Due to changes made to the installer when disabling components for english versions, the installer needs to be restarted in order to revert these changes and allow you to safely use previous pages. Would you like to quit the installer now?', mbConfirmation, MB_YESNO) = IDYES then
+				begin
+					Abort;
+				end;				
+			end else begin
+				result := true;
+			end;
+		end else
+		begin
+			result := true;
 		end;
 	end;
 

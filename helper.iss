@@ -144,7 +144,7 @@
 	ErrorCode: Integer;
 	begin
 	
-	if MsgBox('Would you like us to try to download the latest update and run the updater? You will still need to follow the instructions in the installer that shows up, and this way of updating is not as safe or as reliable as manually updating.' + #13#10#13#10 + 'The update may take a while to download (usually a few minutes) so be patient.', mbInformation, MB_YESNO) = MrNO then
+	if MsgBox('Would you like us to try to download the latest update and run the updater? You will still need to follow the instructions in the installer that shows up, and this way of updating is not as safe or as reliable as manually updating.' + #13#10#13#10 + 'The update may take a while to download as the download itself can be around 3GBs in size (usually downloads within a few minutes, though may take more depending on your internet connection) so be patient.', mbInformation, MB_YESNO) = MrNO then
 	begin				
 		exit;
 	end;
