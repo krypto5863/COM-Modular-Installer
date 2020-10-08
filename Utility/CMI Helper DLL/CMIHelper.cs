@@ -184,6 +184,7 @@ namespace CMIHelper
 			corefiles.Add(@"\SybarisArcEditor.exe");
 			corefiles.Add(@"\CMI Documentation");
 			corefiles.Add(@"\CMI.ver");
+			corefiles.Add(@"\COM3D2 DlC Checker.exe");
 
 			if (!Directory.Exists(path + @"\Oldinstall"))
 			{
