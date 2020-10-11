@@ -15,9 +15,20 @@
 //Loader Section
 Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs
 
+	Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan; Flags: external
+		Source: "{tmp}\GraphicsSettings.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan/GraphSet; Flags: external
+
 	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UpCheck; Flags: ignoreversion recursesubdirs recursesubdirs createallsubdirs
 
 	Source: "{#ibep}\FPSUnlock\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSUn; Flags: ignoreversion recursesubdirs recursesubdirs createallsubdirs
+	
+	Source: "{tmp}\BepInEx\plugins\FPSCounter.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSCount; Flags: external
+	
+	Source: "{tmp}\BepInEx\plugins\COM3D2.InputHotkeyBlock.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/InBlock; Flags: external
+	
+	//Source: "{tmp}\BepInEx\plugins\BepInEx.MuteInBackground.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/MuteBack; Flags: external
+	
+	//Source: "{tmp}\BepInEx\plugins\RuntimeUnityEditor\*"; DestDir: "{#bepp}\RuntimeUnityEditor"; Components: Loader/bepinEX/RunUniEdit; Flags: external
 	 
 	Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/scriptloader; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\add_subs_to_old_yotogi.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/oldsubs; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -126,7 +137,9 @@ Source: "{#IPlugin}\shapeanimdoc\*"; DestDir: "{#syb}"; Components: plugins/shap
 Source: "{#IPlugin}\SKAcc\*"; DestDir: "{#syb}"; Components: plugins/SKAcc; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\skillcomshort\*"; DestDir: "{#syb}"; Components: plugins/skillcomshort; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\slimeshade\*"; DestDir: "{#syb}"; Components: plugins/slimeshade; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\smoothanim\*"; DestDir: "{#syb}"; Components: plugins/smoothanim; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#IPlugin}\smoothanim\*"; DestDir: "{#syb}"; Components: plugins/smoothanim; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#IPlugin}\texload\core\*"; DestDir: "{#plug}"; Components: plugins/texload; Flags: ignoreversion recursesubdirs createallsubdirs
+	Source: "{#IPlugin}\texload\postload\*"; DestDir: "{app}"; Components: plugins/texload/postload; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#IPlugin}\toukascreen\*"; DestDir: "{#syb}"; Components: plugins/toukascreen; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\ureye\*"; DestDir: "{#syb}"; Components: plugins/ureye; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\vibemaid\*"; DestDir: "{#syb}"; Components: plugins/vibemaid; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -155,5 +168,6 @@ Source: "{#IMisc}\TextureUncensors\lomob\*"; DestDir: "{#mod}\[CMI]Uncensors\LoM
 Source: "Documentation\CMI_Readme.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme nocompression
 Source: "Documentation\MM_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/MM; Flags: isreadme
 Source: "Documentation\DeRim_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/derim; Flags: isreadme
+Source: "Documentation\PosterLoader_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/texload/postload; Flags: isreadme
 
 [/Files]

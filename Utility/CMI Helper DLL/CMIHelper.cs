@@ -176,6 +176,7 @@ namespace CMIHelper
 			corefiles.Add(@"\i18nEx");
 			corefiles.Add(@"\IMGUITranslationLoader");
 			corefiles.Add(@"\scripts");
+			corefiles.Add(@"\IMG");
 			corefiles.Add(@"\doorstop_config.ini");
 			corefiles.Add(@"\winhttp.dll");
 			corefiles.Add(@"\version.dll");
@@ -219,6 +220,7 @@ namespace CMIHelper
 			corefiles.Add(@"\PhotoBG_OBJ_NEI");
 			corefiles.Add(@"\Pose_sample");
 			corefiles.Add(@"\[CMI]Uncensors");
+			corefiles.Add(@"\Mod\[CMI]PosterLoader\");
 			corefiles.Add(@"\TextureUncensors");
 			corefiles.Add(@"\EmotionalEars");
 			corefiles.Add(@"\CinemacicBloom_StreakPmats(SceneCapture)");
@@ -284,7 +286,7 @@ namespace CMIHelper
 			}
 			catch
 			{
-				System.Windows.Forms.MessageBox.Show("We ran into an error while attempting to remove read-only in the path: " + path + "\n\nYou may continue the installation, though you will have to manually remove the read-only flag from your game folder." , "Error while removing Read-Only", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				System.Windows.Forms.MessageBox.Show("We ran into an error while attempting to remove read-only in the path: " + path + "\n\nYou may continue the installation, though you will have to manually remove the read-only flag from your game folder.", "Error while removing Read-Only", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
@@ -519,6 +521,44 @@ namespace CMIHelper
 				}
 			}
 			return false;
+		}
+
+		[DllExport("CMIHelperFLR", CallingConvention = CallingConvention.StdCall)]
+		public static void FetchLatestRelease([MarshalAs(UnmanagedType.BStr)] string site,[MarshalAs(UnmanagedType.BStr)] out string h)
+		{
+			//System.Windows.Forms.MessageBox.Show("trying to download string from: " + site, "debug", MessageBoxButtons.OK);
+
+			h = "null";
+
+			try
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+				WebClient webClient = new WebClient();
+				webClient.Headers.Add("User-Agent: Other");
+
+				string[] textFromFile = webClient.DownloadString(site).Split(',');
+
+
+				//System.Windows.Forms.MessageBox.Show("String downloaded" + site, "debug", MessageBoxButtons.OK);
+
+				foreach (string s in textFromFile)
+				{
+					//System.Windows.Forms.MessageBox.Show(s, "debug", MessageBoxButtons.OK);
+
+					if (s.Contains("browser_download_url"))
+					{
+						h = s.Replace("\"browser_download_url\":\"", "");
+						h = h.Replace("\"}]", "");
+						break;
+					}
+				}
+
+			}
+			catch (Exception e)
+			{
+				System.Windows.Forms.MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK);
+				throw;
+			}
 		}
 	}
 }

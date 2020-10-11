@@ -83,10 +83,21 @@ Name:"none"; Description: "I want nothing!";
 
 Name: Loader; Description: Mod Loader (Required for just about everything); Types: full compact;
   Name: Loader/bepinEX; Description: BepInEX (Recommended); Types: full notr compact eng pic self hen; Flags:Exclusive checkablealone
+
+		Name: Loader/bepinEX/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+			Name: Loader/bepinEX/ConfigMan/GraphSet; Description: GraphicsSettings; Flags: dontinheritcheck;
 	
 		Name: Loader/bepinEX/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+		
+		Name: Loader/bepinEX/FPSCount; Description: FPSCounter; Types: self; Flags: dontinheritcheck;
 	
 	  Name: Loader/bepinEX/FPSUn; Description: FPSUnlock; Types: self; Flags: dontinheritcheck;
+		
+		Name: Loader/bepinEX/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+		
+		//Name: Loader/bepinEX/MuteBack; Description: MuteInBackground; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+		
+		//Name: Loader/bepinEX/RunUniEdit; Description: RuntimeUnityEditor; Flags: dontinheritcheck;
 
     Name: Loader/bepinEX/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
@@ -204,14 +215,14 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
   Name: plugins/slimeshade; Description:SlimeShader; Types:;
 	Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
+	Name: plugins/TexLoad; Description:TextureLoader; Types:self;
+		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
   Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
   Name: plugins/ureye; Description:UruuruEye; Types:;
   Name: plugins/vibemaid; Description:VibeYourMaid;
   Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
   Name: plugins/xtms; Description:XTMasterSlave; Types:full eng notr self hen;
   Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
-
-
 
 Name: misc; Description:Miscelleanous Files; Types: full compact;
   Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full eng notr self pic;
@@ -252,11 +263,13 @@ Type:filesandordirs; Name: "{app}\opengl32.dll"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\BepinEX"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\i18nEx"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\scripts"; Tasks:clean/deleteold;
+Type:filesandordirs; Name: "{app}\IMG"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\doorstop_config.ini"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\winhttp.dll"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\version.dll"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\EngSybarisArcEditor.exe"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\SybarisArcEditor.exe"; Tasks:clean/deleteold;
+Type:filesandordirs; Name: "{app}\COM3D2 DlC Checker.exe"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\IMGUITranslationLoader"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\CMI Documentation"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\CMI.ver"; Tasks:clean/deleteold;
@@ -268,6 +281,7 @@ Type:filesandordirs; Name: "{app}\Mod\PhotoBG_NEI"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\PhotoBG_OBJ_NEI"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\Pose_sample"; Tasks:clean/deleteold/mods;    
 Type:filesandordirs; Name: "{app}\Mod\[CMI]Uncensors"; Tasks:clean/deleteold/mods;
+Type:filesandordirs; Name: "{app}\Mod\[CMI]PosterLoader"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\TextureUncensors"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\EmotionalEars"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\MultipleMaidsPose"; Tasks:clean/deleteold/mods;

@@ -38,6 +38,8 @@
 	//Read manifests and decide if the installer is outdated or not
 	function IsInstallerOld(tpath: WideString; version: WideString): Boolean;
 	external 'CMIHelperCI@files:CMIHelper.dll stdcall delayload';
+	procedure FetchLRelease(site: WideString; out dlink: WideString);
+	external 'CMIHelperFLR@files:CMIHelper.dll stdcall delayload';
 
 	function GameFileExists(DirName: String): Boolean;
 	begin
@@ -251,9 +253,12 @@
 	end;
 	
 	procedure DownloadAssets();
-	(*	
+	
 	var
-
+	pre : WideString;
+	suf : WideString;
+	dlink: WideString;
+  (*
 		i : Integer;
 		Mnfst: String;
 		Load: String;
@@ -354,7 +359,51 @@
 		end;
 		*)
 		
-		//External Assets	
+		//External Assets
+		
+		pre := 'https://api.github.com/repos/'
+		suf := '/releases/latest'
+		
+	//These links are all version specific and an attempt is made to fetch them dynamically.	
+		if (ComponentSelected('ConfigurationManager')) then
+		begin		
+			FetchLRelease(pre + 'BepInEx/BepInEx.ConfigurationManager' + suf, dlink);
+		
+			DownloadPage.Add(dlink, 'ConfigManager.zip', '');
+		end;
+		
+		if (ComponentSelected('FPSCounter')) then
+		begin
+			FetchLRelease(pre + 'ManlyMarco/FPSCounter' + suf, dlink);
+		
+			DownloadPage.Add(dlink, 'FPSCounter.zip', '');
+		end;
+		
+		//These have more conditions and require version specific links and care.
+		(*
+		if (ComponentSelected('RuntimeUnityEditor')) then
+		begin
+			DownloadPage.Add('https://github.com/ManlyMarco/RuntimeUnityEditor/releases/download/v2.2.1/RuntimeUnityEditor_BepInEx5_v2.2.1.zip', 'RuntimeUnityEditor.zip', '');
+		end;
+		
+		if (ComponentSelected('MuteInBackground')) then
+		begin
+			DownloadPage.Add('https://github.com/BepInEx/BepInEx.Utility/releases/download/r5/BepInEx.MuteInBackground.v1.1.zip', 'MuteInBackground.zip', '');
+		end;
+		*)
+		
+		if (ComponentSelected('InputHotkeyBlock')) then
+		begin
+			DownloadPage.Add('https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v2/COM3D2.InputHotkeyBlock.v1.1.zip', 'InputHotkeyBlock.zip', '');
+		end;
+	
+	//These are latest releases and require no looking after
+	
+	 	if (ComponentSelected('GraphicsSettings')) then
+		begin
+			DownloadPage.Add('https://github.com/BepInEx/BepInEx.GraphicsSettings/releases/latest/download/GraphicsSettings.dll', 'GraphicsSettings.dll', '');
+		end;
+			
 		if (ComponentSelected('DLC Checker (Kry Fork)')) then
 		begin
 			DownloadPage.Add('https://github.com/krypto5863/COM3D2_DLC_Checker/releases/latest/download/COM3D2_DLC_Checker.exe', 'COM3D2 DlC Checker.exe', '');
@@ -376,6 +425,34 @@
 		finally
 			DownloadPage.Hide;
 		end;
+		
+		if FileExists(ExpandConstant('{tmp}') + '\InputHotkeyBlock.zip')then
+		begin
+			DoUnzip(ExpandConstant('{tmp}') + '\InputHotkeyBlock.zip', ExpandConstant('{tmp}'))
+		end;
+		
+		if FileExists(ExpandConstant('{tmp}') + '\ConfigManager.zip')then
+		begin
+			DoUnzip(ExpandConstant('{tmp}') + '\ConfigManager.zip', ExpandConstant('{tmp}'))
+		end;
+		
+		if FileExists(ExpandConstant('{tmp}') + '\FPSCounter.zip')then
+		begin
+			DoUnzip(ExpandConstant('{tmp}') + '\FPSCounter.zip', ExpandConstant('{tmp}'))
+		end;
+		(*
+		if FileExists(ExpandConstant('{tmp}') + '\RuntimeUnityEditor.zip')then
+		begin
+			DoUnzip(ExpandConstant('{tmp}') + '\RuntimeUnityEditor.zip', ExpandConstant('{tmp}'))
+		end;
+		*)
+		
+		(*
+		if FileExists(ExpandConstant('{tmp}') + '\MuteInBackground.zip')then
+		begin
+			DoUnzip(ExpandConstant('{tmp}') + '\MuteInBackground.zip', ExpandConstant('{tmp}'))
+		end;
+		*)
 		
 		(*		
 		if (FileExists(ExpandConstant('{src}\' + Mnfst)) = false) AND (FileExists(ExpandConstant('{tmp}\' + Mnfst))) then

@@ -11,6 +11,7 @@
 		PresetFile: String;
 		DownloadPage: TDownloadWizardPage;
 		EngDisable: Boolean;
+		verOutcome: Integer;
 [/Code]
 
 //The following script file has a rather large function for using 7zip to unzip files via the installer. It was moved to a seperate script to make things easier.
@@ -22,7 +23,6 @@
 	var
 		path: WideString;
 		OGEvent: TNotifyEvent;
-		verOutcome: Integer;
 		MinVer: Integer;
 	procedure TypesComboChange(Sender: TObject);
 	//var
@@ -165,9 +165,9 @@
 	begin
 		if CurPageID = wpSelectComponents then
 		begin		
-			if (EngDisable = true) then
+			if (EngDisable = true) OR (verOutcome = 2) then
 			begin
-				if MsgBox('Due to changes made to the installer when disabling components for english versions, the installer needs to be restarted in order to revert these changes and allow you to safely use previous pages. Would you like to quit the installer now?', mbConfirmation, MB_YESNO) = IDYES then
+				if MsgBox('Due to changes made to the installer when disabling components, the installer needs to be restarted in order to revert these changes and allow you to safely use previous pages. Would you like to quit the installer now?', mbConfirmation, MB_YESNO) = IDYES then
 				begin
 					Abort;
 				end;				
