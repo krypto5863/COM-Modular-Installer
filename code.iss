@@ -191,19 +191,21 @@
 				//Checks the version of the game but also checks if the install folder has a game instance and lets the installer know for future reference.
 				MinVer := 1480
 				verOutcome := VersionCheck(WizardForm.DirEdit.Text,MinVer)
-				if verOutcome >= 1 then
+				if (verOutcome = 1) OR (verOutcome = 2) then
 				begin
 					//MsgBox('We should be returning true', mbInformation, MB_OK);
 					//Small advisory, hope users follow it.
 					MsgBox('Please ensure no game folders or game instances are open or you will have a bad install!', mbInformation, MB_OK);
 					Result := true
 				end 
-				else 
+				else if VerOutcome = 3 then 
 				begin
 					//MsgBox('We should be returning false', mbInformation, MB_OK);
 					DownloadUpdate(MinVer);
 					Result := false
-				end;                                                                          
+				end else begin
+					Result := false
+				end;
 			end
 			else begin
 				MsgBox('We have detected INM! INM is not supported by CMI due to technical differences.' + #13#10#13#10 + 'To use CMI, please install the R18/Adult Content Supplement Patch.' + #13#10#13#10 + 'If your are not actually on an INM version of the game, then you have likely installed Eng DLC/files into your japanese game. Please refer to the readme on repair instructions.', mbCriticalError, MB_OK);

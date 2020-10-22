@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4"
+#define MyAppVersion "2.4.1"
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
 //#define MyAppExeName 'COM Modular Installer'
@@ -188,6 +188,7 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 		Name: plugins/mtacc/AllScene; Description: AllScene Version;
   Name: plugins/MM; Description:MultipleMaids; Types:full pic self eng notr;
     Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
+	Name: plugins/modref; Description:ModRefresh; Types:full pic self eng notr;
   Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
   Name: plugins/notecolor; Description:NoteColor; Types:full self eng notr hen;
   ;Name: plugins/olddance; Description:OldDancePlay; Types:full self eng hen;

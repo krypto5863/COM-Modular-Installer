@@ -15,6 +15,8 @@ namespace CMIHelper
 		public static int VersionCheck([MarshalAs(UnmanagedType.BStr)] string path, int ver)
 		{
 
+			//0 is fail, no update. 1 is success. 2 is empty folder. 3 is update required.
+
 			if (path.Contains(@"\Downloads"))
 			{
 				System.Windows.Forms.MessageBox.Show("It seems your game is located in the Downloads directory, this can cause issues with UAC and lead to improper CMI installs! Please move it somewhere safer (Example: C:/KISS/COM3D2)", "Unsafe Game Location", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -57,7 +59,7 @@ namespace CMIHelper
 							else
 							{
 								System.Windows.Forms.MessageBox.Show("Your game is outdated! Update your game!\n\nYour game version was successfully checked and you are not on an acceptable version!\n\nExpected Version: " + ver + " or higher\nFound Version: " + ngver, "Game is outdated! Update!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-								return 0;
+								return 3;
 							}
 						}
 						catch (FormatException)
@@ -77,7 +79,7 @@ namespace CMIHelper
 			if (File.Exists(@path + @"\update.lst") && File.Exists(@path + @"\COM3D2x64.exe"))
 			{
 				System.Windows.Forms.MessageBox.Show("While we managed to find the Update.lst file, the assembly version could not be found! If you are on the Japanese version, this is a real problem! Please update immediately!", "Version Check Failed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return 0;
+				return 3;
 			}
 
 			var result = System.Windows.Forms.MessageBox.Show("This does not appear to be a COM3d2 Directory! We can still continue the installation but you may be installing to the wrong directory, some functions will also be rendered ineffectual. Do we continue anyways?", "Wrong Directory!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);

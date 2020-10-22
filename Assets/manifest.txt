@@ -1,4 +1,4 @@
-Installer:2.4
+Installer:2.4.1
 Loader:1.0.0
 Patcher:1.0.0
 Plugin:1.0.0
