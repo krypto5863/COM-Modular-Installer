@@ -70,6 +70,8 @@
 		begin
 			MsgBox('This installer is outdated and likely incompatible with new assets/versions! You may continue the download but you continue at your own risk!' , mbCriticalError, MB_OK);
 		end;
+		
+		MsgBox('If you paid for CMI or downloaded it from anywhere that is not the official GitHub page, than you have been scammed or misled!' , mbInformation, MB_OK);
 
 		if MsgBox('Did you read the readme? Failure to read it will void you any chance of receiving support.', mbConfirmation, MB_YESNO) = IDNO then
 		begin

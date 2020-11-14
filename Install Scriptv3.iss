@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.2"
+#define MyAppVersion "2.4.3"
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
 //#define MyAppExeName 'COM Modular Installer'
