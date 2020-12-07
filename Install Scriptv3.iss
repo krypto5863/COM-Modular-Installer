@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.3"
+#define MyAppVersion "2.4.4"
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
 //#define MyAppExeName 'COM Modular Installer'
@@ -83,9 +83,13 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
   Name: Loader/bepinEX; Description: BepInEX (Recommended); Types: full notr compact eng pic self hen; Flags:Exclusive checkablealone
 
 		Name: Loader/bepinEX/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
-			Name: Loader/bepinEX/ConfigMan/GraphSet; Description: GraphicsSettings; Flags: dontinheritcheck;
+			//Name: Loader/bepinEX/ConfigMan/GraphSet; Description: GraphicsSettings; Flags: dontinheritcheck;
 	
 		Name: Loader/bepinEX/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+		
+		//Name: Loader/bepinEX/derim; Description:DeRim; Types: self; Flags: dontinheritcheck;
+		
+		Name: Loader/bepinEX/FixEyeMov; Description: FixEyeMov; Types:full eng notr hen self; Flags: dontinheritcheck;
 		
 		Name: Loader/bepinEX/FPSCount; Description: FPSCounter; Types: self; Flags: dontinheritcheck;
 	
@@ -93,7 +97,7 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
 		
 		Name: Loader/bepinEX/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 		
-		Name: Loader/bepinEX/modref; Description: ModRefresh; Types:full pic self eng notr;
+		Name: Loader/bepinEX/modref; Description: ModRefresh; Types:full pic self eng notr; Flags: dontinheritcheck;
 		
 		//Name: Loader/bepinEX/MuteBack; Description: MuteInBackground; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 		

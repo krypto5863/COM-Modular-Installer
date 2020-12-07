@@ -396,6 +396,11 @@
 		begin
 			DownloadPage.Add('https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v2/COM3D2.InputHotkeyBlock.v1.1.zip', 'InputHotkeyBlock.zip', '');
 		end;
+		
+		if (ComponentSelected('FixEyeMov')) then
+		begin
+			DownloadPage.Add('https://github.com/01010101lzy/gettapped/releases/download/fixeyemov-0.1.1/FixEyeMov.com3d2-0.1.1.zip', 'FixEyeMov.zip', '');
+		end;
 	
 	//These are latest releases and require no looking after
 	
@@ -436,10 +441,16 @@
 			DoUnzip(ExpandConstant('{tmp}') + '\ConfigManager.zip', ExpandConstant('{tmp}'))
 		end;
 		
+		if FileExists(ExpandConstant('{tmp}') + '\FixEyeMov.zip')then
+		begin
+			DoUnzip(ExpandConstant('{tmp}') + '\FixEyeMov.zip', ExpandConstant('{tmp}'))
+		end;
+		
 		if FileExists(ExpandConstant('{tmp}') + '\FPSCounter.zip')then
 		begin
 			DoUnzip(ExpandConstant('{tmp}') + '\FPSCounter.zip', ExpandConstant('{tmp}'))
 		end;
+		
 		(*
 		if FileExists(ExpandConstant('{tmp}') + '\RuntimeUnityEditor.zip')then
 		begin

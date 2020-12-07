@@ -16,10 +16,13 @@
 Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs
 
 	Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan; Flags: external
-		Source: "{tmp}\GraphicsSettings.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan/GraphSet; Flags: external
-
+		//Source: "{tmp}\GraphicsSettings.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan/GraphSet; Flags: external
 	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UpCheck; Flags: ignoreversion recursesubdirs recursesubdirs createallsubdirs
-
+	
+	//Source: "{#ibep}\derim\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/derim; Flags: ignoreversion recursesubdirs createallsubdirs
+	 
+  Source: "{tmp}\BepInEx\plugins\FixEyeMov*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FixEyeMov; Flags: external
+	
 	Source: "{#ibep}\FPSUnlock\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSUn; Flags: ignoreversion recursesubdirs recursesubdirs createallsubdirs
 	
 	Source: "{tmp}\BepInEx\plugins\FPSCounter.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSCount; Flags: external
