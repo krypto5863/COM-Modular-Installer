@@ -170,15 +170,19 @@
 			begin
 				lv := i;
 				//MsgBox('Returning update ' + IntToStr(lv) + ' as latest', mbInformation, MB_OK);
-			end
-			else if (lv > 0) then
+			end;
+			
+			if (lv > 0) then
 			begin
+			//MsgBox('Trying to set site...', mbInformation, MB_OK);
 				site :=  SiteSt + IntToStr(lv) + '.zip';
 				break;
 			end;
 			
 		i := i-1;	
 		end;
+		
+		//MsgBox(site + ' : ' +  IntToStr(lv), mbCriticalError, MB_OK);
 
 		if (CompareText(site,'') <> 0) AND (lv > 0) then
 		begin
