@@ -54,11 +54,20 @@
 	var
 		Value: String;
 		ErrorCode: Integer;
+		FreeSpace, TotalSpace: Cardinal;
 	begin
 		DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
 		OGEvent :=  WizardForm.TypesCombo.OnChange;
 		WizardForm.TypesCombo.OnChange := @TypesComboChange;
 		PresetFile := 'Custom.CMIType';
+		
+		GetSpaceOnDisk(ExpandConstant('{tmp}'),True, FreeSpace, TotalSpace)
+		
+		if (FreeSpace < 5000) then
+		begin
+		MsgBox('We detected that your AppData containing partition(Typically your C drive) does not have enough free space for cache. Please clear a minimum of 5 GiBs to install CMI.', mbCriticalError, MB_OK)
+		abort
+		end;
 		
 		
 		if (SiteValid('https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/Assets/manifest.txt')) then
@@ -183,12 +192,26 @@
 	end;
 
 	function NextButtonClick(CurPageID: Integer): Boolean;
+	var
+		FreeSpace1, TotalSpace1: Cardinal;
 	begin
 		//Prevents code from running if not on the directory selection page
 		if CurPageID = wpSelectDir then
 		begin
+			//checks if the target drive has enough space.
+			GetSpaceOnDisk(WizardForm.DirEdit.Text, True, FreeSpace1, TotalSpace1);
+			
+			//MsgBox('Found Space: ' + IntToStr(FreeSpace1), mbCriticalError, MB_OK)
+			
+			if (FreeSpace1 < 5000) then
+			begin
+				MsgBox('The drive holding the path you have selected does not contain enough space to safely install CMI. Please clear a minimum of 5 GiBs to install CMI to this directory.', mbCriticalError, MB_OK)
+				Result := false;
+				exit;
+			end
+			
 			//Checks if the game is not INM version. If it's not, installation continues.
-			if IsEng(WizardForm.DirEdit.Text) < 2 then
+			else if IsEng(WizardForm.DirEdit.Text) < 2 then
 			begin
 				//Checks the version of the game but also checks if the install folder has a game instance and lets the installer know for future reference.
 				MinVer := 1540
@@ -212,8 +235,7 @@
 			else begin
 				MsgBox('We have detected INM! INM is not supported by CMI due to technical differences.' + #13#10#13#10 + 'To use CMI, please install the R18/Adult Content Supplement Patch.' + #13#10#13#10 + 'If your are not actually on an INM version of the game, then you have likely installed Eng DLC/files into your japanese game. Please refer to the readme on repair instructions.', mbCriticalError, MB_OK);
 			end;
-		end
-		 
+		end		 
 		else if (CurPageID = wpSelectComponents) then
 		begin
 			Result := true

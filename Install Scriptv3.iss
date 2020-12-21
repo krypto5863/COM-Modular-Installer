@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.4.1"
+#define MyAppVersion "2.4.5"
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
 //#define MyAppExeName 'COM Modular Installer'
@@ -67,12 +67,12 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [Types]
 Name:"full"; Description: "Similar to Noctsoul's AIO";
-Name:"eng"; Description: "English Game Version AIO-Like (Only Plugin Translations)"
+Name:"eng"; Description: "Non-Japanese Localizations AIO-Like"
 Name:"notr"; Description: "No Translations AIO-Like"
 Name:"compact"; Description: "Minimalist Install"
 Name:"pic"; Description: "I just take pictures"
 Name:"hen"; Description: "I just play, I don't take pictures"
-Name:"self"; Description: "My Recommendations"
+Name:"self"; Description: "My Selections"
 Name:"custom"; Description: "Okay, make your own choices"; Flags:iscustom
 Name:"preset"; Description: "Custom Preset";
 Name:"none"; Description: "I want nothing!";
@@ -192,8 +192,8 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
   Name: plugins/mtacc; Description: MtAccelerator;
 		Name: plugins/mtacc/AllScene; Description: AllScene Version;
-  Name: plugins/MM; Description:MultipleMaids; Types:full pic self eng notr;
-    Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
+  //Name: plugins/MM; Description:MultipleMaids; Types:full pic self eng notr;
+    //Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
   Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
   Name: plugins/notecolor; Description:NoteColor; Types:full self eng notr hen;
   ;Name: plugins/olddance; Description:OldDancePlay; Types:full self eng hen;

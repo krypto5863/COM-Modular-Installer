@@ -82,6 +82,12 @@ namespace CMIHelper
 				return 3;
 			}
 
+			if (!File.Exists(@path + @"\update.lst") && File.Exists(@path + @"\COM3D2x64.exe"))
+			{
+				System.Windows.Forms.MessageBox.Show("While this appears to be a game folder, there is no Update.lst file! This is very bad!\n\nPlease update your game immediately and ensure that your game is functioning before attempting to install CMI again.", "Missing Update.lst", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return 3;
+			}
+
 			var result = System.Windows.Forms.MessageBox.Show("This does not appear to be a COM3d2 Directory! We can still continue the installation but you may be installing to the wrong directory, some functions will also be rendered ineffectual. Do we continue anyways?", "Wrong Directory!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 			// If the no button was pressed ...
 			if (result == DialogResult.No)
