@@ -61,11 +61,9 @@
 		WizardForm.TypesCombo.OnChange := @TypesComboChange;
 		PresetFile := 'Custom.CMIType';
 		
-		GetSpaceOnDisk(ExpandConstant('{tmp}'),True, FreeSpace, TotalSpace)
-		
-		if (FreeSpace < 5000) then
+		if (GetSpaceOnDisk(ExpandConstant('{tmp}'),True, FreeSpace, TotalSpace)) AND (FreeSpace < 5000) then
 		begin
-		MsgBox('We detected that your AppData containing partition(Typically your C drive) does not have enough free space for cache. Please clear a minimum of 5 GiBs to install CMI.', mbCriticalError, MB_OK)
+		MsgBox('We detected that your AppData containing partition(Typically your C drive) does not have enough free space for cache. Please clear a minimum of 5 GiBs to install CMI: '  + IntToStr(FreeSpace) + 'MB', mbCriticalError, MB_OK)
 		abort
 		end;
 		
@@ -197,15 +195,12 @@
 	begin
 		//Prevents code from running if not on the directory selection page
 		if CurPageID = wpSelectDir then
-		begin
-			//checks if the target drive has enough space.
-			GetSpaceOnDisk(WizardForm.DirEdit.Text, True, FreeSpace1, TotalSpace1);
-			
+		begin			
 			//MsgBox('Found Space: ' + IntToStr(FreeSpace1), mbCriticalError, MB_OK)
 			
-			if (FreeSpace1 < 5000) then
+			if (GetSpaceOnDisk(WizardForm.DirEdit.Text, True, FreeSpace1, TotalSpace1)) and (FreeSpace1 < 5000) then
 			begin
-				MsgBox('The drive holding the path you have selected does not contain enough space to safely install CMI. Please clear a minimum of 5 GiBs to install CMI to this directory.', mbCriticalError, MB_OK)
+				MsgBox('The drive holding the path you have selected does not contain enough space to safely install CMI. Please clear a minimum of 5 GiBs to install CMI to this directory: ' + IntToStr(FreeSpace1) + 'MB', mbCriticalError, MB_OK)
 				Result := false;
 				exit;
 			end
