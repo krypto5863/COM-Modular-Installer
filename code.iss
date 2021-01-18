@@ -65,8 +65,7 @@
 		begin
 		MsgBox('We detected that your AppData containing partition(Typically your C drive) does not have enough free space for cache. Please clear a minimum of 5 GiBs to install CMI: '  + IntToStr(FreeSpace) + 'MB', mbCriticalError, MB_OK)
 		abort
-		end;
-		
+		end;	
 		
 		if (SiteValid('https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/Assets/manifest.txt')) then
 		begin

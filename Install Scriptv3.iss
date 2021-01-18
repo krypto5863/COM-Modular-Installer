@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.5.1"
+#define MyAppVersion "2.4.6"
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
 //#define MyAppExeName 'COM Modular Installer'
@@ -66,10 +66,10 @@ Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [Types]
+Name:"compact"; Description: "Basic Install"
 Name:"full"; Description: "Similar to Noctsoul's AIO";
 Name:"eng"; Description: "Non-Japanese Localizations AIO-Like"
 Name:"notr"; Description: "No Translations AIO-Like"
-Name:"compact"; Description: "Minimalist Install"
 Name:"pic"; Description: "I just take pictures"
 Name:"hen"; Description: "I just play, I don't take pictures"
 Name:"self"; Description: "My Selections"
@@ -82,6 +82,8 @@ Name:"none"; Description: "I want nothing!";
 Name: Loader; Description: Mod Loader (Required for just about everything); Types: full compact;
   Name: Loader/bepinEX; Description: BepInEX (Recommended); Types: full notr compact eng pic self hen; Flags:Exclusive checkablealone
 
+		Name: Loader/bepinEX/AdvMatMod; Description: AdvancedMaterialModifier; Types: self; Flags: dontinheritcheck;
+	
 		Name: Loader/bepinEX/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 			//Name: Loader/bepinEX/ConfigMan/GraphSet; Description: GraphicsSettings; Flags: dontinheritcheck;
 	
@@ -107,7 +109,7 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
       Name: Loader/bepinEX/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/enascout; Description: Enable Scout Mode Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/enascout; Description: Enable Scout Mode Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/errtex; Description: Error Texture Placeholder Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/thumbs; Description: Load Small Thumbs Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
@@ -134,7 +136,7 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
   Name: Patchers/addscreen; Description: AddScreenSize; Types: full eng notr self ;
   Name: Patchers/allprivate; Description: AllMaidsInPrivateMode; Types: self;
   Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng notr pic self hen;
-  Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full eng notr pic self hen;
+  Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full compact eng notr pic self hen;
   Name: Patchers/cacheedit; Description: CacheEditMenu;
   Name: Patchers/CCfix; Description: CreatorSaveFix;
   Name: Patchers/blinkstop; Description: EditBlinkStop; Types: full eng notr pic self hen;
@@ -159,7 +161,7 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 
 Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 	Name: plugins/boneslide; Description: AddBoneSlider; Types:;
-  Name: plugins/addyot; Description: AddYotogiSliderSE; Types: Full eng notr hen self;
+  Name: plugins/addyot; Description: AddYotogiSliderSE; Types: Full compact eng notr hen self;
   Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng notr hen;
   Name: plugins/eraseout; Description: AutoEraseOutline; types: full pic eng notr hen;
   Name: plugins/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
@@ -171,10 +173,10 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/conwindow; Description:ConsistentWindowPosition; Types:full self pic eng notr hen;
   Name: plugins/nyou; Description:CustomNyou(Why...);
   Name: plugins/dancecamadjust; Description:DanceCameraAdjust;
-  Name: plugins/derim; Description:DeRim; Types: self;
+  ;Name: plugins/derim; Description:DeRim; Types: self;
   Name: plugins/dressdam; Description:DressDamage; Types:self pic;
   Name: plugins/editmenufilt; Description: EditMenuFilter; Types:full self pic eng notr hen;
-  Name: plugins/editselanim; Description: EditMenuSelectedAnime; Types:full self pic eng notr compact hen;
+  Name: plugins/editselanim; Description: EditMenuSelectedAnime; Types:full self pic eng notr hen;
   Name: plugins/editundo; Description:EditSceneUndo;
   Name: plugins/emoears; Description:EmotionalEars(and tails); Types:self; Flags:checkablealone
     Name: plugins/emoears/aho; Description:Ahoge meshes; Types:; Flags:dontinheritcheck
@@ -201,7 +203,7 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/partsedit; Description:PartsEdit; Types:full pic self eng notr;
   Name: plugins/personaledit; Description:PersonalizedEditSceneSettings; Types:full pic self eng notr hen;
   Name: plugins/plugmanage; Description:PluginManager; Types:full pic eng notr;
-  Name: plugins/PluginExt; Description:PluginExt (Required by a few other plugins. Recommended.); Types:full pic self eng notr compact;
+  Name: plugins/PluginExt; Description:PluginExt (Required by a few other plugins. Recommended.); Types:full compact pic self eng notr compact;
   Name: plugins/pngplace; Description:PNGPlacement; Types:full pic self eng notr; Flags: checkablealone;
     Name: plugins/pngplace/expng; Description:More PNGs; Types:full self pic eng notr; Flags: dontinheritcheck
   Name: plugins/propitem; Description:PropMyItem; Types:full eng notr pic;
@@ -229,7 +231,7 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
 
 Name: misc; Description:Miscelleanous Files; Types: full compact;
-  Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full eng notr self pic;
+  Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full compact eng notr self pic;
 	//Name:misc/dlccheck; Description:DLC Checker (Kry Fork); Types:Full eng notr self pic;
 	//Name:misc/maidfiddle; Description:Maid Fiddler (Dangerous!);
   Name:misc/mmposes; Description:1900+ Poses for Studio Mode;
@@ -242,8 +244,8 @@ Name: misc; Description:Miscelleanous Files; Types: full compact;
     Name: misc/body/analkupa; Description:AnalKupa; Types:; Flags: Exclusive checkablealone
 		
 Name: ext; Description:External Files; Types: full compact;
-	Name:ext/dlccheck; Description:DLC Checker (Kry Fork); Types:Full eng notr self pic;
-	Name:ext/maidfiddle; Description:Maid Fiddler (Dangerous!);
+	Name:ext/dlccheck; Description:DLC Checker (Kry Fork); Types:Full compact eng notr self pic;
+	Name:ext/maidfiddle; Description:Maid Fiddler (Dangerous!); Flags: dontinheritcheck;
 
 
 [Tasks]

@@ -398,15 +398,20 @@
 		
 		if (ComponentSelected('InputHotkeyBlock')) then
 		begin
-			DownloadPage.Add('https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v2/COM3D2.InputHotkeyBlock.v1.1.zip', 'InputHotkeyBlock.zip', '');
+			DownloadPage.Add('https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v5/COM3D2.InputHotkeyBlock.v1.2.zip', 'InputHotkeyBlock.zip', '');
 		end;
 		
 		if (ComponentSelected('FixEyeMov')) then
 		begin
-			DownloadPage.Add('https://github.com/01010101lzy/gettapped/releases/download/fixeyemov-0.1.1/FixEyeMov.com3d2-0.1.1.zip', 'FixEyeMov.zip', '');
+			DownloadPage.Add('https://github.com/01010101lzy/gettapped/releases/download/fixeyemov-0.2.0-alpha.3/FixEyeMov.com3d2-v0.2.0-alpha.3.zip', 'FixEyeMov.zip', '');
 		end;
 	
 	//These are latest releases and require no looking after
+	
+		if (ComponentSelected('AdvancedMaterialModifier')) then
+		begin
+			DownloadPage.Add('https://github.com/krypto5863/COM3d2-AdvancedMaterialModifier/releases/download/1.0/COM3D2.AdvancedMaterialModifier.Plugin.dll', 'BepInEx\plugins\COM3D2.AdvancedMaterialModifier.Plugin.dll', '');
+		end;
 	
 	 	if (ComponentSelected('GraphicsSettings')) then
 		begin

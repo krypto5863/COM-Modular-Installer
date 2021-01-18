@@ -15,11 +15,11 @@
 //Loader Section
 Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs
 
+	Source: "{tmp}\BepInEx\plugins\COM3d2.AdvancedMaterialModifier.Plugin.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/AdvMatMod; Flags: external
+
 	Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan; Flags: external
 		//Source: "{tmp}\GraphicsSettings.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan/GraphSet; Flags: external
 	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UpCheck; Flags: ignoreversion recursesubdirs recursesubdirs createallsubdirs
-	
-	//Source: "{#ibep}\derim\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/derim; Flags: ignoreversion recursesubdirs createallsubdirs
 	 
   Source: "{tmp}\BepInEx\plugins\FixEyeMov*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FixEyeMov; Flags: external
 	
@@ -97,8 +97,7 @@ Source: "{#IPlugin}\hudclock\*"; DestDir: "{#plug}"; Components: plugins/hudcloc
 Source: "{#IPlugin}\colorhelp\*"; DestDir: "{#syb}"; Components: plugins/colorhelp; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\conwindow\*"; DestDir: "{#syb}"; Components: plugins/conwindow; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\nyou\*"; DestDir: "{#syb}"; Components: plugins/nyou; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\dancecamadjust\*"; DestDir: "{#syb}"; Components: plugins/dancecamadjust; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\derim\*"; DestDir: "{#syb}"; Components: plugins/derim; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#IPlugin}\dancecamadjust\*"; DestDir: "{#syb}"; Components: plugins/dancecamadjust; Flags: ignoreversion recursesubdirs createallsubdirs  
 Source: "{#IPlugin}\dressdam\*"; DestDir: "{#syb}"; Components: plugins/dressdam; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\editmenufilt\*"; DestDir: "{#syb}"; Components: plugins/editmenufilt; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\editselanime\*"; DestDir: "{#syb}"; Components: plugins/editselanim; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -173,7 +172,7 @@ Source: "{#IMisc}\TextureUncensors\lomob\*"; DestDir: "{#mod}\[CMI]Uncensors\LoM
 //Unrelated to files.
 Source: "Documentation\CMI_Readme.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme nocompression
 //Source: "Documentation\MM_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/MM; Flags: isreadme
-Source: "Documentation\DeRim_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/derim; Flags: isreadme
+;Source: "Documentation\DeRim_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/derim; Flags: isreadme
 Source: "Documentation\PosterLoader_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/texload/postload; Flags: isreadme
 
 [/Files]
