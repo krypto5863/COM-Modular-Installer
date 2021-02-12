@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.6"
+#define MyAppVersion "2.4.7"
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
 //#define MyAppExeName 'COM Modular Installer'
@@ -141,6 +141,7 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
   Name: Patchers/CCfix; Description: CreatorSaveFix;
   Name: Patchers/blinkstop; Description: EditBlinkStop; Types: full eng notr pic self hen;
   Name: Patchers/extsave; Description: ExternalSaveData; Types: Full self pic eng notr hen; Flags: checkablealone;
+		Name: Patchers/extsave/vibemaid; Description:VibeYourMaid;
     Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng notr hen; Flags: checkablealone;
       Name: Patchers/extsave/maidvoice/addmod; Description: AddModsSlider; Types: full self pic eng notr hen; Flags: checkablealone;
         Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng notr hen; Flags: checkablealone;
@@ -225,7 +226,6 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
   Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
   Name: plugins/ureye; Description:UruuruEye; Types:;
-  Name: plugins/vibemaid; Description:VibeYourMaid;
   Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
   Name: plugins/xtms; Description:XTMasterSlave; Types:full eng notr self hen;
   Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;

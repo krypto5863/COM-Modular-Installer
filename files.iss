@@ -66,7 +66,8 @@ Source: "{#IPatch}\BodyCategoryAdd\*"; DestDir: "{#syb}"; Components: Patchers/b
 Source: "{#IPatch}\CacheEdit\*"; DestDir: "{#syb}"; Components: Patchers/cacheedit; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\ccfix\*"; DestDir: "{#syb}"; Components: Patchers/ccfix; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\blinkstop\*"; DestDir: "{#syb}"; Components: Patchers/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPatch}\ExternalSave\*"; DestDir: "{#syb}"; Components: Patchers/extsave; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#IPatch}\ExternalSave\*"; DestDir: "{#syb}"; Components: Patchers/extsave; Flags: ignoreversion recursesubdirs createallsubdirs
+	Source: "{#IPlugin}\vibemaid\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: ignoreversion recursesubdirs createallsubdirs 
   Source: "{#IPlugin}\MaidVoice\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice; Flags: ignoreversion recursesubdirs createallsubdirs 
     Source: "{#IPlugin}\AddMod\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod; Flags: ignoreversion recursesubdirs createallsubdirs 
       Source: "{#IPlugin}\Lashalpha\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Flags: ignoreversion recursesubdirs 
@@ -146,7 +147,6 @@ Source: "{#IPlugin}\texload\core\*"; DestDir: "{#plug}"; Components: plugins/tex
 	Source: "{#IPlugin}\texload\postload\*"; DestDir: "{app}"; Components: plugins/texload/postload; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#IPlugin}\toukascreen\*"; DestDir: "{#syb}"; Components: plugins/toukascreen; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\ureye\*"; DestDir: "{#syb}"; Components: plugins/ureye; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\vibemaid\*"; DestDir: "{#syb}"; Components: plugins/vibemaid; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\voicenormalizer\*"; DestDir: "{#syb}"; Components: plugins/voicenorm; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\xtms\*"; DestDir: "{#syb}"; Components: plugins/xtms; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\yotutil\*"; DestDir: "{#syb}"; Components: plugins/yotutil; Flags: ignoreversion recursesubdirs createallsubdirs 

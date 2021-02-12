@@ -143,8 +143,8 @@
 					Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('XUnity AutoTranslator (Syb)')] := false
 					//Removes types that could potentially install non-eng version components
 					Wizardform.TypesCombo.Items.Delete(0);
+					Wizardform.TypesCombo.Items.Delete(0);
 					//When an entry is deleted, any higher entries cascade down. Thus we just delete the same entry multiple times.
-					Wizardform.TypesCombo.Items.Delete(2);
 					Wizardform.TypesCombo.Items.Delete(2);
 					Wizardform.TypesCombo.Items.Delete(2);
 					Wizardform.TypesCombo.Items.Delete(2);
