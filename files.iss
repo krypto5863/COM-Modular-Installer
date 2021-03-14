@@ -88,7 +88,7 @@ Source: "{#IPatch}\saveset\*"; DestDir: "{#syb}"; Components: Patchers/saveset; 
 
 
 ;Plugins
-Source: "{#IPlugin}\boneslide\*"; DestDir: "{#syb}"; Components: plugins/boneslide; Flags: ignoreversion recursesubdirs createallsubdirs 
+//Source: "{#IPlugin}\boneslide\*"; DestDir: "{#syb}"; Components: plugins/boneslide; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\addyot\*"; DestDir: "{#syb}"; Components: plugins/addyot; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\ACCex\*"; DestDir: "{#syb}"; Components: plugins/accex; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\eraseout\*"; DestDir: "{#syb}"; Components: plugins/eraseout; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -148,7 +148,9 @@ Source: "{#IPlugin}\texload\core\*"; DestDir: "{#plug}"; Components: plugins/tex
 Source: "{#IPlugin}\toukascreen\*"; DestDir: "{#syb}"; Components: plugins/toukascreen; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\ureye\*"; DestDir: "{#syb}"; Components: plugins/ureye; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\voicenormalizer\*"; DestDir: "{#syb}"; Components: plugins/voicenorm; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\xtms\*"; DestDir: "{#syb}"; Components: plugins/xtms; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#IPlugin}\xtms\Core\*"; DestDir: "{#syb}"; Components: plugins/xtms; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\xtms\XTFuta\*"; DestDir: "{#mod}\[CMI]Uncensors"; Components: plugins/xtms/XTFutaBody; Flags: ignoreversion recursesubdirs createallsubdirs
+		Source: "{#IPlugin}\xtms\XTFutaAccessories\*"; DestDir: "{#mod}\[CMI]XTFutaAccessories"; Components: plugins/xtms/XTFutaAccessories; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#IPlugin}\yotutil\*"; DestDir: "{#syb}"; Components: plugins/yotutil; Flags: ignoreversion recursesubdirs createallsubdirs 
 
 ;Misc Files

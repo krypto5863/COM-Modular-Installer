@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.7"
+#define MyAppVersion "2.4.8"
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
 //#define MyAppExeName 'COM Modular Installer'
@@ -64,6 +64,11 @@ Name: "slovenian"; MessagesFile: "compiler:Languages\Slovenian.isl"
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
+
+[Messages]
+english.WizardSelectDir=Select Game Location
+english.SelectDirLabel3=Please select your COM3D2 install directory below! Example: C:\KISS\COM3D2
+english.SelectDirDesc=Where is your game located?
 
 [Types]
 Name:"compact"; Description: "Basic Install"
@@ -161,7 +166,7 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
   Name: Patchers/saveset; Description: SaveSettingsInGame; Types: full compact self pic eng notr hen;
 
 Name: plugins; Description: Unityinjector Plugins; Types: full compact;
-	Name: plugins/boneslide; Description: AddBoneSlider; Types:;
+	//Name: plugins/boneslide; Description: AddBoneSlider; Types:;
   Name: plugins/addyot; Description: AddYotogiSliderSE; Types: Full compact eng notr hen self;
   Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng notr hen;
   Name: plugins/eraseout; Description: AutoEraseOutline; types: full pic eng notr hen;
@@ -227,7 +232,9 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
   Name: plugins/ureye; Description:UruuruEye; Types:;
   Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
-  Name: plugins/xtms; Description:XTMasterSlave; Types:full eng notr self hen;
+  Name: plugins/xtms; Description:XTMasterSlave+; Types:full eng notr self hen;
+		Name: plugins/xtms/XTFutaBody; Description:XTFutaBody; Types:;
+			Name: plugins/xtms/XTFutaAccessories; Description:XTFutaAccessories; Types:;
   Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
 
 Name: misc; Description:Miscelleanous Files; Types: full compact;
@@ -250,7 +257,7 @@ Name: ext; Description:External Files; Types: full compact;
 
 [Tasks]
 
-Name:reg; Description: Fix Registry Directory; Flags:unchecked
+Name:reg; Description: Fix Registry Directory;
 
 Name:clean; Description: Cleaning Tasks; GroupDescription: Cleaning tasks to execute before installing.; Flags:unchecked
   Name:clean/moveold; Description: Move old installations to old folder; Flags:checkablealone exclusive
@@ -288,6 +295,7 @@ Type:filesandordirs; Name: "{app}\Mod\PhotoBG_OBJ_NEI"; Tasks:clean/deleteold/mo
 Type:filesandordirs; Name: "{app}\Mod\Pose_sample"; Tasks:clean/deleteold/mods;    
 Type:filesandordirs; Name: "{app}\Mod\[CMI]Uncensors"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\[CMI]PosterLoader"; Tasks:clean/deleteold/mods;
+Type:filesandordirs; Name: "{app}\Mod\[CMI]XTFutaAccessories"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\TextureUncensors"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\EmotionalEars"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\MultipleMaidsPose"; Tasks:clean/deleteold/mods;

@@ -228,7 +228,8 @@ namespace CMIHelper
 			corefiles.Add(@"\PhotoBG_OBJ_NEI");
 			corefiles.Add(@"\Pose_sample");
 			corefiles.Add(@"\[CMI]Uncensors");
-			corefiles.Add(@"\Mod\[CMI]PosterLoader\");
+			corefiles.Add(@"\[CMI]XTFutaAccessories");
+			corefiles.Add(@"\[CMI]PosterLoader\");
 			corefiles.Add(@"\TextureUncensors");
 			corefiles.Add(@"\EmotionalEars");
 			corefiles.Add(@"\CinemacicBloom_StreakPmats(SceneCapture)");

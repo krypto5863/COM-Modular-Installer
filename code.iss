@@ -162,6 +162,7 @@
 			if verOutcome = 2 then
 			begin
 				Wizardform.TasksList.ItemEnabled[0] := false
+				Wizardform.TasksList.Checked[0] := false
 				Wizardform.TasksList.ItemEnabled[5] := false
 				Wizardform.TasksList.Checked[10] := false
 				Wizardform.TasksList.ItemEnabled[10] := false
