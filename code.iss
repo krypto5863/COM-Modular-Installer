@@ -209,7 +209,7 @@
 			else if IsEng(WizardForm.DirEdit.Text) < 2 then
 			begin
 				//Checks the version of the game but also checks if the install folder has a game instance and lets the installer know for future reference.
-				MinVer := {#MinimumGameVersion}
+				MinVer := 1540
 				verOutcome := VersionCheck(WizardForm.DirEdit.Text,MinVer)
 				if (verOutcome = 1) OR (verOutcome = 2) then
 				begin
