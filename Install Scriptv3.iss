@@ -2,7 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.8"
+#define MyAppVersion "2.4.9 RC3"
+#define MinimumGameVersion 1580
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
 //#define MyAppExeName 'COM Modular Installer'
@@ -96,7 +97,7 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
 		
 		//Name: Loader/bepinEX/derim; Description:DeRim; Types: self; Flags: dontinheritcheck;
 		
-		Name: Loader/bepinEX/FixEyeMov; Description: FixEyeMov; Types:full eng notr hen self; Flags: dontinheritcheck;
+		//Name: Loader/bepinEX/FixEyeMov; Description: FixEyeMov; Types:full eng notr hen self; Flags: dontinheritcheck;
 		
 		Name: Loader/bepinEX/FPSCount; Description: FPSCounter; Types: self; Flags: dontinheritcheck;
 	
@@ -128,7 +129,7 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
         Name: Loader/bepinEX/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen; Flags: dontinheritcheck;
 
 
-  Name: Loader/Sybaris; Description: Sybaris 2.1 (Not Recommended, JUST DON'T USE IT);Flags: Exclusive checkablealone
+  Name: Loader/Sybaris; Description: Sybaris 2.1 (Not Recommended, JUST DO NOT USE IT);Flags: Exclusive checkablealone
 
     Name: Loader/Sybaris/Translations; Description: Translation Plugins (Syb); Flags: dontinheritcheck
       Name: Loader/Sybaris/Translations/i18nEx; Description: i18nEx (Syb);
@@ -146,7 +147,7 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
   Name: Patchers/CCfix; Description: CreatorSaveFix;
   Name: Patchers/blinkstop; Description: EditBlinkStop; Types: full eng notr pic self hen;
   Name: Patchers/extsave; Description: ExternalSaveData; Types: Full self pic eng notr hen; Flags: checkablealone;
-		Name: Patchers/extsave/vibemaid; Description:VibeYourMaid;
+		//Name: Patchers/extsave/vibemaid; Description:VibeYourMaid;
     Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng notr hen; Flags: checkablealone;
       Name: Patchers/extsave/maidvoice/addmod; Description: AddModsSlider; Types: full self pic eng notr hen; Flags: checkablealone;
         Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng notr hen; Flags: checkablealone;
@@ -163,12 +164,12 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
   ;Name: Patchers/prelabellite; Description: PresetLabeler(NoOverlays);
   Name: Patchers/quickedit; Description: QuickEditStart; Types: full pic self eng notr hen;
   Name: Patchers/rgbpal; Description: RGBPalette;
-  Name: Patchers/saveset; Description: SaveSettingsInGame; Types: full compact self pic eng notr hen;
+  //Name: Patchers/saveset; Description: SaveSettingsInGame; Types: full compact self pic eng notr hen;
 
 Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 	//Name: plugins/boneslide; Description: AddBoneSlider; Types:;
   Name: plugins/addyot; Description: AddYotogiSliderSE; Types: Full compact eng notr hen self;
-  Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng notr hen;
+  //Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng notr hen;
   Name: plugins/eraseout; Description: AutoEraseOutline; types: full pic eng notr hen;
   Name: plugins/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
   Name: plugins/camerautil; Description: CameraUtility; Types: Full pic self eng notr hen;
@@ -184,22 +185,22 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/editmenufilt; Description: EditMenuFilter; Types:full self pic eng notr hen;
   Name: plugins/editselanim; Description: EditMenuSelectedAnime; Types:full self pic eng notr hen;
   Name: plugins/editundo; Description:EditSceneUndo;
-  Name: plugins/emoears; Description:EmotionalEars(and tails); Types:self; Flags:checkablealone
-    Name: plugins/emoears/aho; Description:Ahoge meshes; Types:; Flags:dontinheritcheck
-    Name: plugins/emoears/mod; Description:Ear and tail meshes; Types:self; Flags:dontinheritcheck
+  //Name: plugins/emoears; Description:EmotionalEars(and tails); Types:self; Flags:checkablealone
+    //Name: plugins/emoears/aho; Description:Ahoge meshes; Types:; Flags:dontinheritcheck
+    //Name: plugins/emoears/mod; Description:Ear and tail meshes; Types:self; Flags:dontinheritcheck
   Name: plugins/extendrender; Description:ExtendRenderingRange; Types:full eng notr self pic;
     Name: plugins/extendrender/config; Description:x10 Extend Config; Types:self; Flags:dontinheritcheck
   Name: plugins/facecon; Description:FaceControl; Types:pic;
   Name: plugins/freeapp; Description:FreeModeApp; Types:full self eng notr hen;
   Name: plugins/freedress; Description:FreeModeDressKeeper; Types:full self eng notr hen;
   ;Name: plugins/futa; Description:FUTA; Types:;
-  Name: plugins/halfundress; Description:HalfUnDressing; Types:full eng notr hen;
+  //Name: plugins/halfundress; Description:HalfUnDressing; Types:full eng notr hen;
   Name: plugins/inout; Description:InOutAnimation; Types:full eng notr self hen;
   Name: plugins/lookmaid; Description:LookAtYourMaid;
   Name: plugins/lookmaster; Description:LookAtYourMaster;
   Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
-  Name: plugins/mtacc; Description: MtAccelerator;
-		Name: plugins/mtacc/AllScene; Description: AllScene Version;
+  //Name: plugins/mtacc; Description: MtAccelerator;
+		//Name: plugins/mtacc/AllScene; Description: AllScene Version;
   //Name: plugins/MM; Description:MultipleMaids; Types:full pic self eng notr;
     //Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
   Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
@@ -221,20 +222,20 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/seieki; Description:Seieki; Types:pic;
   Name: plugins/shaderchange; Description:ShaderChange; Types:full pic self eng notr;
   Name: plugins/shapeanimator; Description:ShapeAnimator; Types:full pic self eng notr hen;
-    Name: plugins/shapeanimator/norm; Description:ShapeAnimator; Types:full pic self eng notr hen; Flags: exclusive;
-    Name: plugins/shapeanimator/doc; Description:ShapeAnimator (Doc's Edit); Types:full pic self eng notr hen; Flags: exclusive;
+    Name: plugins/shapeanimator/norm; Description:ShapeAnimator (DancePlusEdition); Types:full pic self eng notr hen; Flags: exclusive;
+    //Name: plugins/shapeanimator/doc; Description:ShapeAnimator (Doc Edit); Types:full pic self eng notr hen; Flags: exclusive;
   Name: plugins/SKAcc; Description:SKAccelerator; Types:full pic self eng notr hen;
   Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
   Name: plugins/slimeshade; Description:SlimeShader; Types:;
-	Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
+	//Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
 	Name: plugins/TexLoad; Description:TextureLoader; Types:self;
 		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
   Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
-  Name: plugins/ureye; Description:UruuruEye; Types:;
+  //Name: plugins/ureye; Description:UruuruEye; Types:;
   Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
-  Name: plugins/xtms; Description:XTMasterSlave+; Types:full eng notr self hen;
-		Name: plugins/xtms/XTFutaBody; Description:XTFutaBody; Types:;
-			Name: plugins/xtms/XTFutaAccessories; Description:XTFutaAccessories; Types:;
+  //Name: plugins/xtms; Description:XTMasterSlave+; Types:full eng notr self hen;
+		//Name: plugins/xtms/XTFutaBody; Description:XTFutaBody; Types:;
+			//Name: plugins/xtms/XTFutaAccessories; Description:XTFutaAccessories; Types:;
   Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
 
 Name: misc; Description:Miscelleanous Files; Types: full compact;
