@@ -11,18 +11,23 @@ namespace CMIHelper
 {
 	public class CMIHelper
 	{
+		[DllExport("CMIHelperSC", CallingConvention = CallingConvention.StdCall)]
+		public static bool StringContains([MarshalAs(UnmanagedType.BStr)] string mainstring, [MarshalAs(UnmanagedType.BStr)] string substring) 
+		{
+			return mainstring.Contains(substring);
+		}
+
 		[DllExport("CMIHelper", CallingConvention = CallingConvention.StdCall)]
 		public static int VersionCheck([MarshalAs(UnmanagedType.BStr)] string path, int ver)
 		{
-
 			//0 is fail, no update. 1 is success. 2 is empty folder. 3 is update required.
 
-			if (path.Contains(@"\Downloads"))
+			if (path.Contains("Downloads"))
 			{
 				System.Windows.Forms.MessageBox.Show("It seems your game is located in the Downloads directory, this can cause issues with UAC and lead to improper CMI installs! Please move it somewhere safer (Example: C:/KISS/COM3D2)", "Unsafe Game Location", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return 0;
 			}
-			else if (path.Contains(@"Program Files") && path.Contains(@"Steam") == false)
+			else if (path.Contains("Program Files") && path.Contains("Steam") == false)
 			{
 				System.Windows.Forms.MessageBox.Show("It seems your game is located in the Program Files directory, this can cause issues with UAC and lead to improper CMI installs! Please move it somewhere safer (Example: C:/KISS/COM3D2)", "Unsafe Game Location", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return 0;
@@ -30,11 +35,11 @@ namespace CMIHelper
 
 			//path = @"D:\KISS\COM3D2";
 			//System.Windows.Forms.MessageBox.Show("Starting function with params"+@path+" "+ver, "Caption Here!", MessageBoxButtons.OK);
-			string file = @"COM3D2x64_Data\Managed\Assembly-CSharp.dll";
-			if (File.Exists(@path + @"\update.lst") && File.Exists(@path + @"\COM3D2x64.exe"))
+			string file = "COM3D2x64_Data\\Managed\\Assembly-CSharp.dll";
+			if (File.Exists(@path + "\\update.lst") && File.Exists(@path + "\\COM3D2x64.exe"))
 			{
 
-				string[] lines = File.ReadAllLines(@path + @"\update.lst");
+				string[] lines = File.ReadAllLines(@path + "\\update.lst");
 				//System.Windows.Forms.MessageBox.Show("Trying to read " + @path + @"\update.lst", "Caption Here!", MessageBoxButtons.OK);
 				// System.Windows.Forms.MessageBox.Show("This is the first string: " + lines[0], "Caption Here!", MessageBoxButtons.OK);
 				foreach (string line in lines)

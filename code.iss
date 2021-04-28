@@ -11,19 +11,20 @@
 		PresetFile: String;
 		DownloadPage: TDownloadWizardPage;
 		EngDisable: Boolean;
-		verOutcome: Integer;
+		EmptyFolder: Boolean;
 [/Code]
 
 //The following script file has a rather large function for using 7zip to unzip files via the installer. It was moved to a seperate script to make things easier.
 #include "unzip.iss"
 //The following script contains a bunch of helper functions and methods. They were moved out so better track could be kept.
 #include "helper.iss"
+//This version and path verification are such a lengthy and careful process, I've overhauled it and moved it to a seperate "class". 
+#include "VersionVerification.iss"
 
 [Code]
 	var
 		path: WideString;
 		OGEvent: TNotifyEvent;
-		MinVer: Integer;
 	procedure TypesComboChange(Sender: TObject);
 	//var
 		//TypeEntry: TSetupTypeEntry;
@@ -158,8 +159,9 @@
 			end;
 		end;
 		if CurPageID = wpSelectTasks then
+		if CurPageID = wpSelectTasks then
 			begin
-			if verOutcome = 2 then
+			if EmptyFolder then
 			begin
 				Wizardform.TasksList.ItemEnabled[0] := false
 				Wizardform.TasksList.Checked[0] := false
@@ -174,7 +176,7 @@
 	begin
 		if CurPageID = wpSelectComponents then
 		begin		
-			if (EngDisable = true) OR (verOutcome = 2) then
+			if (EngDisable = true) OR (EmptyFolder) then
 			begin
 				if MsgBox('Due to changes made to the installer when disabling components, the installer needs to be restarted in order to revert these changes and allow you to safely use previous pages. Would you like to quit the installer now?', mbConfirmation, MB_YESNO) = IDYES then
 				begin
@@ -186,58 +188,6 @@
 		end else
 		begin
 			result := true;
-		end;
-	end;
-
-	function NextButtonClick(CurPageID: Integer): Boolean;
-	var
-		FreeSpace1, TotalSpace1: Cardinal;
-	begin
-		//Prevents code from running if not on the directory selection page
-		if CurPageID = wpSelectDir then
-		begin			
-			//MsgBox('Found Space: ' + IntToStr(FreeSpace1), mbCriticalError, MB_OK)
-			
-			if (GetSpaceOnDisk(WizardForm.DirEdit.Text, True, FreeSpace1, TotalSpace1)) and (FreeSpace1 < 5000) then
-			begin
-				MsgBox('The drive holding the path you have selected does not contain enough space to safely install CMI. Please clear a minimum of 5 GiBs to install CMI to this directory: ' + IntToStr(FreeSpace1) + 'MB', mbCriticalError, MB_OK)
-				Result := false;
-				exit;
-			end
-			
-			//Checks if the game is not INM version. If it's not, installation continues.
-			else if IsEng(WizardForm.DirEdit.Text) < 2 then
-			begin
-				//Checks the version of the game but also checks if the install folder has a game instance and lets the installer know for future reference.
-				MinVer := 1540
-				verOutcome := VersionCheck(WizardForm.DirEdit.Text,MinVer)
-				if (verOutcome = 1) OR (verOutcome = 2) then
-				begin
-					//MsgBox('We should be returning true', mbInformation, MB_OK);
-					//Small advisory, hope users follow it.
-					MsgBox('Please ensure no game folders or game instances are open or you will have a bad install!', mbInformation, MB_OK);
-					Result := true
-				end 
-				else if VerOutcome = 3 then 
-				begin
-					//MsgBox('We should be returning false', mbInformation, MB_OK);
-					DownloadUpdate(MinVer);
-					Result := false
-				end else begin
-					Result := false
-				end;
-			end
-			else begin
-				MsgBox('We have detected INM! INM is not supported by CMI due to technical differences.' + #13#10#13#10 + 'To use CMI, please install the R18/Adult Content Supplement Patch.' + #13#10#13#10 + 'If your are not actually on an INM version of the game, then you have likely installed Eng DLC/files into your japanese game. Please refer to the readme on repair instructions.', mbCriticalError, MB_OK);
-			end;
-		end		 
-		else if (CurPageID = wpSelectComponents) then
-		begin
-			Result := true
-		end else begin
-		//MsgBox('Default' + path, mbInformation, MB_OK);
-		//If not on the correct page, just default to true.
-		Result := true;
 		end;
 	end;
 

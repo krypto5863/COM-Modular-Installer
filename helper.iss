@@ -1,7 +1,4 @@
 [Code]
-	//Calls for function that facilitate version checking from C# DLL
-	function VersionCheck(path: WideString; gver: Integer): Integer;
-	external 'CMIHelper@files:CMIHelper.dll stdcall delayload';
 	//This functions checks if the game is INM or not.
 	function INMCheck(path: WideString): Boolean;
 	external 'CMIHelperIN@files:CMIHelper.dll stdcall delayload';
@@ -121,6 +118,8 @@
 
 	function IsEng(path: String): Integer;
 	begin
+		//2 is INM. 1 is R18. 0 is not Eng.
+	
 		if (FileExists(path + '\localize.dat')) then
 		begin
 			if ((FileExists(path + '\GameData\system_en.arc')) = false) AND ((FileExists(path + '\GameData\bg_en.arc')) = false) then
@@ -404,6 +403,11 @@
 		end;
 		*)
 		
+		if (ComponentSelected('AdvancedMaterialModifier')) then
+		begin
+			DownloadPage.Add('https://github.com/krypto5863/COM3d2-AdvancedMaterialModifier/releases/download/1.2.2.1/COM3D2.AdvancedMaterialModifier.Plugin.dll', 'BepInEx\plugins\COM3D2.AdvancedMaterialModifier.Plugin.dll', '');
+		end;
+		
 		if (ComponentSelected('InputHotkeyBlock')) then
 		begin
 			DownloadPage.Add('https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v5/COM3D2.InputHotkeyBlock.v1.2.zip', 'InputHotkeyBlock.zip', '');
@@ -415,11 +419,6 @@
 		end;
 	
 	//These are latest releases and require no looking after
-	
-		if (ComponentSelected('AdvancedMaterialModifier')) then
-		begin
-			DownloadPage.Add('https://github.com/krypto5863/COM3d2-AdvancedMaterialModifier/releases/download/1.0/COM3D2.AdvancedMaterialModifier.Plugin.dll', 'BepInEx\plugins\COM3D2.AdvancedMaterialModifier.Plugin.dll', '');
-		end;
 	
 	 	if (ComponentSelected('GraphicsSettings')) then
 		begin

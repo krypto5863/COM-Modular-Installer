@@ -2,14 +2,16 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.8"
+#define MyAppVersion "2.4.8.1"
+#define MinimumVersion 1551
+#define UnsupportedVersion 1570
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
 //#define MyAppExeName 'COM Modular Installer'
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{8143E460-C581-40B8-9D11-2FFC2DD35ADF}
+AppId={{8143E460-C581-40B8-9D11-2FFC2DD35ADF}}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -96,7 +98,7 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
 		
 		//Name: Loader/bepinEX/derim; Description:DeRim; Types: self; Flags: dontinheritcheck;
 		
-		Name: Loader/bepinEX/FixEyeMov; Description: FixEyeMov; Types:full eng notr hen self; Flags: dontinheritcheck;
+		//Name: Loader/bepinEX/FixEyeMov; Description: FixEyeMov; Types:full eng notr hen self; Flags: dontinheritcheck;
 		
 		Name: Loader/bepinEX/FPSCount; Description: FPSCounter; Types: self; Flags: dontinheritcheck;
 	
@@ -230,7 +232,7 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 	Name: plugins/TexLoad; Description:TextureLoader; Types:self;
 		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
   Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
-  Name: plugins/ureye; Description:UruuruEye; Types:;
+  //Name: plugins/ureye; Description:UruuruEye; Types:;
   Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
   Name: plugins/xtms; Description:XTMasterSlave+; Types:full eng notr self hen;
 		Name: plugins/xtms/XTFutaBody; Description:XTFutaBody; Types:;
