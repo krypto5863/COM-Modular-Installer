@@ -136,10 +136,10 @@
 		end;
 	end;
 
-	procedure DownloadUpdate(MinVer: Integer);
+	procedure DownloadUpdate(MinVer: Integer; MaxVer: Integer);
 	var
 	i : Integer;
-	lv : Integer;
+	pointversion : Integer;
 	SiteSt: String;
 	site : String;
 	ErrorCode: Integer;
@@ -161,7 +161,7 @@
 	if (IsEng(WizardForm.DirEdit.Text)) = 1 then
 	begin
 		MinVer := 1000;
-		i := MinVer/10+20
+		i := MinVer/10+20;
 		SiteSt := 'http://7.242.238.202.static.iijgio.jp/com3d2_up'
 	end else
 	begin
@@ -169,29 +169,40 @@
 		SiteST := 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up'
 	end;
 
-		while (i >= MinVer/10) do
+		while (i >= MinVer/10) AND (Length(site) <= 0) do
 		begin
 
+      if (i >= MaxVer/10) then
+      begin
+        i := i-1;
+        continue;
+      end;
+
 			//MsgBox('testing: ' + 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up' + IntToStr(i) + '.zip', mbInformation, MB_OK);
-			if (SiteValid(SiteSt + IntToStr(i) + '.zip') = true) AND (lv <= 0) then
+			if (SiteValid(SiteSt + IntToStr(i) + '.zip') = true) then
 			begin
-				lv := i;
+        site :=  SiteSt + IntToStr(i) + '.zip';
+
+        pointversion:= 10;
+
+        while pointversion > 0 do
+        begin
+          if (SiteValid(SiteSt + IntToStr(i) + '.' + IntToStr(pointversion) + '.zip') = true) then
+          begin
+            site :=  SiteSt + IntToStr(i) + '.' + IntToStr(pointversion) + '.zip';
+            break;
+          end;
+          pointversion := pointversion-1;
+        end;
 				//MsgBox('Returning update ' + IntToStr(lv) + ' as latest', mbInformation, MB_OK);
 			end;
 			
-			if (lv > 0) then
-			begin
-			//MsgBox('Trying to set site...', mbInformation, MB_OK);
-				site :=  SiteSt + IntToStr(lv) + '.zip';
-				break;
-			end;
-			
-		i := i-1;	
+      i := i-1;	
 		end;
 		
 		//MsgBox(site + ' : ' +  IntToStr(lv), mbCriticalError, MB_OK);
 
-		if (CompareText(site,'') <> 0) AND (lv > 0) then
+		if (CompareText(site,'') <> 0) AND (Length(site) > 0) then
 		begin
 			DownloadPage.Clear;
 			
@@ -211,7 +222,7 @@
 			
 				DoUnZip(ExpandConstant('{tmp}\COMUpdate.zip'),ExpandConstant('{tmp}\COMUpdate'));
 			
-				shellExec('', ExpandConstant('{tmp}\COMUpdate\com3d2_up'+ IntToStr(lv) +'\update.exe'), '', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
+				shellExec('', ExpandConstant('{tmp}\COMUpdate\com3d2_up'+ IntToStr(i) +'\update.exe'), '', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
 			
 				DownloadPage.Hide;
 			end;

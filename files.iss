@@ -19,15 +19,17 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 
 	Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan; Flags: external
 		//Source: "{tmp}\GraphicsSettings.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan/GraphSet; Flags: external
-	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UpCheck; Flags: ignoreversion recursesubdirs recursesubdirs createallsubdirs
+	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UpCheck; Flags: ignoreversion recursesubdirs createallsubdirs
 	 
   //Source: "{tmp}\BepInEx\plugins\FixEyeMov*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FixEyeMov; Flags: external
 	
-	Source: "{#ibep}\FPSUnlock\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSUn; Flags: ignoreversion recursesubdirs recursesubdirs createallsubdirs
+	Source: "{#ibep}\FPSUnlock\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSUn; Flags: ignoreversion recursesubdirs createallsubdirs
 	
 	Source: "{tmp}\BepInEx\plugins\FPSCounter.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSCount; Flags: external
 	
 	Source: "{tmp}\BepInEx\plugins\COM3D2.InputHotkeyBlock.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/InBlock; Flags: external
+
+  Source: "{#ibep}\MeidoPhoto\*"; DestDir: "{#bep}"; Components: Loader/bepinEX/MeidoPhoto; Flags: ignoreversion recursesubdirs createallsubdirs
 	
 	Source: "{#ibep}\ModRef\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/modref; Flags: ignoreversion recursesubdirs createallsubdirs 
 	

@@ -118,7 +118,7 @@ begin
 			if (Version < MinimumVersion) then
 			begin
 				MsgBox('Your game is outdated! Please update it immediately.' + #13#10#13#10 + 'Minimum Version:' + IntToStr({#MinimumVersion}) + #13#10 + 'Found Version:' + IntToStr(Version), mbCriticalError, MB_OK);
-				DownloadUpdate(MinimumVersion);
+				DownloadUpdate(MinimumVersion, UnsupportedVersion);
 				Result := false;
 				exit;
 			end 
@@ -163,7 +163,7 @@ function NextButtonClick(CurPageID: Integer): Boolean;
 			exit;
 		end;
 		
-    if VerifyVersion(WizardForm.DirEdit.Text, {#MinimumVersion}, {#UnsupportedVersion}) = false then
+    if (EmptyFolder = false) AND (VerifyVersion(WizardForm.DirEdit.Text, {#MinimumVersion}, {#UnsupportedVersion}) = false) then
 		begin
 			Result := false;
 			exit;
