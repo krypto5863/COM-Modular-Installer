@@ -105,6 +105,8 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
 	  Name: Loader/bepinEX/FPSUn; Description: FPSUnlock; Types: self; Flags: dontinheritcheck;
 		
 		Name: Loader/bepinEX/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+    
+    Name: Loader/bepinEX/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self; Flags: dontinheritcheck;
 		
 		Name: Loader/bepinEX/modref; Description: ModRefresh; Types:full pic self eng notr; Flags: dontinheritcheck;
 		

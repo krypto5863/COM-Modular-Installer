@@ -38,7 +38,7 @@ begin
 		result := false
 	end;
 	
-	if StringContains(DirName, 'Program Files') = True AND StringContains(DirName, 'Steam') = False then
+	if (StringContains(DirName, 'Program Files') = True) AND (StringContains(DirName, 'Steam') = False) then
 	begin
 	  MsgBox('It seems your game is located in the Program Files directory, this can cause issues with UAC and lead to improper CMI installs! Please move it somewhere safer (Example: C:/KISS/COM3D2)', mbCriticalError, MB_OK)
 		result := false
@@ -57,7 +57,7 @@ begin
 	end;	
 end;
 
-function VersionFetch(File: string; out version: Integer): Boolean;
+function VersionFetch(File: string; out version: Integer; LineToFetch: String): Boolean;
 var
 	i: Integer;
 	s: array of string;
@@ -79,21 +79,21 @@ begin
 		exit;
 	end;	
 	
-	while (StringContains(s[i], 'COM3D2x64_Data\Managed\Assembly-CSharp.dll') = false) AND (GetArrayLength(s) > i) do
+	while (StringContains(s[i], LineToFetch) = false) AND (GetArrayLength(s) > i) do
 	begin
 		i := i+1
 	end;
 	
-	if (i = GetArrayLength(s)) AND (StringContains(s[i], 'COM3D2x64_Data\Managed\Assembly-CSharp.dll') = false) then
+	if (i = GetArrayLength(s)) AND (StringContains(s[i], LineToFetch) = false) then
 	begin
-		MsgBox('While we managed to find the Update.lst file, the assembly version could not be found! If you are on the Japanese version, this is a real problem! Please update immediately!', mbCriticalError, MB_OK);
+		MsgBox('While we managed to find the Update.lst file, the line containing: ' + LineToFetch + ' could not be found! If you are on the Japanese version, this is can be a real problem! Please update immediately!', mbCriticalError, MB_OK);
 		result := false;
 		exit;
 	end;
 	
 	line := s[i];
 	
-	StringChangeEx(line, 'COM3D2x64_Data\Managed\Assembly-CSharp.dll,', '', true)
+	StringChangeEx(line, LineToFetch + ',', '', true)
 	
 	version := StrToIntDef(line, 0);
 	
@@ -107,18 +107,116 @@ begin
 	result := true;	
 end;
 
+
+procedure DownloadUpdate(MinVer: Integer; MaxVer: Integer; CurrentVersion: Integer; Dir: String);
+var
+	i : Integer;
+	pointversion : Integer;
+  versiontodownload: Integer;
+	SiteSt: String;
+	site : String;
+	ErrorCode: Integer;
+begin
+	
+if MsgBox('Would you like us to try to download the latest update and run the updater? This generally is not recommended, as it can be unstable. You will still need to follow the instructions in the installer that shows up, and this way of updating is not as safe or as reliable as manually updating.' + #13#10#13#10 + 'The update may take a while to download as the download itself can be around 3GBs in size and Kiss servers can be VERY slow so be patient.' + #13#10#13#10 + 'Pressing no will open the update download website.', mbInformation, MB_YESNO) = MrNO then
+begin	
+	
+	if (IsEng(WizardForm.DirEdit.Text)) = 1 then
+	begin
+		ShellExec('open', 'https://com3d2.world/r18/update/', '', '', SW_SHOW, ewNoWait, ErrorCode);
+	end else
+	begin
+		ShellExec('open', 'https://com3d2.jp/update/', '', '', SW_SHOW, ewNoWait, ErrorCode);
+	end;			
+	exit;
+end;
+	
+if (IsEng(WizardForm.DirEdit.Text)) = 1 then
+begin
+  VersionFetch(Dir + '\update.lst', CurrentVersion, 'COM3D2x64.exe')
+	MinVer := 1000;
+	i := MinVer/10+20;
+	SiteSt := 'http://7.242.238.202.static.iijgio.jp/com3d2_up'
+end else
+begin
+	i := MinVer/10+20;
+	SiteST := 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up'
+end;
+	while (i >= MinVer/10) AND (i*10 >= CurrentVersion) AND (Length(site) <= 0) do
+	begin
+    if (i >= MaxVer/10) then
+    begin
+      i := i-1;
+      continue;
+    end;
+
+		//MsgBox('testing: ' + 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up' + IntToStr(i) + '.zip', mbInformation, MB_OK);
+		if (SiteValid(SiteSt + IntToStr(i) + '.zip') = true) then
+		begin
+      pointversion:= 10;
+
+      while pointversion > 0 do
+      begin
+        if (SiteValid(SiteSt + IntToStr(i) + '.' + IntToStr(pointversion) + '.zip') = true) AND (i*10 + pointversion > CurrentVersion) then
+        begin
+          site :=  SiteSt + IntToStr(i) + '.' + IntToStr(pointversion) + '.zip';
+          break;
+        end
+        else if (i*10 > CurrentVersion) then
+        begin
+          site :=  SiteSt + IntToStr(i) + '.zip';
+        end;
+        pointversion := pointversion-1;
+      end;
+			//MsgBox('Returning update ' + IntToStr(lv) + ' as latest', mbInformation, MB_OK);
+    end;
+			
+    i := i-1;	
+  end;		
+	//MsgBox(site + ' : ' +  IntToStr(lv), mbCriticalError, MB_OK);
+
+	if (CompareText(site,'') <> 0) AND (Length(site) > 0) then
+	begin
+		DownloadPage.Clear;
+			
+		//DownloadPage.Add('http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up152.zip', 'COMUpdate.zip', '');
+			
+		//MsgBox('downloading from: ' + site, mbInformation, MB_OK);
+		DownloadPage.Add(site, 'COMUpdate.zip', '');
+			
+		DownloadPage.Show;
+		try
+			try
+				DownloadPage.Download;
+			except
+				//SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
+			end;
+		finally
+			
+			DoUnZip(ExpandConstant('{tmp}\COMUpdate.zip'),ExpandConstant('{tmp}\COMUpdate'));
+			
+			shellExec('', ExpandConstant('{tmp}\COMUpdate\com3d2_up'+ IntToStr(i) +'\update.exe'), '', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
+			
+			DownloadPage.Hide;
+		end;
+	end
+	else begin
+    MsgBox('Either you are already on the latest version available to you and you need to wait for a new game update(English Users) or we failed to fetch updates.' + #13#10#13#10 + 'It is recommended you manually update your game instead if you believe that you are not on the latest available version for your game.', mbCriticalError, MB_OK)
+	end;
+end;
+
 function VerifyVersion(Dir: String; MinimumVersion: Integer; UnsupportedVersion: Integer): Boolean;
 var
 	Version: Integer;
 begin
 	if (EmptyFolder = false) then
 	begin
-		if(VersionFetch(WizardForm.DirEdit.Text + '\update.lst', Version)) then
+		if(VersionFetch(WizardForm.DirEdit.Text + '\update.lst', Version, 'COM3D2x64_Data\Managed\Assembly-CSharp.dll')) then
 		begin
 			if (Version < MinimumVersion) then
 			begin
 				MsgBox('Your game is outdated! Please update it immediately.' + #13#10#13#10 + 'Minimum Version:' + IntToStr({#MinimumVersion}) + #13#10 + 'Found Version:' + IntToStr(Version), mbCriticalError, MB_OK);
-				DownloadUpdate(MinimumVersion, UnsupportedVersion);
+				DownloadUpdate(MinimumVersion, UnsupportedVersion, Version, Dir);
 				Result := false;
 				exit;
 			end 
