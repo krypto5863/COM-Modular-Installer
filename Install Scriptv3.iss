@@ -2,8 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.8.1"
-#define MinimumVersion 1551
+#define MyAppVersion "2.4.8.3"
+#define MinimumVersion 1540
 #define UnsupportedVersion 1570
 //#define MyAppPublisher "Nobody"
 //#define MyAppURL "http://www.tesin.com/"
@@ -92,11 +92,14 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
 		Name: Loader/bepinEX/AdvMatMod; Description: AdvancedMaterialModifier; Types: self; Flags: dontinheritcheck;
 	
 		Name: Loader/bepinEX/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
-			//Name: Loader/bepinEX/ConfigMan/GraphSet; Description: GraphicsSettings; Flags: dontinheritcheck;
+		
+    //Name: Loader/bepinEX/ConfigMan/GraphSet; Description: GraphicsSettings; Flags: dontinheritcheck;
 	
 		Name: Loader/bepinEX/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 		
 		//Name: Loader/bepinEX/derim; Description:DeRim; Types: self; Flags: dontinheritcheck;
+
+    Name: Loader/bepinEX/ExPresetMan; Description: ExtendedPresetManagement; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
 		
 		//Name: Loader/bepinEX/FixEyeMov; Description: FixEyeMov; Types:full eng notr hen self; Flags: dontinheritcheck;
 		
@@ -112,7 +115,7 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
 		
 		//Name: Loader/bepinEX/MuteBack; Description: MuteInBackground; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 		
-		//Name: Loader/bepinEX/RunUniEdit; Description: RuntimeUnityEditor; Flags: dontinheritcheck;
+		Name: Loader/bepinEX/RunUniEdit; Description: RuntimeUnityEditor; Flags: dontinheritcheck;
 
     Name: Loader/bepinEX/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
@@ -124,6 +127,8 @@ Name: Loader; Description: Mod Loader (Required for just about everything); Type
       Name: Loader/bepinEX/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
+
+    Name: Loader/bepinEX/ShortMenu; Description: ShortMenuLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 
     Name: Loader/bepinEX/Translations; Description: Translation Plugins; Types: Full compact pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/Translations/i18nEx; Description: i18nEx;  Types: full compact pic self hen; Flags: dontinheritcheck;
@@ -208,6 +213,8 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
     //Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
   Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
   Name: plugins/notecolor; Description:NoteColor; Types:full self eng notr hen;
+  Name: plugins/NPRShader; Description:NPRShader; Types:;
+    Name: plugins/NPRShader/LightConfig; Description:Lightweight Config; Types:; Flags:dontinheritcheck
   ;Name: plugins/olddance; Description:OldDancePlay; Types:full self eng hen;
   Name: plugins/objexp; Description:ObjectExplorer; Types:full self eng notr pic;
   Name: plugins/partsedit; Description:PartsEdit; Types:full pic self eng notr;

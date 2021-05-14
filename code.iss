@@ -12,101 +12,25 @@
 		DownloadPage: TDownloadWizardPage;
 		EngDisable: Boolean;
 		EmptyFolder: Boolean;
+    path: WideString;
+		OGEvent: TNotifyEvent;
 [/Code]
-
-//The following script file has a rather large function for using 7zip to unzip files via the installer. It was moved to a seperate script to make things easier.
-#include "unzip.iss"
 //The following script contains a bunch of helper functions and methods. They were moved out so better track could be kept.
 #include "helper.iss"
+//The following script contains a bunch of helper functions and methods. They were moved out so better track could be kept.
+#include "OldInstallHandler.iss"
+//KeyValueLists Expandable
+#include "AssetDownloadHandler.iss"
 //This version and path verification are such a lengthy and careful process, I've overhauled it and moved it to a seperate "class". 
 #include "VersionVerification.iss"
+//Handle Serialized files
+#include "serializeHandler.iss"
+//Collection of code blocks that are delegated an event and deal with it.
+#include "DelegateCode.iss"
+//Handles the wizard initialization event.
+#include "InitializeWizard.iss"
 
 [Code]
-	var
-		path: WideString;
-		OGEvent: TNotifyEvent;
-	procedure TypesComboChange(Sender: TObject);
-	//var
-		//TypeEntry: TSetupTypeEntry;
-	begin
-		//TypeEntry := TypesCombo.Items.Objects[TypesCombo.ItemIndex];
-			if (CompareText(WizardForm.TypesCombo.Items.Strings[WizardForm.TypesCombo.ItemIndex],'Custom Preset') = 0) then
-			begin
-				OGEvent(Sender);
-				if (FileExists(path + '\' + PresetFile)) then
-				begin
-					ApplyCustomPreset(path);
-				end;
-			end else begin
-				OGEvent(Sender);
-			end;
-	end;
-
-	function OnDownloadProgress(const Url, Filename: string; const Progress, ProgressMax: Int64): Boolean;
-	begin
-		if ProgressMax <> 0 then
-			Log(Format('  %d of %d bytes done.', [Progress, ProgressMax]))
-		else
-			Log(Format('  %d bytes done.', [Progress]));
-		Result := True;
-	end;
-
-	procedure InitializeWizard();
-	var
-		Value: String;
-		ErrorCode: Integer;
-		FreeSpace, TotalSpace: Cardinal;
-	begin
-		DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
-		OGEvent :=  WizardForm.TypesCombo.OnChange;
-		WizardForm.TypesCombo.OnChange := @TypesComboChange;
-		PresetFile := 'Custom.CMIType';
-		
-		if (GetSpaceOnDisk(ExpandConstant('{tmp}'),True, FreeSpace, TotalSpace)) AND (FreeSpace < 5000) then
-		begin
-		MsgBox('We detected that your AppData containing partition(Typically your C drive) does not have enough free space for cache. Please clear a minimum of 5 GiBs to install CMI: '  + IntToStr(FreeSpace) + 'MB', mbCriticalError, MB_OK)
-		abort
-		end;	
-		
-		if (SiteValid('https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/Assets/manifest.txt')) then
-		begin
-		DownloadTemporaryFile('https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/Assets/manifest.txt','manifest.txt','',nil);
-		end;
-		
-		if (IsInstallerOld(ExpandConstant('{tmp}'),'{#MyAppVersion}')) then
-		begin
-			MsgBox('This installer is outdated and likely incompatible with new assets/versions! You may continue the download but you continue at your own risk!' , mbCriticalError, MB_OK);
-		end;
-		
-		MsgBox('If you paid for CMI or downloaded it from anywhere that is not the official GitHub page, than you have been scammed or misled!' , mbInformation, MB_OK);
-
-		if MsgBox('Did you read the readme? Failure to read it will void you any chance of receiving support.', mbConfirmation, MB_YESNO) = IDNO then
-		begin
-			MsgBox('Go back and read it before installing CMI.', mbCriticalError, MB_OK)
-			ExtractTemporaryFile('CMI_Readme.pdf');
-			ShellExecAsOriginalUser('open',
-			AddQuotes(ExpandConstant('{tmp}\CMI_Readme.pdf')), '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
-			abort
-		end;
-
-	//Tries to find the path of the game via the registry and if it suceeds, pushes it to the value var.
-		if RegQueryStringValue(HKEY_CURRENT_USER, 'Software\KISS\カスタムオーダーメイド3D2','InstallPath', Value) then
-		//Sets the wizard dir field to default to what is found in the registry
-		begin
-			WizardForm.DirEdit.Text := (Value);
-		end
-		else if RegQueryStringValue(HKEY_CURRENT_USER, 'Software\KISS\CUSTOM ORDER MAID3D 2','InstallPath', Value) then
-		//Sets the wizard dir field to default to what is found in the registry if the JP path isn't found but the ENG path is.
-		begin
-			WizardForm.DirEdit.Text := (Value);
-		end
-		//If no registry key is found, it will blank the field to force users to select their path.
-		else
-		begin
-			WizardForm.DirEdit.Text := '';
-		end;
-	end;
-
 	procedure CurPageChanged(CurPageID: Integer);
 	begin
 	//Only run the code if wizard is on the components page
@@ -114,12 +38,6 @@
 		begin
 			//Saves path to global var.
 			path := ExpandConstant('{app}');
-			//Quits if the users are found to have updated their game incorrectly. This should help bring more awareness to incorrect updating and stop people from blaming CMI if they update incorrectly and then install CMI.
-			if (FileExists(path + '\update.exe')) OR (FileExists(path + '\selector.exe')) OR (DirExists(path + '\data')) then
-			begin
-				MsgBox('We have detected that this game instance was updated improperly!(Usually by a drag and drop process) This is completely unsafe and WILL break your game.' + #13#10#13#10 + 'Due to this CMI will not install as you may encounter further errors and bugs if we continue. Please reinstall your game and update CORRECTLY (By placing the update/DLC files in an empty directory and using the provided update.exe or selector.exe) to continue.', mbCriticalError, MB_OK)
-				abort;
-			end;
 			//If english version is detected, run the below code.
 			if (IsEng(path) > 0) AND (EngDisable <> true) then
 			begin
@@ -217,15 +135,17 @@
 				if WizardForm.TasksList.Checked[3] then
 				begin
 					//MsgBox('File moving was selected', mbInformation, MB_OK);
-					if RenameOldInstall(path) = false then
+					if (DirExists(path + '\OldInstall')) AND (AppendCreationTimeToName(path + '\OldInstall') = false) then
 					begin
 						abort                   
 					end;
+
 					if MoveOld(path) = false then
 					begin
 						MsgBox('An exception was tossed while trying to move the old installation to the old folder! Ensure that no game application is open and that none of the files or folders are open anywhere!! We are quitting to keep your data safe! Refer to the readme for troubleshooting steps!!!', mbCriticalError, MB_OK);
 						abort       
 					end;
+
 				end;
 				if WizardForm.TasksList.Checked[4] then
 					begin
@@ -257,17 +177,14 @@
 						end;	
 					end;
 
-					if FileExists(path + '\' + 'serialize_storage_config.cfg') then 
-					begin
-					HandleSer(path, ExpandConstant('{userdocs}'))
-					end;
+					HandleSer(path)
 
 					if WizardForm.TasksList.Checked[5] then
 					begin
-						ReturnConfig(path)
+						MoveOldConfigBack(path)
 					end;
 
-					if RenameOldInstall(path) = false then
+					if (DirExists(path + '\OldInstall')) AND (AppendCreationTimeToName(path + '\OldInstall') = false) then
 					begin
 						MsgBox('The OldInstall folder could not be renamed but the installation is already complete. As a result, we will not abort as the error is harmless. It should be automatically renamed the next time CMI is run', mbInformation, MB_OK);
 					end;

@@ -20,7 +20,9 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 	Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan; Flags: external
 		//Source: "{tmp}\GraphicsSettings.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan/GraphSet; Flags: external
 	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UpCheck; Flags: ignoreversion recursesubdirs createallsubdirs
-	 
+	
+  Source: "{tmp}\BepInEx\plugins\COM3D2.ExtendedPresetManagement.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ExPresetMan; Flags: external
+   
   //Source: "{tmp}\BepInEx\plugins\FixEyeMov*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FixEyeMov; Flags: external
 	
 	Source: "{#ibep}\FPSUnlock\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSUn; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -35,7 +37,7 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 	
 	//Source: "{tmp}\BepInEx\plugins\BepInEx.MuteInBackground.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/MuteBack; Flags: external
 	
-	//Source: "{tmp}\BepInEx\plugins\RuntimeUnityEditor\*"; DestDir: "{#bepp}\RuntimeUnityEditor"; Components: Loader/bepinEX/RunUniEdit; Flags: external
+	Source: "{tmp}\BepInEx\plugins\RuntimeUnityEditor\*"; DestDir: "{#bepp}\RuntimeUnityEditor"; Components: Loader/bepinEX/RunUniEdit; Flags: external
 	 
 	Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/scriptloader; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\add_subs_to_old_yotogi.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/oldsubs; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -46,7 +48,10 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 		Source: "{#ibep}\ScriptLoader\Scripts\load_small_thumbs.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/thumbs; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\quick_edit_scene.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/quickedit; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\report_dupes.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/redupe; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/wrapmode; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/wrapmode; Flags: ignoreversion recursesubdirs createallsubdirs
+
+  Source: "{tmp}\BepInEx\plugins\ShortMenuLoader.Plugin.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ShortMenu; Flags: external
+  Source: "{tmp}\BepInEx\plugins\System.Threading.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ShortMenu; Flags: external
 
 	Source: "{#ibep}\i18nEx\core\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
 		Source: "Loader\extratranslations\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -125,6 +130,8 @@ Source: "{#IPlugin}\MTAcc\AllScene\*"; DestDir: "{#plug}"; Components: plugins/m
 //Source: "{#IPlugin}\MM\*"; DestDir: "{#syb}"; Components: plugins/MM; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\NormExcite\*"; DestDir: "{#syb}"; Components: plugins/normexcite; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\notecolor\*"; DestDir: "{#syb}"; Components: plugins/notecolor; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#IPlugin}\NPRShader\core\*"; DestDir: "{#syb}"; Components: plugins/NPRShader; Flags: ignoreversion recursesubdirs createallsubdirs
+  Source: "{#IPlugin}\NPRShader\lightconfig\*"; DestDir: "{#ucfg}"; Components: plugins/NPRShader/LightConfig; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\objexp\*"; DestDir: "{#syb}"; Components: plugins/objexp; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\partsedit\*"; DestDir: "{#syb}"; Components: plugins/partsedit; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\personaledit\*"; DestDir: "{#syb}"; Components: plugins/personaledit; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -158,7 +165,7 @@ Source: "{#IPlugin}\yotutil\*"; DestDir: "{#syb}"; Components: plugins/yotutil; 
 ;Misc Files
 
 //The files here are fetched dynamically as needed from the internet.
-Source: "{tmp}\COM3D2 DlC Checker.exe"; DestDir: "{app}"; Components: ext/dlccheck; Flags: external 
+Source: "{tmp}\COM3D2 DLC Checker.exe"; DestDir: "{app}"; Components: ext/dlccheck; Flags: external 
 //These Files are fetched locally.
 Source: "{#IMisc}\SybArc\*"; DestDir: "{app}"; Components: misc/sybarc; Flags: recursesubdirs 
 //Source: "{#IMisc}\MMPoses\*"; DestDir: "{#mod}"; Components: plugins/mm/mmposes; Flags: ignoreversion recursesubdirs createallsubdirs 

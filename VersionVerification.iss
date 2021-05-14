@@ -2,8 +2,6 @@
 //Calls for function that facilitate version checking from C# DLL
 function VersionCheck(path: WideString; gver: Integer): Integer;
 external 'CMIHelper@files:CMIHelper.dll stdcall delayload';
-function StringContains(string: WideString; substring: WideString): Boolean;
-external 'CMIHelperSC@files:CMIHelper.dll stdcall delayload';
 
 Function VerifyPath(DirName: String): Boolean;
 begin
@@ -30,7 +28,14 @@ begin
 	
 		result := false;
 		exit;
-	end;	
+	end;
+  
+  //Quits if the users are found to have updated their game incorrectly. This should help bring more awareness to incorrect updating and stop people from blaming CMI if they update incorrectly and then install CMI.
+	if (FileExists(DirName + '\update.exe')) OR (FileExists(DirName + '\selector.exe')) OR (DirExists(DirName + '\data')) then
+  begin
+		MsgBox('We have detected that this game instance was updated improperly!(Usually by a drag and drop process) This is completely unsafe and WILL break your game.' + #13#10#13#10 + 'Due to this CMI will not install as you may encounter further errors and bugs if we continue. Please reinstall your game and update CORRECTLY (By placing the update/DLC files in an empty directory and using the provided update.exe or selector.exe) to continue.', mbCriticalError, MB_OK)
+		result := false;
+	end;  
 		
 	if StringContains(DirName, 'Downloads') then
 	begin
@@ -54,6 +59,7 @@ begin
 	if FileExists(DirName + '\update.lst') = false AND FileExists(DirName + '\COM3d2x64.exe') then
 	begin	
 		MsgBox('While this appears to be a game folder, there is no Update.lst file! This is very bad!' + #13#10#13#10 + 'Please update your game immediately and ensure that your game is functioning before attempting to install CMI again.', mbCriticalError, MB_OK);	
+    result := false;
 	end;	
 end;
 
@@ -79,12 +85,12 @@ begin
 		exit;
 	end;	
 	
-	while (StringContains(s[i], LineToFetch) = false) AND (GetArrayLength(s) > i) do
+	while (GetArrayLength(s) > i) AND (StringContains(s[i], LineToFetch) = false) do
 	begin
 		i := i+1
 	end;
 	
-	if (i = GetArrayLength(s)) AND (StringContains(s[i], LineToFetch) = false) then
+	if (i = GetArrayLength(s)) OR (StringContains(s[i], LineToFetch) = false) then
 	begin
 		MsgBox('While we managed to find the Update.lst file, the line containing: ' + LineToFetch + ' could not be found! If you are on the Japanese version, this is can be a real problem! Please update immediately!', mbCriticalError, MB_OK);
 		result := false;
@@ -93,13 +99,18 @@ begin
 	
 	line := s[i];
 	
-	StringChangeEx(line, LineToFetch + ',', '', true)
+	if StringChangeEx(line, LineToFetch + ',', '', true) <= 0 then
+  begin
+    MsgBox('Could not clean the line containing the version we need in order to parse... Please update your game and try again. Otherwise, report this to the dev with your update.lst file', mbCriticalError, MB_OK);
+		result := false
+		exit;
+  end;
 	
 	version := StrToIntDef(line, 0);
 	
 	if (version = 0) then
 	begin
-		MsgBox('An error occurred while parsing the version number... Report this to the dev.', mbCriticalError, MB_OK);
+		MsgBox('An error occurred while parsing the version number... Please update your game and try again. Otherwise, report this to the dev.', mbCriticalError, MB_OK);
 		result := false
 		exit;
 	end;
@@ -108,96 +119,93 @@ begin
 end;
 
 
-procedure DownloadUpdate(MinVer: Integer; MaxVer: Integer; CurrentVersion: Integer; Dir: String);
+procedure DownloadUpdate(MinVer: Integer; MaxVer: Integer; Dir: String);
 var
 	i : Integer;
 	pointversion : Integer;
-  versiontodownload: Integer;
 	SiteSt: String;
 	site : String;
 	ErrorCode: Integer;
 begin
 	
-if MsgBox('Would you like us to try to download the latest update and run the updater? This generally is not recommended, as it can be unstable. You will still need to follow the instructions in the installer that shows up, and this way of updating is not as safe or as reliable as manually updating.' + #13#10#13#10 + 'The update may take a while to download as the download itself can be around 3GBs in size and Kiss servers can be VERY slow so be patient.' + #13#10#13#10 + 'Pressing no will open the update download website.', mbInformation, MB_YESNO) = MrNO then
-begin	
+  if MsgBox('Would you like us to try to download the latest update and run the updater? This generally is not recommended, as it can be unstable. You will still need to follow the instructions in the installer that shows up, and this way of updating is not as safe or as reliable as manually updating.' + #13#10#13#10 + 'The update may take a while to download as the download itself can be around 3GBs in size and Kiss servers can be VERY slow so be patient.' + #13#10#13#10 + 'Pressing no will open the update download website.', mbInformation, MB_YESNO) = MrNO then
+  begin	
 	
-	if (IsEng(WizardForm.DirEdit.Text)) = 1 then
-	begin
-		ShellExec('open', 'https://com3d2.world/r18/update/', '', '', SW_SHOW, ewNoWait, ErrorCode);
-	end else
-	begin
-		ShellExec('open', 'https://com3d2.jp/update/', '', '', SW_SHOW, ewNoWait, ErrorCode);
-	end;			
-	exit;
-end;
+    if (IsEng(Dir)) = 1 then
+    begin
+      ShellExec('open', 'https://com3d2.world/r18/update/', '', '', SW_SHOW, ewNoWait, ErrorCode);
+    end else
+    begin
+      ShellExec('open', 'https://com3d2.jp/update/', '', '', SW_SHOW, ewNoWait, ErrorCode);
+    end;			
+    exit;
+  end;
 	
-if (IsEng(WizardForm.DirEdit.Text)) = 1 then
-begin
-  VersionFetch(Dir + '\update.lst', CurrentVersion, 'COM3D2x64.exe')
-	MinVer := 1000;
-	i := MinVer/10+20;
-	SiteSt := 'http://7.242.238.202.static.iijgio.jp/com3d2_up'
-end else
-begin
-	i := MinVer/10+20;
-	SiteST := 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up'
-end;
-	while (i >= MinVer/10) AND (i*10 >= CurrentVersion) AND (Length(site) <= 0) do
-	begin
+  if (IsEng(Dir)) = 1 then
+  begin
+    i := MinVer/10+100;
+    SiteSt := 'http://7.242.238.202.static.iijgio.jp/com3d2_up'
+  end else
+  begin
+    i := MinVer/10+100;
+    SiteST := 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up'
+  end;
+
+  while (i >= MinVer/10) AND (Length(site) <= 0) do
+  begin
     if (i >= MaxVer/10) then
     begin
       i := i-1;
       continue;
     end;
 
-		//MsgBox('testing: ' + 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up' + IntToStr(i) + '.zip', mbInformation, MB_OK);
-		if (SiteValid(SiteSt + IntToStr(i) + '.zip') = true) then
-		begin
+    //MsgBox('testing: ' + 'http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up' + IntToStr(i) + '.zip', mbInformation, MB_OK);
+    if (SiteValid(SiteSt + IntToStr(i) + '.zip') = true) then
+    begin
       pointversion:= 10;
 
       while pointversion > 0 do
       begin
-        if (SiteValid(SiteSt + IntToStr(i) + '.' + IntToStr(pointversion) + '.zip') = true) AND (i*10 + pointversion > CurrentVersion) then
+        if (SiteValid(SiteSt + IntToStr(i) + '.' + IntToStr(pointversion) + '.zip') = true) AND (i*10 + pointversion > MinVer) then
         begin
           site :=  SiteSt + IntToStr(i) + '.' + IntToStr(pointversion) + '.zip';
           break;
         end
-        else if (i*10 > CurrentVersion) then
+        else if (i*10 > MinVer) then
         begin
           site :=  SiteSt + IntToStr(i) + '.zip';
         end;
         pointversion := pointversion-1;
       end;
-			//MsgBox('Returning update ' + IntToStr(lv) + ' as latest', mbInformation, MB_OK);
-    end;
-			
+      //MsgBox('Returning update ' + IntToStr(lv) + ' as latest', mbInformation, MB_OK);
+    end;		
     i := i-1;	
   end;		
-	//MsgBox(site + ' : ' +  IntToStr(lv), mbCriticalError, MB_OK);
+  //MsgBox(site + ' : ' +  IntToStr(lv), mbCriticalError, MB_OK);
 
-	if (CompareText(site,'') <> 0) AND (Length(site) > 0) then
-	begin
-		DownloadPage.Clear;
+  if (CompareText(site,'') <> 0) AND (Length(site) > 0) then
+  begin
+    DownloadPage.Clear;
 			
-		//DownloadPage.Add('http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up152.zip', 'COMUpdate.zip', '');
+    //DownloadPage.Add('http://p2-dl0.kisskiss.tv/com3d2/update/com3d2_up152.zip', 'COMUpdate.zip', '');
 			
-		//MsgBox('downloading from: ' + site, mbInformation, MB_OK);
-		DownloadPage.Add(site, 'COMUpdate.zip', '');
+    //MsgBox('downloading from: ' + site, mbInformation, MB_OK);
+    DownloadPage.Add(site, 'COMUpdate.zip', '');
 			
-		DownloadPage.Show;
-		try
-			try
-				DownloadPage.Download;
-			except
-				//SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
-			end;
-		finally
+    DownloadPage.Show;
+    try
+      try
+        DownloadPage.Download;
+      except
+        //SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
+      end;
+    finally
 			
-			DoUnZip(ExpandConstant('{tmp}\COMUpdate.zip'),ExpandConstant('{tmp}\COMUpdate'));
+    DoUnZip(ExpandConstant('{tmp}\COMUpdate.zip'),ExpandConstant('{tmp}\COMUpdate'));
 			
-			shellExec('', ExpandConstant('{tmp}\COMUpdate\com3d2_up'+ IntToStr(i) +'\update.exe'), '', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
+		shellExec('', ExpandConstant('{tmp}\COMUpdate\com3d2_up'+ IntToStr(i) +'\update.exe'), '', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
 			
-			DownloadPage.Hide;
+		DownloadPage.Hide;
 		end;
 	end
 	else begin
@@ -215,8 +223,14 @@ begin
 		begin
 			if (Version < MinimumVersion) then
 			begin
-				MsgBox('Your game is outdated! Please update it immediately.' + #13#10#13#10 + 'Minimum Version:' + IntToStr({#MinimumVersion}) + #13#10 + 'Found Version:' + IntToStr(Version), mbCriticalError, MB_OK);
-				DownloadUpdate(MinimumVersion, UnsupportedVersion, Version, Dir);
+				MsgBox('Your game is outdated! Please update it immediately.' + #13#10#13#10 + 'Minimum Version:' + IntToStr(MinimumVersion) + #13#10 + 'Found Version:' + IntToStr(Version), mbCriticalError, MB_OK);
+
+        if (IsEng(Dir) = 1)then
+        begin
+          VersionFetch(Dir + '\update.lst', Version, 'COM3D2x64.exe')
+        end;
+
+				DownloadUpdate(Version, UnsupportedVersion, Dir);
 				Result := false;
 				exit;
 			end 
@@ -237,39 +251,39 @@ begin
 end;
 
 function NextButtonClick(CurPageID: Integer): Boolean;
-	var
-		FreeSpace1, TotalSpace1: Cardinal;
+var
+	FreeSpace1, TotalSpace1: Cardinal;
+begin
+	//Prevents code from running if not on the directory selection page
+	if CurPageID <> wpSelectDir then
+	begin		
+		result := true
+		exit;
+	end;	
+		
+	//MsgBox('Found Space: ' + IntToStr(FreeSpace1), mbCriticalError, MB_OK)			
+	if (GetSpaceOnDisk(WizardForm.DirEdit.Text, True, FreeSpace1, TotalSpace1)) and (FreeSpace1 < 5000) then
 	begin
-		//Prevents code from running if not on the directory selection page
-		if CurPageID <> wpSelectDir then
-		begin		
-			result := true
-			exit;
-		end;	
-		
-		//MsgBox('Found Space: ' + IntToStr(FreeSpace1), mbCriticalError, MB_OK)			
-		if (GetSpaceOnDisk(WizardForm.DirEdit.Text, True, FreeSpace1, TotalSpace1)) and (FreeSpace1 < 5000) then
-		begin
-			MsgBox('The drive holding the path you have selected does not contain enough space to safely install CMI. Please clear a minimum of 5 GiBs to install CMI to this directory: ' + IntToStr(FreeSpace1) + 'MB', mbCriticalError, MB_OK)
-			Result := false;
-			exit;
-		end;
-		
-		if VerifyPath(WizardForm.DirEdit.Text) = false then
-		begin
-			Result := false;
-			exit;
-		end;
-		
-    if (EmptyFolder = false) AND (VerifyVersion(WizardForm.DirEdit.Text, {#MinimumVersion}, {#UnsupportedVersion}) = false) then
-		begin
-			Result := false;
-			exit;
-		end;
-
-		//MsgBox('We should be returning true', mbInformation, MB_OK);
-		//Small advisory, hope users follow it.
-		MsgBox('Please ensure no game folders or game instances are open or you will have a bad install!', mbInformation, MB_OK);
-		Result := true			 
+		MsgBox('The drive holding the path you have selected does not contain enough space to safely install CMI. Please clear a minimum of 5 GiBs to install CMI to this directory: ' + IntToStr(FreeSpace1) + 'MB', mbCriticalError, MB_OK)
+		Result := false;
+		exit;
 	end;
+		
+	if VerifyPath(WizardForm.DirEdit.Text) = false then
+	begin
+		Result := false;
+		exit;
+	end;
+		
+   if (EmptyFolder = false) AND (VerifyVersion(WizardForm.DirEdit.Text, {#MinimumVersion}, {#UnsupportedVersion}) = false) then
+	begin
+		Result := false;
+		exit;
+	end;
+
+	//MsgBox('We should be returning true', mbInformation, MB_OK);
+	//Small advisory, hope users follow it.
+	MsgBox('Please ensure no game folders or game instances are open or you will have a bad install!', mbInformation, MB_OK);
+	Result := true			 
+end;
 [/Code]
