@@ -5,41 +5,40 @@
 #define MyAppVersion "2.4.8.3"
 #define MinimumVersion 1540
 #define UnsupportedVersion 1570
-//#define MyAppPublisher "Nobody"
-//#define MyAppURL "http://www.tesin.com/"
-//#define MyAppExeName 'COM Modular Installer'
 [Setup]
+OutputBaseFilename={#MyAppName} {#MyAppVersion}
+OutputDir=Compiled_EXE
+
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{8143E460-C581-40B8-9D11-2FFC2DD35ADF}}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
-//AppPublisher={#MyAppPublisher}
-//AppPublisherURL={#MyAppURL}
-//AppSupportURL={#MyAppURL}
-//AppUpdatesURL={#MyAppURL}
-LicenseFile=Documentation\license.txt
-InfoBeforeFile=Documentation\info.txt
-;Remove the following line to run in administrative install mode (install for all users.)
+
 PrivilegesRequired=admin
-PrivilegesRequiredOverridesAllowed=commandline
-OutputDir=Compiled_EXE
-OutputBaseFilename={#MyAppName} {#MyAppVersion}
-DefaultDirName=COM3d2 Modular Installer
-AppendDefaultDirName=no
+Uninstallable=no
+
 Compression=lzma2/ultra64
 SolidCompression=yes
 LZMAUseSeparateProcess=yes
-//LZMANumBlockThreads=6
-WizardStyle=modern
-Uninstallable=no
+LZMANumBlockThreads=4
+LZMABlockSize=92153
+//These settings aren't bad but they don't change much.
+//LZMANumFastBytes=273
+//LZMADictionarySize=524288
+
 DisableDirPage=no
+DefaultDirName={#MyAppName}
 DirExistsWarning=no
-;Visual Edits
-WizardSmallImageFile=UI\Icon.bmp
+AppendDefaultDirName=no
+
+WizardStyle=modern
 SetupIconFile=UI\Icon.ico
 WizardImageFile=UI\sidebanner.bmp
+WizardSmallImageFile=UI\Icon.bmp
+
+LicenseFile=Documentation\license.txt
+InfoBeforeFile=Documentation\info.txt
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

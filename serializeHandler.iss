@@ -1,5 +1,5 @@
 [Code]
-Function HandleSer(GamePath: String): Boolean;
+Function HandleSer(const GamePath: String): Boolean;
 begin
 
   If FileExists(GamePath + '\serialize_storage_config.cfg') = false then

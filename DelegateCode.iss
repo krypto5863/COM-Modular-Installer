@@ -1,5 +1,5 @@
 [Code]
-	procedure TypesComboChange(Sender: TObject);
+	procedure TypesComboChange(const Sender: TObject);
 	begin
     OGEvent(Sender);
 

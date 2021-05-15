@@ -1,9 +1,9 @@
 [Code]
 //Calls for function that facilitate version checking from C# DLL
-function VersionCheck(path: WideString; gver: Integer): Integer;
+function VersionCheck(const path: WideString; const gver: Integer): Integer;
 external 'CMIHelper@files:CMIHelper.dll stdcall delayload';
 
-Function VerifyPath(DirName: String): Boolean;
+Function VerifyPath(const DirName: String): Boolean;
 begin
 	//the result is intially true. If none of the checks are met, it passes true back. However, if any checks are met, it flips the switch to false but still does every other check. This is meant to point out all issues in a setup first run instead of forcing users to run multiple times a new issue crops up. 
 	result := true;
@@ -63,7 +63,7 @@ begin
 	end;	
 end;
 
-function VersionFetch(File: string; out version: Integer; LineToFetch: String): Boolean;
+function VersionFetch(const File: string; out version: Integer; const LineToFetch: String): Boolean;
 var
 	i: Integer;
 	s: array of string;
@@ -119,7 +119,7 @@ begin
 end;
 
 
-procedure DownloadUpdate(MinVer: Integer; MaxVer: Integer; Dir: String);
+procedure DownloadUpdate(const MinVer: Integer; const MaxVer: Integer; const Dir: String);
 var
 	i : Integer;
 	pointversion : Integer;
@@ -213,7 +213,7 @@ begin
 	end;
 end;
 
-function VerifyVersion(Dir: String; MinimumVersion: Integer; UnsupportedVersion: Integer): Boolean;
+function VerifyVersion(const Dir: String; const MinimumVersion: Integer; const UnsupportedVersion: Integer): Boolean;
 var
 	Version: Integer;
 begin
@@ -250,7 +250,7 @@ begin
 	end;
 end;
 
-function NextButtonClick(CurPageID: Integer): Boolean;
+function NextButtonClick(const CurPageID: Integer): Boolean;
 var
 	FreeSpace1, TotalSpace1: Cardinal;
 begin

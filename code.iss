@@ -31,7 +31,7 @@
 #include "InitializeWizard.iss"
 
 [Code]
-	procedure CurPageChanged(CurPageID: Integer);
+	procedure CurPageChanged(const CurPageID: Integer);
 	begin
 	//Only run the code if wizard is on the components page
 		if CurPageID=wpSelectComponents then
@@ -90,7 +90,7 @@
 		end;
 	end;
 	
-	function BackButtonClick(CurPageID: Integer): Boolean;
+	function BackButtonClick(const CurPageID: Integer): Boolean;
 	begin
 		if CurPageID = wpSelectComponents then
 		begin		
@@ -109,7 +109,7 @@
 		end;
 	end;
 
-	procedure CurStepChanged(CurStep: TSetupStep);
+	procedure CurStepChanged(const CurStep: TSetupStep);
 	begin
 		case CurStep of
 			ssInstall:
