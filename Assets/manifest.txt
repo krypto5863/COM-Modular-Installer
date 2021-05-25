@@ -1,5 +1,0 @@
-Installer:2.4.8.1
-Loader:1.0.0
-Patcher:1.0.0
-Plugin:1.0.0
-Misc:1.0.0

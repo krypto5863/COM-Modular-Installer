@@ -1,13 +1,10 @@
 #Ignored Files
 *.zip
 Compiled_EXE
-Documentation
-Loader
-Misc
-Old
-Patchers
-Plugins
-UI
+CMI/Documentation
+CMI/UI
+CMI/#CREdit
+CMI/#NoneCREdit
 Utility/7zip
 Utility/DLL
 *.docx

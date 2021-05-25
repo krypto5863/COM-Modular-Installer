@@ -57,7 +57,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CMD.cs" />
+    <None Include="CMD.cs" />
     <Compile Include="CMIHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

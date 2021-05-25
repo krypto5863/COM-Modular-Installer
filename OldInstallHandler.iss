@@ -1,10 +1,11 @@
 [Code]
-function MoveOld(const GameDirectory: String): Boolean;
+function MoveOld(const GameDirectory: String; const SubDirs: Array of String): Boolean;
 var
   ThingsToMove: Array of string;
-  I : Integer;
+  I, I1 : Integer;
 begin
 
+#if LMMT == false
   ThingsToMove := [
     '\Sybaris',
     '\BepinEX',
@@ -22,40 +23,67 @@ begin
     '\CMI.ver',
     '\COM3D2 DLC Checker.exe'
   ];
-
-  if (DirExists(GameDirectory + '\OldInstall') = false) then
-  begin
-    if (CreateDir(GameDirectory + '\OldInstall') = false) then
-    begin
-      result := false;
-      exit;
-    end
-  end;
-
+#else
+	  ThingsToMove := [
+    '\Loader',
+		'\Plugins',
+		'\Poses',
+		'\Preset',
+		'\IgnoreMenus.txt',
+    '\BepinEX',
+    '\i18nEx',
+    '\IMGUITranslationLoader',
+    '\scripts',
+    '\IMG',
+    '\doorstop_config.ini',
+    '\winhttp.dll',
+    '\version.dll',
+    '\opengl32.dll',
+    '\EngSybarisArcEditor.exe',
+    '\SybarisArcEditor.exe',
+    '\LMMT Documentation',
+    '\LMMT.ver',
+    '\CM3D2 DLC Checker.exe'
+  ];
+#endif	
   for i := 0 to GetArrayLength(ThingsToMove) - 1 do
   begin
-    if (DirExists(GameDirectory + ThingsToMove[i])) OR (FileExists(GameDirectory + ThingsToMove[i])) then
-    begin
+		for i1 := 0 to GetArrayLength(SubDirs) - 1 do
+		begin
+			if (DirExists(GameDirectory + SubDirs[i1] + ThingsToMove[i])) OR (FileExists(GameDirectory + SubDirs[i1] + ThingsToMove[i])) then
+			begin
+			
+				if (DirExists(GameDirectory + '\OldInstall' + SubDirs[i1]) = false) then
+				begin
+					if (ForceDirectories(GameDirectory + '\OldInstall' + SubDirs[i1]) = false) then
+					begin
+						Log('Failed to make path in oldinstall in ' + GameDirectory + '\OldInstall' + SubDirs[i1])
+						result := false;
+						exit;
+					end
+				end;
 
-      Log('Moving: ' + GameDirectory + ThingsToMove[i])
+				Log('Moving: ' + GameDirectory + SubDirs[i1] + ThingsToMove[i])
 
-      if Move(GameDirectory + ThingsToMove[i], GameDirectory + '\OldInstall' + ThingsToMove[i]) = false then
-      begin
-        result := false;
-        exit;
-      end
+				if Move(GameDirectory + SubDirs[i1] + ThingsToMove[i], GameDirectory + '\OldInstall' + SubDirs[i1] + ThingsToMove[i]) = false then
+				begin
+					result := false;
+					exit;
+				end
+			end
     end
-  end;
-  
+  end;	 
   result := true; 
 end;
 
-function MoveOldMod(const GameDirectory: String): Boolean;
+function MoveOldMod(const GameDirectory: String; const SubDirs: Array of String): Boolean;
 var
   ModsToMove: Array of string;
-  I : Integer;
+	ModDir: String;
+  I, I1 : Integer;
 begin
 
+#if LMMT == false
   ModsToMove := [
     '\MultipleMaidsPose',
     '\Extra Desk Items',
@@ -71,28 +99,42 @@ begin
     '\EmotionalEars',
     '\CinemacicBloom_StreakPmats(SceneCapture)'
   ]
-
-  if (DirExists(GameDirectory + '\OldInstall\Mod') = false) then
-  begin
-    if (CreateDir(GameDirectory + '\OldInstall\Mod') = false) then
-    begin
-      result := false;
-      exit;
-    end
-  end;
+#else
+	  ModsToMove := [
+    '\MultipleMaidsPose',
+    '\[CMI]EmotionalEars',
+    '\[CMI]VYM Files',
+    '\[CMI]Uncensors'
+  ]
+#endif
 
   for i := 0 to GetArrayLength(ModsToMove) - 1 do
   begin
-    if (DirExists(GameDirectory + '\Mod' + ModsToMove[i])) OR (FileExists(GameDirectory + '\Mod' + ModsToMove[i])) then
-    begin
+	  for i1 := 0 to GetArrayLength(SubDirs) - 1 do
+		begin	
+			Log('Looking in ' + GameDirectory  + SubDirs[i1] + ModsToMove[i])
+	
+			if (DirExists(GameDirectory  + SubDirs[i1] + ModsToMove[i])) OR (FileExists(GameDirectory + SubDirs[i1] + ModsToMove[i])) then
+			begin
+			
+				if (DirExists(GameDirectory + '\OldInstall' + SubDirs[i1]) = false) then
+				begin
+					if (ForceDirectories(GameDirectory + '\OldInstall' + SubDirs[i1]) = false) then
+					begin
+						Log('Failed to make path in oldinstall in ' + GameDirectory + '\OldInstall' + SubDirs[i1])
+						result := false;
+						exit;
+					end
+				end;
 
-      Log('Moving: ' + GameDirectory + '\Mod' + ModsToMove[i])
+				Log('Moving: ' + GameDirectory  + SubDirs[i1] + ModsToMove[i])
 
-      if Move(GameDirectory + '\Mod' + ModsToMove[i], GameDirectory + '\OldInstall\Mod' + ModsToMove[i]) = false then
-      begin
-        result := false;
-        exit;
-      end
+				if Move(GameDirectory  + SubDirs[i1] + ModsToMove[i], GameDirectory + '\OldInstall' + SubDirs[i1] + ModsToMove[i]) = false then
+				begin
+					result := false;
+					exit;
+				end				
+			end;
     end
   end;
   
@@ -104,11 +146,18 @@ var
   ConfigsToMove: array of string;
   i : integer;
 begin
+#if LMMT == false
   ConfigsToMove := [
     '\Sybaris\UnityInjector\Config',
     '\i18nEx',
     '\BepinEx\Config'
   ]
+#else
+	  ConfigsToMove := [
+    '\Sybaris\Plugins\UnityInjector\Config',
+    '\BepinEx\Config'
+  ]
+#endif
 
   for i := 0 to GetArrayLength(ConfigsToMove) - 1 do
   begin

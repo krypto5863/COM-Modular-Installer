@@ -94,12 +94,14 @@
 			ExtractTemporaryFile('7za.dll');
 
 			if not FileExists(unzipTool)
-			then MsgBox('UnzipTool not found: ' + unzipTool, mbError, MB_OK)
+				then MsgBox('UnzipTool not found: ' + unzipTool, mbError, MB_OK)
 			else if not FileExists(source)
-			then MsgBox('File was not found while trying to unzip: ' + source, mbError, MB_OK)
+				then MsgBox('File was not found while trying to unzip: ' + source, mbError, MB_OK)
 			else begin 
 
 						//{ ShellExecuteEx combined with INFINITE WaitForSingleObject }
+						
+						DownloadProgressLabel.Caption := FmtMessage('ExtractingCaption', [source])
 
 						if ShellExecuteEx(ExecInfo) then
 						begin
@@ -112,7 +114,6 @@
 							end;
 							CloseHandle(ExecInfo.hProcess);
 						end; 
-
 			end;
 	end;
 

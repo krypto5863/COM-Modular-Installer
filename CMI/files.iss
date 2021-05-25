@@ -3,11 +3,13 @@
 #define syb "{app}\Sybaris"
 #define plug "{app}\Sybaris\UnityInjector"
 #define ucfg "{app}\Sybaris\UnityInjector\config"
-#define ibep "Loader\BepinEX"
-#define isyb "Loader\Sybaris"
-#define iPatch "Patchers"
-#define iPlugin "Plugins"
-#define iMisc "Misc"
+#define ibep 'CMI\#NoneCREdit\Loader\BepinEX'
+#define iloader 'CMI\#NoneCREdit\Loader'
+#define isyb "CMI\#NoneCREdit\Loader\Sybaris"
+#define iPatch "CMI\#NoneCREdit\Patchers"
+#define iPlugin "CMI\#NoneCREdit\Plugins"
+#define iMisc "CMI\#NoneCREdit\Misc"
+#define iDocumentation "CMI\Documentation"
 #define mod "{app}\Mod"
 
 [Files]
@@ -30,12 +32,13 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 	Source: "{tmp}\BepInEx\plugins\COM3D2.InputHotkeyBlock.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/InBlock; Flags: external
 
   Source: "{#ibep}\MeidoPhoto\*"; DestDir: "{#bep}"; Components: Loader/bepinEX/MeidoPhoto; Flags: ignoreversion recursesubdirs createallsubdirs
+		Source: "{#IMisc}\MMPoses\MultipleMaidsPose\*"; DestDir: "{app}\bepinex\config\MeidoPhotoStudio\Presets\Custom Poses\CMI 1900 Poses"; Components: Loader/bepinEX/MeidoPhoto\Poses; Flags: ignoreversion recursesubdirs createallsubdirs solidbreak 
 	
 	Source: "{#ibep}\ModRef\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/modref; Flags: ignoreversion recursesubdirs createallsubdirs 
 	
 	//Source: "{tmp}\BepInEx\plugins\BepInEx.MuteInBackground.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/MuteBack; Flags: external
 	
-	Source: "{tmp}\BepInEx\plugins\RuntimeUnityEditor\*"; DestDir: "{#bepp}\RuntimeUnityEditor"; Components: Loader/bepinEX/RunUniEdit; Flags: external
+	//Source: "{tmp}\BepInEx\plugins\RuntimeUnityEditor\*"; DestDir: "{#bepp}\RuntimeUnityEditor"; Components: Loader/bepinEX/RunUniEdit; Flags: external
 	 
 	Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/scriptloader; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\add_subs_to_old_yotogi.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/oldsubs; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -52,7 +55,7 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
   Source: "{tmp}\BepInEx\plugins\System.Threading.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ShortMenu; Flags: external
 
 	Source: "{#ibep}\i18nEx\core\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
-		Source: "Loader\extratranslations\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#iloader}\extratranslations\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#ibep}\ResourceRedirector\*"; DestDir: "{#bep}"; Components: Loader/bepinEX/Translations/Resredir; Flags: ignoreversion recursesubdirs createallsubdirs
 		Source: "{#ibep}\Xuat\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/Translations/resredir/xuat; Flags: ignoreversion recursesubdirs createallsubdirs 
 
@@ -60,7 +63,7 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 
 Source: "{#isyb}\Core\*"; DestDir: "{app}"; Components: Loader/Sybaris; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#isyb}\i18nEx\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
-		Source: "Loader\extratranslations\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#iloader}\extratranslations\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#isyb}\Xuat\*"; DestDir: "{#plug}"; Components: Loader/Sybaris/Translations/xuat; Flags: ignoreversion recursesubdirs createallsubdirs 
 
 ;Patchers
@@ -72,6 +75,7 @@ Source: "{#IPatch}\CacheEdit\*"; DestDir: "{#syb}"; Components: Patchers/cacheed
 Source: "{#IPatch}\ccfix\*"; DestDir: "{#syb}"; Components: Patchers/ccfix; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\blinkstop\*"; DestDir: "{#syb}"; Components: Patchers/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\ExternalSave\*"; DestDir: "{#syb}"; Components: Patchers/extsave; Flags: ignoreversion recursesubdirs createallsubdirs
+	Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#IPlugin}\vibemaid\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: ignoreversion recursesubdirs createallsubdirs 
   Source: "{#IPlugin}\MaidVoice\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice; Flags: ignoreversion recursesubdirs createallsubdirs 
     Source: "{#IPlugin}\AddMod\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -113,19 +117,14 @@ Source: "{#IPlugin}\emoears\norm\Core\*"; DestDir: "{#plug}"; Components: plugin
 Source: "{#IPlugin}\extendrender\norm\*"; DestDir: "{#syb}"; Components: plugins/extendrender; Flags: ignoreversion recursesubdirs createallsubdirs 
   Source: "{#IPlugin}\extendrender\optional\*"; DestDir: "{#ucfg}"; Components: plugins/extendrender/config; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\facecon\*"; DestDir: "{#syb}"; Components: plugins/facecon; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\freeapp\*"; DestDir: "{#syb}"; Components: plugins/freeapp; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\freedress\*"; DestDir: "{#syb}"; Components: plugins/freedress; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\halfundress\*"; DestDir: "{#syb}"; Components: plugins/halfundress; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\InOut\*"; DestDir: "{#syb}"; Components: plugins/inout; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\lookmaid\*"; DestDir: "{#syb}"; Components: plugins/lookmaid; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\lookmaster\*"; DestDir: "{#syb}"; Components: plugins/lookmaster; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\mirrorprops\Sybaris\*"; DestDir: "{#syb}"; Components: plugins/mirror; Flags: ignoreversion recursesubdirs createallsubdirs 
   Source: "{#IPlugin}\mirrorprops\Mod\*"; DestDir: "{#mod}"; Components: plugins/mirror; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\MTAcc\Norm\*"; DestDir: "{#syb}"; Components: plugins/mtacc; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\MTAcc\AllScene\*"; DestDir: "{#plug}"; Components: plugins/mtacc/AllScene; Flags: ignoreversion recursesubdirs createallsubdirs 
 //Source: "{#IPlugin}\MM\*"; DestDir: "{#syb}"; Components: plugins/MM; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\NormExcite\*"; DestDir: "{#syb}"; Components: plugins/normexcite; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\notecolor\*"; DestDir: "{#syb}"; Components: plugins/notecolor; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\NPRShader\core\*"; DestDir: "{#syb}"; Components: plugins/NPRShader; Flags: ignoreversion recursesubdirs createallsubdirs
   Source: "{#IPlugin}\NPRShader\lightconfig\*"; DestDir: "{#ucfg}"; Components: plugins/NPRShader/LightConfig; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\objexp\*"; DestDir: "{#syb}"; Components: plugins/objexp; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -133,10 +132,18 @@ Source: "{#IPlugin}\partsedit\*"; DestDir: "{#syb}"; Components: plugins/partsed
 Source: "{#IPlugin}\personaledit\*"; DestDir: "{#syb}"; Components: plugins/personaledit; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\plugmanage\*"; DestDir: "{#syb}"; Components: plugins/plugmanage; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: plugins/pluginext; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\freeapp\*"; DestDir: "{#syb}"; Components: plugins/pluginext/freeapp; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\halfundress\*"; DestDir: "{#syb}"; Components: plugins/pluginext/halfundress; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\lookmaid\*"; DestDir: "{#syb}"; Components: plugins/pluginext/lookmaid; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\lookmaster\*"; DestDir: "{#syb}"; Components: plugins/pluginext/lookmaster; Flags: ignoreversion recursesubdirs createallsubdirs
+	Source: "{#IPlugin}\notecolor\*"; DestDir: "{#syb}"; Components: plugins/pluginext/notecolor; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\rythmoption\*"; DestDir: "{#syb}"; Components: plugins/pluginext/rhythmoption; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\xtms\Core\*"; DestDir: "{#syb}"; Components: plugins/pluginext/xtms; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#IPlugin}\xtms\XTFuta\*"; DestDir: "{#mod}\[CMI]Uncensors"; Components: plugins/pluginext/xtms/XTFutaBody; Flags: ignoreversion recursesubdirs createallsubdirs
+			Source: "{#IPlugin}\xtms\XTFutaAccessories\*"; DestDir: "{#mod}\[CMI]XTFutaAccessories"; Components: plugins/pluginext/xtms/XTFutaAccessories; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#IPlugin}\pngplace\core\*"; DestDir: "{#plug}"; Components: plugins/pngplace; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#IPlugin}\PngPlace\ExtraPNGs\*"; DestDir: "{#ucfg}"; Components: plugins/pngplace/expng; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\propitem\*"; DestDir: "{#syb}"; Components: plugins/propitem; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\rythmoption\*"; DestDir: "{#syb}"; Components: plugins/rhythmoption; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\scenecap\Norm\*"; DestDir: "{#syb}"; Components: plugins/scenecap; Flags: ignoreversion recursesubdirs createallsubdirs 
   Source: "{#IPlugin}\scenecap\Modpmats\*"; DestDir: "{#mod}"; Components: plugins/scenecap/mpmats; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#IPlugin}\scenecap\VR\*"; DestDir: "{#syb}"; Components: plugins/scenecap/VR; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -151,14 +158,16 @@ Source: "{#IPlugin}\smoothanim\*"; DestDir: "{#syb}"; Components: plugins/smooth
 Source: "{#IPlugin}\texload\core\*"; DestDir: "{#plug}"; Components: plugins/texload; Flags: ignoreversion recursesubdirs createallsubdirs
 	Source: "{#IPlugin}\texload\postload\*"; DestDir: "{app}"; Components: plugins/texload/postload; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#IPlugin}\toukascreen\*"; DestDir: "{#syb}"; Components: plugins/toukascreen; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\voicenormalizer\*"; DestDir: "{#syb}"; Components: plugins/voicenorm; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\xtms\Core\*"; DestDir: "{#syb}"; Components: plugins/xtms; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#IPlugin}\xtms\XTFuta\*"; DestDir: "{#mod}\[CMI]Uncensors"; Components: plugins/xtms/XTFutaBody; Flags: ignoreversion recursesubdirs createallsubdirs
-		Source: "{#IPlugin}\xtms\XTFutaAccessories\*"; DestDir: "{#mod}\[CMI]XTFutaAccessories"; Components: plugins/xtms/XTFutaAccessories; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#IPlugin}\voicenormalizer\*"; DestDir: "{#syb}"; Components: plugins/voicenorm; Flags: ignoreversion recursesubdirs createallsubdirs 		
 Source: "{#IPlugin}\yotutil\*"; DestDir: "{#syb}"; Components: plugins/yotutil; Flags: ignoreversion recursesubdirs createallsubdirs 
 
-;Misc Files
+;-------------------
 
+
+;-------------------
+
+
+;Misc Files
 //The files here are fetched dynamically as needed from the internet.
 Source: "{tmp}\COM3D2 DLC Checker.exe"; DestDir: "{app}"; Components: ext/dlccheck; Flags: external 
 //These Files are fetched locally.
@@ -176,9 +185,9 @@ Source: "{#IMisc}\TextureUncensors\lomob\*"; DestDir: "{#mod}\[CMI]Uncensors\LoM
 	Source: "{#IMisc}\TextureUncensors\lomob\LOmobchara_extra_v1_beta\model\underhair.model"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody\LOmobchara_extra_v1_beta\model\underhair_en.model"; Components: misc/body/LoMobBody; Flags: ignoreversion recursesubdirs createallsubdirs; Check: "FileExists(ExpandConstant('{app}\localize.dat'))"
 
 //Unrelated to files.
-Source: "Documentation\CMI_Readme.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme nocompression
+Source: "{#IDocumentation}\CMI_Readme.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme nocompression
 //Source: "Documentation\MM_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/MM; Flags: isreadme
-Source: "Documentation\MPS_readme.html"; DestDir: "{app}\CMI Documentation"; Components:Loader/bepinEX/meidophoto; Flags: isreadme
-Source: "Documentation\PosterLoader_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/texload/postload; Flags: isreadme
+Source: "{#IDocumentation}\MPS_readme.html"; DestDir: "{app}\CMI Documentation"; Components:Loader/bepinEX/meidophoto; Flags: isreadme
+Source: "{#IDocumentation}\PosterLoader_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/texload/postload; Flags: isreadme
 
 [/Files]

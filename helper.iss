@@ -18,8 +18,8 @@
 	//function RenameOldInstall(const path: WideString): Boolean;
 	//external 'CMIHelperOR@files:CMIHelper.dll stdcall delayload';
 	//This function removes the read-only flag from all files in the game folder.
-	procedure RemoveRO(const path: WideString);
-	external 'CMIHelperRO@files:CMIHelper.dll stdcall delayload';
+	//procedure RemoveRO(const path: WideString);
+	//external 'CMIHelperRO@files:CMIHelper.dll stdcall delayload';
 	//Try to move config files back
 	//function ReturnConfig(const path: WideString): Boolean;
 	//external 'CMIHelperRC@files:CMIHelper.dll stdcall delayload';
@@ -27,9 +27,9 @@
 	function SiteValid(const url: WideString): Boolean;
 	external 'CMIHelperWE@files:CMIHelper.dll stdcall delayload';
 	//Read manifests and decide if the installer is outdated or not
-	function IsInstallerOld(const tpath: WideString; const version: WideString): Boolean;
-	external 'CMIHelperCI@files:CMIHelper.dll stdcall delayload';
-  //Self Explanatory.
+	//function IsInstallerOld(const tpath: WideString; const version: WideString): Boolean;
+	//external 'CMIHelperCI@files:CMIHelper.dll stdcall delayload';
+  //Tries to fetch the latest github release of a downloaded plugin.
 	procedure FetchLRelease(const site: WideString; out dlink: WideString);
 	external 'CMIHelperFLR@files:CMIHelper.dll stdcall delayload';
   
@@ -66,7 +66,7 @@
     args := '/y'
 
     ShellExec('', ExpandConstant('{sys}\cmd.exe'), 
-    '/c move' + 
+    '/c move ' + 
     args + 
     ' "' + Source + '" ' +
     ' "' + Destination + '" ',
@@ -74,7 +74,12 @@
 
     if (ResultCode) <> 0 then
     begin
-      Log('Move failed when invoking command: ' + '/c move ' + args + Source + ' ' + Destination);
+      Log('Move failed when invoking command: ' + 
+			'/c move ' + 
+			args + 
+			' "' + Source + '" ' +
+			' "' + Destination + '" ');
+		
       result := false;
       exit;
     end;
@@ -102,8 +107,40 @@
 
     Result := true;
   end;
+	
+	Function RemoveReadonlyRecursive(const Target: String): Boolean;
+  var
+    ResultCode: Integer;
+    Args: String;
+		Args2: String;
+  begin
 
-	procedure ApplyCustomPreset(const ath: String);
+    args := '-r'
+		args2 := '/s /d'
+
+    ShellExec('', ExpandConstant('{cmd}'), 
+    '/c attrib ' + 
+    args + 
+    ' "' + Target + '\*.*" ' +
+		args2,
+    '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
+
+    if (ResultCode) <> 0 then
+    begin
+      Log('Move failed when invoking command: ' + 
+				'/c attrib ' + 
+				args + 
+				' "' + Target + '" ' +
+				args2);
+		
+      result := false;
+      exit;
+    end;
+
+    Result := true;
+  end;
+
+	procedure ApplyCustomPreset(const path: String);
 	var
 		Index: Integer;
     Line: Integer;
@@ -117,7 +154,7 @@
 
     if LoadStringsFromFile(path, Preset) = false then
     begin
-      MsgBox('Could not load strings from ' + path, mbCriticalError, MB_OK);
+      MsgBox(FmtMessage(CustomMessage('CannotLoadPreset'), path), mbCriticalError, MB_OK);
       exit;
     end;
 
@@ -139,16 +176,21 @@
 
 	end;
 
-	procedure SaveCustomPreset(const path: String);
+	Function SaveCustomPreset(const path: String): Boolean;
 	var
-			I: Integer;
+		I: Integer;
 	begin
 		if (FileExists(path + '\' + PresetFile)) then
 		begin
-			if (MsgBox('It appears you already have a preset here for your component selections. Should we overwrite it with your current selection? Whatever you selected will still be applied, the selection simply will not be saved for the next time', mbConfirmation, MB_YESNO)) = IDYES then
+			if (MsgBox(CustomMessage('ConfirmPresetSave'), mbConfirmation, MB_YESNO)) = IDYES then
 			begin
-				DeleteFile(path + '\' + PresetFile);
+				if DeleteFile(path + '\' + PresetFile) = false then
+				begin
+					result := false;
+					exit;
+				end;
 			end else begin
+				result := true;
 				exit;
 			end;
 		end;
@@ -157,31 +199,22 @@
 		begin
 			if Wizardform.ComponentsList.Checked[I] = true then
 			begin
-				SaveStringToFile(path + '\' + PresetFile,Wizardform.ComponentsList.ItemCaption[I] + #13#10, True);
+				if SaveStringToFile(path + '\' + PresetFile,Wizardform.ComponentsList.ItemCaption[I] + #13#10, True) = false then
+				begin
+					result := false
+					exit;
+				end
 			end;
 		end;
+		
+		result := true;
 	end;
-
-	function IsEng(const path: String): Integer;
-	begin
-		//2 is INM. 1 is R18. 0 is not Eng.
 	
-		if (FileExists(path + '\localize.dat')) then
-		begin
-			if ((FileExists(path + '\GameData\system_en.arc')) = false) AND ((FileExists(path + '\GameData\bg_en.arc')) = false) then
-			begin
-				result := 2;
-			end else
-			begin
-				result := 1;
-			end;
-		end
-		else
-		begin
-			result := 0;
-		end;
+	function IsEmptyFolder(): Boolean;
+	begin
+		Result := EmptyFolder;
 	end;
-
+{
 	function ComponentSelected(const name: String): Boolean;
 	var
 		I: Integer;
@@ -205,7 +238,7 @@
 		end;	
 		result := res
 	end;
-	
+}	
 	function GetComponentIndex(const name: String): Integer;
 	var
 		I: Integer;
@@ -223,4 +256,52 @@
 		end;	
 		result := -1;
 	end;
+	
+function StringFetch(const File: string; out FetchedString: String; const LineToFetch: String): Boolean;
+var
+	i: Integer;
+	s: array of string;
+	line: string;
+begin
+
+	i := 0;
+	
+	if (FileExists(File) = false) then
+	begin
+		result := false;
+		exit;
+	end;
+
+	if LoadStringsFromFile(File, s) = false then
+	begin
+		Log(FmtMessage(CustomMessage('VersionFetchLoadFail'), File));
+		result := false;
+		exit;
+	end;	
+	
+	while (GetArrayLength(s) > i) AND (StringContains(s[i], LineToFetch) = false) do
+	begin
+		i := i+1
+	end;
+	
+	if (i = GetArrayLength(s)) OR (StringContains(s[i], LineToFetch) = false) then
+	begin
+		Log('String containing that string could not be found...');
+		result := false;
+		exit;
+	end;
+	
+	line := s[i];
+	
+	if StringChangeEx(line, LineToFetch, '', true) <= 0 then
+  begin
+    Log(CustomMessage('VersionFetchLineCleanFail'));
+		result := false
+		exit;
+  end;
+	
+	FetchedString := line;
+	
+	result := true;	
+end;
 [/Code]
