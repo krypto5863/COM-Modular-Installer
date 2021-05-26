@@ -255,7 +255,7 @@ begin
 #if LMMT == false			
 			if (Version >= UnsupportedVersion) then
 			begin
-				MsgBox(FmtMessage(CustomMessage('GameUnsupported'),[IntToStr(UnsupportedVersion),Version]), mbCriticalError, MB_OK);
+				MsgBox(FmtMessage(CustomMessage('GameUnsupported'),[IntToStr(UnsupportedVersion),IntToStr(Version)]), mbCriticalError, MB_OK);
 				Result := false;
 				exit;
 			end;
