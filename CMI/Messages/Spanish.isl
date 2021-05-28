@@ -16,6 +16,10 @@ SelectDirDesc=¿Dónde está ubicado tu juego?
 [CustomMessages]
 
 ;Startup Messages
+IsGameCR=¿Esta versión de COM a la que estamos instalando hoy es 1.56 o superior? En otras palabras, ¿es una versión CR-Edit? 
+GameIsCRWarning=Tenga en cuenta que las versiones de CR-Edit (también conocidas como versiones 1.56+) tienen menos compatibilidad con mods y plugins. Puede encontrar que varios plugins no están disponibles en estas versiones que están disponibles en versiónes no CR-Edit e incluso puede encontrar errores que aún no han sido corregidos por los desarrolladores de plugins. ¡Usted ha sido advertido! 
+
+
 ScamWarning=Si pagó por CMI o lo descargó desde cualquier lugar que no sea la página oficial de GitHub, ¡puede ser que ha sido estafado o engañado!
 StorageSpaceLow=Detectamos que su partición que contiene AppData (normalmente su disco C) no tiene suficiente espacio libre para el caché. Borre un mínimo de 5 GiB para instalar CMI. Usted Tiene %1MBs
 StorageSpaceLow2=La unidad que contiene la ruta que ha seleccionado no contiene suficiente espacio para instalar CMI de forma segura. Borre un mínimo de 5 GiB para instalar CMI en este directorio. Usted tiene %1MBs 
@@ -34,7 +38,8 @@ IsInProgramFiles=Parece que su juego está ubicado en el directorio Archivos de 
 IsINM=¡Hemos detectado INM! INM no es compatible con CMI debido a diferencias técnicas.%n%nPara usar CMI, instale el parche complementario de contenido para adultos/R18.%n%nSi no tiene una versión INM del juego, es probable que haya instalado Eng DLC/archivos en su juego japonés. Consulte el archivo readme sobre las instrucciones de reparación. 
 
 GameOutdated=¡Tu juego está desactualizado! Actualícelo inmediatamente.%n%nVersión mínima:%1%n%nVersión encontrada:%2
-GameUnsupported = ¡Tu juego tiene una versión que no es compatible! ¡Cambie de categoría o obtenga una versión de CMI que sea compatible!%n%nVersión no admitida:%1 o más reciente%n%nVersión encontrada:%2 
+GameUnsupported=¡Tu juego está en una versión que no es compatible con la selección actual de CR! Reinicie el instalador y seleccione la opción adecuada, en este caso SÍ, cuando se le pregunte si su juego es una versión CR!%n%nVersión no compatible:%1 o más reciente%n%nVersión encontrada:%2
+GameUnsupported1=¡Tu juego está en una versión que no es compatible con la selección actual de CR! Reinicie el instalador y seleccione la opción adecuada, en este caso NO, cuando se le pregunte si su juego es una versión CR!%n%nVersión compatible:%1 o más reciente%n%nVersión encontrada:%2
 
 MissingUpdateLst=Aunque parece ser una carpeta de juegos, ¡no hay ningún archivo Update.lst! ¡Esto es muy malo!%n%nActualiza su juego inmediatamente y asegúrese de que funciona antes de intentar instalar CMI nuevamente.
 VersionFetchLoadFail=No se pudieron cargar las lineas de %1 

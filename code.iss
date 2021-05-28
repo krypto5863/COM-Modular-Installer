@@ -18,6 +18,8 @@ Source:"Utility\DLL\CMIHelper.dll"; DestDir: "{tmp}"; Permissions: everyone-full
 		x86bit: Boolean;
 		x64bit: Boolean;
 		bitString: String;
+		MinimumVersion: Integer;
+		IsCR: Boolean;
 [/Code]
 //#include "MyDownloadPage.iss"
 //The following script contains a bunch of helper functions and methods. They were moved out so better track could be kept.

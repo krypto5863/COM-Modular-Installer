@@ -92,4 +92,34 @@ begin
 
   result := true;
 end;
+
+var
+	IsCRAsked: Boolean;	
+function GetIsCR(): Boolean;
+begin
+
+	Log('Checking GetIsCR');
+
+	if (IsCRAsked = false) then
+	begin
+		case MsgBox(CustomMessage('IsGameCR'), mbInformation, MB_YESNO) of 
+			IDYES: IsCR := true;
+			IDNO: IsCR := false;
+		end;
+		
+		if (IsCR) then
+		begin
+			MinimumVersion := {#CRMinimumVersion};
+			SuppressibleMsgBox(CustomMessage('GameIsCRWarning'), mbInformation, MB_OK, IDOK);
+
+		end
+		else begin
+			MinimumVersion := {#MinimumVersion};
+		end;
+		
+		IsCRAsked := true;
+	end;
+	result := IsCR;
+	
+end;
 [/Code]

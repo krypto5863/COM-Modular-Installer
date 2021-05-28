@@ -19,7 +19,10 @@ SelectDirDesc=Où est installé votre jeu?
 [CustomMessages]
 
 ;Startup Messages
-ScamWarning=CMI est totalement gratuit, si vous l'avez téléchargé ailleur que sir GitHub vous vous êtes probablement fait avoir!
+IsGameCR=Votre version de COM3D2 est-elle supérieure ou égale à 1.56? Autrement dit, CR-Edit est-il installé?
+GameIsCRWarning=Veuillez garder à l'esprit que les versions 1.56+ souffrent d'une prise en charge réduite des Mods et plugins. Certains plugins seront indisponibles et d'autres pourront avoir des bugs. Vous voilà prévenu!
+
+ScamWarning=CMI est totalement gratuit, si vous l'avez téléchargé ailleur que sur GitHub vous vous êtes probablement fait avoir!
 StorageSpaceLow=Votre dossier AppData (habituellement dans le dique C) n'a pas assez d'espace libre pour les fichiers temporaires. Libérer au minimum 5Gb. Vous avez %1MBs
 StorageSpaceLow2=Espace insuffisant pour installer CMI. Veulliez libérer au moins 5 GiBs: Vous avez %1MBs
 OutdatedInstaller=Cet installeur est dépassé et probablement incompatible avec les nouvelles versions. Vous pouvez continuer à vos propres riques!
@@ -37,7 +40,8 @@ IsInProgramFiles=Il semblerait que votre jeu soit installé dans le dossier prog
 IsINM=It's a NIght Magic détecté! INM n'est pas supporté par CMI en raison des différence techniques etre les jeux.%n%nVeuillez installé le patch R18/Adult.%n%nSi vous n'êtes pas sur la version INM, vous avez probablement installé un DLC anglais sur votre version Japonaise, veuillez lire la documentation (en anglais) pour réparer ça.
 
 GameOutdated=Votre jeu n'est pas à jour! %n%nVersion Minimum: %1%n%nVersion actuelle: %2
-GameUnsupported=Cette version n'est pas suportée! Veuillez rétrograder ou utiliser une version de CMI compatible!%n%nVersion non suportée:%1 ou plus récente%n%nVersion détectée:%2
+GameUnsupported=La version de votre jeu n'est pas supportée par votre choix concernant CR-Edit. Veuillez relancer l'installeur et sélectionner l'autre option!%n%nVersion non supportée:%1 ou plus récent %n%nVersion détectée:%2
+GameUnsupported1=La version de votre jeu n'est pas supportée par votre choix concernant CR-Edit. Veuillez relancer l'installeur et sélectionner l'autre option!%n%nVersion non supportée:%1 ou plus récent %n%nVersion détectée:%2
 
 MissingUpdateLst=Quoique correct ce dossier ne contient pas le fichier Update.lst! C'est mauvais signe!%n%nVeuillez faire une mise à jour à nouveau et vérifier que le jeu se lance avant d'installer CMI.
 VersionFetchLoadFail=Impossible de charger la chaîne de caractères depuis %1

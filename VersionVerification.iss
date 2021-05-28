@@ -240,6 +240,16 @@ begin
 		begin
 			if (Version < MinimumVersion) then
 			begin
+			
+#if LMMT == false	
+        if (IsCR) AND (Version < UnsupportedVersion)then
+        begin
+          MsgBox(FmtMessage(CustomMessage('GameUnsupported1'),[IntToStr(UnsupportedVersion), IntToStr(Version) + ' ' + bitString]), mbCriticalError, MB_OK);
+					Result := false;
+					exit;
+        end;
+#endif
+			
 				MsgBox(FmtMessage(CustomMessage('GameOutdated'),[IntToStr(MinimumVersion), IntToStr(Version) + ' ' + bitString]), mbCriticalError, MB_OK);
 
 #if LMMT == false	
@@ -253,7 +263,7 @@ begin
 				exit;
 			end; 
 #if LMMT == false			
-			if (Version >= UnsupportedVersion) then
+			if NOT (IsCR) AND (Version >= UnsupportedVersion) then
 			begin
 				MsgBox(FmtMessage(CustomMessage('GameUnsupported'),[IntToStr(UnsupportedVersion),IntToStr(Version)]), mbCriticalError, MB_OK);
 				Result := false;
@@ -301,7 +311,7 @@ begin
 	NoteBits(WizardForm.DirEdit.Text);
 #endif
 		
-  if (EmptyFolder = false) AND (VerifyVersion(WizardForm.DirEdit.Text, {#MinimumVersion}, {#UnsupportedVersion}) = false) then
+  if (EmptyFolder = false) AND (VerifyVersion(WizardForm.DirEdit.Text, MinimumVersion, {#UnsupportedVersion}) = false) then
 	begin
 		Result := false;
 		exit;

@@ -61,13 +61,20 @@ begin
   AddToListOfAssets(links , 'Loader/bepinEX/RunUniEdit', 'https://github.com/ManlyMarco/RuntimeUnityEditor/releases/download/v2.4/RuntimeUnityEditor_BepInEx5_v2.4.zip', '' ,'RuntimeUnityEditor.zip', false);
 #if LMMT == false
 	AddToListOfAssets(links , 'Loader/bepinEX/InBlock', 'https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v5/COM3D2.InputHotkeyBlock.v1.2.zip', '' ,'InputHotkeyBlock.zip', false);
-	AddToListOfAssets(links , 'Loader/bepinEX/AdvMatMod', 'https://github.com/krypto5863/COM3d2-AdvancedMaterialModifier/releases/download/1.2.2.1/COM3D2.AdvancedMaterialModifier.Plugin.dll', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', false);
   AddToListOfAssets(links , 'Loader/bepinEX/FixEyeMov', 'https://github.com/01010101lzy/gettapped/releases/download/fixeyemov-0.2.0-alpha.3/FixEyeMov.com3d2-v0.2.0-alpha.3.zip', '' ,'FixEyeMov.zip', false);
   //These can be fetched straight from the latest releases.
   AddToListOfAssets(links , 'Loader/bepinEX/ExPresetMan', 'https://github.com/krypto5863/COM3D2.ExtendedPresetManagement/releases/latest/download/COM3D2.ExtendedPresetManagement.dll', 'BepInEx\plugins\' ,'COM3D2.ExtendedPresetManagement.dll', false);
   AddToListOfAssets(links , 'Loader/bepinEX/ShortMenu', 'https://github.com/krypto5863/COM3D2.ShortMenuLoader/releases/latest/download/ShortMenuLoader.zip', '' ,'ShortMenuLoader.zip', false);
   AddToListOfAssets(links , 'ext/dlccheck', 'https://github.com/krypto5863/COM3D2_DLC_Checker/releases/latest/download/COM3D2_DLC_Checker.exe', '' ,'COM3D2 DLC Checker.exe', false);
   AddToListOfAssets(links , 'ext/maidfiddle', 'https://github.com/denikson/COM3D2.MaidFiddler/releases/latest/download/MaidFiddlerSetup.exe', '' ,'MFInstall.exe', false);
+	
+	if IsCR then
+	begin
+		AddToListOfAssets(links , 'Loader/bepinEX/AdvMatMod', 'https://github.com/krypto5863/COM3d2-AdvancedMaterialModifier/releases/download/1.1.3/COM3D2.AdvancedMaterialModifier.Plugin.dll', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', false);
+	end else
+		AddToListOfAssets(links , 'Loader/bepinEX/AdvMatMod', 'https://github.com/krypto5863/COM3d2-AdvancedMaterialModifier/releases/download/1.2.2.1/COM3D2.AdvancedMaterialModifier.Plugin.dll', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', false);
+	begin
+	end;
 #endif
 
   for  i := 0 to GetArrayLength(links) - 1 do

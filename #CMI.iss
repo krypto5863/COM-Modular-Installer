@@ -2,10 +2,12 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.4.8.3"
+#define MyAppVersion "2.5"
 #define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
 #define MinimumVersion 1540
-#define UnsupportedVersion 1570
+#define UnsupportedVersion 1560
+
+#define CRMinimumVersion 1580
 
 #define LMMT false
 
@@ -130,7 +132,7 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
 		
 		Name: Loader/bepinEX/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
     
-    Name: Loader/bepinEX/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self; Flags: dontinheritcheck;
+    Name: Loader/bepinEX/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self; Flags: dontinheritcheck; Check: NOT GetIsCR()
 			Name: Loader/bepinEX/meidophoto/Poses; Description: 1900 Poses for MPS; Flags: dontinheritcheck;
 		
 		Name: Loader/bepinEX/modref; Description: ModRefresh; Types:full pic self eng notr; Flags: dontinheritcheck;
@@ -148,7 +150,7 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
       Name: Loader/bepinEX/scriptloader/thumbs; Description: Load Small Thumbs Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck; Check: NOT GetIsCR()
 
     Name: Loader/bepinEX/ShortMenu; Description: ShortMenuLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 
@@ -165,6 +167,8 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
       Name: Loader/Sybaris/Translations/i18nEx; Description: i18nEx (Syb);
 				Name:Loader/Sybaris/Translations/i18nEx/extrans; Description:{cm:ExtraTrans} (Syb); Flags: dontinheritcheck;
       Name: Loader/Sybaris/Translations/xuat; Description: XUnity AutoTranslator (Syb);
+			Name: Loader/Sybaris/cacheedit; Description: CacheEditMenu;
+			Name: Loader/Sybaris/quickedit; Description: QuickEditStart;
 
 
 Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
@@ -172,12 +176,11 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
   Name: Patchers/addscreen; Description: AddScreenSize; Types: full eng notr self ;
   Name: Patchers/allprivate; Description: AllMaidsInPrivateMode; Types: self;
   Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng notr pic self hen;
-  Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full compact eng notr pic self hen;
-  Name: Patchers/cacheedit; Description: CacheEditMenu;
+  Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full compact eng notr pic self hen; Check: NOT GetIsCR()
   Name: Patchers/CCfix; Description: CreatorSaveFix;
   Name: Patchers/blinkstop; Description: EditBlinkStop; Types: full eng notr pic self hen;
   Name: Patchers/extsave; Description: ExternalSaveData; Types: Full self pic eng notr hen; Flags: checkablealone;
-		Name: Patchers/extsave/vibemaid; Description:VibeYourMaid;
+		Name: Patchers/extsave/vibemaid; Description:VibeYourMaid; Check: NOT GetIsCR()
     Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng notr hen; Flags: checkablealone;
       Name: Patchers/extsave/maidvoice/addmod; Description: AddModsSlider; Types: full self pic eng notr hen; Flags: checkablealone;
         Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng notr hen; Flags: checkablealone;
@@ -191,9 +194,8 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
   Name: Patchers/namext; Description: NameExtender; Types: full compact self pic eng notr hen;
   Name: Patchers/neighuncen; Description: NeighUncensor; Types: full compact eng notr pic self hen;
   Name: Patchers/ntrlight; Description: NTRLight; Types:;
-  Name: Patchers/quickedit; Description: QuickEditStart; Types: full pic self eng notr hen;
   Name: Patchers/rgbpal; Description: RGBPalette;
-  Name: Patchers/saveset; Description: SaveSettingsInGame; Types: full compact self pic eng notr hen;
+  Name: Patchers/saveset; Description: SaveSettingsInGame; Types: full compact self pic eng notr hen; Check: NOT GetIsCR()
 
 Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/addyot; Description: AddYotogiSliderSE; Types: Full compact eng notr hen self;
@@ -209,8 +211,8 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/dressdam; Description:DressDamage; Types:self pic;
   Name: plugins/editmenufilt; Description: EditMenuFilter; Types:full self pic eng notr hen;
   Name: plugins/editselanim; Description: EditMenuSelectedAnime; Types:full self pic eng notr hen;
-  Name: plugins/editundo; Description:EditSceneUndo;
-  Name: plugins/emoears; Description:EmotionalEars(and tails); Types:self; Flags:checkablealone
+  Name: plugins/editundo; Description:EditSceneUndo; Check: NOT GetIsCR()
+  Name: plugins/emoears; Description:EmotionalEars(and tails); Types:self; Flags:checkablealone; Check: NOT GetIsCR()
     Name: plugins/emoears/aho; Description:{cm:EmoEarsAhoge}; Types:; Flags:dontinheritcheck
     Name: plugins/emoears/mod; Description:{cm:EmoEarsMod}; Types:self; Flags:dontinheritcheck
   Name: plugins/extendrender; Description:ExtendRenderingRange; Types:full eng notr self pic;
@@ -220,7 +222,7 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/halfundress; Description:HalfUnDressing; Types:full eng notr hen;
   Name: plugins/inout; Description:InOutAnimation; Types:full eng notr self hen;
   Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
-  Name: plugins/mtacc; Description: MtAccelerator;
+  Name: plugins/mtacc; Description: MtAccelerator; Check: NOT GetIsCR()
 		Name: plugins/mtacc/AllScene; Description: AllScene Version;
   //Name: plugins/MM; Description:MultipleMaids; Types:full pic self eng notr;
     //Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
@@ -234,12 +236,12 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/plugmanage; Description:PluginManager; Types:full pic eng notr;
   Name: plugins/PluginExt; Description:{cm:PluginExt}; Types:full compact pic self eng notr compact;
 		Name: plugins/PluginExt/freeapp; Description:FreeModeApp; Types:full self eng notr hen; Flags:dontinheritcheck
-		Name: plugins/PluginExt/halfundress; Description:HalfUnDressing; Types:full eng notr hen; Flags:dontinheritcheck
+		Name: plugins/PluginExt/halfundress; Description:HalfUnDressing; Types:full eng notr hen; Flags:dontinheritcheck; Check: NOT GetIsCR()
 		Name: plugins/PluginExt/lookmaid; Description:LookAtYourMaid; Flags:dontinheritcheck
 		Name: plugins/PluginExt/lookmaster; Description:LookAtYourMaster; Flags:dontinheritcheck
 		Name: plugins/PluginExt/notecolor; Description:NoteColor; Types:full self eng notr hen; Flags:dontinheritcheck
 		Name: plugins/PluginExt/rhythmoption; Description: RhythmExtraOption; Types:full eng notr self hen; Flags:dontinheritcheck
-		Name: plugins/PluginExt/xtms; Description:XTMasterSlave+; Types:full eng notr self hen; Flags:dontinheritcheck
+		Name: plugins/PluginExt/xtms; Description:XTMasterSlave+; Types:full eng notr self hen; Flags:dontinheritcheck; Check: NOT GetIsCR()
 			Name: plugins/PluginExt/xtms/XTFutaBody; Description:XTFutaBody; Types:; Flags:dontinheritcheck
 			Name: plugins/PluginExt/xtms/XTFutaAccessories; Description:XTFutaAccessories; Types:;
 		
@@ -256,11 +258,11 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/shaderchange; Description:ShaderChange; Types:full pic self eng notr;
   Name: plugins/shapeanimator; Description:ShapeAnimator; Types:full pic self eng notr hen;
     Name: plugins/shapeanimator/norm; Description:ShapeAnimator; Types:full pic self eng notr hen; Flags: exclusive;
-    Name: plugins/shapeanimator/doc; Description:ShapeAnimator (Doc's Edit); Types:full pic self eng notr hen; Flags: exclusive;
+    Name: plugins/shapeanimator/doc; Description:ShapeAnimator (Doc's Edit); Types:full pic self eng notr hen; Flags: exclusive; Check: NOT GetIsCR()
   Name: plugins/SKAcc; Description:SKAccelerator; Types:full pic self eng notr hen;
   Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
   Name: plugins/slimeshade; Description:SlimeShader; Types:;
-	Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
+	Name: plugins/smoothanim; Description: SmoothAnimation; Types:self; Check: NOT GetIsCR()
 	Name: plugins/TexLoad; Description:TextureLoader; Types:self;
 		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
   Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
