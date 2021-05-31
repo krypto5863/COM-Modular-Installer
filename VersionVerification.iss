@@ -82,7 +82,7 @@ begin
 
 	if LoadStringsFromFile(File, s) = false then
 	begin
-		MsgBox(FmtMessage(CustomMessage('VersionFetchLoadFail'), File), mbCriticalError, MB_OK);
+		MsgBox(FmtMessage(CustomMessage('VersionFetchLoadFail'), [File]), mbCriticalError, MB_OK);
 		result := false;
 		exit;
 	end;	
@@ -295,7 +295,7 @@ begin
 	//MsgBox('Found Space: ' + IntToStr(FreeSpace1), mbCriticalError, MB_OK)			
 	if (GetSpaceOnDisk(WizardForm.DirEdit.Text, True, FreeSpace1, TotalSpace1)) and (FreeSpace1 < 5000) then
 	begin
-		MsgBox(FmtMessage(CustomMessage('StorageSpaceLow2'),IntToStr(FreeSpace1)), mbCriticalError, MB_OK)
+		MsgBox(FmtMessage(CustomMessage('StorageSpaceLow2'),[IntToStr(FreeSpace1)]), mbCriticalError, MB_OK)
 		Result := false;
 		exit;
 	end;

@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5"
+#define MyAppVersion "2.5.1"
 #define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
 #define MinimumVersion 1540
 #define UnsupportedVersion 1560
@@ -49,6 +49,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 
 PrivilegesRequired=admin
+SetupLogging=yes
 Uninstallable=no
 
 Compression=lzma2/ultra64

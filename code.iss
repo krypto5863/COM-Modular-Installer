@@ -53,16 +53,22 @@ var
 	ManifestVersion: String;
 	VersionResult: Integer;	
 begin
+	Log('Initial setup is beginning...');
 
   OGEvent :=  WizardForm.TypesCombo.OnChange;
 	WizardForm.TypesCombo.OnChange := @TypesComboChange;
 	PresetFile := 'Custom.{#ShortName}Type';
+	
+	Log('Done setting up some events and a variable...');
 		
 	if (GetSpaceOnDisk(ExpandConstant('{tmp}'),True, FreeSpace, TotalSpace)) AND (FreeSpace < 5000) then
 	begin
-    MsgBox(FmtMessage(CustomMessage('StorageSpaceLow'), IntToStr(FreeSpace)), mbCriticalError, MB_OK)
+		Log('Disc space is inadequate, returning message.');
+    MsgBox(FmtMessage(CustomMessage('StorageSpaceLow'), [IntToStr(FreeSpace)]), mbCriticalError, MB_OK)
     abort
-	end;			
+	end;
+	
+	Log('Done checking disc space...');			
  
 	try
 		DownloadTemporaryFile('{#ManifestLink}','manifest.txt','',nil);

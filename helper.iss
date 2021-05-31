@@ -154,7 +154,7 @@
 
     if LoadStringsFromFile(path, Preset) = false then
     begin
-      MsgBox(FmtMessage(CustomMessage('CannotLoadPreset'), path), mbCriticalError, MB_OK);
+      MsgBox(FmtMessage(CustomMessage('CannotLoadPreset'), [path]), mbCriticalError, MB_OK);
       exit;
     end;
 
@@ -274,7 +274,7 @@ begin
 
 	if LoadStringsFromFile(File, s) = false then
 	begin
-		Log(FmtMessage(CustomMessage('VersionFetchLoadFail'), File));
+		Log(FmtMessage(CustomMessage('VersionFetchLoadFail'), [File]));
 		result := false;
 		exit;
 	end;	

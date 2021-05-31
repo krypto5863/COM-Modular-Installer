@@ -74,7 +74,7 @@ begin
   begin
     if DeleteFile(GamePath + '\serialize_storage_config.cfg') = false then
     begin
-      MsgBox(FmtMessage(CustomMessage('SerializeDeleteFail'),GamePath) , mbCriticalError, MB_OK);
+      MsgBox(FmtMessage(CustomMessage('SerializeDeleteFail'),[GamePath]) , mbCriticalError, MB_OK);
       result := false;
       exit;
     end;
@@ -83,7 +83,7 @@ begin
     begin
       if Copy(ExpandConstant('{userdocs}\KISS\COM3D2'), GamePath) = false then
       begin
-        MsgBox(FmtMessage(CustomMessage('SerializeCopyFail'),ExpandConstant('{userdocs}\KISS\COM3D2')) , mbCriticalError, MB_OK);
+        MsgBox(FmtMessage(CustomMessage('SerializeCopyFail'),[ExpandConstant('{userdocs}\KISS\COM3D2')]) , mbCriticalError, MB_OK);
         result := false;
         exit;
       end;
