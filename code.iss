@@ -13,8 +13,10 @@ Source:"Utility\DLL\CMIHelper.dll"; DestDir: "{tmp}"; Permissions: everyone-full
 		EmptyFolder: Boolean;
     path: WideString;
 		OGEvent: TNotifyEvent;
+		OGResizeEvent: TNotifyEvent;
     ProgressOGEvent: TNotifyEvent;
 		DownloadProgressLabel: TNewStaticText;
+		ChangeBannerButton: TNewButton;
 		x86bit: Boolean;
 		x64bit: Boolean;
 		bitString: String;
@@ -57,7 +59,11 @@ begin
 
   OGEvent :=  WizardForm.TypesCombo.OnChange;
 	WizardForm.TypesCombo.OnChange := @TypesComboChange;
+	OGResizeEvent :=  WizardForm.OnResize;
+	WizardForm.OnResize := @OnResize;
 	PresetFile := 'Custom.{#ShortName}Type';
+	
+	SetBanner(nil);
 	
 	Log('Done setting up some events and a variable...');
 		
@@ -117,14 +123,28 @@ begin
 	DownloadProgressLabel.Top := DownloadPage.ProgressBar.Top - DownloadProgressLabel.Height;
 	DownloadProgressLabel.Font.Assign(DownloadPage.Msg1Label.Font);
 	DownloadProgressLabel.Caption := '';
-
+	
+	ChangeBannerButton := TNewButton.Create(WizardForm);
+	ChangeBannerButton.Parent := WizardForm.WizardBitmapImage2.Parent;
+	ChangeBannerButton.Caption := '→';
+	ChangeBannerbutton.Left := 0;
+	ChangeBannerbutton.Top := 0;
+	ChangeBannerButton.Anchors := [akRight];
+	ChangeBannerButton.Width := 20;
+	ChangeBannerButton.Height := 20;
+	ChangeBannerButton.OnClick := @SetBanner;
+	
 	//Tries to find the path of the game via the registry and if it suceeds, pushes it to the value var.
-	if RegQueryStringValue(HKEY_CURRENT_USER, '{#JapRegistry}','InstallPath', Value) then
+	if RegQueryStringValue(HKEY_CURRENT_USER, '{#JapRegistry}','InstallPath', Value) AND NOT GetIsCR() then
 	//Sets the wizard dir field to default to what is found in the registry
 	begin
 		WizardForm.DirEdit.Text := (Value);
 	end
 #if LMMT == false
+	else if RegQueryStringValue(HKEY_CURRENT_USER, '{#JapRegistryCR}','InstallPath', Value) AND GetIsCR() then
+	begin
+		WizardForm.DirEdit.Text := (Value);
+	end
 	else if RegQueryStringValue(HKEY_CURRENT_USER, '{#EnglishRegistry}','InstallPath', Value) then
 	//Sets the wizard dir field to default to what is found in the registry if the JP path isn't found but the ENG path is.
 	begin
@@ -151,6 +171,8 @@ begin
 #else
 		FixBitComponents();
 #endif
+	end else if CurPageID=wpFinished then
+	begin
 	end;
 end;
 	

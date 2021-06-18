@@ -19,8 +19,8 @@ SelectDirDesc=Where is your game located?
 [CustomMessages]
 
 ;Startup Messages
-IsGameCR=Is this version of COM to which we are installing today 1.56 or higher? In other words, is it a CR-Edit version?
-GameIsCRWarning=Keep in mind, CR-Edit versions (AKA 1.56+ versions) have diminished mod and plugin support. You may find several plugins are unavailable on these versions that are available on none CR-Edit versions and you may even find bugs that have not yet been corrected by plugin devs. You have been warned!
+IsGameCR=Is this version of COM to which we are installing today 3.0 or higher? In other words, is it a CR-Edit version(COM3D2.5)?
+GameIsCRWarning=Keep in mind, CR-Edit versions (AKA 3.0+ versions, AKA COM3D2.5) have diminished mod and plugin support. You may find several plugins are unavailable on these versions that are available on none CR-Edit versions and you may even find bugs that have not yet been corrected by plugin devs. You have been warned!
 
 ScamWarning=If you paid for CMI or downloaded it from anywhere that is not the official GitHub page, than you have been scammed or misled!
 StorageSpaceLow=We detected that your AppData containing partition(Typically your C drive) does not have enough free space for cache. Please clear a minimum of 5 GiBs to install CMI. You Have %1MBs

@@ -19,6 +19,20 @@
 		end;
 	end;
 	
+function IsEngSimple(const path: String): Boolean;
+begin
+	//2 is INM. 1 is R18. 0 is not Eng.
+	
+	if (FileExists(path + '\localize.dat')) then
+	begin
+		Result := true;
+	end
+	else
+	begin
+		result := false;
+	end;
+end;
+	
 Function FixEngComponents(): Boolean;
 begin
 	//If english version is detected, run the below code.
@@ -119,7 +133,46 @@ begin
 		
 		IsCRAsked := true;
 	end;
-	result := IsCR;
+	result := IsCR;	
+end;
+
+var
+	Choice: Integer;
+procedure SetBanner(const Sender: TObject);
+var
+	Images: Array of string;
+begin
+	  Images := [
+    'Rabbit.bmp',
+		'Kite.bmp',
+		'kry.bmp',
+		'pain.bmp'
+  ];
+
+	if (Sender = nil) then
+	begin	
+		Choice := Random(GetArrayLength(Images));
+	end
+	else
+	begin
+		if (Choice = GetArrayLength(Images) - 1) then
+		begin
+			Choice := 0;
+		end
+		else
+		begin
+			Choice := Choice + 1;
+		end;
+	end;
 	
+	Log(Images[Choice] + ' was selected as a banner from ' + IntToStr(GetArrayLength(Images)) + ' choices...');
+	
+	if not FileExists(ExpandConstant('{tmp}\') + Images[Choice]) then
+	begin
+		ExtractTemporaryFile(Images[Choice]);
+	end;
+	
+	WizardForm.WizardBitmapImage2.Bitmap.LoadFromFile(ExpandConstant('{tmp}\') + Images[Choice]);
+	//WizardForm.WizardBitmapImage2.Stretch := false;
 end;
 [/Code]

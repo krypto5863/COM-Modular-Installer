@@ -1,4 +1,18 @@
 [Code]
+
+	procedure OnResize(const Sender: TObject);
+	begin
+	
+		OGResizeEvent(Sender);
+	
+		ChangeBannerbutton.Left := 0;
+		ChangeBannerbutton.Top := 0;
+		ChangeBannerButton.Anchors := [akRight];
+		ChangeBannerButton.Width := 20;
+		ChangeBannerButton.Height := 20;
+	
+	end;
+
 	procedure TypesComboChange(const Sender: TObject);
 	begin
     OGEvent(Sender);
@@ -31,8 +45,7 @@
 		else
     begin
 			DownloadProgressLabel.Caption := FmtMessage(CustomMessage('DownloadNoPercent'), [Progress/1024/1024])
-    end;
-		
+    end;	
 		
     Result := True;
 	end;

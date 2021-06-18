@@ -16,8 +16,8 @@ SelectDirDesc=¿Dónde está ubicado tu juego?
 [CustomMessages]
 
 ;Startup Messages
-IsGameCR=¿Esta versión de COM a la que estamos instalando hoy es 1.56 o superior? En otras palabras, ¿es una versión CR-Edit? 
-GameIsCRWarning=Tenga en cuenta que las versiones de CR-Edit (también conocidas como versiones 1.56+) tienen menos compatibilidad con mods y plugins. Puede encontrar que varios plugins no están disponibles en estas versiones que están disponibles en versiónes no CR-Edit e incluso puede encontrar errores que aún no han sido corregidos por los desarrolladores de plugins. ¡Usted ha sido advertido! 
+IsGameCR=¿Esta versión de COM a la que estamos instalando hoy es 3.0 o superior? En otras palabras, ¿es una versión CR-Edit o COM3D2.5? 
+GameIsCRWarning=Tenga en cuenta que las versiones de CR-Edit (también conocidas como versiones 3,0+ o COM3D2.5) tienen menos compatibilidad con mods y plugins. Puede encontrar que varios plugins no están disponibles en estas versiones que están disponibles en versiónes no CR-Edit e incluso puede encontrar errores que aún no han sido corregidos por los desarrolladores de plugins. ¡Usted ha sido advertido! 
 
 
 ScamWarning=Si pagó por CMI o lo descargó desde cualquier lugar que no sea la página oficial de GitHub, ¡puede ser que ha sido estafado o engañado!

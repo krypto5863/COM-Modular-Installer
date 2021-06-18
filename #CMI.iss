@@ -4,10 +4,10 @@
 #define MyAppName "COM Modular Installer"
 #define MyAppVersion "2.5.1"
 #define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
-#define MinimumVersion 1540
-#define UnsupportedVersion 1560
+#define MinimumVersion 20000
+#define UnsupportedVersion 30000
 
-#define CRMinimumVersion 1580
+#define CRMinimumVersion 30000
 
 #define LMMT false
 
@@ -66,13 +66,21 @@ DefaultDirName={#MyAppName}
 DirExistsWarning=no
 AppendDefaultDirName=no
 
-WizardStyle=modern
-SetupIconFile={#SrcDir}\UI\Icon.ico
-WizardImageFile={#SrcDir}\UI\sidebanner.bmp
-WizardSmallImageFile={#SrcDir}\UI\Icon.bmp
-
 LicenseFile={#SrcDir}\Documentation\license.txt
 InfoBeforeFile={#SrcDir}\Documentation\info.txt
+
+WizardStyle=modern
+SetupIconFile={#SrcDir}\UI\Icon.ico
+WizardSmallImageFile={#SrcDir}\UI\Icon.bmp
+WizardSizePercent=150
+
+//Banner Images.
+[Files]
+Source: "{#SrcDir}\UI\rabbit.bmp"; Flags: dontcopy
+Source: "{#SrcDir}\UI\kite.bmp"; Flags: dontcopy
+Source: "{#SrcDir}\UI\kry.bmp"; Flags: dontcopy
+Source: "{#SrcDir}\UI\pain.bmp"; Flags: dontcopy
+[/Files]
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl, {#SrcDir}\Messages\English.isl"
@@ -220,7 +228,6 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
     Name: plugins/extendrender/config; Description:x10 Extend Config; Types:self; Flags:dontinheritcheck
   Name: plugins/facecon; Description:FaceControl; Types:pic;
   Name: plugins/freedress; Description:FreeModeDressKeeper; Types:full self eng notr hen;
-  Name: plugins/halfundress; Description:HalfUnDressing; Types:full eng notr hen;
   Name: plugins/inout; Description:InOutAnimation; Types:full eng notr self hen;
   Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
   Name: plugins/mtacc; Description: MtAccelerator; Check: NOT GetIsCR()
@@ -228,7 +235,6 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   //Name: plugins/MM; Description:MultipleMaids; Types:full pic self eng notr;
     //Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
   Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
-  Name: plugins/notecolor; Description:NoteColor; Types:full self eng notr hen;
   Name: plugins/NPRShader; Description:NPRShader; Types:;
     Name: plugins/NPRShader/LightConfig; Description:{cm:NPRLightConfig}; Types:; Flags:dontinheritcheck
   Name: plugins/objexp; Description:ObjectExplorer; Types:full self eng notr pic;
@@ -251,7 +257,6 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/pngplace; Description:PNGPlacement; Types:full pic self eng notr; Flags: checkablealone;
     Name: plugins/pngplace/expng; Description:{cm:PNGPlaceExtraPNG}; Types:full self pic eng notr; Flags: dontinheritcheck
   Name: plugins/propitem; Description:PropMyItem; Types:full eng notr pic;
-  Name: plugins/rhythmoption; Description: RhythmExtraOption; Types:full eng notr self hen;
   Name: plugins/scenecap; Description:SceneCapture; Types:full pic self eng notr; Flags: checkablealone;
     Name: plugins/scenecap/mpmats; Description:Modified Pmats; Flags: dontinheritcheck
     Name: plugins/scenecap/VR; Description:VR Ini File; Flags: dontinheritcheck
@@ -340,7 +345,8 @@ Filename: "{tmp}\MFInstall.exe"; Flags: runasoriginaluser skipifdoesntexist wait
 Filename: "https://forms.gle/PrXjqck2dQYMHvyY8"; Flags: shellexec runasoriginaluser postinstall; Description: {cm:Survey}
 
 [Registry]
-
+Root: HKCU; Subkey: "{#JapRegistry}"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Check: NOT IsEmptyFolder() AND NOT GetIsCR() AND NOT IsEngSimple(ExpandConstant('{app}')); Tasks:reg
+Root: HKCU; Subkey: "{#EnglishRegistry}"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Check: NOT IsEmptyFolder() AND NOT GetIsCR() AND IsEngSimple(ExpandConstant('{app}')); Tasks:reg
 
 //Very large, moved to secondary script to make management easier.
 #include "CMI\files.iss"

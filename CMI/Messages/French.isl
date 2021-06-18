@@ -19,8 +19,8 @@ SelectDirDesc=Où est installé votre jeu?
 [CustomMessages]
 
 ;Startup Messages
-IsGameCR=Votre version de COM3D2 est-elle supérieure ou égale à 1.56? Autrement dit, CR-Edit est-il installé?
-GameIsCRWarning=Veuillez garder à l'esprit que les versions 1.56+ souffrent d'une prise en charge réduite des Mods et plugins. Certains plugins seront indisponibles et d'autres pourront avoir des bugs. Vous voilà prévenu!
+IsGameCR=Votre version de COM3D2 est-elle supérieure ou égale à 3.0? Autrement dit, CR-Edit est-il installé?
+GameIsCRWarning=Veuillez garder à l'esprit que les versions 3.0+ souffrent d'une prise en charge réduite des Mods et plugins. Certains plugins seront indisponibles et d'autres pourront avoir des bugs. Vous voilà prévenu!
 
 ScamWarning=CMI est totalement gratuit, si vous l'avez téléchargé ailleur que sur GitHub vous vous êtes probablement fait avoir!
 StorageSpaceLow=Votre dossier AppData (habituellement dans le dique C) n'a pas assez d'espace libre pour les fichiers temporaires. Libérer au minimum 5Gb. Vous avez %1MBs
