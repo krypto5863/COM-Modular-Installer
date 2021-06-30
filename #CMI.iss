@@ -2,18 +2,19 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.1"
+#define MyAppVersion "2.5.2"
 #define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
 #define MinimumVersion 20000
 #define UnsupportedVersion 30000
 
-#define CRMinimumVersion 30000
+#define CRMinimumVersion 30100
 
 #define LMMT false
 
 #define TargetApp "\COM3D2.exe"
 #define WrongTarget '\CM3D2.exe'
 #define Assembly "COM3D2x64_Data\Managed\Assembly-CSharp.dll"
+#define AppLine "COM3D2.exe"
 
 #define UpdateSite1 "http://com3d2.jp/update/"
 #define UpdateSite2 "https://com3d2.world/r18/update/"

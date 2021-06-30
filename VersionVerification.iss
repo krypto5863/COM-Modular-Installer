@@ -255,7 +255,7 @@ begin
 #if LMMT == false	
         if (IsEng(Dir) = 1)then
         begin
-          VersionFetch(Dir + '\update.lst', Version, '{#TargetApp}')
+          VersionFetch(Dir + '\update.lst', Version, '{#AppLine}')
         end;
 #endif
 				DownloadUpdate(Version, UnsupportedVersion, Dir);

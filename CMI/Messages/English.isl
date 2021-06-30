@@ -19,7 +19,7 @@ SelectDirDesc=Where is your game located?
 [CustomMessages]
 
 ;Startup Messages
-IsGameCR=Is this version of COM to which we are installing today 3.0 or higher? In other words, is it a CR-Edit version(COM3D2.5)?
+IsGameCR=Is this version of COM to which we are installing today 3.0 or higher? In other words, is it a CR-Edit version(COM3D2.5)?%n%nEnglish versions are never 3.0 and are incompatible at versions 1.09 and below.
 GameIsCRWarning=Keep in mind, CR-Edit versions (AKA 3.0+ versions, AKA COM3D2.5) have diminished mod and plugin support. You may find several plugins are unavailable on these versions that are available on none CR-Edit versions and you may even find bugs that have not yet been corrected by plugin devs. You have been warned!
 
 ScamWarning=If you paid for CMI or downloaded it from anywhere that is not the official GitHub page, than you have been scammed or misled!
