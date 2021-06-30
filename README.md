@@ -30,4 +30,4 @@ The latest official releases can always be found here, nowhere else. In the rele
 
 Please refer to this image of the file you're looking for...
 ![image](https://user-images.githubusercontent.com/29824718/123888355-4fbf0900-d921-11eb-818c-47cdf06f7755.png)
-The assets list can be collapsed at times. Just open it with the little arrow... Come on guys.
+The name of the file itself can change over releases but the basic name will remain, just use your head. Just don't download the `Source Code` files, okay? They're useless to you. The assets list can be collapsed at times. Just open it with the little arrow... Come on guys.
