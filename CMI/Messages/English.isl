@@ -22,7 +22,7 @@ SelectDirDesc=Where is your game located?
 IsGameCR=Is this version of COM to which we are installing today 3.0 or higher? In other words, is it a CR-Edit version(COM3D2.5)?%n%nEnglish versions are never 3.0 and are incompatible at versions 1.09 and below.
 GameIsCRWarning=Keep in mind, CR-Edit versions (AKA 3.0+ versions, AKA COM3D2.5) have diminished mod and plugin support. You may find several plugins are unavailable on these versions that are available on none CR-Edit versions and you may even find bugs that have not yet been corrected by plugin devs. You have been warned!
 
-ScamWarning=If you paid for CMI or downloaded it from anywhere that is not the official GitHub page, than you have been scammed or misled!
+ScamWarning=If you paid for CMI or downloaded it from anywhere that is not the official GitHub page, then you have been scammed or misled!
 StorageSpaceLow=We detected that your AppData containing partition(Typically your C drive) does not have enough free space for cache. Please clear a minimum of 5 GiBs to install CMI. You Have %1MBs
 StorageSpaceLow2=The drive holding the path you have selected does not contain enough space to safely install CMI. Please clear a minimum of 5 GiBs to install CMI to this directory: You have %1MBs
 OutdatedInstaller=This installer is outdated and likely incompatible with new assets/versions! You may continue the installation but you continue at your own risk!
@@ -40,6 +40,8 @@ IsInProgramFiles=It seems your game is located in the Program Files directory, t
 IsINM=We have detected INM! INM is not supported by CMI due to technical differences.%n%nTo use CMI, please install the R18/Adult Content Supplement Patch.%n%nIf your are not actually on an INM version of the game, then you have likely installed Eng DLC/files into your japanese game. Please refer to the readme on repair instructions.
 
 GameOutdated=Your game is outdated! Please update it immediately.%n%nMinimum Version: %1%n%nFound Version: %2
+GameUpdateNotSupported=We cannot update CR-edit versions of the game via the installer because it requires extra steps. Please update your game manually.
+GameUpdateNotSuggested=We cannot refer you to a game update because your game isn't already version 3.0. Please update your game manually.
 GameUnsupported=Your game is on a version that is not supported by the current CR selection! Plase restart the installer and select the proper option, in this case being YES, when asked if your game is a CR version!%n%nUnsupported Version:%1 or Newer%n%nFound Version:%2
 GameUnsupported1=Your game is on a version that is not supported by the current CR selection! Plase restart the installer and select the proper option, in this case being NO, when asked if your game is a CR version!%n%nSupported Version:%1 or Newer%n%nFound Version:%2
 
@@ -121,3 +123,4 @@ SerializeCopyFail=Failed to copy the files at %1 for an unknown reason!
 MFInstall=Waiting for Maid Fiddler installer to finish... (Users must follow the installer that opens!)
 
 Survey=Open the Feedback Survey for CMI
+OfficialPage=Open the Official CMI Download Site

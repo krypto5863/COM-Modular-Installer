@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.2"
+#define MyAppVersion "2.5.3"
 #define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
 #define MinimumVersion 20000
 #define UnsupportedVersion 30000
@@ -18,6 +18,7 @@
 
 #define UpdateSite1 "http://com3d2.jp/update/"
 #define UpdateSite2 "https://com3d2.world/r18/update/"
+#define UpdateSite3 "https://com3d2.jp/com3d25/update/index.html#update"
 #define UpdateFile "com3d2_up%s%s%s"
 
 #define UpdateFetch1 "http://p2-dl0.kisskiss.tv/com3d2/update/"
@@ -127,11 +128,16 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
   Name: Loader/bepinEX; Description: {cm:BepinEx}; Types: full notr compact eng pic self hen; Flags:Exclusive checkablealone
 
 		Name: Loader/bepinEX/AdvMatMod; Description: AdvancedMaterialModifier; Types: self; Flags: dontinheritcheck;
+	  
+		Name: Loader/bepinEX/COM3D2API; Description: COM3D2.API; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+			Name: Loader/bepinEX/COM3D2API/ShapekeyMaster; Description: ShapekeyMaster; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck; Check: NOT GetIsCR();
 	
 		Name: Loader/bepinEX/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 	
 		Name: Loader/bepinEX/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 
+		Name: Loader/bepinEX/ExErrorHandle; Description: ExtendedErrorHandling; Types:full notr compact eng pic self hen; Flags: dontinheritcheck; Check: NOT GetIsCR();
+		
     Name: Loader/bepinEX/ExPresetMan; Description: ExtendedPresetManagement; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
 		
 		//Name: Loader/bepinEX/FixEyeMov; Description: FixEyeMov; Types:full eng notr hen self; Flags: dontinheritcheck;
@@ -156,12 +162,14 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
       Name: Loader/bepinEX/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/enascout; Description: Enable Scout Mode Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/errtex; Description: Error Texture Placeholder Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+      Name: Loader/bepinEX/scriptloader/errtex; Description: Error Texture Placeholder Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;  Check: GetIsCR()
       Name: Loader/bepinEX/scriptloader/thumbs; Description: Load Small Thumbs Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck; Check: NOT GetIsCR()
-
+			
+		Name: Loader/bepinEX/ShiftClick; Description: ShiftClickExplorer; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+			
     Name: Loader/bepinEX/ShortMenu; Description: ShortMenuLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 
     Name: Loader/bepinEX/Translations; Description:{cm:TranslationPlugs}; Types: Full compact pic self hen; Flags: dontinheritcheck;
@@ -178,6 +186,7 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
 				Name:Loader/Sybaris/Translations/i18nEx/extrans; Description:{cm:ExtraTrans} (Syb); Flags: dontinheritcheck;
       Name: Loader/Sybaris/Translations/xuat; Description: XUnity AutoTranslator (Syb);
 			Name: Loader/Sybaris/cacheedit; Description: CacheEditMenu;
+			Name: Loader/Sybaris/CCfix; Description: CreatorSaveFix;
 			Name: Loader/Sybaris/quickedit; Description: QuickEditStart;
 
 
@@ -187,7 +196,6 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
   Name: Patchers/allprivate; Description: AllMaidsInPrivateMode; Types: self;
   Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng notr pic self hen;
   Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full compact eng notr pic self hen; Check: NOT GetIsCR()
-  Name: Patchers/CCfix; Description: CreatorSaveFix;
   Name: Patchers/blinkstop; Description: EditBlinkStop; Types: full eng notr pic self hen;
   Name: Patchers/extsave; Description: ExternalSaveData; Types: Full self pic eng notr hen; Flags: checkablealone;
 		Name: Patchers/extsave/vibemaid; Description:VibeYourMaid; Check: NOT GetIsCR()
@@ -344,6 +352,8 @@ Type:filesandordirs; Name: "{app}\OldInstall*"; Tasks:clean/deleteold/old;
 Filename: "{tmp}\MFInstall.exe"; Flags: runasoriginaluser skipifdoesntexist waituntilterminated; StatusMsg: {cm:MFInstall}
 
 Filename: "https://forms.gle/PrXjqck2dQYMHvyY8"; Flags: shellexec runasoriginaluser postinstall; Description: {cm:Survey}
+
+Filename: "https://github.com/krypto5863/COM-Modular-Installer/releases"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: {cm:OfficialPage}
 
 [Registry]
 Root: HKCU; Subkey: "{#JapRegistry}"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Check: NOT IsEmptyFolder() AND NOT GetIsCR() AND NOT IsEngSimple(ExpandConstant('{app}')); Tasks:reg

@@ -60,11 +60,15 @@ begin
   AddToListOfAssets(links , 'Loader/bepinEX/MuteBack', 'https://github.com/BepInEx/BepInEx.Utility/releases/download/r6/BepInEx.MuteInBackground.v1.1.zip', '' ,'MuteInBackground.zip', false);
   AddToListOfAssets(links , 'Loader/bepinEX/RunUniEdit', 'https://github.com/ManlyMarco/RuntimeUnityEditor/releases/download/v2.4/RuntimeUnityEditor_BepInEx5_v2.4.zip', '' ,'RuntimeUnityEditor.zip', false);
 #if LMMT == false
+	AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API', 'https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v3/COM3D2.API.v1.0.zip', '' ,'COM3D2.API.v1.0.zip', false);
 	AddToListOfAssets(links , 'Loader/bepinEX/InBlock', 'https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v5/COM3D2.InputHotkeyBlock.v1.2.zip', '' ,'InputHotkeyBlock.zip', false);
   AddToListOfAssets(links , 'Loader/bepinEX/FixEyeMov', 'https://github.com/01010101lzy/gettapped/releases/download/fixeyemov-0.2.0-alpha.3/FixEyeMov.com3d2-v0.2.0-alpha.3.zip', '' ,'FixEyeMov.zip', false);
   //These can be fetched straight from the latest releases.
-  AddToListOfAssets(links , 'Loader/bepinEX/ExPresetMan', 'https://github.com/krypto5863/COM3D2.ExtendedPresetManagement/releases/latest/download/COM3D2.ExtendedPresetManagement.dll', 'BepInEx\plugins\' ,'COM3D2.ExtendedPresetManagement.dll', false);
+	AddToListOfAssets(links , 'Loader/bepinEX/ShiftClick', 'https://github.com/krypto5863/COM3D2.ShiftClickExplorer/releases/latest/download/COM3D2.ShiftClickExplorer.dll', 'BepInEx\plugins\' ,'COM3D2.ShiftClickExplorer.dll', false);
+  AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API/ShapekeyMaster', 'https://github.com/krypto5863/COM3D2.ShapekeyMaster/releases/latest/download/COM3D2.ShapekeyMaster.Plugin.dll', 'BepInEx\plugins\' ,'COM3D2.ShapekeyMaster.Plugin.dll', false);
   AddToListOfAssets(links , 'Loader/bepinEX/ShortMenu', 'https://github.com/krypto5863/COM3D2.ShortMenuLoader/releases/latest/download/ShortMenuLoader.zip', '' ,'ShortMenuLoader.zip', false);
+	AddToListOfAssets(links , 'Loader/bepinEX/ExErrorHandle', 'https://github.com/krypto5863/COM3D2.ExtendedErrorHandling/releases/latest/download/COM3D2.ExtendedErrorHandling.dll', 'BepInEx\plugins\' ,'COM3D2.ExtendedErrorHandling.dll', false);
+	AddToListOfAssets(links , 'Loader/bepinEX/ExPresetMan', 'https://github.com/krypto5863/COM3D2.ExtendedPresetManagement/releases/latest/download/COM3D2.ExtendedPresetManagement.dll', 'BepInEx\plugins\' ,'COM3D2.ExtendedPresetManagement.dll', false);
   AddToListOfAssets(links , 'ext/dlccheck', 'https://github.com/krypto5863/COM3D2_DLC_Checker/releases/latest/download/COM3D2_DLC_Checker.exe', '' ,'COM3D2 DLC Checker.exe', false);
   AddToListOfAssets(links , 'ext/maidfiddle', 'https://github.com/denikson/COM3D2.MaidFiddler/releases/latest/download/MaidFiddlerSetup.exe', '' ,'MFInstall.exe', false);
 	

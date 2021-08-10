@@ -98,10 +98,8 @@ begin
 	except
 		Log('Failed to vet the installer...')
 	end;	
-		
-	MsgBox(CustomMessage('ScamWarning') , mbInformation, MB_OK);
-
-	if MsgBox(CustomMessage('ReadmeRead'), mbConfirmation, MB_YESNO) = IDNO then
+	
+	if MsgBox(CustomMessage('ScamWarning') + #13#10#13#10 + CustomMessage('ReadmeRead'), mbConfirmation, MB_YESNO) = IDNO then
 	begin
 		MsgBox(CustomMessage('ReadmeExit'), mbCriticalError, MB_OK)
 		ExtractTemporaryFile('{#ShortName}_Readme.pdf');

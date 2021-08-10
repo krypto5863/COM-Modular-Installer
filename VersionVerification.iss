@@ -128,12 +128,16 @@ var
 	site : String;
 	ErrorCode: Integer;
 	VersionString: String;
+	TempString: String;
 begin
-	
   if MsgBox(CustomMessage('UpdatePrompt'), mbInformation, MB_YESNO) = MrNO then
   begin	
-#if LMMT == false		
-    if (IsEng(Dir)) = 0 then
+#if LMMT == false
+		if (IsCR) then
+		begin
+			ShellExec('open', '{#UpdateSite3}', '', '', SW_SHOW, ewNoWait, ErrorCode);
+		end
+    else if (IsEng(Dir)) = 0 then
 		begin
       ShellExec('open', '{#UpdateSite1}', '', '', SW_SHOW, ewNoWait, ErrorCode);
 		end
@@ -145,7 +149,16 @@ begin
 		ShellExec('open', '{#UpdateSite1}', '', '', SW_SHOW, ewNoWait, ErrorCode);
 #endif    
 		exit;		
-  end;
+  end
+	else 
+	begin
+		if (IsCR) then
+		begin		
+			MsgBox(CustomMessage('GameUpdateNotSupported'), mbInformation, MB_OK);
+			ShellExec('open', '{#UpdateSite3}', '', '', SW_SHOW, ewNoWait, ErrorCode);
+			exit;
+		end;
+	end;
 
 #if LMMT == false
 		
@@ -173,24 +186,30 @@ begin
     end;
 #endif
 
-    Log('Testing: ' + Format(SiteSt, [IntToStr(i), BitString, '.zip']));
-    if (SiteValid(Format(SiteSt, [IntToStr(i), BitString, '.zip'])) = true) then
+#if LMMT == false		
+		TempString := IntToStr(i)[1] +  '_' + IntToStr(i)[2] +  '_'  + IntToStr(i)[3];
+#else
+		TempString := IntToStr(i);
+#endif
+
+    Log('Testing: ' + Format(SiteSt, [TempString, BitString, '.zip']));
+    if (SiteValid(Format(SiteSt, [TempString, BitString, '.zip'])) = true) then
     begin
       pointversion:= 10;
 
       while pointversion > 0 do
       begin
-				Log('Testing point: ' + Format(SiteSt, [IntToStr(i)+ '.' + IntToStr(pointversion), BitString, '.zip']));
-        if (SiteValid(Format(SiteSt, [IntToStr(i)+ '.' + IntToStr(pointversion), BitString, '.zip'])) = true) AND (i*10 + pointversion > MinVer) then
+				Log('Testing point: ' + Format(SiteSt, [TempString+ '.' + IntToStr(pointversion), BitString, '.zip']));
+        if (SiteValid(Format(SiteSt, [TempString+ '.' + IntToStr(pointversion), BitString, '.zip'])) = true) AND (i*10 + pointversion > MinVer) then
         begin
-          site :=  Format(SiteSt, [IntToStr(i)+ '.' + IntToStr(pointversion), BitString, '.zip'])
-					VersionString := IntToStr(i) + '.' + IntToStr(pointversion);
+          site :=  Format(SiteSt, [TempString+ '.' + IntToStr(pointversion), BitString, '.zip'])
+					VersionString := TempString + '.' + IntToStr(pointversion);
           break;
         end
         else if (i*10 > MinVer) then
         begin
-          site := Format(SiteSt, [IntToStr(i), BitString, '.zip']);
-					VersionString := IntToStr(i);
+          site := Format(SiteSt, [TempString, BitString, '.zip']);
+					VersionString := TempString;
         end;
         pointversion := pointversion-1;
       end;
