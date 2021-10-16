@@ -257,6 +257,48 @@
 		result := -1;
 	end;
 	
+	function GetTypeIndex(const name: String): Integer;
+	var
+		I: Integer;
+	begin
+
+		for I := 0 to Wizardform.TypesCombo.items.count-1 do
+		begin
+			//MsgBox('Component was selected name of: ' + Wizardform.ComponentsList.ItemCaption[I], mbInformation, MB_OK);
+			if (CompareText(Wizardform.TypesCombo.Items[I], name) = 0) then
+			begin
+				//MsgBox('Component was selected, returning true', mbInformation, MB_OK);
+				result := I
+				exit;
+			end
+		end;	
+		result := -1;
+	end;
+	
+	
+procedure RemoveComponent(component: string);
+var
+	index: Integer;
+begin
+	index := GetComponentIndex(component);
+
+	if (index = -1) then
+	begin
+		Log('Failed to fetch index for component: ' + component);
+		exit;
+	end;
+	
+	Wizardform.ComponentsList.CheckItem(GetComponentIndex(component), coUncheck);
+	Wizardform.ComponentsList.ItemEnabled[GetComponentIndex(component)] := false;
+end;
+
+procedure RemoveType(itype: string);
+begin
+	Wizardform.ComponentsList.Checked[GetTypeIndex(itype)] := false;
+	Wizardform.ComponentsList.Items.Delete(GetTypeIndex(itype));
+	WizardForm.TypesCombo.ItemIndex := 0;
+end;
+	
 function StringFetch(const File: string; out FetchedString: String; const LineToFetch: String): Boolean;
 var
 	i: Integer;

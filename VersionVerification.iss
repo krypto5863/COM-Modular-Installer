@@ -248,7 +248,7 @@ begin
 	DownloadPage.Hide;
 end;
 
-function VerifyVersion(const Dir: String; const MinimumVersion: Integer; const UnsupportedVersion: Integer): Boolean;
+function VerifyVersion(const Dir: String; const MinimumVersion: Integer; const CRStartVersion: Integer; CRMinimumVersion: Integer): Boolean;
 var
 	Version: Integer;
 	LineTarget: String;
@@ -257,18 +257,28 @@ begin
 	begin
 		if(VersionFetch(WizardForm.DirEdit.Text + '\update.lst', Version, Format('{#Assembly}', [BitString]))) then
 		begin
-			if (Version < MinimumVersion) then
-			begin
 			
+			if(Version >= CRStartVersion) then
+			begin
+				IsCR := true;
+			end;
+			
+			Log('Fetched version: ' + IntToStr(Version));
+			Log('Minimum version: ' + IntToStr(MinimumVersion));
+		
+			if (Version < MinimumVersion) then
+			begin		
 #if LMMT == false	
-        if (IsCR) AND (Version < UnsupportedVersion)then
+        if (Version >= CRStartVersion)then
         begin
-          MsgBox(FmtMessage(CustomMessage('GameUnsupported1'),[IntToStr(UnsupportedVersion), IntToStr(Version) + ' ' + bitString]), mbCriticalError, MB_OK);
+          MsgBox(FmtMessage(CustomMessage('GameOutdated'),[IntToStr(CRMinimumVersion), IntToStr(Version) + ' ' + bitString]), mbCriticalError, MB_OK);
 					Result := false;
 					exit;
         end;
 #endif
 			
+				Log('Should show outdated message...');
+		
 				MsgBox(FmtMessage(CustomMessage('GameOutdated'),[IntToStr(MinimumVersion), IntToStr(Version) + ' ' + bitString]), mbCriticalError, MB_OK);
 
 #if LMMT == false	
@@ -277,19 +287,11 @@ begin
           VersionFetch(Dir + '\update.lst', Version, '{#AppLine}')
         end;
 #endif
-				DownloadUpdate(Version, UnsupportedVersion, Dir);
+				DownloadUpdate(Version, CRStartVersion, Dir);
 				Result := false;
 				exit;
 			end; 
-#if LMMT == false			
-			if NOT (IsCR) AND (Version >= UnsupportedVersion) then
-			begin
-				MsgBox(FmtMessage(CustomMessage('GameUnsupported'),[IntToStr(UnsupportedVersion),IntToStr(Version)]), mbCriticalError, MB_OK);
-				Result := false;
-				exit;
-			end;
-#endif
-      
+			
       result := true;
 		end
 		else begin
@@ -330,7 +332,7 @@ begin
 	NoteBits(WizardForm.DirEdit.Text);
 #endif
 		
-  if (EmptyFolder = false) AND (VerifyVersion(WizardForm.DirEdit.Text, MinimumVersion, {#UnsupportedVersion}) = false) then
+  if (EmptyFolder = false) AND (VerifyVersion(WizardForm.DirEdit.Text, {#MinimumVersion}, {#CRStartVersion}, {#CRMinimumVersion}) = false) then
 	begin
 		Result := false;
 		exit;

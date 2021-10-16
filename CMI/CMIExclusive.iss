@@ -33,47 +33,68 @@ begin
 	end;
 end;
 	
-Function FixEngComponents(): Boolean;
+Function FixComponents(): Boolean;
+var
+	NonCR: Array of string;
+	NonEng: Array of string;
+	I: Integer;
 begin
 	//If english version is detected, run the below code.
 	if (IsEng(path) > 0) AND (EngDisable <> true) then
 	begin
-		MsgBox(CustomMessage('EnglishVersionAlert'), mbInformation, MB_OK)
-		if (MsgBox(CustomMessage('EnglishVersionCompatibility'), mbConfirmation, MB_YESNO) = IDYES) then
+		if EngDisable then
 		begin
-			//Unchecks the components for English version
-			Wizardform.ComponentsList.Checked[GetComponentIndex(CustomMessage('TranslationPlugs'))] := false
-			Wizardform.ComponentsList.Checked[GetComponentIndex('i18nEx')] := false
-			Wizardform.ComponentsList.Checked[GetComponentIndex('Resource Redirector')] := false
-			Wizardform.ComponentsList.Checked[GetComponentIndex('XUnity AutoTranslator')] := false
-			//Grays out components that shouldn't be used on english version
-			Wizardform.ComponentsList.ItemEnabled[GetComponentIndex(CustomMessage('TranslationPlugs'))] := false
-			Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('i18nEx')] := false
-			Wizardform.ComponentsList.ItemEnabled[GetComponentIndex(CustomMessage('ExtraTrans'))] := false
-			Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('Resource Redirector')] := false
-			Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('XUnity AutoTranslator')] := false
-			//Syb Section
-			Wizardform.ComponentsList.ItemEnabled[GetComponentIndex(CustomMessage('TranslationPlugs') + ' (Syb)')] := false
-			Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('i18nEx (Syb)')] := false
-			Wizardform.ComponentsList.ItemEnabled[GetComponentIndex(CustomMessage('ExtraTrans') + ' (Syb)')] := false
-			Wizardform.ComponentsList.ItemEnabled[GetComponentIndex('XUnity AutoTranslator (Syb)')] := false
-			//Removes types that could potentially install non-eng version components
-			Wizardform.TypesCombo.Items.Delete(0);
-			Wizardform.TypesCombo.Items.Delete(0);
-			//When an entry is deleted, any higher entries cascade down. Thus we just delete the same entry multiple times.
-			Wizardform.TypesCombo.Items.Delete(2);
-			Wizardform.TypesCombo.Items.Delete(2);
-			Wizardform.TypesCombo.Items.Delete(2);
-			//Selects a functioning english type                        
-			WizardForm.TypesCombo.ItemIndex := 0;
-			//Updates checkboxes.
+			NonEng := [
+				'i18nEx',
+				'XUnity AutoTranslator',
+				'Resource Redirector',
+				CustomMessage('TranslationPlugs'),
+				CustomMessage('ExtraTrans')
+			];
+			
+			for I := 0 to GetArrayLength(NonEng)-1 do
+			begin
+				RemoveComponent(NonEng[I]);
+			end;
+			
 			EngDisable := true;																								
-			//WizardForm.TypesCombo.OnChange(WizardForm.TypesCombo);
-			//MsgBox('Debug!', mbInformation, MB_OK);
 		end;
 	end;
-end;
 	
+	if (IsCR) then begin	
+		NonCR := [
+			'SmoothAnimation',
+			'XTMasterSlave+',
+			'XTFutaBody',
+			'XTFutaAccessories',
+			'Doc' + #39 + 's SA',
+			'HalfUnDressing',
+			'MtAccelerator',
+			'AllScene Version',
+			CustomMessage('EmoEarsMod'),
+			CustomMessage('EmoEarsAhoge'),
+			'EmotionalEars(and tails)',
+			'EditSceneUndo',
+			'SaveSettingsInGame',
+			'VibeYourMaid',
+			'BodyCategoryAdd',
+			'Wrap Mode Extend Script',
+			'Error Texture Placeholder Script',
+			'MeidoPhotoStudio',
+			'1900 Poses for MPS',
+			'ExtendedErrorHandling',
+			'ShapekeyMaster'		
+		];		
+		
+		for I := 0 to GetArrayLength(NonCR)-1 do
+		begin
+			RemoveComponent(NonCR[I]);
+		end;
+		
+		if (Wizardform.ComponentsList.Checked[GetComponentIndex('ShapeAnimator')]) then
+			Wizardform.ComponentsList.CheckItem(GetComponentIndex('Standard SA'), coCheck);
+	end	
+end;
 	
 Function HandleSer(const GamePath: String): Boolean;
 begin
@@ -111,28 +132,7 @@ var
 	IsCRAsked: Boolean;	
 function GetIsCR(): Boolean;
 begin
-
 	Log('Checking GetIsCR');
-
-	if (IsCRAsked = false) then
-	begin
-		case MsgBox(CustomMessage('IsGameCR'), mbInformation, MB_YESNO) of 
-			IDYES: IsCR := true;
-			IDNO: IsCR := false;
-		end;
-		
-		if (IsCR) then
-		begin
-			MinimumVersion := {#CRMinimumVersion};
-			SuppressibleMsgBox(CustomMessage('GameIsCRWarning'), mbInformation, MB_OK, IDOK);
-
-		end
-		else begin
-			MinimumVersion := {#MinimumVersion};
-		end;
-		
-		IsCRAsked := true;
-	end;
 	result := IsCR;	
 end;
 

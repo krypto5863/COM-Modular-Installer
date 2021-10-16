@@ -20,7 +20,6 @@ Source:"Utility\DLL\CMIHelper.dll"; DestDir: "{tmp}"; Permissions: everyone-full
 		x86bit: Boolean;
 		x64bit: Boolean;
 		bitString: String;
-		MinimumVersion: Integer;
 		IsCR: Boolean;
 [/Code]
 //#include "MyDownloadPage.iss"
@@ -165,7 +164,14 @@ begin
 		path := ExpandConstant('{app}');
 		
 #if LMMT == false
-		FixEngComponents()
+
+		if (IsCR) then
+			MsgBox(CustomMessage('CRVersionAlert'), mbInformation, MB_OK);
+			
+		if (IsEng(path) > 0) AND (EngDisable <> true) AND (MsgBox(CustomMessage('EnglishVersionAlert') + #13#10#13#10 + CustomMessage('EnglishVersionCompatibility'), mbInformation, MB_YESNO) = IDYES) then
+			EngDisable := true;
+			
+		FixComponents();
 #else
 		FixBitComponents();
 #endif
@@ -179,7 +185,7 @@ function BackButtonClick(const CurPageID: Integer): Boolean;
 begin
 	if CurPageID = wpSelectComponents then
 	begin		
-		if (EngDisable = true) OR x86bit = false OR x64bit = false then
+		if (EngDisable = true) OR x86bit = false OR x64bit = false OR IsCR then
 		begin
 			if MsgBox(CustomMessage('GameTypeChangedExit'), mbConfirmation, MB_YESNO) = IDYES then
 			begin

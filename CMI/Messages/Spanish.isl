@@ -16,7 +16,6 @@ SelectDirDesc=¿Dónde está ubicado tu juego?
 [CustomMessages]
 
 ;Startup Messages
-IsGameCR=¿Esta versión de COM a la que estamos instalando hoy es 3.0 o superior? En otras palabras, ¿es una versión CR-Edit o COM3D2.5? 
 GameIsCRWarning=Tenga en cuenta que las versiones de CR-Edit (también conocidas como versiones 3,0+ o COM3D2.5) tienen menos compatibilidad con mods y plugins. Puede encontrar que varios plugins no están disponibles en estas versiones que están disponibles en versiónes no CR-Edit e incluso puede encontrar errores que aún no han sido corregidos por los desarrolladores de plugins. ¡Usted ha sido advertido! 
 
 
@@ -28,7 +27,8 @@ ReadmeRead=¿Leíste el archivo Readme? No leerlo anulará cualquier posibilidad
 ReadmeExit=Regrese y léalo antes de instalar CMI
 
 EnglishVersionAlert=Si no tienes una versión en inglés del juego, sal de la instalación ahora mismo y consulta el archivo readme!!%n%n¡¡Se encontró la versión en inglés!! Tenga en cuenta que las versiones en inglés no son tan completas ni tan compatibles como la versión japonesa. 
-EnglishVersionCompatibility=Los plugins de traducción y los componentes relacionados pueden ser dañinos o incompatibles con tu juego de inglés.%n%n¿Deberíamos deshabilitar estos componentes para mantenerte a salvo? (Recomendado) 
+EnglishVersionCompatibility=Los plugins de traducción y los componentes relacionados pueden ser dañinos o incompatibles con tu juego de inglés.%n%n¿Deberíamos deshabilitar estos componentes para mantenerte a salvo? (Recomendado)
+CRVersionAlert=Si no tienes una versión CR (COM3D2.5) del juego, sal de la instalación ahora mismo y consulta el archivo readme.%n%n¡¡Se encontró la versión CR!!Tenga en cuenta que las versiones CR no son tan completas ni tan compatibles como la versión estándar. ¡Algunos componentes se desactivarán por su seguridad! 
 
 CMDetected=¡Esto es CM3D2, no COM3D2! ¡CMI no se hizo para CM3D2! Para CM3D2, utilice Legacy Meido Modular Toolbox (LMMT) 
 NotaGameDir=¡Esto no parece ser un directorio COM3D2! Aún podemos continuar con la instalación, pero es posible que esté instalando en el directorio incorrecto, algunas funciones también se volverán ineficaces. ¿Seguimos de todos modos? 
@@ -38,8 +38,7 @@ IsInProgramFiles=Parece que su juego está ubicado en el directorio Archivos de 
 IsINM=¡Hemos detectado INM! INM no es compatible con CMI debido a diferencias técnicas.%n%nPara usar CMI, instale el parche complementario de contenido para adultos/R18.%n%nSi no tiene una versión INM del juego, es probable que haya instalado Eng DLC/archivos en su juego japonés. Consulte el archivo readme sobre las instrucciones de reparación. 
 
 GameOutdated=¡Tu juego está desactualizado! Actualícelo inmediatamente.%n%nVersión mínima:%1%n%nVersión encontrada:%2
-GameUnsupported=¡Tu juego está en una versión que no es compatible con la selección actual de CR! Reinicie el instalador y seleccione la opción adecuada, en este caso SÍ, cuando se le pregunte si su juego es una versión CR!%n%nVersión no compatible:%1 o más reciente%n%nVersión encontrada:%2
-GameUnsupported1=¡Tu juego está en una versión que no es compatible con la selección actual de CR! Reinicie el instalador y seleccione la opción adecuada, en este caso NO, cuando se le pregunte si su juego es una versión CR!%n%nVersión compatible:%1 o más reciente%n%nVersión encontrada:%2
+GameUpdateNotSupported=No podemos actualizar las versiones CR-edit del juego a través del instalador porque requiere pasos adicionales. Actualiza tu juego manualmente.
 
 MissingUpdateLst=Aunque parece ser una carpeta de juegos, ¡no hay ningún archivo Update.lst! ¡Esto es muy malo!%n%nActualiza su juego inmediatamente y asegúrese de que funciona antes de intentar instalar CMI nuevamente.
 VersionFetchLoadFail=No se pudieron cargar las lineas de %1 

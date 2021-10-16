@@ -31,6 +31,7 @@ ReadmeExit=Go back and read it before installing CMI
 
 EnglishVersionAlert=If you are not on an English version of the game quit the install right now and refer to the readme!!%n%nEnglish version was found!! Be advised, English versions are not as feature full or as supported as the Japanese version!
 EnglishVersionCompatibility=Translation plugins and related components can be harmful or incompatible to your English game.%n%nShould we disable these components in order to keep you safe? (Recommended)
+CRVersionAlert=If you are not on a CR (COM3D2.5) version of the game quit the install right now and refer to the readme!!%n%nCR version was found!! Be advised, CR versions are not as feature full or as supported as the standard version! Some components will be disabled for your safety!
 
 CMDetected=This is CM3D2 not COM3D2! CMI was not made for CM3D2! For CM3D2, please use Legacy Meido Modular Toolbox (LMMT)
 NotaGameDir=This does not appear to be a COM3d2 Directory! We can still continue the installation but you may be installing to the wrong directory, some functions will also be rendered ineffectual. Do we continue anyways?
@@ -41,9 +42,6 @@ IsINM=We have detected INM! INM is not supported by CMI due to technical differe
 
 GameOutdated=Your game is outdated! Please update it immediately.%n%nMinimum Version: %1%n%nFound Version: %2
 GameUpdateNotSupported=We cannot update CR-edit versions of the game via the installer because it requires extra steps. Please update your game manually.
-GameUpdateNotSuggested=We cannot refer you to a game update because your game isn't already version 3.0. Please update your game manually.
-GameUnsupported=Your game is on a version that is not supported by the current CR selection! Plase restart the installer and select the proper option, in this case being YES, when asked if your game is a CR version!%n%nUnsupported Version:%1 or Newer%n%nFound Version:%2
-GameUnsupported1=Your game is on a version that is not supported by the current CR selection! Plase restart the installer and select the proper option, in this case being NO, when asked if your game is a CR version!%n%nSupported Version:%1 or Newer%n%nFound Version:%2
 
 MissingUpdateLst=While this appears to be a game folder, there is no Update.lst file! This is very bad!%n%nPlease update your game immediately and ensure that your game is functioning before attempting to install CMI again.
 VersionFetchLoadFail=Could not load strings from %1

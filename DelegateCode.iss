@@ -16,13 +16,11 @@
 	procedure TypesComboChange(const Sender: TObject);
 	begin
     OGEvent(Sender);
-
-		{if (CompareText(WizardForm.TypesCombo.Items.Strings[WizardForm.TypesCombo.ItemIndex],'Custom Preset') = 0) then
-			ApplyCustomPreset(path + '\' + PresetFile);
-			}
-			
+		
 		if (CompareText(WizardSetupType(false),'preset') = 0) then
 			ApplyCustomPreset(path + '\' + PresetFile);
+			
+		FixComponents();
 	end;
 
   function OnDownloadProgress(const Url, Filename: string; const Progress, ProgressMax: Int64): Boolean;
