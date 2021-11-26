@@ -18,16 +18,24 @@
 Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs;
 
 	Source: "{tmp}\BepInEx\plugins\COM3d2.AdvancedMaterialModifier.Plugin.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/AdvMatMod; Flags: external
+	
+	Source: "{#ibep}\CamConEx\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/cameracon; Flags: ignoreversion recursesubdirs createallsubdirs 
+	
+	Source: "{tmp}\BepInEx\plugins\CM3D2.Toolkit.Guest4168Branch.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/CM3D2Toolkit; Flags: external
+		Source: "{tmp}\BepInEx\plugins\COM3D2.ShortMenuVanillaDatabase.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/CM3D2Toolkit/ShortVanilla; Flags: external
+		Source: "{tmp}\BepInEx\plugins\System.Threading.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/CM3D2Toolkit/ShortVanilla; Flags: external
 
 	Source: "{tmp}\BepInEx\plugins\COM3D2.API.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/COM3D2API; Flags: external
 		Source: "{tmp}\BepInEx\plugins\COM3D2.ShapekeyMaster.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/COM3D2API/ShapekeyMaster; Flags: external
-		Source: "{tmp}\BepInEx\plugins\COM3D2.ShiftClickExplorer.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ShiftClick; Flags: external
+	
+	Source: "{tmp}\BepInEx\plugins\COM3D2.ShiftClickExplorer.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ShiftClick; Flags: external
 	
 	Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan; Flags: external
 	
 	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UpCheck; Flags: ignoreversion recursesubdirs createallsubdirs
 	
 	Source: "{tmp}\BepInEx\plugins\COM3D2.ExtendedErrorHandling.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ExErrorHandle; Flags: external
+	
   Source: "{tmp}\BepInEx\plugins\COM3D2.ExtendedPresetManagement.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ExPresetMan; Flags: external
 	
 	Source: "{#ibep}\FPSUnlock\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSUn; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -46,6 +54,7 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 	//Source: "{tmp}\BepInEx\plugins\RuntimeUnityEditor\*"; DestDir: "{#bepp}\RuntimeUnityEditor"; Components: Loader/bepinEX/RunUniEdit; Flags: external
 	 
 	Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/scriptloader; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\all_maids_in_private_mode.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/allprivate; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\add_subs_to_old_yotogi.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/oldsubs; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\dump_game_info.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/dumpinfo; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\editable_names.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/editname; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -66,8 +75,8 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 		Source: "{#ibep}\Xuat\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/Translations/resredir/xuat; Flags: ignoreversion recursesubdirs createallsubdirs 
 
 Source: "{#isyb}\Core\*"; DestDir: "{app}"; Components: Loader/Sybaris; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#isyb}\i18nEx\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
-		Source: "{#iloader}\extratranslations\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
+	//Source: "{#isyb}\i18nEx\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
+		//Source: "{#iloader}\extratranslations\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#isyb}\Xuat\*"; DestDir: "{#plug}"; Components: Loader/Sybaris/Translations/xuat; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#isyb}\QuickEdit\*"; DestDir: "{#syb}"; Components: Loader/Sybaris/QuickEdit; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#isyb}\CacheEdit\*"; DestDir: "{#syb}"; Components: Loader/Sybaris/cacheedit; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -75,7 +84,6 @@ Source: "{#isyb}\Core\*"; DestDir: "{app}"; Components: Loader/Sybaris; Flags: i
 
 ;Patchers
 Source: "{#IPatch}\addscreen\*"; DestDir: "{#syb}"; Components: Patchers/addscreen; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPatch}\allprivate\*"; DestDir: "{#syb}"; Components: Patchers/allprivate; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\AutoConverter\*"; DestDir: "{#syb}"; Components: Patchers/autocon; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\BodyCategoryAdd\*"; DestDir: "{#syb}"; Components: Patchers/bodycat; Flags: ignoreversion recursesubdirs createallsubdirs  
 Source: "{#IPatch}\blinkstop\*"; DestDir: "{#syb}"; Components: Patchers/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -104,7 +112,6 @@ Source: "{#IPatch}\saveset\*"; DestDir: "{#syb}"; Components: Patchers/saveset; 
 Source: "{#IPlugin}\addyot\*"; DestDir: "{#syb}"; Components: plugins/addyot; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\ACCex\*"; DestDir: "{#syb}"; Components: plugins/accex; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\eraseout\*"; DestDir: "{#syb}"; Components: plugins/eraseout; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\cameracon\*"; DestDir: "{#syb}"; Components: plugins/cameracon; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\camerautil\*"; DestDir: "{#syb}"; Components: plugins/camerautil; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\hudclock\*"; DestDir: "{#plug}"; Components: plugins/hudclock; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\colorhelp\*"; DestDir: "{#syb}"; Components: plugins/colorhelp; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -180,7 +187,7 @@ Source: "{#IMisc}\TextureUncensors\MoreMaleUncensor\*"; DestDir: "{#mod}\[CMI]Un
 Source: "{#IMisc}\TextureUncensors\DLCMoreMaleUncensor\*"; DestDir: "{#mod}\[CMI]Uncensors\MaleUncensor\"; Components: misc/extrauncensormale; Flags: ignoreversion  recursesubdirs createallsubdirs solidbreak; Check:FileExists(ExpandConstant('{app}\GameData\parts_dlc219.arc'))
 Source: "{#IMisc}\TextureUncensors\body_analkupa\*"; DestDir: "{#mod}\[CMI]Uncensors\body_analkupa"; Components: misc/body/analkupa; Flags: ignoreversion recursesubdirs createallsubdirs solidbreak 
 Source: "{#IMisc}\TextureUncensors\lomob\*"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody"; Components: misc/body/LoMobBody; Flags: ignoreversion recursesubdirs createallsubdirs
-	Source: "{#IMisc}\TextureUncensors\lomob\LOmobchara_extra_v1_beta\model\underhair.model"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody\LOmobchara_extra_v1_beta\model\underhair_en.model"; Components: misc/body/LoMobBody; Flags: ignoreversion recursesubdirs createallsubdirs; Check: "FileExists(ExpandConstant('{app}\localize.dat'))"
+	Source: "{#IMisc}\TextureUncensors\lomob\LOmobchara_extra_v1_beta\model\underhair.model"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody\LOmobchara_extra_v1_beta\model"; DestName: "underhair_en.model"; Components: misc/body/LoMobBody; Flags: ignoreversion recursesubdirs createallsubdirs; Check: IsEngSimple(ExpandConstant('{app}'));
 
 //Unrelated to files.
 Source: "{#IDocumentation}\CMI_Readme.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme nocompression

@@ -164,16 +164,17 @@ begin
 		
   if (IsEng(Dir)) = 1 then
   begin
-    i := MinVer/10+100;
+		MinVer := 100
+    i := 200;
     SiteSt := ExpandConstant('{#UpdateFetch2}{#UpdateFile}')
   end else
   begin
-    i := MinVer/10+100;
+    i := 2099;
     SiteST := ExpandConstant('{#UpdateFetch1}{#UpdateFile}')
   end;
 #else
-    i := MinVer/10+10;
-    SiteSt := ExpandConstant('{#UpdateFetch1}{#UpdateFile}')
+   i := MinVer/10+10;
+   SiteSt := ExpandConstant('{#UpdateFetch1}{#UpdateFile}')
 #endif
 
   while (i >= MinVer/10) AND (Length(site) <= 0) do
@@ -186,8 +187,15 @@ begin
     end;
 #endif
 
-#if LMMT == false		
-		TempString := IntToStr(i)[1] +  '_' + IntToStr(i)[2] +  '_'  + IntToStr(i)[3];
+#if LMMT == false			
+		
+		if (IsEng(Dir)) = 1 then
+		begin
+			TempString := IntToStr(i);	
+		end else
+		begin
+			TempString := IntToStr(i)[1] +  '_' + IntToStr(i)[3] +  '_'  + IntToStr(i)[4];
+		end;
 #else
 		TempString := IntToStr(i);
 #endif

@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.4"
+#define MyAppVersion "2.5.6"
 #define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
-#define MinimumVersion 20700
-#define CRStartVersion 30700
+#define MinimumVersion 20900
+#define CRStartVersion 30900
 
 #define CRMinimumVersion 30100
 
@@ -128,6 +128,11 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
   Name: Loader/bepinEX; Description: {cm:BepinEx}; Types: full notr compact eng pic self hen; Flags:Exclusive checkablealone
 
 		Name: Loader/bepinEX/AdvMatMod; Description: AdvancedMaterialModifier; Types: self; Flags: dontinheritcheck;
+		
+		Name: Loader/bepinEX/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
+		
+		Name: Loader/bepinEX/CM3D2Toolkit; Description: CM3D2.Toolkit.Guest4168Branch; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+			Name: Loader/bepinEX/CM3D2Toolkit/ShortVanilla; Description: ShortMenuVanillaDatabase; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 	  
 		Name: Loader/bepinEX/COM3D2API; Description: COM3D2.API; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 			Name: Loader/bepinEX/COM3D2API/ShapekeyMaster; Description: ShapekeyMaster; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
@@ -158,11 +163,11 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
 		//Name: Loader/bepinEX/RunUniEdit; Description: RuntimeUnityEditor; Flags: dontinheritcheck;
 
     Name: Loader/bepinEX/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
+			Name: Loader/bepinEX/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
+			Name: Loader/bepinEX/scriptloader/allprivate; Description: All Maids In Private Mode Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/enascout; Description: Enable Scout Mode Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/errtex; Description: Error Texture Placeholder Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/thumbs; Description: Load Small Thumbs Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
       Name: Loader/bepinEX/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
@@ -183,8 +188,8 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
   Name: Loader/Sybaris; Description:{cm:Sybaris} ;Flags: Exclusive checkablealone
 
     Name: Loader/Sybaris/Translations; Description:{cm:TranslationPlugs} (Syb); Flags: dontinheritcheck
-      Name: Loader/Sybaris/Translations/i18nEx; Description: i18nEx (Syb);
-				Name:Loader/Sybaris/Translations/i18nEx/extrans; Description:{cm:ExtraTrans} (Syb); Flags: dontinheritcheck;
+      //Name: Loader/Sybaris/Translations/i18nEx; Description: i18nEx (Syb);
+				//Name:Loader/Sybaris/Translations/i18nEx/extrans; Description:{cm:ExtraTrans} (Syb); Flags: dontinheritcheck;
       Name: Loader/Sybaris/Translations/xuat; Description: XUnity AutoTranslator (Syb);
 			Name: Loader/Sybaris/cacheedit; Description: CacheEditMenu;
 			Name: Loader/Sybaris/CCfix; Description: CreatorSaveFix;
@@ -194,7 +199,6 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
 Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 
   Name: Patchers/addscreen; Description: AddScreenSize; Types: full eng notr self ;
-  Name: Patchers/allprivate; Description: AllMaidsInPrivateMode; Types: self;
   Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng notr pic self hen;
   Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full compact eng notr pic self hen;
   Name: Patchers/blinkstop; Description: EditBlinkStop; Types: full eng notr pic self hen;
@@ -220,7 +224,6 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
   Name: plugins/addyot; Description: AddYotogiSliderSE; Types: Full compact eng notr hen self;
   Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng notr hen;
   Name: plugins/eraseout; Description: AutoEraseOutline; types: full pic eng notr hen;
-  Name: plugins/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
   Name: plugins/camerautil; Description: CameraUtility; Types: Full pic self eng notr hen;
   Name: plugins/hudclock; Description:ClockHud;
   Name: plugins/colorhelp; Description: ColorPaletteHelper; Types:full self pic eng notr hen;
@@ -272,9 +275,9 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
     Name: plugins/scenecap/VR; Description:VR Ini File; Flags: dontinheritcheck
   Name: plugins/seieki; Description:Seieki; Types:pic;
   Name: plugins/shaderchange; Description:ShaderChange; Types:full pic self eng notr;
-  Name: plugins/shapeanimator; Description:ShapeAnimator; Types:full pic self eng notr hen;
-    Name: plugins/shapeanimator/norm; Description:Standard SA; Types:full pic self eng notr hen; Flags: exclusive;
-    Name: plugins/shapeanimator/doc; Description:Doc's SA; Types:full pic self eng notr hen; Flags: exclusive;
+  Name: plugins/shapeanimator; Description:ShapeAnimator;
+    Name: plugins/shapeanimator/norm; Description:Standard SA; Flags: exclusive;
+    Name: plugins/shapeanimator/doc; Description:Doc's SA; Flags: exclusive;
   Name: plugins/SKAcc; Description:SKAccelerator; Types:full pic self eng notr hen;
   Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
   Name: plugins/slimeshade; Description:SlimeShader; Types:;

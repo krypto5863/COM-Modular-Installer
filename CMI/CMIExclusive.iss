@@ -40,25 +40,26 @@ var
 	I: Integer;
 begin
 	//If english version is detected, run the below code.
-	if (IsEng(path) > 0) AND (EngDisable <> true) then
+	if (IsEng(path) > 0) AND EngDisable then
 	begin
-		if EngDisable then
+		NonEng := [
+			'i18nEx',
+			'i18nEx (Syb)',
+			'XUnity AutoTranslator',
+			'XUnity AutoTranslator (Syb)',
+			'Resource Redirector',
+			CustomMessage('TranslationPlugs'),
+			CustomMessage('TranslationPlugs') + ' (Syb)',
+			CustomMessage('ExtraTrans'),
+			CustomMessage('ExtraTrans') + ' (Syb)'
+		];
+			
+		for I := 0 to GetArrayLength(NonEng)-1 do
 		begin
-			NonEng := [
-				'i18nEx',
-				'XUnity AutoTranslator',
-				'Resource Redirector',
-				CustomMessage('TranslationPlugs'),
-				CustomMessage('ExtraTrans')
-			];
-			
-			for I := 0 to GetArrayLength(NonEng)-1 do
-			begin
-				RemoveComponent(NonEng[I]);
-			end;
-			
-			EngDisable := true;																								
+			RemoveComponent(NonEng[I]);
 		end;
+			
+		EngDisable := true;																								
 	end;
 	
 	if (IsCR) then begin	
