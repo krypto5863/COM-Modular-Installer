@@ -59,6 +59,7 @@ begin
   //These have more conditions and require version specific links and care.
   AddToListOfAssets(links , 'Loader/bepinEX/MuteBack', 'https://github.com/BepInEx/BepInEx.Utility/releases/download/r6/BepInEx.MuteInBackground.v1.1.zip', '' ,'MuteInBackground.zip', false);
   AddToListOfAssets(links , 'Loader/bepinEX/RunUniEdit', 'https://github.com/ManlyMarco/RuntimeUnityEditor/releases/download/v2.4/RuntimeUnityEditor_BepInEx5_v2.4.zip', '' ,'RuntimeUnityEditor.zip', false);
+	AddToListOfAssets(links , 'Loader/bepinEX/OptIMGUI', 'https://github.com/BepInEx/BepInEx.Utility/releases/download/r7/BepInEx.OptimizeIMGUI.v1.0.zip', '' ,' BepInEx.OptimizeIMGUI.v1.0.zip', false);
 #if LMMT == false
 	AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API', 'https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v3/COM3D2.API.v1.0.zip', '' ,'COM3D2.API.v1.0.zip', false);
 	AddToListOfAssets(links , 'Loader/bepinEX/CM3D2Toolkit', 'https://github.com/JustAGuest4168/CM3D2.Toolkit/releases/download/v1.0.0.0-dll/CM3D2.Toolkit.Guest4168Branch.dll', 'BepInEx\plugins\' ,'CM3D2.Toolkit.Guest4168Branch.dll', false);

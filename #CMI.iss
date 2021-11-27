@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.6"
+#define MyAppVersion "2.5.6.1"
 #define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
 #define MinimumVersion 20900
 #define CRStartVersion 30900
@@ -183,7 +183,8 @@ Name: Loader; Description: {cm:ModLoader}; Types: full compact;
 				Name:Loader/bepinEX/Translations/i18nEx/extrans; Description:{cm:ExtraTrans}; Types:full compact self pic hen; Flags: dontinheritcheck;
       Name: Loader/bepinEX/Translations/resredir; Description: Resource Redirector; Flags: dontinheritcheck;
         Name: Loader/bepinEX/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen; Flags: dontinheritcheck;
-
+				
+		Name: Loader/bepinEX/OptIMGUI; Description: OptimizeIMGUI; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 
   Name: Loader/Sybaris; Description:{cm:Sybaris} ;Flags: Exclusive checkablealone
 
