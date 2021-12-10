@@ -2,22 +2,22 @@
 
 <script type="text/javascript">
     
-function getReleaseTag(){
+async function getTag() {
+    let result = await userAction();
+    return result.tag_name;
+}
     
-    var xmlHttp = new XMLHttpRequest();
-    
-    xmlHttp.onreadystatechange = function() 
-    {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-        {
-            var r=JSON.parse(xmlHttp.responseText);
-            return(r.tag_name);
-        }
-    };
-    
-    xmlHttp.open("GET", "https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest", true);
-    xmlHttp.send(null);
-    
+async function getURL() {
+    let result = await userAction();
+    return result.assets[0].browser_download_url;
+}
+
+
+const userAction = async () => {
+  const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
+  const myJson = await response.json();
+  
+  return myJson;
 }
     
 </script>
