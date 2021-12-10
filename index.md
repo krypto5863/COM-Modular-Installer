@@ -1,3 +1,7 @@
+---
+nav_order: 0
+---
+
 # Introduction
 
 Welcome to the COM3D2 Modular Installer! The All-In-One plugin and mod installer for every version of COM3D2 (Except INM with no R18 Patch)
