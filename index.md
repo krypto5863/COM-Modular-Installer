@@ -1,37 +1,8 @@
-## Welcome to GitHub Pages
+# Introduction #
 
-You can use the [editor on GitHub](https://github.com/krypto5863/COM-Modular-Installer/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Welcome to the COM3D2 Modular Installer! The All-In-One plugin and mod installer for every version of COM3D2 (Except INM with no R18 Patch)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Meido can be a very complex game, and we’re here to make it simple. Since the great depression caused by the release of CM3D2, I’ve endeavored to fine tune and keep a clean game setup. This only becomes more difficult as the game ages and the amount of plugins and addons increase. Many issues arise from users making simple mistakes or people who suffer from brain deficits. This installer is designed to make things quick, easy, simple, safe and clean. You get to pick exactly what you want and discard what you do not. We’ll take care of the rest so you can right get in there and enjoy your meidos!
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/krypto5863/COM-Modular-Installer/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Advisory! ##
+CMI is completely free and shall remain free for the foreseeable future! If you did not download CMI from the official GitHub download page (refer to the source section for the official download) and if you paid any amount of money for this, then you have been scammed!
