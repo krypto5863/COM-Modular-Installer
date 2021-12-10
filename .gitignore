@@ -1,0 +1,11 @@
+#Ignored Files
+*.zip
+Compiled_EXE
+CMI/Documentation
+CMI/UI
+CMI/#CREdit
+CMI/#NoneCREdit
+Utility/7zip
+Utility/DLL
+LMMT
+*.docx
