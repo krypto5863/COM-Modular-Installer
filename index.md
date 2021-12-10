@@ -22,5 +22,5 @@ Meido can be a very complex game, and we’re here to make it simple. Since the 
   </video> 
 </center>
 
-<h1 align="center">Advisory</h1>
+<h2 align="center">Advisory</h2>
 CMI is completely free and shall remain free for the foreseeable future! If you did not download CMI from the official GitHub download page and if you paid any amount of money for this, then you have been scammed!
