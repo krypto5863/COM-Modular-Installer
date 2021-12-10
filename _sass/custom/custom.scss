@@ -2,3 +2,7 @@ img.rounded {
   border-radius: 50%;
   filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
 }
+
+img.bordered {
+  border: 5px solid ##0d0d0d;
+}
