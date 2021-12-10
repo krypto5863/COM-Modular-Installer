@@ -6,7 +6,7 @@ author: krypto5863
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  Download: "/download.md"
+  Download: "download"
 
 # --- Logo --- #
 
