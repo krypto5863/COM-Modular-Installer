@@ -11,4 +11,8 @@ Many people get confused when downloading CMI and may end up downloading the sou
 
 Once you know what you're doing, proceed to the release page with the button below!
 
-<a href="https://github.com/krypto5863/COM-Modular-Installer/releases/latest" class="btn btn-blue">Open Latest Release</a>
+<div align="center">
+
+  <a href="https://github.com/krypto5863/COM-Modular-Installer/releases/latest" class="btn btn-blue">Open Latest Release</a>
+
+</div>
