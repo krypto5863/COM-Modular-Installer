@@ -4,7 +4,7 @@ title: Home
 ---
 
 <p align="center">
-  <img width="400" height="400" src="https://github.com/krypto5863/COM-Modular-Installer/blob/gh-pages/icon.png?raw=true">
+  <img width="200" height="200" src="https://github.com/krypto5863/COM-Modular-Installer/blob/gh-pages/icon.png?raw=true">
 </p>
 
 # Home
