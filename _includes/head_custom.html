@@ -15,23 +15,13 @@
     
     // When request is received
     // Process it here
-    xhr.onload = function() {
-    
-        // Parse API data into JSON
-        const data = JSON.parse(this.response);
-
-          // Log the repo name
-            console.log('Repo:', data.name);
-            
-            // Log the repo description
-            console.log('Description:', data.description);
-            
-            // Log the repo url
-            console.log('URL:', data.html_url);
-            
-            // Add a separator between each repo
-            console.log('=========================')
-
+    xhr.onload = function() 
+    {
+       const data = JSON.parse(this.response);
+       console.log('Repo:', data.name);
+       console.log('Description:', data.description);
+       console.log('URL:', data.html_url);
+       console.log('=========================');
     }
     
     // Send the request to the server
