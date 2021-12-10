@@ -17,4 +17,3 @@ Once you know what you're doing, proceed to the release page! However, be sure y
   <a href="https://docs.google.com/document/d/1dFVNe2gvsVck0tjWrnCM2HxsdTFBAnsxs928Q1wVS1A" class="btn btn-blue">Open Readme</a>
 
 </div>
-<h2 align="center">Enjoy and don't abuse those meidos!</h2>
