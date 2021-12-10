@@ -2,7 +2,7 @@
 
 You can use the [editor on GitHub](https://github.com/krypto5863/COM-Modular-Installer/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-[Link button](http://example.com/){: .btn }
+<button type="button" name="button" class="btn">Button element</button>
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
