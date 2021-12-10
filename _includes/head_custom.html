@@ -21,6 +21,7 @@ async function fetchNotes(){
     const contentDiv = document.getElementById("changelog");
     let result = await userAction();
     contentDiv.innerHTML = result.body;
+    console.log("fetch notes was called.");
 }
 
 const userAction = async () => {
