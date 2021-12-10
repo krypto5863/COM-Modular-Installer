@@ -1,16 +1,6 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-<script type="module">
-import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
-</script>
-
 <script type="text/javascript">
- function fetchRelease(){
-    const response = await octokit.request('GET https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest')
-    
-    return response.name
- } 
-  
  function requestUserRepos(){
     
     // Create new XMLHttpRequest object
@@ -47,6 +37,5 @@ import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
     // Send the request to the server
     xhr.send();
     
-}
-  
+}  
 </script>
