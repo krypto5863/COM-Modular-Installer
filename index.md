@@ -7,8 +7,6 @@ title: Home
   <img class="rounded" width="100" height="100" align="center" src="https://github.com/krypto5863/COM-Modular-Installer/blob/gh-pages/siteICon.png?raw=true">
 </center>
 
-# Home
-
 Welcome to the COM3D2 Modular Installer! The All-In-One plugin and mod installer for the following versions of COM:
 
 - Japanese Original
@@ -24,5 +22,5 @@ Meido can be a very complex game, and we’re here to make it simple. Since the 
   </video> 
 </center>
 
-## Advisory!
+<h1 align="center">Advisory</h1>
 CMI is completely free and shall remain free for the foreseeable future! If you did not download CMI from the official GitHub download page and if you paid any amount of money for this, then you have been scammed!
