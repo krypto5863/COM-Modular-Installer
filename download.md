@@ -14,5 +14,6 @@ Once you know what you're doing, proceed to the release page with the button bel
 <div align="center">
 
   <a href="https://github.com/krypto5863/COM-Modular-Installer/releases/latest" class="btn btn-blue">Open Latest Release</a>
+  <a href="https://docs.google.com/document/d/1dFVNe2gvsVck0tjWrnCM2HxsdTFBAnsxs928Q1wVS1A" class="btn btn">Open Readme</a>
 
 </div>
