@@ -4,7 +4,7 @@ title: Home
 ---
 <center>
   <h1>COM Modular Installer</h1>
-  <img class="rounded" width="100" height="100" align="center" src="https://github.com/krypto5863/COM-Modular-Installer/blob/gh-pages/siteICon.png?raw=true">
+  <img class="rounded" width="100" height="100" align="center" src="/siteICon.png">
 </center>
 
 Welcome to the COM3D2 Modular Installer! The All-In-One plugin and mod installer for the following versions of COM:
