@@ -4,9 +4,6 @@
 function getReleaseTag()
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() 
-    { 
-    };
     xmlHttp.open("GET", "https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest", true); // true for asynchronous 
     xmlHttp.send(null);
 }
