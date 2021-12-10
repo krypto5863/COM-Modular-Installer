@@ -1,4 +1,4 @@
 title: "Remote theme example"
-remote_theme: pmarsceill/just-the-docs
+remote_theme: daattali/beautiful-jekyll
 color_scheme: "dark"
 search_enabled: false
