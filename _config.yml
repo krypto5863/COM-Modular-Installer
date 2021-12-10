@@ -3,4 +3,4 @@ remote_theme: pmarsceill/just-the-docs
 color_scheme: "dark"
 search_enabled: false
 
-#logo: "siteICon.png"
+logo: "siteICon.png"
