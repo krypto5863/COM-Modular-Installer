@@ -1,10 +1,11 @@
 ---
+title: Download
 nav_order: 2
 ---
 
-# Download
+# How To Download
 
-Many people get confused when downloading CMI, please refer to the below image.
+Many people get confused when downloading CMI and may end up downloading the source code of the repo. If you're a normal user, this won't do anything for you. Please refer to the image below on what file you should be downloading!
 
 ![image](https://user-images.githubusercontent.com/29824718/145624123-4d5f8846-df73-4c75-9f8a-236f5e09c5cf.png)
 
