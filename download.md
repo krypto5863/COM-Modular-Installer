@@ -2,8 +2,7 @@
 title: Download
 nav_order: 2
 ---
-
-# Download
+<h2 align="center">Download</h2>
 Be sure you **give the readme a read**, either before or during your installation of CMI!
 
 <div align="center">
