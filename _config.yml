@@ -1,18 +1,4 @@
-remote_theme: daattali/beautiful-jekyll
-
-title: COM Modular Installer
-author: krypto5863
-
-# --- List of links in the navigation bar --- #
-
-navbar-links:
-  Download: "download"
-
-# --- Logo --- #
-
-# Image to show in the navigation bar - works best with a square image
-# Remove this parameter if you don't want an image in the navbar
-#avatar: "/assets/img/avatar-icon.png"
-
-# By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
-round-avatar: true
+title: "COM Modular Installer"
+remote_theme: pmarsceill/just-the-docs
+color_scheme: "dark"
+search_enabled: false
