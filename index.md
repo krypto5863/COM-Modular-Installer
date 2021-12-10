@@ -20,10 +20,12 @@ Meido can be a very complex game, and we’re here to make it simple. Since the 
 
 ## Demo
 
-<video width="320" height="240" autoplay>
-  <source src="https://user-images.githubusercontent.com/29824718/145638344-28ad53a2-7f3e-4084-993a-f3dfb4d1e397.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video> 
+<center>
+  <video width="320" height="240" autoplay>
+    <source src="https://user-images.githubusercontent.com/29824718/145638344-28ad53a2-7f3e-4084-993a-f3dfb4d1e397.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video> 
+</center>
 
 ## Advisory!
 CMI is completely free and shall remain free for the foreseeable future! If you did not download CMI from the official GitHub download page and if you paid any amount of money for this, then you have been scammed!
