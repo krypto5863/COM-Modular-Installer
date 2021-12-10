@@ -9,11 +9,13 @@ Many people get confused when downloading CMI and may end up downloading the sou
 
 ![image](https://user-images.githubusercontent.com/29824718/145624123-4d5f8846-df73-4c75-9f8a-236f5e09c5cf.png)
 
-Once you know what you're doing, proceed to the release page with the button below!
+Once you know what you're doing, proceed to the release page! However, be sure you **give the readme a read**, either before or during your installation of CMI!
 
 <div align="center">
 
-  <a href="https://github.com/krypto5863/COM-Modular-Installer/releases/latest" class="btn btn-blue">Open Latest Release</a>
-  <a href="https://docs.google.com/document/d/1dFVNe2gvsVck0tjWrnCM2HxsdTFBAnsxs928Q1wVS1A" class="btn btn">Open Readme</a>
+  <a href="https://github.com/krypto5863/COM-Modular-Installer/releases/latest" class="btn btn-green">Open Latest Release</a>
+  <a href="https://docs.google.com/document/d/1dFVNe2gvsVck0tjWrnCM2HxsdTFBAnsxs928Q1wVS1A" class="btn btn-blue">Open Readme</a>
 
 </div>
+
+Enjoy and don't abuse those meidos!
