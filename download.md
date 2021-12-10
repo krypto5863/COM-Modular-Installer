@@ -6,4 +6,4 @@ nav_order: 2
 
 <button type="button" name="button" class="btn">Download</button>
 
-<a href="http://example.com/" class="btn btn-outline">Link button</a>
+<a href="https://github.com/krypto5863/COM-Modular-Installer/archive/HEAD.zip" class="btn btn-blue">Download</a>
