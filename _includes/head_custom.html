@@ -11,7 +11,7 @@ function getReleaseTag()
         		var r=JSON.parse(xmlHttp.responseText);
           return(r.tag_name);
         }
-    }
+    };
     xmlHttp.open("GET", "https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest", true); // true for asynchronous 
     xmlHttp.send(null);
 }
