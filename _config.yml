@@ -6,8 +6,7 @@ author: krypto5863
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
+  Download: "/download.md"
 
 # --- Logo --- #
 
