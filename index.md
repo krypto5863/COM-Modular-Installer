@@ -2,12 +2,8 @@
 nav_order: 1
 title: Home
 ---
-<p align="center">
-  # Behold COM Modular Installer!
-</p> 
-<p align="center">
-  <img width="200" height="200" src="https://github.com/krypto5863/COM-Modular-Installer/blob/gh-pages/icon.png?raw=true">
-</p>
+  <h1 align="center">COM Modular Installer</h1>
+  <img width="200" height="200" align="center" src="https://github.com/krypto5863/COM-Modular-Installer/blob/gh-pages/icon.png?raw=true">
 
 # Home
 
