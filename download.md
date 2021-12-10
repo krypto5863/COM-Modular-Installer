@@ -10,4 +10,4 @@ Be sure you **give the readme a read**, either before or during your installatio
   <a href="https://docs.google.com/document/d/1dFVNe2gvsVck0tjWrnCM2HxsdTFBAnsxs928Q1wVS1A" class="btn btn-blue">Open Readme</a>
 </div>
 
-<h2 id="changelog" align="center">Change Log</h2>
+<h2 id="changelog" align="center" onload="fetchNotes()">Change Log</h2>
