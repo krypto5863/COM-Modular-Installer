@@ -1,6 +1,11 @@
 ---
 nav_order: 1
+title: Home
 ---
+
+<p align="center">
+  <img width="400" height="400" src="https://github.com/krypto5863/COM-Modular-Installer/blob/gh-pages/icon.png?raw=true">
+</p>
 
 # Home
 
