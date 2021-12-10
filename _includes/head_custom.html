@@ -1,11 +1,18 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
 <script type="text/javascript">
- function requestUserRepos()
- {   
-  const response = await fetch('http://example.com/movies.json');
-  const myJson = await response.json();
-  
-  console.log(myJson.name);
- }
+function getReleaseTag()
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() 
+    { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        {
+        		var r=JSON.parse(xmlHttp.responseText);
+          return(r.tag_name);
+        }
+    }
+    xmlHttp.open("GET", "https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest", true); // true for asynchronous 
+    xmlHttp.send(null);
+}
 </script>
