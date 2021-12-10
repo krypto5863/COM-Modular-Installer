@@ -5,7 +5,7 @@ title: Home
 
 <h1 align="center">COM Modular Installer</h1>
 <p align="center">
-  <roundimg width="200" height="200" align="center" src="https://github.com/krypto5863/COM-Modular-Installer/blob/gh-pages/icon.png?raw=true">
+  <img class="roundimg" width="200" height="200" align="center" src="https://github.com/krypto5863/COM-Modular-Installer/blob/gh-pages/icon.png?raw=true">
 </p>
 
 # Home
