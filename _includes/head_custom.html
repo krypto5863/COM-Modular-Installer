@@ -1,11 +1,11 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-
-
 <script type="text/javascript">
  function requestUserRepos()
  {   
-    const xhr = new XMLHttpRequest();
-    const url = `https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest`;
-}
+  const response = await fetch('http://example.com/movies.json');
+  const myJson = await response.json();
+  
+  console.log(myJson.name);
+ }
 </script>
