@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CMIHelper</RootNamespace>
     <AssemblyName>CMIHelper</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,22 +32,18 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup>
     <DllExportIdent>97505042-9343-486A-9A03-DDEEF50A853E</DllExportIdent>
     <DllExportMetaLibName>DllExport.dll</DllExportMetaLibName>
-    <DllExportNamespace>RGiesecke.DllExport</DllExportNamespace>
+    <DllExportNamespace>CMIHelper</DllExportNamespace>
     <DllExportDDNSCecil>true</DllExportDDNSCecil>
-    <DllExportSkipOnAnyCpu>false</DllExportSkipOnAnyCpu>
-    <DllExportPlatform>Auto</DllExportPlatform>
+    <PlatformTarget>x86</PlatformTarget>
     <DllExportOrdinalsBase>1</DllExportOrdinalsBase>
     <DllExportGenExpLib>false</DllExportGenExpLib>
     <DllExportOurILAsm>false</DllExportOurILAsm>
     <DllExportSysObjRebase>false</DllExportSysObjRebase>
     <DllExportLeaveIntermediateFiles>false</DllExportLeaveIntermediateFiles>
     <DllExportTimeout>30000</DllExportTimeout>
-    <DllExportPeCheck>2</DllExportPeCheck>
+    <DllExportPeCheck>0</DllExportPeCheck>
     <DllExportPatches>0</DllExportPatches>
     <DllExportPreProcType>0</DllExportPreProcType>
     <DllExportPostProcType>0</DllExportPostProcType>
@@ -55,34 +52,47 @@
     <Reference Include="System" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CMD.cs" />
     <Compile Include="CMIHelper.cs" />
+    <Compile Include="GHRestRelease.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Costura.Fody">
+      <Version>5.7.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="DllExport">
-      <Version>1.7.3</Version>
+      <Version>1.7.4</Version>
+    </PackageReference>
+    <PackageReference Include="Knyaz.Optimus">
+      <Version>3.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages/UnmanagedExports.1.2.7/tools/RGiesecke.DllExport.targets" Condition="Exists('packages/UnmanagedExports.1.2.7/tools/RGiesecke.DllExport.targets')" />
   <ImportGroup Label=".NET DllExport">
-    <Import Project="$(SolutionDir)packages\DllExport.1.7.3\tools\net.r_eg.DllExport.targets" Condition="Exists($([MSBuild]::Escape('$(SolutionDir)packages\DllExport.1.7.3\tools\net.r_eg.DllExport.targets')))" Label="8337224c9ad9e356" />
+    <Import Project="$(SolutionDir)packages\DllExport.1.7.4\tools\net.r_eg.DllExport.targets" Condition="Exists($([MSBuild]::Escape('$(SolutionDir)packages\DllExport.1.7.4\tools\net.r_eg.DllExport.targets')))" Label="8337224c9ad9e356" />
   </ImportGroup>
   <Target Name="DllExportRestorePkg" BeforeTargets="PrepareForBuild">
     <Error Condition="!Exists('$(SolutionDir)DllExport.bat')" Text="DllExport.bat is not found. Path: '$(SolutionDir)' - https://github.com/3F/DllExport" />
-    <Exec Condition="('$(DllExportModImported)' != 'true' Or !Exists('$(SolutionDir)packages\DllExport.1.7.3\tools\net.r_eg.DllExport.targets')) And Exists('$(SolutionDir)DllExport.bat')" Command=".\DllExport.bat  -action Restore" WorkingDirectory="$(SolutionDir)" />
-    <MSBuild Condition="'$(DllExportModImported)' != 'true'" Projects="$(SolutionDir)packages\DllExport.1.7.3\tools\net.r_eg.DllExport.targets" Targets="DllExportMetaXBaseTarget" Properties="TargetFramework=$(TargetFramework)">
+    <Exec Condition="('$(DllExportModImported)' != 'true' Or !Exists('$(SolutionDir)packages\DllExport.1.7.4\tools\net.r_eg.DllExport.targets')) And Exists('$(SolutionDir)DllExport.bat')" Command=".\DllExport.bat  -action Restore" WorkingDirectory="$(SolutionDir)" />
+    <MSBuild Condition="'$(DllExportModImported)' != 'true'" Projects="$(SolutionDir)packages\DllExport.1.7.4\tools\net.r_eg.DllExport.targets" Targets="DllExportMetaXBaseTarget" Properties="TargetFramework=$(TargetFramework)">
       <Output TaskParameter="TargetOutputs" PropertyName="DllExportMetaXBase" />
     </MSBuild>
     <ItemGroup>
       <Reference Include="DllExport, PublicKeyToken=8337224c9ad9e356">
-        <HintPath>$(SolutionDir)packages\DllExport.1.7.3\gcache\$(DllExportMetaXBase)\$(DllExportNamespace)\$(DllExportMetaLibName)</HintPath>
+        <HintPath>$(SolutionDir)packages\DllExport.1.7.4\gcache\$(DllExportMetaXBase)\$(DllExportNamespace)\$(DllExportMetaLibName)</HintPath>
         <Private>False</Private>
         <SpecificVersion>False</SpecificVersion>
       </Reference>

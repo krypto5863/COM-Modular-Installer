@@ -1,9 +1,12 @@
-﻿using RGiesecke.DllExport;
+﻿using Knyaz.Optimus;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -12,7 +15,7 @@ namespace CMIHelper
 	public class CMIHelper
 	{
 		[DllExport("CMIHelperSC", CallingConvention = CallingConvention.StdCall)]
-		public static bool StringContains([MarshalAs(UnmanagedType.BStr)] string mainstring, [MarshalAs(UnmanagedType.BStr)] string substring) 
+		public static bool StringContains([MarshalAs(UnmanagedType.BStr)] string mainstring, [MarshalAs(UnmanagedType.BStr)] string substring)
 		{
 			return mainstring.Contains(substring);
 		}
@@ -20,7 +23,7 @@ namespace CMIHelper
 		[DllExport("CMIHelperIVOT", CallingConvention = CallingConvention.StdCall)]
 		public static bool IsVersionOlderThan([MarshalAs(UnmanagedType.BStr)] string VersionOld, [MarshalAs(UnmanagedType.BStr)] string VersionNew, out int Result)
 		{
-			try 
+			try
 			{
 				if (Version.Parse(VersionOld) < Version.Parse(VersionNew))
 				{
@@ -38,7 +41,7 @@ namespace CMIHelper
 					return true;
 				}
 			}
-			catch 
+			catch
 			{
 			}
 			Result = 0;
@@ -46,7 +49,7 @@ namespace CMIHelper
 		}
 
 		[DllExport("CMIHelperGDCT", CallingConvention = CallingConvention.StdCall)]
-		public static bool GetDirectoryCreationTime([MarshalAs(UnmanagedType.BStr)] string file, [MarshalAs(UnmanagedType.BStr)] out string time) 
+		public static bool GetDirectoryCreationTime([MarshalAs(UnmanagedType.BStr)] string file, [MarshalAs(UnmanagedType.BStr)] out string time)
 		{
 
 			try
@@ -55,15 +58,15 @@ namespace CMIHelper
 
 				time = ct.ToString("MM.dd.yyyy.h.mm.ss");
 			}
-			catch 
+			catch
 			{
 				time = "";
-				
+
 				return false;
 			}
 
 			return true;
-			}
+		}
 
 		//\/\/\/\/ Old Larger Helper Code \/\/\/\/\/
 
@@ -102,12 +105,29 @@ namespace CMIHelper
 			return false;
 		}
 
-		[DllExport("CMIHelperFLR", CallingConvention = CallingConvention.StdCall)]
-		public static void FetchLatestRelease([MarshalAs(UnmanagedType.BStr)] string site,[MarshalAs(UnmanagedType.BStr)] out string h)
+		[DllExport("CMIHelperGLU", CallingConvention = CallingConvention.StdCall)]
+		public static void FetchLatestGameUpdate([MarshalAs(UnmanagedType.BStr)] string url, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
 		{
-			//System.Windows.Forms.MessageBox.Show("trying to download string from: " + site, "debug", MessageBoxButtons.OK);
+			var engine = EngineBuilder.New()
+			.Build(); // Builds the Optimus engine.
 
-			h = "null";
+			//Request the web page.
+			var page = engine.OpenUrl(url);
+			page.Wait();
+
+			var document = page.Result.Document;
+			var button = document.GetElementsByClassName("spec_in").First().GetElementsByTagName("p")[0];
+
+			downloadLink = button.TextContent.Trim();
+			engine.Dispose();
+		}
+
+		[DllExport("CMIHelperFLV", CallingConvention = CallingConvention.StdCall)]
+		public static void FetchLatestGHVersion([MarshalAs(UnmanagedType.BStr)] string site, [MarshalAs(UnmanagedType.BStr)] out string version)
+		{
+			var url = "https://api.github.com/repos/" + site + "/releases/latest";
+
+			version = "";
 
 			try
 			{
@@ -115,28 +135,83 @@ namespace CMIHelper
 				WebClient webClient = new WebClient();
 				webClient.Headers.Add("User-Agent: Other");
 
-				string[] textFromFile = webClient.DownloadString(site).Split(',');
+				var Release = JsonConvert.DeserializeObject<GHRest.Release>(webClient.DownloadString(url));
 
-
-				//System.Windows.Forms.MessageBox.Show("String downloaded" + site, "debug", MessageBoxButtons.OK);
-
-				foreach (string s in textFromFile)
-				{
-					//System.Windows.Forms.MessageBox.Show(s, "debug", MessageBoxButtons.OK);
-
-					if (s.Contains("browser_download_url"))
-					{
-						h = s.Replace("\"browser_download_url\":\"", "");
-						h = h.Replace("\"}]", "");
-						break;
-					}
-				}
-
+				version = Release.tag_name;
 			}
 			catch (Exception e)
 			{
 				System.Windows.Forms.MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK);
-				throw;
+			}
+		}
+
+		[DllExport("CMIHelperFLR", CallingConvention = CallingConvention.StdCall)]
+		public static void FetchLatestGHRelease([MarshalAs(UnmanagedType.BStr)] string site, [MarshalAs(UnmanagedType.BStr)] string searchString, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
+		{
+			var url = "https://api.github.com/repos/" + site + "/releases/latest";
+
+			downloadLink = "";
+
+			try
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+				WebClient webClient = new WebClient();
+				webClient.Headers.Add("User-Agent: Other");
+
+				var Release = JsonConvert.DeserializeObject<GHRest.Release>(webClient.DownloadString(url));
+
+				foreach (var Asset in Release.assets)
+				{
+					if (String.IsNullOrWhiteSpace(searchString) || Asset.name.ToLower().Contains(searchString.ToLower()))
+					{
+						downloadLink = Asset.browser_download_url;
+						return;
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				System.Windows.Forms.MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK);
+			}
+		}
+
+		[DllExport("CMIHelperDF", CallingConvention = CallingConvention.StdCall)]
+		public static void DynaFetchGHRelease([MarshalAs(UnmanagedType.BStr)] string site, [MarshalAs(UnmanagedType.BStr)] string searchString, [MarshalAs(UnmanagedType.BStr)] string version, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
+		{
+			var url = "https://api.github.com/repos/" + site + "/releases";
+
+			downloadLink = "";
+
+			try
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+				WebClient webClient = new WebClient();
+				webClient.Headers.Add("User-Agent: Other");
+
+				var JsonFile = JArray.Parse(webClient.DownloadString(url));
+
+				foreach (var release in JsonFile)
+				{
+					var DeSerAsset = release.ToObject<GHRest.Release>();
+
+					if ((String.IsNullOrWhiteSpace(version) || version.Equals(DeSerAsset.tag_name)) == false)
+					{
+						continue;
+					}
+
+					foreach (var Asset in DeSerAsset.assets)
+					{
+						if (String.IsNullOrWhiteSpace(searchString) || Asset.name.ToLower().Contains(searchString.ToLower()))
+						{
+							downloadLink = Asset.browser_download_url;
+							return;
+						}
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				System.Windows.Forms.MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK);
 			}
 		}
 	}

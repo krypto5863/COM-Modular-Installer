@@ -8,6 +8,7 @@
   //Will get a Directories creation time. Mostly used to change name of OldInstall directory.
   function GetDirectoryCreationTime(const path: WideString; out time: WideString): Boolean;
   external 'CMIHelperGDCT@files:CMIHelper.dll stdcall delayload';
+
 	//This function moves old files into the OldInstall Folder during install
 	//function MoveOld(path: WideString): Boolean;
 	//external 'CMIHelperM@files:CMIHelper.dll stdcall delayload';
@@ -24,14 +25,24 @@
 	//function ReturnConfig(const path: WideString): Boolean;
 	//external 'CMIHelperRC@files:CMIHelper.dll stdcall delayload';
 	//Checks if a url is a valid site that can be reached
-	function SiteValid(const url: WideString): Boolean;
-	external 'CMIHelperWE@files:CMIHelper.dll stdcall delayload';
+	//function SiteValid(const url: WideString): Boolean;
+	//external 'CMIHelperWE@files:CMIHelper.dll stdcall delayload';
 	//Read manifests and decide if the installer is outdated or not
 	//function IsInstallerOld(const tpath: WideString; const version: WideString): Boolean;
 	//external 'CMIHelperCI@files:CMIHelper.dll stdcall delayload';
-  //Tries to fetch the latest github release of a downloaded plugin.
-	procedure FetchLRelease(const site: WideString; out dlink: WideString);
+  //Gets the latest game file from the update site.
+
+  procedure FetchUpdateFile(const site: WideString; out file: WideString);
+	external 'CMIHelperGLU@files:CMIHelper.dll stdcall delayload';
+  //Gets the latest release only, returns the first assets link that matches a given string if the string isn't empty.
+	procedure FetchLRelease(const site: WideString; const searchString: WideString; out dlink: WideString);
 	external 'CMIHelperFLR@files:CMIHelper.dll stdcall delayload';
+  //Attempts to dynamically fetch a file given a search string, some modders use non-standard names. This goes through several releases, not just the latest.
+  procedure FetchDRelease(const site: WideString; const searchString: WideString; const version: WideString; out dlink: WideString);
+	external 'CMIHelperDF@files:CMIHelper.dll stdcall delayload';
+  //Tries to fetch the latest version of a repo. Used for CMI update checking.
+  procedure FetchLVersion(const site: WideString; out version: WideString);
+	external 'CMIHelperFLV@files:CMIHelper.dll stdcall delayload';
   
   Function Copy(const Source: String; const Destination: String): Boolean;
   var

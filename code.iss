@@ -1,6 +1,8 @@
 ﻿[Files]
 //Bringing the file reference for the DLL here to keep code stuff together.
 Source:"Utility\DLL\CMIHelper.dll"; DestDir: "{tmp}"; Permissions: everyone-full; Flags: dontcopy deleteafterinstall nocompression noencryption
+//Source:"Utility\DLL\Newtonsoft.Json.dll"; DestDir: "{tmp}"; Permissions: everyone-full; Flags: dontcopy deleteafterinstall nocompression noencryption
+//Source:"Utility\DLL\*"; DestDir: "{tmp}"; Permissions: everyone-full; Flags: dontcopy deleteafterinstall nocompression noencryption
 
 [/Files]
 
@@ -51,7 +53,7 @@ var
 	Value: String;
 	ErrorCode: Integer;
 	FreeSpace, TotalSpace: Cardinal;
-	ManifestVersion: String;
+	ManifestVersion: WideString;
 	VersionResult: Integer;	
 begin
 	Log('Initial setup is beginning...');
@@ -76,9 +78,10 @@ begin
 	Log('Done checking disc space...');			
  
 	try
-		DownloadTemporaryFile('{#ManifestLink}','manifest.txt','',nil);
-		
-		if (StringFetch(ExpandConstant('{tmp}\manifest.txt'), ManifestVersion, 'CMI:')) then
+
+    FetchLVersion('krypto5863/COM-Modular-Installer', ManifestVersion)
+
+		if (ManifestVersion <> '') then
 		begin
 	
 			Log('Version fetch suceeded: ' + ManifestVersion)

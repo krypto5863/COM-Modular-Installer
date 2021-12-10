@@ -8,6 +8,8 @@ type
     Output: string;
     File: string;
     FetchL: Boolean;
+    SearchString: string;
+    Version: string;
 end;
 
 TListOfAssets = array of AssetRecord;
@@ -26,7 +28,7 @@ begin
     end;
 end;
 
-procedure AddToListOfAssets(var ListOfAssets: TListOfAssets; const Name: String; const Link: String; const Output: String; const File: String; const FetchL: Boolean);
+procedure AddToListOfAssets(var ListOfAssets: TListOfAssets; const Name: String; const Link: String; const Output: String; const File: String; const FetchL: Boolean; const SearchString: String; const Version: String);
 var
   I: Integer;
 begin
@@ -37,6 +39,8 @@ begin
   ListOfAssets[GetArrayLength(ListOfAssets) - 1].Output := Output;
   ListOfAssets[GetArrayLength(ListOfAssets) - 1].File := File;
   ListOfAssets[GetArrayLength(ListOfAssets) - 1].FetchL := FetchL;
+  ListOfAssets[GetArrayLength(ListOfAssets) - 1].SearchString := SearchString;
+  ListOfAssets[GetArrayLength(ListOfAssets) - 1].Version := Version;
 end;
 
 procedure DownloadAssets();
@@ -48,38 +52,32 @@ var
   I: integer; 
 begin
 	DownloadPage.Clear();
-		
-	pre := 'https://api.github.com/repos/'
-	suf := '/releases/latest'
-  
-	 
-  //These links are all version specific and an attempt is made to fetch them dynamically.
-  AddToListOfAssets(links , 'Loader/bepinEX/ConfigMan', pre + 'BepInEx/BepInEx.ConfigurationManager' + suf, '' ,'ConfigManager.zip', true);
-  AddToListOfAssets(links , 'Loader/bepinEX/FPSCount', pre + 'ManlyMarco/FPSCounter' + suf, '' ,'FPSCounter.zip', true);
   //These have more conditions and require version specific links and care.
-  AddToListOfAssets(links , 'Loader/bepinEX/MuteBack', 'https://github.com/BepInEx/BepInEx.Utility/releases/download/r6/BepInEx.MuteInBackground.v1.1.zip', '' ,'MuteInBackground.zip', false);
-  AddToListOfAssets(links , 'Loader/bepinEX/RunUniEdit', 'https://github.com/ManlyMarco/RuntimeUnityEditor/releases/download/v2.4/RuntimeUnityEditor_BepInEx5_v2.4.zip', '' ,'RuntimeUnityEditor.zip', false);
-	AddToListOfAssets(links , 'Loader/bepinEX/OptIMGUI', 'https://github.com/BepInEx/BepInEx.Utility/releases/download/r7/BepInEx.OptimizeIMGUI.v1.0.zip', '' ,' BepInEx.OptimizeIMGUI.v1.0.zip', false);
+  AddToListOfAssets(links , 'Loader/bepinEX/MuteBack', 'BepInEx/BepInEx.Utility', '' ,'MuteInBackground.zip', true, 'MuteInBackground', '');
+  AddToListOfAssets(links , 'Loader/bepinEX/RunUniEdit', 'ManlyMarco/RuntimeUnityEditor', '' ,'RuntimeUnityEditor.zip', true, 'RuntimeUnityEditor', '');
+	AddToListOfAssets(links , 'Loader/bepinEX/OptIMGUI', 'BepInEx/BepInEx.Utility', '' ,' BepInEx.OptimizeIMGUI.v1.0.zip', true, 'OptimizeIMGUI', '');
 #if LMMT == false
-	AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API', 'https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v3/COM3D2.API.v1.0.zip', '' ,'COM3D2.API.v1.0.zip', false);
-	AddToListOfAssets(links , 'Loader/bepinEX/CM3D2Toolkit', 'https://github.com/JustAGuest4168/CM3D2.Toolkit/releases/download/v1.0.0.0-dll/CM3D2.Toolkit.Guest4168Branch.dll', 'BepInEx\plugins\' ,'CM3D2.Toolkit.Guest4168Branch.dll', false);
-	AddToListOfAssets(links , 'Loader/bepinEX/InBlock', 'https://github.com/DeathWeasel1337/COM3D2_Plugins/releases/download/v5/COM3D2.InputHotkeyBlock.v1.2.zip', '' ,'InputHotkeyBlock.zip', false);
-  AddToListOfAssets(links , 'Loader/bepinEX/FixEyeMov', 'https://github.com/01010101lzy/gettapped/releases/download/fixeyemov-0.2.0-alpha.3/FixEyeMov.com3d2-v0.2.0-alpha.3.zip', '' ,'FixEyeMov.zip', false);
+	AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API', 'DeathWeasel1337/COM3D2_Plugins', '' ,'COM3D2.API.v1.0.zip', true, 'COM3D2.API', '');
+	AddToListOfAssets(links , 'Loader/bepinEX/CM3D2Toolkit', 'JustAGuest4168/CM3D2.Toolkit', 'BepInEx\plugins\' ,'CM3D2.Toolkit.Guest4168Branch.dll', true, 'CM3D2.Toolkit', '');
+	AddToListOfAssets(links , 'Loader/bepinEX/InBlock', 'DeathWeasel1337/COM3D2_Plugins', '' ,'InputHotkeyBlock.zip', true, 'InputHotkeyBlock', '');
+  AddToListOfAssets(links , 'Loader/bepinEX/FixEyeMov', '01010101lzy/gettapped/releases', '' ,'FixEyeMov.zip', true, 'FixEyeMov', '');
   //These can be fetched straight from the latest releases.
-	AddToListOfAssets(links , 'Loader/bepinEX/ShiftClick', 'https://github.com/krypto5863/COM3D2.ShiftClickExplorer/releases/latest/download/COM3D2.ShiftClickExplorer.dll', 'BepInEx\plugins\' ,'COM3D2.ShiftClickExplorer.dll', false);
-  AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API/ShapekeyMaster', 'https://github.com/krypto5863/COM3D2.ShapekeyMaster/releases/latest/download/COM3D2.ShapekeyMaster.Plugin.dll', 'BepInEx\plugins\' ,'COM3D2.ShapekeyMaster.Plugin.dll', false);
-  AddToListOfAssets(links , 'Loader/bepinEX/ShortMenu', 'https://github.com/krypto5863/COM3D2.ShortMenuLoader/releases/latest/download/ShortMenuLoader.zip', '' ,'ShortMenuLoader.zip', false);
-	AddToListOfAssets(links , 'Loader/bepinEX/CM3D2Toolkit/ShortVanilla', 'https://github.com/krypto5863/COM3D2.ShortMenuVanillaDatabase/releases/latest/download/ShortMenuVanillaDatabase.zip', '' ,'ShortMenuVanillaDatabase.zip', false);
-	AddToListOfAssets(links , 'Loader/bepinEX/ExErrorHandle', 'https://github.com/krypto5863/COM3D2.ExtendedErrorHandling/releases/latest/download/COM3D2.ExtendedErrorHandling.dll', 'BepInEx\plugins\' ,'COM3D2.ExtendedErrorHandling.dll', false);
-	AddToListOfAssets(links , 'Loader/bepinEX/ExPresetMan', 'https://github.com/krypto5863/COM3D2.ExtendedPresetManagement/releases/latest/download/COM3D2.ExtendedPresetManagement.dll', 'BepInEx\plugins\' ,'COM3D2.ExtendedPresetManagement.dll', false);
-  AddToListOfAssets(links , 'ext/dlccheck', 'https://github.com/krypto5863/COM3D2_DLC_Checker/releases/latest/download/COM3D2_DLC_Checker.exe', '' ,'COM3D2 DLC Checker.exe', false);
-  AddToListOfAssets(links , 'ext/maidfiddle', 'https://github.com/denikson/COM3D2.MaidFiddler/releases/latest/download/MaidFiddlerSetup.exe', '' ,'MFInstall.exe', false);
+  AddToListOfAssets(links , 'Loader/bepinEX/ConfigMan', 'BepInEx/BepInEx.ConfigurationManager', '' ,'ConfigManager.zip', false, '', '');
+  AddToListOfAssets(links , 'Loader/bepinEX/FPSCount', 'ManlyMarco/FPSCounter', '' ,'FPSCounter.zip', false, '', '');
+	AddToListOfAssets(links , 'Loader/bepinEX/ShiftClick', 'krypto5863/COM3D2.ShiftClickExplorer', 'BepInEx\plugins\' ,'COM3D2.ShiftClickExplorer.dll', false, '', '');
+  AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API/ShapekeyMaster', 'krypto5863/COM3D2.ShapekeyMaster', 'BepInEx\plugins\' ,'COM3D2.ShapekeyMaster.Plugin.dll', false, '', '');
+  AddToListOfAssets(links , 'Loader/bepinEX/ShortMenu', 'krypto5863/COM3D2.ShortMenuLoader', '' ,'ShortMenuLoader.zip', false, '', '');
+	AddToListOfAssets(links , 'Loader/bepinEX/CM3D2Toolkit/ShortVanilla', 'krypto5863/COM3D2.ShortMenuVanillaDatabase', '' ,'ShortMenuVanillaDatabase.zip', false, '', '');
+	AddToListOfAssets(links , 'Loader/bepinEX/ExErrorHandle', 'krypto5863/COM3D2.ExtendedErrorHandling', 'BepInEx\plugins\' ,'COM3D2.ExtendedErrorHandling.dll', false, '', '');
+	AddToListOfAssets(links , 'Loader/bepinEX/ExPresetMan', 'krypto5863/COM3D2.ExtendedPresetManagement', 'BepInEx\plugins\' ,'COM3D2.ExtendedPresetManagement.dll', false, '', '');
+  AddToListOfAssets(links , 'ext/dlccheck', 'krypto5863/COM3D2_DLC_Checker', '' ,'COM3D2 DLC Checker.exe', false, '', '');
+  AddToListOfAssets(links , 'ext/maidfiddle', 'denikson/COM3D2.MaidFiddler', '' ,'MFInstall.exe', false, '', '');
 	
 	if IsCR then
 	begin
-		AddToListOfAssets(links , 'Loader/bepinEX/AdvMatMod', 'https://github.com/krypto5863/COM3d2-AdvancedMaterialModifier/releases/download/1.1.3/COM3D2.AdvancedMaterialModifier.Plugin.dll', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', false);
+		AddToListOfAssets(links , 'Loader/bepinEX/AdvMatMod', 'krypto5863/COM3d2-AdvancedMaterialModifier', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', true, '', '1.1.3');
 	end else
-		AddToListOfAssets(links , 'Loader/bepinEX/AdvMatMod', 'https://github.com/krypto5863/COM3d2-AdvancedMaterialModifier/releases/download/1.2.2.1/COM3D2.AdvancedMaterialModifier.Plugin.dll', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', false);
+		AddToListOfAssets(links , 'Loader/bepinEX/AdvMatMod', 'krypto5863/COM3d2-AdvancedMaterialModifier', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', false, '', '');
 	begin
 	end;
 #endif
@@ -91,11 +89,11 @@ begin
       
       if (links[i].FetchL) then
       begin   
-        FetchLRelease(links[i].Link, dlink);
+        FetchDRelease(links[i].Link, links[i].SearchString, links[i].Version, dlink);
       end 
       else
       begin
-        dlink := links[i].Link
+        FetchLRelease(links[i].Link, links[i].SearchString , dlink);
       end;
 		
       DownloadPage.Add(dlink, links[i].Output + links[i].File, '');

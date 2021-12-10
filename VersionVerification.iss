@@ -122,14 +122,31 @@ end;
 
 procedure DownloadUpdate(const MinVer: Integer; const MaxVer: Integer; const Dir: String);
 var
+	JPUpLinks: Array of string;
+	EngUpLinks: Array of string;
+
 	i : Integer;
 	pointversion : Integer;
 	SiteSt: String;
-	site : String;
+	site : WideString;
+  siteTemp : WideString;
 	ErrorCode: Integer;
 	VersionString: String;
 	TempString: String;
 begin
+
+  JPUpLinks := [
+		'https://p2-dl0.kisskiss.tv/com3d2/update/',
+		'https://p2-dl1.kisskiss.tv/com3d2/update/',
+		'https://p2-res2.rcw.bz/',
+    'https://p2-res1.rcw.bz/'
+	];
+
+  EngUpLinks := [
+		'https://p2w-res1.rcw.bz/'
+	];
+
+
   if MsgBox(CustomMessage('UpdatePrompt'), mbInformation, MB_YESNO) = MrNO then
   begin	
 #if LMMT == false
@@ -160,76 +177,24 @@ begin
 		end;
 	end;
 
-#if LMMT == false
-		
-  if (IsEng(Dir)) = 1 then
-  begin
-		MinVer := 100
-    i := 200;
-    SiteSt := ExpandConstant('{#UpdateFetch2}{#UpdateFile}')
-  end else
-  begin
-    i := 2099;
-    SiteST := ExpandConstant('{#UpdateFetch1}{#UpdateFile}')
-  end;
-#else
-   i := MinVer/10+10;
-   SiteSt := ExpandConstant('{#UpdateFetch1}{#UpdateFile}')
-#endif
-
-  while (i >= MinVer/10) AND (Length(site) <= 0) do
-  begin
-#if LMMT == false
-    if (i >= MaxVer/10) then
-    begin
-      i := i-1;
-      continue;
-    end;
-#endif
-
-#if LMMT == false			
-		
-		if (IsEng(Dir)) = 1 then
-		begin
-			TempString := IntToStr(i);	
-		end else
-		begin
-			TempString := IntToStr(i)[1] +  '_' + IntToStr(i)[3] +  '_'  + IntToStr(i)[4];
-		end;
-#else
-		TempString := IntToStr(i);
-#endif
-
-    Log('Testing: ' + Format(SiteSt, [TempString, BitString, '.zip']));
-    if (SiteValid(Format(SiteSt, [TempString, BitString, '.zip'])) = true) then
-    begin
-      pointversion:= 10;
-
-      while pointversion > 0 do
-      begin
-				Log('Testing point: ' + Format(SiteSt, [TempString+ '.' + IntToStr(pointversion), BitString, '.zip']));
-        if (SiteValid(Format(SiteSt, [TempString+ '.' + IntToStr(pointversion), BitString, '.zip'])) = true) AND (i*10 + pointversion > MinVer) then
-        begin
-          site :=  Format(SiteSt, [TempString+ '.' + IntToStr(pointversion), BitString, '.zip'])
-					VersionString := TempString + '.' + IntToStr(pointversion);
-          break;
-        end
-        else if (i*10 > MinVer) then
-        begin
-          site := Format(SiteSt, [TempString, BitString, '.zip']);
-					VersionString := TempString;
-        end;
-        pointversion := pointversion-1;
-      end;
-      Log(site + ' as latest');
-    end;		
-    i := i-1;	
-  end;
-	
-	if (CompareText(site,'') = 0) AND (Length(site) <= 0) then
+  if (IsEng(Dir)) = 0 then
 	begin
-    MsgBox(CustomMessage('UpdateFetchFail'), mbCriticalError, MB_OK)
-		exit;
+    SiteTemp := '{#UpdateSite1}'
+  end
+  else
+	begin
+    SiteTemp := '{#UpdateSite2}'
+	end;
+
+  FetchUpdateFile(SiteTemp, site);
+
+  if (IsEng(Dir)) = 0 then
+	begin
+    site := JPUpLinks[Random(GetArrayLength(JPUpLinks))] + site
+  end
+  else
+	begin
+    site := EngUpLinks[Random(GetArrayLength(EngUpLinks))] + site
 	end;
 	
 	DownloadPage.Clear;
