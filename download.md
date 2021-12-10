@@ -4,4 +4,4 @@ nav_order: 2
 
 # Download
 
-[Link button](http://example.com/){: .btn }
+<button type="button" name="button" class="btn">Button element</button>
