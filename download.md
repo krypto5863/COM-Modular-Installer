@@ -18,4 +18,4 @@ Once you know what you're doing, proceed to the release page! However, be sure y
 
 </div>
 
-Enjoy and don't abuse those meidos!
+<h2 align="center">Enjoy and don't abuse those meidos!</h2>
