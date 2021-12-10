@@ -5,12 +5,11 @@ import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
 </script>
 
 <script type="text/javascript">
-  fetchRelease(){
+ function fetchRelease(){
     const response = await octokit.request('GET https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest')
     
     return response.name
- }
-  
+ } 
   
  function requestUserRepos(){
     
