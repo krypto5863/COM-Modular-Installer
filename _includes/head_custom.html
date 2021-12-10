@@ -17,7 +17,7 @@ async function GetDownload() {
     location.href = result.assets[0].browser_download_url;
 }
     
-async function FetchNotes(){
+async function fetchNotes(){
     const contentDiv = document.getElementById("changelog");
     let result = await userAction();
     contentDiv.innerHTML = result.body;
