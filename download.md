@@ -14,6 +14,6 @@ Many people get confused when downloading CMI and may end up downloading the sou
 Once you know what you're doing, proceed to the release page! However, be sure you **give the readme a read**, either before or during your installation of CMI!
 
 <div align="center">
-  <a href="https://github.com/krypto5863/COM-Modular-Installer/releases/latest" class="btn btn-green">Open Latest Release</a>
+  <a onclick="GetDownload()" class="btn btn-green">Download</a>
   <a href="https://docs.google.com/document/d/1dFVNe2gvsVck0tjWrnCM2HxsdTFBAnsxs928Q1wVS1A" class="btn btn-blue">Open Readme</a>
 </div>
