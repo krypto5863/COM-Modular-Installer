@@ -12,6 +12,10 @@ async function getURL() {
     return result.assets[0].browser_download_url;
 }
 
+async function GetDownload() {
+    let result = await userAction();
+    location.href = result.assets[0].browser_download_url;
+}
 
 const userAction = async () => {
   const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
