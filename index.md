@@ -16,3 +16,11 @@ Meido can be a very complex game, and we’re here to make it simple. Since the 
 
 ## Advisory!
 CMI is completely free and shall remain free for the foreseeable future! If you did not download CMI from the official GitHub download page (refer to the source section for the official download) and if you paid any amount of money for this, then you have been scammed!
+
+## Support
+
+If you're in need of support, you can receive realtime support in the Custom Maid Discord Server: <a href="https://discord.gg/custommaid" class="btn btn-blue">Join Discord Server</a>
+
+From there, simply ask in a support channel or feel free to ping the author: 𝕺𝖙𝖕𝖞𝖗𝖐#1133
+
+If you prefer to avoid Discord entirely, please leave an issue post in the CMI repo here: https://github.com/krypto5863/COM-Modular-Installer/issues
