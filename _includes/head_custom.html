@@ -29,5 +29,12 @@ const userAction = async () => {
   
   return myJson;
 }
+
+const userAction = async () => {
+  const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
+  const myJson = await response.json();
+  
+  return myJson;
+}
     
 </script>
