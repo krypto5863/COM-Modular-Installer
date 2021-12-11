@@ -2,3 +2,6 @@ title: "COM Modular Installer"
 remote_theme: pmarsceill/just-the-docs
 color_scheme: "dark"
 search_enabled: false
+description: The official CMI download site!
+baseurl: "/COM-Modular-Installer" # the subpath of your site, e.g. /blog
+url: "https://krypto5863.github.io" 
