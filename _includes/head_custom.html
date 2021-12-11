@@ -4,7 +4,6 @@
     
 var ChangesHTML;
 var JsonFile;
-var Calling;
     
 async function GetDownload() {
     let result = await userAction();
@@ -12,6 +11,7 @@ async function GetDownload() {
 }
     
 async function updateDLPage(){
+    JsonFile = await getJson();
     await fetchTag();
     await fetchNotes();
 }
@@ -47,17 +47,10 @@ async function render(markdown) {
     
 }
 
-const userAction = async () => {
-    
-  if(JsonFile == null && Calling < 1)
-  {
-    Calling = 1;
+async function getJson(){
     console.log("Fetching Git stuff...");
     const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
-    JsonFile = await response.json();
-  }
-
-  return JsonFile;
-};
+    return await response.json();
+}
     
 </script>
