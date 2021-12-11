@@ -13,7 +13,7 @@ Be sure you <b>give the readme a read</b>, either before or during your installa
 <a onclick="GetDownload()" class="btn btn-green">Download</a> <a href="https://docs.google.com/document/d/1dFVNe2gvsVck0tjWrnCM2HxsdTFBAnsxs928Q1wVS1A" class="btn btn-blue">Open Readme</a>
 </center>
 
-<div id="changelog" align="center">
+<div id="changelog" align="center" class="inlayed">
   
 <script type="text/javascript">
    fetchNotes();
