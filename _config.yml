@@ -5,3 +5,10 @@ search_enabled: false
 description: The official CMI download site!
 baseurl: "/COM-Modular-Installer" # the subpath of your site, e.g. /blog
 url: "https://krypto5863.github.io" 
+# Aux links for the upper right navigation
+aux_links:
+  "CMI Repo":
+    - "//github.com/krypto5863/COM-Modular-Installer"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: false
