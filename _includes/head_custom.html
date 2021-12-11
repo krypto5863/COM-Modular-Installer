@@ -20,7 +20,7 @@ async function GetDownload() {
 async function fetchNotes(){
     const contentDiv = document.getElementById("changelog");
     let result = await userAction();   
-    var html = await render(result.body);
+    let html = await render(result.body);
     
     contentDiv.innerHTML = html;
 }
