@@ -31,12 +31,18 @@ async function render(markdown) {
         body: JSON.stringify({'mode': 'markdown', 'text': markdown})
     })).text();
 }
+    
+const JsonFile;
 
 const userAction = async () => {
-  const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
-  const myJson = await response.json();
+    
+  if(JsonFile == null)
+  {
+    const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
+    JsonFile = await response.json();
+  }
   
-  return myJson;
-}
+  return JsonFile;
+};
     
 </script>
