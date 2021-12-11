@@ -2,9 +2,18 @@
 
 <script type="text/javascript">
     
+var ChangesHTML;
+var JsonFile;
+var Calling;
+    
 async function GetDownload() {
     let result = await userAction();
     location.href = result.assets[0].browser_download_url;
+}
+    
+async function updateDLPage(){
+    await fetchTag();
+    await fetchNotes();
 }
     
 async function fetchNotes(){
@@ -22,7 +31,7 @@ async function fetchTag(){
     contentDiv.innerHTML = contentDiv.innerHTML + ' ' + result.tag_name;
 }
 
-var ChangesHTML;
+
 async function render(markdown) {
     
     if(ChangesHTML == null){  
@@ -37,9 +46,6 @@ async function render(markdown) {
     return ChangesHTML;
     
 }
-    
-var JsonFile;
-var Calling;
 
 const userAction = async () => {
     
