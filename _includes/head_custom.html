@@ -17,18 +17,15 @@ async function updateDLPage(){
 }
     
 async function fetchNotes(){
-    const contentDiv = document.getElementById("changelog");
-    let result = await userAction();   
-    let html = await render(result.body);
+    const contentDiv = document.getElementById("changelog");  
+    ChangesHTML = await render(JsonFile.body);
     
-    contentDiv.innerHTML = html;
+    contentDiv.innerHTML = ChangesHTML;
 }
     
 async function fetchTag(){
     const contentDiv = document.getElementById("downloadButton");
-    let result = await userAction();   
-    
-    contentDiv.innerHTML = contentDiv.innerHTML + ' ' + result.tag_name;
+    contentDiv.innerHTML = contentDiv.innerHTML + ' ' + JsonFile.tag_name;
 }
 
 
