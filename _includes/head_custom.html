@@ -2,16 +2,6 @@
 
 <script type="text/javascript">
     
-async function getTag() {
-    let result = await userAction();
-    return result.tag_name;
-}
-    
-async function getURL() {
-    let result = await userAction();
-    return result.assets[0].browser_download_url;
-}
-
 async function GetDownload() {
     let result = await userAction();
     location.href = result.assets[0].browser_download_url;
@@ -23,6 +13,13 @@ async function fetchNotes(){
     let html = await render(result.body);
     
     contentDiv.innerHTML = html;
+}
+    
+async function fetchNotes(){
+    const contentDiv = document.getElementById("downloadButton");
+    let result = await userAction();   
+    
+    contentDiv.innerHTML = contentDiv.innerHTML + ' ' + result.tag_name;
 }
     
 async function render(markdown) {
