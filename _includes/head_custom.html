@@ -6,8 +6,7 @@ var ChangesHTML;
 var JsonFile;
     
 async function GetDownload() {
-    let result = await userAction();
-    location.href = result.assets[0].browser_download_url;
+    location.href = JsonFile.assets[0].browser_download_url;
 }
     
 async function updateDLPage(){
