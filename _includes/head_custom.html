@@ -20,8 +20,7 @@ async function GetDownload() {
 async function fetchNotes(){
     const contentDiv = document.getElementById("changelog");
     let result = await userAction();
-    contentDiv.innerHTML = result.body.replace(new RegExp('\r?\n','g'), '<br />');;
-    console.log("fetch notes was called.");
+    return result.body.replace(new RegExp('\r?\n','g'), '<br />');;
 }
 
 const userAction = async () => {
