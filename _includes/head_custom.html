@@ -24,14 +24,7 @@ async function fetchNotes(){
     
     contentDiv.innerHTML = html;
 }
-
-const userAction = async () => {
-  const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
-  const myJson = await response.json();
-  
-  return myJson;
-}
-
+    
 async function render(markdown) {
     return (await fetch('https://api.github.com/markdown', {
         method: 'POST',
@@ -40,6 +33,13 @@ async function render(markdown) {
         },
         body: JSON.stringify({'mode': 'markdown', 'text': markdown})
     })).text();
+}
+
+const userAction = async () => {
+  const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
+  const myJson = await response.json();
+  
+  return myJson;
 }
     
 </script>
