@@ -21,23 +21,32 @@ async function fetchTag(){
     
     contentDiv.innerHTML = contentDiv.innerHTML + ' ' + result.tag_name;
 }
-    
+
+var ChangesHTML;
 async function render(markdown) {
-    return (await fetch('https://api.github.com/markdown', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({'mode': 'markdown', 'text': markdown})
-    })).text();
+    
+    if(ChangesHTML == null){  
+        ChangesHTML = (await fetch('https://api.github.com/markdown', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({'mode': 'markdown', 'text': markdown})
+        })).text();
+       }
+    return ChangesHTML;
+    
 }
     
 var JsonFile;
+var Calling;
 
 const userAction = async () => {
     
-  if(JsonFile == null)
+  if(JsonFile == null && calling < 1)
   {
+    calling = 1;
+    console.log("Fetching Git stuff...");
     const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
     JsonFile = await response.json();
   }
