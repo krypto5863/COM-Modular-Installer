@@ -16,7 +16,7 @@ Be sure you <b>give the readme a read</b>, either before or during your installa
 <center>
 <h2>Change Log</h2>
 </center>
-<div id="changelog" markdown="1">
+<div id="changelog">
 <script type="text/javascript">
    fetchNotes();
 </script>
