@@ -26,8 +26,6 @@ This installer was made in Inno Setup by Kryp- I mean... The Doctor! Any problem
 All of the assets used were made by their respective authors, I take credit for nothing but the installer.
 
 ## Download ##
-The latest official releases can always be found here, nowhere else. In the releases section.... Here for those who are github disabled: https://github.com/krypto5863/COM-Modular-Installer/releases
+We now have an official site for downloading CMI. It's simple and easier to navigate than this GitHub repo: https://krypto5863.github.io/COM-Modular-Installer/
 
-Please refer to this image of the file you're looking for...
-![image](https://user-images.githubusercontent.com/29824718/123888355-4fbf0900-d921-11eb-818c-47cdf06f7755.png)
-The name of the file itself can change over releases but the basic name will remain, just use your head. Just don't download the `Source Code` files, okay? They're useless to you. The assets list can be collapsed at times. Just open it with the little arrow... Come on guys.
+The latest official releases can always be found here (or in the site above). In the releases section.... Here for those who are github disabled: https://github.com/krypto5863/COM-Modular-Installer/releases
