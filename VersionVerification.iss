@@ -39,7 +39,7 @@ begin
 		
 	if StringContains(DirName, 'Downloads') then
 	begin
-		MsgBox(CustomMessage('IsInDownloads'), mbCriticalError, MB_OK)
+		MsgBox(CustomMessage('IsInDownload'), mbCriticalError, MB_OK)
 		result := false
 	end;
 	
@@ -133,6 +133,8 @@ var
 	ErrorCode: Integer;
 	VersionString: String;
 	TempString: String;
+
+  FoundFile: WideString;
 begin
 
   JPUpLinks := [
@@ -215,8 +217,12 @@ begin
 	begin				
 		DoUnZip(ExpandConstant('{tmp}\COMUpdate.zip'),ExpandConstant('{tmp}\COMUpdate'));			
 	end;
-		
-	shellExec('', ExpandConstant('{tmp}\COMUpdate\' + Format('{#UpdateFile}', [VersionString, BitString, '']) +'\update.exe'), '', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);		
+	
+  FindFile('update.exe', ExpandConstant('{tmp}\COMUpdate'), FoundFile);
+  
+  log(FoundFile)
+    
+	shellExec('', FoundFile, '', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);		
 			
 	DownloadPage.Hide;
 end;

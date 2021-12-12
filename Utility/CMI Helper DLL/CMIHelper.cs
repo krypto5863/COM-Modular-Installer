@@ -68,6 +68,24 @@ namespace CMIHelper
 			return true;
 		}
 
+		[DllExport("CMIHelperFF", CallingConvention = CallingConvention.StdCall)]
+		public static bool FindFile([MarshalAs(UnmanagedType.BStr)] string file, [MarshalAs(UnmanagedType.BStr)] string directory, [MarshalAs(UnmanagedType.BStr)] out string path)
+		{
+
+			var files = Directory.GetFiles(directory, file, SearchOption.AllDirectories);
+
+			if (files.Length > 0)
+			{
+				path = files[0];
+				return true;
+			}
+			else 
+			{
+				path = null;
+				return false;
+			}
+		}
+
 		//\/\/\/\/ Old Larger Helper Code \/\/\/\/\/
 
 		[DllExport("CMIHelperWE", CallingConvention = CallingConvention.StdCall)]

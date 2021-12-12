@@ -8,6 +8,9 @@
   //Will get a Directories creation time. Mostly used to change name of OldInstall directory.
   function GetDirectoryCreationTime(const path: WideString; out time: WideString): Boolean;
   external 'CMIHelperGDCT@files:CMIHelper.dll stdcall delayload';
+  //Find file in directory and sub directories...
+  function FindFile(const file: WideString; const directory: WideString; out path: WideString): Boolean;
+  external 'CMIHelperFF@files:CMIHelper.dll stdcall delayload';
 
 	//This function moves old files into the OldInstall Folder during install
 	//function MoveOld(path: WideString): Boolean;

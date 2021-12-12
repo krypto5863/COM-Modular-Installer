@@ -101,7 +101,7 @@
 
 						//{ ShellExecuteEx combined with INFINITE WaitForSingleObject }
 						
-						DownloadProgressLabel.Caption := FmtMessage('ExtractingCaption', [source])
+						DownloadProgressLabel.Caption := FmtMessage(CustomMessage('ExtractingCaption'), [source])
 
 						if ShellExecuteEx(ExecInfo) then
 						begin
