@@ -1,5 +1,6 @@
 #define bep "{app}\bepinEx"
 #define bepp "{app}\bepinEx\plugins"
+#define beppa "{app}\bepinEx\patchers"
 #define syb "{app}\Sybaris"
 #define plug "{app}\Sybaris\UnityInjector"
 #define ucfg "{app}\Sybaris\UnityInjector\config"
@@ -17,7 +18,11 @@
 //Loader Section
 Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs;
 
+  Source: "{tmp}\BepInEx\plugins\COM3D2.AddYotogiSliderSE2.Plugin.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/addyot; Flags: external 
+
 	Source: "{tmp}\BepInEx\plugins\COM3d2.AdvancedMaterialModifier.Plugin.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/AdvMatMod; Flags: external
+
+  Source: "{tmp}\BepInEx\plugins\COM3D2.AutoSave.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/autosave; Flags: external
 	
 	Source: "{#ibep}\CamConEx\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/cameracon; Flags: ignoreversion recursesubdirs createallsubdirs 
 	
@@ -57,13 +62,20 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 	 
 	Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/scriptloader; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\all_maids_in_private_mode.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/allprivate; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\add_subs_to_old_yotogi.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/oldsubs; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\add_subs_to_old_yotogi.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/oldsubs; Flags: ignoreversion recursesubdirs createallsubdirs     
+    Source: "{#ibep}\ScriptLoader\Scripts\CharacterEditSortRedux.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/charactersortredux; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\dump_game_info.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/dumpinfo; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\editable_names.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/editname; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\editBlinkStop.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\enable_scout_mode.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/enascout; Flags: ignoreversion recursesubdirs createallsubdirs 
-		//Source: "{#ibep}\ScriptLoader\Scripts\error_texture_placeholder.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/errtex; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\fastFade.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/fastfade; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\ForceScheduleEvents.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/ForceSchedule; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\load_small_thumbs.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/thumbs; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\MemoriesModeUnlock.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/unlockmemories; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\nameExtender.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/nameext; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\quick_edit_scene.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/quickedit; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\saveSettingsInGame.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/savesettings; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\skipStartLogo.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/skiplogo; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\report_dupes.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/redupe; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\unlock_all_skills.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/unlockskills; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/wrapmode; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -76,19 +88,21 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: i
 	Source: "{#ibep}\ResourceRedirector\*"; DestDir: "{#bep}"; Components: Loader/bepinEX/Translations/Resredir; Flags: ignoreversion recursesubdirs createallsubdirs
 		Source: "{#ibep}\Xuat\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/Translations/resredir/xuat; Flags: ignoreversion recursesubdirs createallsubdirs 
 
-Source: "{#isyb}\Core\*"; DestDir: "{app}"; Components: Loader/Sybaris; Flags: ignoreversion recursesubdirs createallsubdirs 
+  Source: "{tmp}\BepInEx\plugins\COM3D2.UndressUtil.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UndressUtil; Flags: external
+
+//Source: "{#isyb}\Core\*"; DestDir: "{app}"; Components: Loader/Sybaris; Flags: ignoreversion recursesubdirs createallsubdirs 
 	//Source: "{#isyb}\i18nEx\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
 		//Source: "{#iloader}\extratranslations\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#isyb}\Xuat\*"; DestDir: "{#plug}"; Components: Loader/Sybaris/Translations/xuat; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#isyb}\QuickEdit\*"; DestDir: "{#syb}"; Components: Loader/Sybaris/QuickEdit; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#isyb}\CacheEdit\*"; DestDir: "{#syb}"; Components: Loader/Sybaris/cacheedit; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#isyb}\ccfix\*"; DestDir: "{#syb}"; Components: Loader/Sybaris/ccfix; Flags: ignoreversion recursesubdirs createallsubdirs
+	//Source: "{#isyb}\Xuat\*"; DestDir: "{#plug}"; Components: Loader/Sybaris/Translations/xuat; Flags: ignoreversion recursesubdirs createallsubdirs 
+	//Source: "{#isyb}\QuickEdit\*"; DestDir: "{#syb}"; Components: Loader/Sybaris/QuickEdit; Flags: ignoreversion recursesubdirs createallsubdirs 
+	//Source: "{#isyb}\CacheEdit\*"; DestDir: "{#syb}"; Components: Loader/Sybaris/cacheedit; Flags: ignoreversion recursesubdirs createallsubdirs 
+	//Source: "{#isyb}\ccfix\*"; DestDir: "{#syb}"; Components: Loader/Sybaris/ccfix; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ;Patchers
-Source: "{#IPatch}\addscreen\*"; DestDir: "{#syb}"; Components: Patchers/addscreen; Flags: ignoreversion recursesubdirs createallsubdirs 
+//Source: "{#IPatch}\addscreen\*"; DestDir: "{#syb}"; Components: Patchers/addscreen; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\AutoConverter\*"; DestDir: "{#syb}"; Components: Patchers/autocon; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\BodyCategoryAdd\*"; DestDir: "{#syb}"; Components: Patchers/bodycat; Flags: ignoreversion recursesubdirs createallsubdirs  
-Source: "{#IPatch}\blinkstop\*"; DestDir: "{#syb}"; Components: Patchers/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs 
+//Source: "{#IPatch}\blinkstop\*"; DestDir: "{#syb}"; Components: Patchers/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\ExternalSave\*"; DestDir: "{#syb}"; Components: Patchers/extsave; Flags: ignoreversion recursesubdirs createallsubdirs
 	Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#IPlugin}\vibemaid\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -98,24 +112,24 @@ Source: "{#IPatch}\ExternalSave\*"; DestDir: "{#syb}"; Components: Patchers/exts
       Source: "{#IPlugin}\Seperateeye\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/seperateeye; Flags: ignoreversion recursesubdirs 
       Source: "{#IPlugin}\distortcorrect\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/distort; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\FaceType\*"; DestDir: "{#syb}"; Components: Patchers/facetype; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPatch}\FastFade\*"; DestDir: "{#syb}"; Components: Patchers/fastfade; Flags: ignoreversion recursesubdirs createallsubdirs 
+//Source: "{#IPatch}\FastFade\*"; DestDir: "{#syb}"; Components: Patchers/fastfade; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\IMGUITranslator\Sybaris\*"; DestDir: "{#syb}"; Components: Patchers/imgui; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#IPatch}\IMGUITranslator\IMGUITranslationLoader\*"; DestDir: "{app}\IMGUITranslationLoader"; Components: Patchers/imgui/translations; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\ModLoader\Sybaris\*"; DestDir: "{#syb}"; Components: Patchers/modloader; Flags: ignoreversion recursesubdirs createallsubdirs 
   Source: "{#IPatch}\ModLoader\Mod\*"; DestDir: "{#mod}"; Components: Patchers/modloader; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPatch}\NameExt\*"; DestDir: "{#syb}"; Components: Patchers/namext; Flags: ignoreversion recursesubdirs createallsubdirs 
+//Source: "{#IPatch}\NameExt\*"; DestDir: "{#syb}"; Components: Patchers/namext; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\NeighUnce\*"; DestDir: "{#syb}"; Components: Patchers/neighuncen; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\ntrlight\*"; DestDir: "{#syb}"; Components: Patchers/ntrlight; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPatch}\rgbpal\*"; DestDir: "{#syb}"; Components: Patchers/rgbpal; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPatch}\saveset\*"; DestDir: "{#syb}"; Components: Patchers/saveset; Flags: ignoreversion recursesubdirs createallsubdirs 
+//Source: "{#IPatch}\saveset\*"; DestDir: "{#syb}"; Components: Patchers/saveset; Flags: ignoreversion recursesubdirs createallsubdirs 
 
 
 ;Plugins
-Source: "{#IPlugin}\addyot\*"; DestDir: "{#syb}"; Components: plugins/addyot; Flags: ignoreversion recursesubdirs createallsubdirs 
+//Source: "{#IPlugin}\addyot\*"; DestDir: "{#syb}"; Components: plugins/addyot; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\ACCex\*"; DestDir: "{#syb}"; Components: plugins/accex; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\eraseout\*"; DestDir: "{#syb}"; Components: plugins/eraseout; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\camerautil\*"; DestDir: "{#syb}"; Components: plugins/camerautil; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\hudclock\*"; DestDir: "{#plug}"; Components: plugins/hudclock; Flags: ignoreversion recursesubdirs createallsubdirs 
+;Source: "{#IPlugin}\hudclock\*"; DestDir: "{#plug}"; Components: plugins/hudclock; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\colorhelp\*"; DestDir: "{#syb}"; Components: plugins/colorhelp; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\conwindow\*"; DestDir: "{#syb}"; Components: plugins/conwindow; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\nyou\*"; DestDir: "{#syb}"; Components: plugins/nyou; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -129,8 +143,8 @@ Source: "{#IPlugin}\emoears\norm\Core\*"; DestDir: "{#plug}"; Components: plugin
 	Source: "{#IPlugin}\emoears\norm\Mod\*"; DestDir: "{#mod}\EmotionalEars"; Components: plugins/emoears/mod; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\extendrender\norm\*"; DestDir: "{#syb}"; Components: plugins/extendrender; Flags: ignoreversion recursesubdirs createallsubdirs 
   Source: "{#IPlugin}\extendrender\optional\*"; DestDir: "{#ucfg}"; Components: plugins/extendrender/config; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\facecon\*"; DestDir: "{#syb}"; Components: plugins/facecon; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\freedress\*"; DestDir: "{#syb}"; Components: plugins/freedress; Flags: ignoreversion recursesubdirs createallsubdirs 
+;Source: "{#IPlugin}\facecon\*"; DestDir: "{#syb}"; Components: plugins/facecon; Flags: ignoreversion recursesubdirs createallsubdirs 
+;Source: "{#IPlugin}\freedress\*"; DestDir: "{#syb}"; Components: plugins/freedress; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\InOut\*"; DestDir: "{#syb}"; Components: plugins/inout; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\mirrorprops\Sybaris\*"; DestDir: "{#syb}"; Components: plugins/mirror; Flags: ignoreversion recursesubdirs createallsubdirs 
   Source: "{#IPlugin}\mirrorprops\Mod\*"; DestDir: "{#mod}"; Components: plugins/mirror; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -145,7 +159,7 @@ Source: "{#IPlugin}\partsedit\*"; DestDir: "{#syb}"; Components: plugins/partsed
 Source: "{#IPlugin}\personaledit\*"; DestDir: "{#syb}"; Components: plugins/personaledit; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\plugmanage\*"; DestDir: "{#syb}"; Components: plugins/plugmanage; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: plugins/pluginext; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#IPlugin}\freeapp\*"; DestDir: "{#syb}"; Components: plugins/pluginext/freeapp; Flags: ignoreversion recursesubdirs createallsubdirs 
+	//Source: "{#IPlugin}\freeapp\*"; DestDir: "{#syb}"; Components: plugins/pluginext/freeapp; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#IPlugin}\halfundress\*"; DestDir: "{#syb}"; Components: plugins/pluginext/halfundress; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#IPlugin}\lookmaid\*"; DestDir: "{#syb}"; Components: plugins/pluginext/lookmaid; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#IPlugin}\lookmaster\*"; DestDir: "{#syb}"; Components: plugins/pluginext/lookmaster; Flags: ignoreversion recursesubdirs createallsubdirs

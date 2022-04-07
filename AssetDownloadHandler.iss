@@ -49,19 +49,22 @@ var
 	suf : WideString;
 	dlink: WideString;
   links: TListOfAssets;
-  I: integer; 
+  I: integer;
+  downloadDone: boolean;
 begin
 	DownloadPage.Clear();
   //These have more conditions and require version specific links and care.
   AddToListOfAssets(links , 'Loader/bepinEX/MuteBack', 'BepInEx/BepInEx.Utility', '' ,'MuteInBackground.zip', true, 'MuteInBackground', '');
   AddToListOfAssets(links , 'Loader/bepinEX/RunUniEdit', 'ManlyMarco/RuntimeUnityEditor', '' ,'RuntimeUnityEditor.zip', true, 'RuntimeUnityEditor', '');
-	AddToListOfAssets(links , 'Loader/bepinEX/OptIMGUI', 'BepInEx/BepInEx.Utility', '' ,' BepInEx.OptimizeIMGUI.v1.0.zip', true, 'OptimizeIMGUI', '');
+	AddToListOfAssets(links , 'Loader/bepinEX/OptIMGUI', 'BepInEx/BepInEx.Utility', '' ,'BepInEx.OptimizeIMGUI.v1.0.zip', true, 'OptimizeIMGUI', '');
 #if LMMT == false
 	AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API', 'DeathWeasel1337/COM3D2_Plugins', '' ,'COM3D2.API.v1.0.zip', true, 'COM3D2.API', '');
 	AddToListOfAssets(links , 'Loader/bepinEX/CM3D2Toolkit', 'JustAGuest4168/CM3D2.Toolkit', 'BepInEx\plugins\' ,'CM3D2.Toolkit.Guest4168Branch.dll', true, 'CM3D2.Toolkit', '');
 	AddToListOfAssets(links , 'Loader/bepinEX/InBlock', 'DeathWeasel1337/COM3D2_Plugins', '' ,'InputHotkeyBlock.zip', true, 'InputHotkeyBlock', '');
   AddToListOfAssets(links , 'Loader/bepinEX/FixEyeMov', '01010101lzy/gettapped/releases', '' ,'FixEyeMov.zip', true, 'FixEyeMov', '');
   //These can be fetched straight from the latest releases.
+  AddToListOfAssets(links , 'Loader/bepinEX/addyot', 'Vin-meido/COM3D2.AddYotogiSliderSE.Plugin', '' ,'COM3D2.AddYotogiSliderSE2.Plugin.zip', false, 'COM3D2.AddYotogiSliderSE2.Plugin.zip', '');
+  AddToListOfAssets(links , 'Loader/bepinEX/autosave', 'Pain-Brioche/COM3D2.AutoSave', 'BepInEx\plugins\' ,'COM3D2.AutoSave.dll', false, '', '');
   AddToListOfAssets(links , 'Loader/bepinEX/ConfigMan', 'BepInEx/BepInEx.ConfigurationManager', '' ,'ConfigManager.zip', false, '', '');
   AddToListOfAssets(links , 'Loader/bepinEX/FPSCount', 'ManlyMarco/FPSCounter', '' ,'FPSCounter.zip', false, '', '');
 	AddToListOfAssets(links , 'Loader/bepinEX/ShiftClick', 'krypto5863/COM3D2.ShiftClickExplorer', 'BepInEx\plugins\' ,'COM3D2.ShiftClickExplorer.dll', false, '', '');
@@ -70,8 +73,10 @@ begin
 	AddToListOfAssets(links , 'Loader/bepinEX/CM3D2Toolkit/ShortVanilla', 'krypto5863/COM3D2.ShortMenuVanillaDatabase', '' ,'ShortMenuVanillaDatabase.zip', false, '', '');
 	AddToListOfAssets(links , 'Loader/bepinEX/ExErrorHandle', 'krypto5863/COM3D2.ExtendedErrorHandling', 'BepInEx\plugins\' ,'COM3D2.ExtendedErrorHandling.dll', false, '', '');
 	AddToListOfAssets(links , 'Loader/bepinEX/ExPresetMan', 'krypto5863/COM3D2.ExtendedPresetManagement', 'BepInEx\plugins\' ,'COM3D2.ExtendedPresetManagement.dll', false, '', '');
+  AddToListOfAssets(links , 'Loader/bepinEX/UndressUtil', 'Vin-meido/COM3D2.UndressUtil', '' ,'COM3D2.UndressUtil.zip', false, 'COM3D2.UndressUtil.zip', '');
   AddToListOfAssets(links , 'ext/dlccheck', 'krypto5863/COM3D2_DLC_Checker', '' ,'COM3D2 DLC Checker.exe', false, '', '');
   AddToListOfAssets(links , 'ext/maidfiddle', 'denikson/COM3D2.MaidFiddler', '' ,'MFInstall.exe', false, '', '');
+
 	
 	if IsCR then
 	begin
@@ -93,7 +98,7 @@ begin
       end 
       else
       begin
-        FetchLRelease(links[i].Link, links[i].SearchString , dlink);
+        FetchDRelease(links[i].Link, links[i].SearchString, '' , dlink);
       end;
 		
       DownloadPage.Add(dlink, links[i].Output + links[i].File, '');
@@ -101,16 +106,27 @@ begin
   end;
 	
   DownloadPage.Show;
-	try
-		try
-			DownloadPage.Download;
-		except
-			MsgBox(CustomMessage('AssetDownloadFailed'), mbInformation, MB_OK);
-			//SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
-		end;
-	finally
-		DownloadPage.Hide;
-	end;
+
+  while downloadDone = false do
+  begin
+    try
+      try
+        DownloadPage.Download;
+        DownloadDone := true
+      except
+        if SuppressibleMsgBox(CustomMessage('AssetDownloadFailed'), mbError, MB_YESNO, IDNO) = IDNO then
+        begin
+          DownloadDone := true
+        end
+        else
+        begin
+          DownloadDone := false
+        end
+      end;
+    finally
+      DownloadPage.Hide;
+    end
+  end;
 
   for  i := 0 to GetArrayLength(links) - 1 do
   begin

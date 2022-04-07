@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CMIHelper
@@ -79,7 +80,7 @@ namespace CMIHelper
 				path = files[0];
 				return true;
 			}
-			else 
+			else
 			{
 				path = null;
 				return false;
@@ -163,42 +164,89 @@ namespace CMIHelper
 			}
 		}
 
-		[DllExport("CMIHelperFLR", CallingConvention = CallingConvention.StdCall)]
-		public static void FetchLatestGHRelease([MarshalAs(UnmanagedType.BStr)] string site, [MarshalAs(UnmanagedType.BStr)] string searchString, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
+		[DllExport("CMIHelperGHRF", CallingConvention = CallingConvention.StdCall)]
+		public static void GHReleaseFetch([MarshalAs(UnmanagedType.BStr)] string site, [MarshalAs(UnmanagedType.BStr)] string searchString, [MarshalAs(UnmanagedType.BStr)] string version, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
 		{
-			var url = "https://api.github.com/repos/" + site + "/releases/latest";
-
-			downloadLink = "";
+			downloadLink = string.Empty;
 
 			try
 			{
-				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-				WebClient webClient = new WebClient();
-				webClient.Headers.Add("User-Agent: Other");
+				Uri myUri = new Uri($"https://github.com/{site}/releases"
+					+ (String.IsNullOrEmpty(version) ? "" : $"/tag/{version}"));
 
-				var Release = JsonConvert.DeserializeObject<GHRest.Release>(webClient.DownloadString(url));
+				var engine = EngineBuilder.New()
+				.Build(); // Builds the Optimus engine.
 
-				foreach (var Asset in Release.assets)
+				//Request the web page.
+				var page = engine.OpenUrl(myUri.AbsoluteUri);
+				page.Wait();
+				//Get the document
+				var document = page.Result.Document;
+
+				var ReleaseCards = document
+					.GetElementsByTagName("div")
+					.Where(t => t.HasAttribute("data-test-selector") && t.GetAttribute("data-test-selector").Equals("release-card"));
+
+				foreach (var ReleaseCard in ReleaseCards)
 				{
-					if (String.IsNullOrWhiteSpace(searchString) || Asset.name.ToLower().Contains(searchString.ToLower()))
+					var assetsSection = ReleaseCard
+						.GetElementsByTagName("div")
+						.LastOrDefault(a => a.TextContent.Contains("Assets"));
+
+					var AssetLinks = assetsSection
+						.GetElementsByTagName("a")
+						.Where(tl => tl.HasAttribute("href") && !tl.GetAttribute("href").Contains("/archive/refs/"));
+
+					if (AssetLinks.Count() <= 0)
 					{
-						downloadLink = Asset.browser_download_url;
+						continue;
+					}
+
+					var DLLink = "";
+
+					if (!String.IsNullOrEmpty(searchString))
+					{
+						var linkNode = AssetLinks
+							.FirstOrDefault(lt => lt.TextContent.Trim().Contains(searchString));
+
+						if (linkNode != null)
+						{
+							DLLink = "https://" + myUri.Host + linkNode.GetAttribute("href");
+						}
+					}
+					else
+					{
+						DLLink = AssetLinks
+							.First()
+							.GetAttribute("href");
+
+						DLLink = "https://" + myUri.Host + DLLink;
+					}
+
+					if (!String.IsNullOrEmpty(DLLink))
+					{
+						downloadLink = DLLink;
 						return;
 					}
 				}
 			}
 			catch (Exception e)
 			{
-				System.Windows.Forms.MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK);
+				Console.WriteLine("\nThe following Exception was raised trying to crawl GitHub. Will fallback to official API : {0}", e.Message);
+			}
+
+			if (String.IsNullOrEmpty(downloadLink))
+			{
+				DynaFetchGHRelease(site, searchString, version, out downloadLink);
 			}
 		}
 
-		[DllExport("CMIHelperDF", CallingConvention = CallingConvention.StdCall)]
+		//Left as a fallback in the case we fail to return a proper result or something, we'll go with the proper implementation. 
 		public static void DynaFetchGHRelease([MarshalAs(UnmanagedType.BStr)] string site, [MarshalAs(UnmanagedType.BStr)] string searchString, [MarshalAs(UnmanagedType.BStr)] string version, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
 		{
 			var url = "https://api.github.com/repos/" + site + "/releases";
 
-			downloadLink = "";
+			downloadLink = String.Empty;
 
 			try
 			{

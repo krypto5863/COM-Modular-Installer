@@ -37,6 +37,7 @@ Function FixComponents(): Boolean;
 var
 	NonCR: Array of string;
 	NonEng: Array of string;
+  CRComps: Array of string;
 	I: Integer;
 begin
 	//If english version is detected, run the below code.
@@ -76,15 +77,17 @@ begin
 			CustomMessage('EmoEarsAhoge'),
 			'EmotionalEars(and tails)',
 			'EditSceneUndo',
-			'SaveSettingsInGame',
 			'VibeYourMaid',
 			'BodyCategoryAdd',
 			'Wrap Mode Extend Script',
 			'Error Texture Placeholder Script',
 			'MeidoPhotoStudio',
 			'1900 Poses for MPS',
-			'ExtendedErrorHandling',
-			'ShapekeyMaster'		
+			//'ExtendedErrorHandling',
+			//'ShapekeyMaster',
+      //'ShortMenuLoader',
+      'AlwaysColorChangeEX',
+      'AdvancedMaterialModifier'
 		];		
 		
 		for I := 0 to GetArrayLength(NonCR)-1 do
@@ -94,7 +97,18 @@ begin
 		
 		if (Wizardform.ComponentsList.Checked[GetComponentIndex('ShapeAnimator')]) then
 			Wizardform.ComponentsList.CheckItem(GetComponentIndex('Standard SA'), coCheck);
-	end	
+  end
+	else//Not CR
+  begin
+    CRComps := [
+			'GearMenuFix'
+		];		
+		
+		for I := 0 to GetArrayLength(CRComps)-1 do
+		begin
+			RemoveComponent(CRComps[I]);
+		end;
+  end  
 end;
 	
 Function HandleSer(const GamePath: String): Boolean;

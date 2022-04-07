@@ -34,15 +34,14 @@
 	//function IsInstallerOld(const tpath: WideString; const version: WideString): Boolean;
 	//external 'CMIHelperCI@files:CMIHelper.dll stdcall delayload';
   //Gets the latest game file from the update site.
+  procedure InitHelper();
+  external 'CMIHelperInit@files:CMIHelper.dll stdcall delayload';
 
   procedure FetchUpdateFile(const site: WideString; out file: WideString);
 	external 'CMIHelperGLU@files:CMIHelper.dll stdcall delayload';
-  //Gets the latest release only, returns the first assets link that matches a given string if the string isn't empty.
-	procedure FetchLRelease(const site: WideString; const searchString: WideString; out dlink: WideString);
-	external 'CMIHelperFLR@files:CMIHelper.dll stdcall delayload';
-  //Attempts to dynamically fetch a file given a search string, some modders use non-standard names. This goes through several releases, not just the latest.
+  //Attempts to dynamically fetch a file given a search string, some modders use non-standard names. This goes through several releases, not just the latest. If the version string is empty though, just goes through the latest
   procedure FetchDRelease(const site: WideString; const searchString: WideString; const version: WideString; out dlink: WideString);
-	external 'CMIHelperDF@files:CMIHelper.dll stdcall delayload';
+	external 'CMIHelperGHRF@files:CMIHelper.dll stdcall delayload';
   //Tries to fetch the latest version of a repo. Used for CMI update checking.
   procedure FetchLVersion(const site: WideString; out version: WideString);
 	external 'CMIHelperFLV@files:CMIHelper.dll stdcall delayload';
