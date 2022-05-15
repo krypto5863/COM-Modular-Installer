@@ -206,7 +206,10 @@ end;
 procedure CurStepChanged(const CurStep: TSetupStep);
 begin
 	case CurStep of ssInstall:
-		begin			
+		begin
+    
+      Log('Starting Asset Downloader')
+        
 			DownloadAssets()					
 
 			//Saves any custom selections to components on install.

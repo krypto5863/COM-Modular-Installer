@@ -51,59 +51,85 @@ var
   links: TListOfAssets;
   I: integer;
   downloadDone: boolean;
+  ProgressPage: TOutputProgressWizardPage;
 begin
+
+  Log('Creating list of Assets to Download.');
+
 	DownloadPage.Clear();
   //These have more conditions and require version specific links and care.
-  AddToListOfAssets(links , 'Loader/bepinEX/MuteBack', 'BepInEx/BepInEx.Utility', '' ,'MuteInBackground.zip', true, 'MuteInBackground', '');
-  AddToListOfAssets(links , 'Loader/bepinEX/RunUniEdit', 'ManlyMarco/RuntimeUnityEditor', '' ,'RuntimeUnityEditor.zip', true, 'RuntimeUnityEditor', '');
-	AddToListOfAssets(links , 'Loader/bepinEX/OptIMGUI', 'BepInEx/BepInEx.Utility', '' ,'BepInEx.OptimizeIMGUI.v1.0.zip', true, 'OptimizeIMGUI', '');
+  AddToListOfAssets(links , 'bepinexPlugs/MuteBack', 'BepInEx/BepInEx.Utility', '' ,'MuteInBackground.zip', true, 'MuteInBackground', '');
+  AddToListOfAssets(links , 'bepinexPlugs/RunUniEdit', 'ManlyMarco/RuntimeUnityEditor', '' ,'RuntimeUnityEditor.zip', true, 'RuntimeUnityEditor', '');
+	AddToListOfAssets(links , 'bepinexPlugs/OptIMGUI', 'BepInEx/BepInEx.Utility', '' ,'BepInEx.OptimizeIMGUI.v1.0.zip', true, 'OptimizeIMGUI', '');
 #if LMMT == false
-	AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API', 'DeathWeasel1337/COM3D2_Plugins', '' ,'COM3D2.API.v1.0.zip', true, 'COM3D2.API', '');
-	AddToListOfAssets(links , 'Loader/bepinEX/CM3D2Toolkit', 'JustAGuest4168/CM3D2.Toolkit', 'BepInEx\plugins\' ,'CM3D2.Toolkit.Guest4168Branch.dll', true, 'CM3D2.Toolkit', '');
-	AddToListOfAssets(links , 'Loader/bepinEX/InBlock', 'DeathWeasel1337/COM3D2_Plugins', '' ,'InputHotkeyBlock.zip', true, 'InputHotkeyBlock', '');
-  AddToListOfAssets(links , 'Loader/bepinEX/FixEyeMov', '01010101lzy/gettapped/releases', '' ,'FixEyeMov.zip', true, 'FixEyeMov', '');
+	AddToListOfAssets(links , 'bepinex', 'DeathWeasel1337/COM3D2_Plugins', '' ,'COM3D2.API.v1.0.zip', true, 'COM3D2.API', '');
+	AddToListOfAssets(links , 'bepinex', 'JustAGuest4168/CM3D2.Toolkit', 'BepInEx\plugins\' ,'CM3D2.Toolkit.Guest4168Branch.dll', true, 'CM3D2.Toolkit', '');
+	AddToListOfAssets(links , 'bepinexPlugs/InBlock', 'DeathWeasel1337/COM3D2_Plugins', '' ,'InputHotkeyBlock.zip', true, 'InputHotkeyBlock', '');
+  AddToListOfAssets(links , 'bepinexPlugs/FixEyeMov', '01010101lzy/gettapped/releases', '' ,'FixEyeMov.zip', true, 'FixEyeMov', '');
   //These can be fetched straight from the latest releases.
-  AddToListOfAssets(links , 'Loader/bepinEX/addyot', 'Vin-meido/COM3D2.AddYotogiSliderSE.Plugin', '' ,'COM3D2.AddYotogiSliderSE2.Plugin.zip', false, 'COM3D2.AddYotogiSliderSE2.Plugin.zip', '');
-  AddToListOfAssets(links , 'Loader/bepinEX/autosave', 'Pain-Brioche/COM3D2.AutoSave', 'BepInEx\plugins\' ,'COM3D2.AutoSave.dll', false, '', '');
-  AddToListOfAssets(links , 'Loader/bepinEX/ConfigMan', 'BepInEx/BepInEx.ConfigurationManager', '' ,'ConfigManager.zip', false, '', '');
-  AddToListOfAssets(links , 'Loader/bepinEX/FPSCount', 'ManlyMarco/FPSCounter', '' ,'FPSCounter.zip', false, '', '');
-	AddToListOfAssets(links , 'Loader/bepinEX/ShiftClick', 'krypto5863/COM3D2.ShiftClickExplorer', 'BepInEx\plugins\' ,'COM3D2.ShiftClickExplorer.dll', false, '', '');
-  AddToListOfAssets(links , 'Loader/bepinEX/COM3D2API/ShapekeyMaster', 'krypto5863/COM3D2.ShapekeyMaster', 'BepInEx\plugins\' ,'COM3D2.ShapekeyMaster.Plugin.dll', false, '', '');
-  AddToListOfAssets(links , 'Loader/bepinEX/ShortMenu', 'krypto5863/COM3D2.ShortMenuLoader', '' ,'ShortMenuLoader.zip', false, '', '');
-	AddToListOfAssets(links , 'Loader/bepinEX/CM3D2Toolkit/ShortVanilla', 'krypto5863/COM3D2.ShortMenuVanillaDatabase', '' ,'ShortMenuVanillaDatabase.zip', false, '', '');
-	AddToListOfAssets(links , 'Loader/bepinEX/ExErrorHandle', 'krypto5863/COM3D2.ExtendedErrorHandling', 'BepInEx\plugins\' ,'COM3D2.ExtendedErrorHandling.dll', false, '', '');
-	AddToListOfAssets(links , 'Loader/bepinEX/ExPresetMan', 'krypto5863/COM3D2.ExtendedPresetManagement', 'BepInEx\plugins\' ,'COM3D2.ExtendedPresetManagement.dll', false, '', '');
-  AddToListOfAssets(links , 'Loader/bepinEX/UndressUtil', 'Vin-meido/COM3D2.UndressUtil', '' ,'COM3D2.UndressUtil.zip', false, 'COM3D2.UndressUtil.zip', '');
+  AddToListOfAssets(links , 'bepinexPlugs/addyot', 'Vin-meido/COM3D2.AddYotogiSliderSE.Plugin', '' ,'COM3D2.AddYotogiSliderSE2.Plugin.zip', false, 'COM3D2.AddYotogiSliderSE2.Plugin.zip', '');
+  AddToListOfAssets(links , 'bepinexPlugs/autosave', 'Pain-Brioche/COM3D2.AutoSave', 'BepInEx\plugins\' ,'COM3D2.AutoSave.dll', false, '', '');
+  AddToListOfAssets(links , 'bepinexPlugs/ConfigMan', 'BepInEx/BepInEx.ConfigurationManager', '' ,'ConfigManager.zip', false, '', '');
+  AddToListOfAssets(links , 'bepinexPlugs/FPSCount', 'ManlyMarco/FPSCounter', '' ,'FPSCounter.zip', false, '', '');
+	AddToListOfAssets(links , 'bepinexPlugs/ShiftClick', 'krypto5863/COM3D2.ShiftClickExplorer', 'BepInEx\plugins\' ,'COM3D2.ShiftClickExplorer.dll', false, '', '');
+  AddToListOfAssets(links , 'bepinexPlugs/ShapekeyMaster', 'krypto5863/COM3D2.ShapekeyMaster', 'BepInEx\plugins\' ,'COM3D2.ShapekeyMaster.Plugin.dll', false, '', '');
+  AddToListOfAssets(links , 'bepinexPlugs/ShortMenu', 'krypto5863/COM3D2.ShortMenuLoader', '' ,'ShortMenuLoader.zip', false, '', '');
+	AddToListOfAssets(links , 'bepinexPlugs/ShortVanilla', 'krypto5863/COM3D2.ShortMenuVanillaDatabase', '' ,'ShortMenuVanillaDatabase.zip', false, '', '');
+	AddToListOfAssets(links , 'bepinexPlugs/ExErrorHandle', 'krypto5863/COM3D2.ExtendedErrorHandling', 'BepInEx\plugins\' ,'COM3D2.ExtendedErrorHandling.dll', false, '', '');
+	AddToListOfAssets(links , 'bepinexPlugs/ExPresetMan', 'krypto5863/COM3D2.ExtendedPresetManagement', 'BepInEx\plugins\' ,'COM3D2.ExtendedPresetManagement.dll', false, '', '');
+  //AddToListOfAssets(links , 'bepinex', 'sinai-dev/UniverseLib', '' ,'COM3D2.UndressUtil.zip', false, 'COM3D2.UndressUtil.zip', '');
+  AddToListOfAssets(links , 'bepinexPlugs/UndressUtil', 'Vin-meido/COM3D2.UndressUtil', '' ,'COM3D2.UndressUtil.zip', false, 'COM3D2.UndressUtil.zip', '');
   AddToListOfAssets(links , 'ext/dlccheck', 'krypto5863/COM3D2_DLC_Checker', '' ,'COM3D2 DLC Checker.exe', false, '', '');
   AddToListOfAssets(links , 'ext/maidfiddle', 'denikson/COM3D2.MaidFiddler', '' ,'MFInstall.exe', false, '', '');
 
 	
 	if IsCR then
 	begin
-		AddToListOfAssets(links , 'Loader/bepinEX/AdvMatMod', 'krypto5863/COM3d2-AdvancedMaterialModifier', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', true, '', '1.1.3');
+		AddToListOfAssets(links , 'bepinexPlugs/AdvMatMod', 'krypto5863/COM3d2-AdvancedMaterialModifier', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', true, '', '1.1.3');
 	end else
-		AddToListOfAssets(links , 'Loader/bepinEX/AdvMatMod', 'krypto5863/COM3d2-AdvancedMaterialModifier', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', false, '', '');
+		AddToListOfAssets(links , 'bepinexPlugs/AdvMatMod', 'krypto5863/COM3d2-AdvancedMaterialModifier', 'BepInEx\plugins\' ,'COM3D2.AdvancedMaterialModifier.Plugin.dll', false, '', '');
 	begin
 	end;
 #endif
 
-  for  i := 0 to GetArrayLength(links) - 1 do
-  begin
-    if (WizardIsComponentSelected(links[i].Name)) then
+  ProgressPage := CreateOutputProgressPage('Processing External Assets', 'External downloads are being discovered, retrieved and processed.');
+
+  try
+
+    ProgressPage.Show();
+
+    for  i := 0 to GetArrayLength(links) - 1 do
     begin
-      
-      if (links[i].FetchL) then
-      begin   
-        FetchDRelease(links[i].Link, links[i].SearchString, links[i].Version, dlink);
-      end 
-      else
+      if (WizardIsComponentSelected(links[i].Name)) then
       begin
-        FetchDRelease(links[i].Link, links[i].SearchString, '' , dlink);
-      end;
+
+        ProgressPage.SetText('Looking for file links in GitHub releases...', links[i].Link);
+
+        Log('Fetching releases for ' + links[i].Name);
+      
+        if (links[i].FetchL) then
+        begin   
+          FetchDRelease(links[i].Link, links[i].SearchString, links[i].Version, dlink);
+        end 
+        else
+        begin
+          FetchDRelease(links[i].Link, links[i].SearchString, '' , dlink);
+        end;
+
+        Log('Fetched release for ' + links[i].Name + ' adding to DLs.');
 		
-      DownloadPage.Add(dlink, links[i].Output + links[i].File, '');
+        DownloadPage.Add(dlink, links[i].Output + links[i].File, '');
+
+        ProgressPage.SetProgress(i + 1, GetArrayLength(links));
+
+      end;
     end;
-  end;
+
+  finally
+    ProgressPage.Hide();
+  end
+
+  Log('Initiating downloads...');
 	
   DownloadPage.Show;
 
@@ -127,13 +153,34 @@ begin
       DownloadPage.Hide;
     end
   end;
+  
+  Log('Downloads complete. Unzipping now...');
 
-  for  i := 0 to GetArrayLength(links) - 1 do
-  begin
-    if (StringContains(links[i].File, '.zip')) AND (FileExists(ExpandConstant('{tmp}\') + links[i].File)) then
+  try
+
+    ProgressPage.Show();
+
+    for  i := 0 to GetArrayLength(links) - 1 do
     begin
-      DoUnzip(ExpandConstant('{tmp}\') + links[i].File, ExpandConstant('{tmp}'))
+
+      if (StringContains(links[i].File, '.zip')) AND (FileExists(ExpandConstant('{tmp}\') + links[i].File)) then
+      begin
+      
+        Log('Unzipping ' + links[i].File);
+
+        ProgressPage.SetText('Extracting...', links[i].File);
+
+        DoUnzip(ExpandConstant('{tmp}\') + links[i].File, ExpandConstant('{tmp}'));
+
+      end;
+
+      ProgressPage.SetProgress(i + 1, GetArrayLength(links));
+
     end;
-  end;
+
+    Log('Asset downloader has completed. Congratulations.');
+  finally
+    ProgressPage.Hide();
+  end
 end;
 [/Code]

@@ -2,19 +2,19 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace CMIHelper
 {
-	public class CMIHelper
+	public static class CMIHelper
 	{
+		private static Knyaz.Optimus.Engine MainEngine = EngineBuilder.New().Build();
+
 		[DllExport("CMIHelperSC", CallingConvention = CallingConvention.StdCall)]
 		public static bool StringContains([MarshalAs(UnmanagedType.BStr)] string mainstring, [MarshalAs(UnmanagedType.BStr)] string substring)
 		{
@@ -52,7 +52,6 @@ namespace CMIHelper
 		[DllExport("CMIHelperGDCT", CallingConvention = CallingConvention.StdCall)]
 		public static bool GetDirectoryCreationTime([MarshalAs(UnmanagedType.BStr)] string file, [MarshalAs(UnmanagedType.BStr)] out string time)
 		{
-
 			try
 			{
 				DateTime ct = Directory.GetCreationTime(file);
@@ -72,7 +71,6 @@ namespace CMIHelper
 		[DllExport("CMIHelperFF", CallingConvention = CallingConvention.StdCall)]
 		public static bool FindFile([MarshalAs(UnmanagedType.BStr)] string file, [MarshalAs(UnmanagedType.BStr)] string directory, [MarshalAs(UnmanagedType.BStr)] out string path)
 		{
-
 			var files = Directory.GetFiles(directory, file, SearchOption.AllDirectories);
 
 			if (files.Length > 0)
@@ -103,8 +101,7 @@ namespace CMIHelper
 
 				if (myHttpWebResponse.StatusCode == HttpStatusCode.OK)
 				{
-					Console.WriteLine("\r\nResponse Status Code is OK and StatusDescription is: {0}",
-										 myHttpWebResponse.StatusDescription);
+					Console.WriteLine($"\r\nResponse Status Code is OK and StatusDescription is: {myHttpWebResponse.StatusDescription}");
 					return true;
 				}
 				// Releases the resources of the response.
@@ -112,12 +109,12 @@ namespace CMIHelper
 			}
 			catch (WebException e)
 			{
-				Console.WriteLine("\r\nWebException Raised. The following error occurred : {0}", e.Status);
+				Log($"\r\nWebException Raised. The following error occurred : {e.Status}");
 				return false;
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine("\nThe following Exception was raised : {0}", e.Message);
+				Log($"\nThe following Exception was raised : {e.Message}");
 				return false;
 			}
 
@@ -127,18 +124,19 @@ namespace CMIHelper
 		[DllExport("CMIHelperGLU", CallingConvention = CallingConvention.StdCall)]
 		public static void FetchLatestGameUpdate([MarshalAs(UnmanagedType.BStr)] string url, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
 		{
-			var engine = EngineBuilder.New()
-			.Build(); // Builds the Optimus engine.
-
 			//Request the web page.
-			var page = engine.OpenUrl(url);
-			page.Wait();
+			var page = MainEngine.OpenUrl(url);
+			if (page.Wait(10000) == false)
+			{
+				Console.WriteLine($"Timed out waiting for {url} to open.");
+				downloadLink = String.Empty;
+				return;
+			}
 
 			var document = page.Result.Document;
 			var button = document.GetElementsByClassName("spec_in").First().GetElementsByTagName("p")[0];
 
 			downloadLink = button.TextContent.Trim();
-			engine.Dispose();
 		}
 
 		[DllExport("CMIHelperFLV", CallingConvention = CallingConvention.StdCall)]
@@ -174,12 +172,18 @@ namespace CMIHelper
 				Uri myUri = new Uri($"https://github.com/{site}/releases"
 					+ (String.IsNullOrEmpty(version) ? "" : $"/tag/{version}"));
 
-				var engine = EngineBuilder.New()
-				.Build(); // Builds the Optimus engine.
+				Log($"Opening URL.");
 
 				//Request the web page.
-				var page = engine.OpenUrl(myUri.AbsoluteUri);
-				page.Wait();
+				var page = MainEngine.OpenUrl(myUri.AbsoluteUri);
+				if (page.Wait(10000) == false)
+				{
+					Log($"Timed out waiting for {myUri} to open. Falling back to GitHub API");
+					goto Timeout;
+				}
+
+				Log($"URL opened. Searching for elements.");
+
 				//Get the document
 				var document = page.Result.Document;
 
@@ -225,6 +229,7 @@ namespace CMIHelper
 
 					if (!String.IsNullOrEmpty(DLLink))
 					{
+						Log($"Element spotted... Returning {DLLink}");
 						downloadLink = DLLink;
 						return;
 					}
@@ -232,8 +237,10 @@ namespace CMIHelper
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine("\nThe following Exception was raised trying to crawl GitHub. Will fallback to official API : {0}", e.Message);
+				Log($"\nThe following Exception was raised trying to crawl GitHub. Will fallback to official API : {e.Message}");
 			}
+
+		Timeout:
 
 			if (String.IsNullOrEmpty(downloadLink))
 			{
@@ -241,7 +248,7 @@ namespace CMIHelper
 			}
 		}
 
-		//Left as a fallback in the case we fail to return a proper result or something, we'll go with the proper implementation. 
+		//Left as a fallback in the case we fail to return a proper result or something, we'll go with the proper implementation.
 		public static void DynaFetchGHRelease([MarshalAs(UnmanagedType.BStr)] string site, [MarshalAs(UnmanagedType.BStr)] string searchString, [MarshalAs(UnmanagedType.BStr)] string version, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
 		{
 			var url = "https://api.github.com/repos/" + site + "/releases";
@@ -279,6 +286,11 @@ namespace CMIHelper
 			{
 				System.Windows.Forms.MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK);
 			}
+		}
+
+		private static void Log(string message)
+		{
+			File.AppendAllText(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\CMIHelperLog.txt", DateTimeOffset.Now + " :: " + message + "\n");
 		}
 	}
 }

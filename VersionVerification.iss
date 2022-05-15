@@ -62,7 +62,13 @@ begin
 	begin	
 		MsgBox(CustomMessage('MissingUpdateLst'), mbCriticalError, MB_OK);	
     result := false;
-	end;	
+	end;
+  
+  if FileExists(DirName + '\COM3D2x64_Data\Managed\ReiPatcher.exe') OR DirExists(DirName + '\ReiPatcher') then
+  begin
+    MsgBox(CustomMessage('ReiPatcher'), mbCriticalError, MB_OK);	
+    result := false;
+  end;
 end;
 
 function VersionFetch(const File: string; out version: Integer; const LineToFetch: String): Boolean;

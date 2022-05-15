@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.11"
+#define MyAppVersion "2.5.12"
 #define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
 #define MinimumVersion 20900
 #define CRStartVersion 31300
@@ -89,6 +89,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl, {#SrcDir}\Messages\English
 Name: "armenian"; MessagesFile: "compiler:Languages\Armenian.isl"
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
+Name: "chinesesimplified"; MessagesFile: "compiler:Languages\Unofficial\ChineseSimplified.isl, {#SrcDir}\Messages\Simplified_ChineseCMI.isl"
 Name: "corsican"; MessagesFile: "compiler:Languages\Corsican.isl"
 Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
 Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
@@ -124,83 +125,81 @@ Name:"none"; Description:{cm:TypeNone};
 
 [Components]
 
-Name: Loader; Description: {cm:ModLoader}; Types: full compact;
-  Name: Loader/bepinEX; Description: {cm:BepinEx}; Types: full notr compact eng pic self hen; Flags:Exclusive checkablealone
+  Name: bepinex; Description: {cm:BepinEx}; Types: full notr compact eng pic self hen; Flags: checkablealone
 
-    Name: Loader/bepinEX/addyot; Description: AddYotogiSliderSE2; Types: Full compact eng notr hen self;
+  Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng pic self hen; Flags: checkablealone
 
-		Name: Loader/bepinEX/AdvMatMod; Description: AdvancedMaterialModifier; Types: self; Flags: dontinheritcheck;
+    Name: bepinexPlugs/addyot; Description: AddYotogiSliderSE2; Types: Full compact eng notr hen self;
 
-    Name: Loader/bepinEX/autosave; Description: AutoSave; Types: Full eng notr hen self;
+		Name: bepinexPlugs/AdvMatMod; Description: AdvancedMaterialModifier; Types: self; Flags: dontinheritcheck;
+
+    Name: bepinexPlugs/autosave; Description: AutoSave; Types: Full eng notr hen self;
 		
-		Name: Loader/bepinEX/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
-		
-		Name: Loader/bepinEX/CM3D2Toolkit; Description: CM3D2.Toolkit.Guest4168Branch; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-			Name: Loader/bepinEX/CM3D2Toolkit/ShortVanilla; Description: ShortMenuVanillaDatabase; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-	  
-		Name: Loader/bepinEX/COM3D2API; Description: COM3D2.API; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-			Name: Loader/bepinEX/COM3D2API/ShapekeyMaster; Description: ShapekeyMaster; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+		Name: bepinexPlugs/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
 	
-		Name: Loader/bepinEX/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+		Name: bepinexPlugs/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 	
-		Name: Loader/bepinEX/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+		Name: bepinexPlugs/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 
-		Name: Loader/bepinEX/ExErrorHandle; Description: ExtendedErrorHandling; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
+		Name: bepinexPlugs/ExErrorHandle; Description: ExtendedErrorHandling; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
 		
-    Name: Loader/bepinEX/ExPresetMan; Description: ExtendedPresetManagement; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
+    Name: bepinexPlugs/ExPresetMan; Description: ExtendedPresetManagement; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
 		
 		//Name: Loader/bepinEX/FixEyeMov; Description: FixEyeMov; Types:full eng notr hen self; Flags: dontinheritcheck;
 		
-		Name: Loader/bepinEX/FPSCount; Description: FPSCounter; Types: self; Flags: dontinheritcheck;
+		Name: bepinexPlugs/FPSCount; Description: FPSCounter; Types: self; Flags: dontinheritcheck;
 	
-	  Name: Loader/bepinEX/FPSUn; Description: FPSUnlock; Types: self; Flags: dontinheritcheck;
+	  Name: bepinexPlugs/FPSUn; Description: FPSUnlock; Types: self; Flags: dontinheritcheck;
 
-    Name: Loader/bepinEX/GearFix; Description: GearMenuFix; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
+    Name: bepinexPlugs/GearFix; Description: GearMenuFix; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
 		
-		Name: Loader/bepinEX/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+		Name: bepinexPlugs/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
     
-    Name: Loader/bepinEX/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self; Flags: dontinheritcheck;
-			Name: Loader/bepinEX/meidophoto/Poses; Description: 1900 Poses for MPS; Flags: dontinheritcheck;
+    Name: bepinexPlugs/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self; Flags: dontinheritcheck;
+			Name: bepinexPlugs/meidophoto/Poses; Description: 1900 Poses for MPS; Flags: dontinheritcheck;
 		
-		Name: Loader/bepinEX/modref; Description: ModRefresh; Types:full pic self eng notr; Flags: dontinheritcheck;
+		Name: bepinexPlugs/modref; Description: ModRefresh; Types:full pic self eng notr; Flags: dontinheritcheck;
 		
 		//Name: Loader/bepinEX/MuteBack; Description: MuteInBackground; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 		
 		//Name: Loader/bepinEX/RunUniEdit; Description: RuntimeUnityEditor; Flags: dontinheritcheck;
 
-    Name: Loader/bepinEX/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-			Name: Loader/bepinEX/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
-			Name: Loader/bepinEX/scriptloader/allprivate; Description: All Maids In Private Mode Script; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/charactersortredux; Description: Character Edit Sort Redux Script; Types: Full notr eng self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/blinkstop; Description: EditBlinkStop Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/enascout; Description: Enable Scout Mode Script; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/forceschedule; Description: ForceScheduleEvents Script; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/unlockmemories; Description: MemoriesModeUnlock Script; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/nameext; Description: NameExtender Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/savesettings; Description: SaveSettingsInGame Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/skiplogo; Description: SkipStartLogo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/thumbs; Description: Load Small Thumbs Script; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
-			Name: Loader/bepinEX/scriptloader/unlockskills; Description: Unlock All Skills; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
-			
-		Name: Loader/bepinEX/ShiftClick; Description: ShiftClickExplorer; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-			
-    Name: Loader/bepinEX/ShortMenu; Description: ShortMenuLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+    Name: bepinexPlugs/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+			Name:bepinexPlugs/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
+			Name:bepinexPlugs/scriptloader/allprivate; Description: All Maids In Private Mode Script; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/charactersortredux; Description: Character Edit Sort Redux Script; Types: Full notr eng self hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/blinkstop; Description: EditBlinkStop Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/enascout; Description: Enable Scout Mode Script; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/forceschedule; Description: ForceScheduleEvents Script; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/unlockmemories; Description: MemoriesModeUnlock Script; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/morenames; Description: MoreRandomNames Script; Types: Full notr eng hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/nameext; Description: NameExtender Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/savesettings; Description: SaveSettingsInGame Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/skiplogo; Description: SkipStartLogo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/thumbs; Description: Load Small Thumbs Script; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
+			Name:bepinexPlugs/scriptloader/unlockskills; Description: Unlock All Skills; Flags: dontinheritcheck;
+      Name:bepinexPlugs/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
 
-    Name: Loader/bepinEX/Translations; Description:{cm:TranslationPlugs}; Types: Full compact pic self hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/Translations/i18nEx; Description: i18nEx;  Types: full compact pic self hen; Flags: dontinheritcheck;
-				Name:Loader/bepinEX/Translations/i18nEx/extrans; Description:{cm:ExtraTrans}; Types:full compact self pic hen; Flags: dontinheritcheck;
-      Name: Loader/bepinEX/Translations/resredir; Description: Resource Redirector; Flags: dontinheritcheck;
-        Name: Loader/bepinEX/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen; Flags: dontinheritcheck;
+		Name: bepinexPlugs/ShapekeyMaster; Description: ShapekeyMaster; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;			
+		Name: bepinexPlugs/ShiftClick; Description: ShiftClickExplorer; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+			
+    Name: bepinexPlugs/ShortMenu; Description: ShortMenuLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+		Name: bepinexPlugs/ShortVanilla; Description: ShortMenuVanillaDatabase; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+
+    Name:bepinexPlugs/Translations; Description:{cm:TranslationPlugs}; Types: Full compact pic self hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/Translations/i18nEx; Description: i18nEx;  Types: full compact pic self hen; Flags: dontinheritcheck;
+				Name:bepinexPlugs/Translations/i18nEx/extrans; Description:{cm:ExtraTrans}; Types:full compact self pic hen; Flags: dontinheritcheck;
+      Name:bepinexPlugs/Translations/resredir; Description: Resource Redirector; Flags: dontinheritcheck;
+        Name:bepinexPlugs/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen; Flags: dontinheritcheck;
 				
-		Name: Loader/bepinEX/OptIMGUI; Description: OptimizeIMGUI; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+		Name:bepinexPlugs/OptIMGUI; Description: OptimizeIMGUI; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 
-    Name: Loader/bepinEX/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+    Name:bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 
   ;Name: Loader/Sybaris; Description:{cm:Sybaris} ;Flags: Exclusive checkablealone
 
@@ -257,32 +256,26 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
     Name: plugins/extendrender/config; Description:x10 Extend Config; Types:self; Flags:dontinheritcheck
   ;Name: plugins/facecon; Description:FaceControl; Types:pic;
   ;Name: plugins/freedress; Description:FreeModeDressKeeper; Types:full self eng notr hen;
+  Name: plugins/halfundress; Description:HalfUnDressing; Types:full eng notr hen; Flags:dontinheritcheck;
   Name: plugins/inout; Description:InOutAnimation; Types:full eng notr self hen;
+  Name: plugins/lookmaid; Description:LookAtYourMaid; Flags:dontinheritcheck
+	Name: plugins/lookmaster; Description:LookAtYourMaster; Flags:dontinheritcheck
   Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
   Name: plugins/mtacc; Description: MtAccelerator;
 		Name: plugins/mtacc/AllScene; Description: AllScene Version;
   //Name: plugins/MM; Description:MultipleMaids; Types:full pic self eng notr;
     //Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
   Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
+  Name: plugins/notecolor; Description:NoteColor; Types:full self eng notr hen; Flags:dontinheritcheck
   Name: plugins/NPRShader; Description:NPRShader; Types:;
     Name: plugins/NPRShader/LightConfig; Description:{cm:NPRLightConfig}; Types:; Flags:dontinheritcheck
   Name: plugins/objexp; Description:ObjectExplorer; Types:full self eng notr pic;
   Name: plugins/partsedit; Description:PartsEdit; Types:full pic self eng notr;
   Name: plugins/personaledit; Description:PersonalizedEditSceneSettings; Types:full pic self eng notr hen;
   Name: plugins/plugmanage; Description:PluginManager; Types:full pic eng notr;
-  Name: plugins/PluginExt; Description:{cm:PluginExt}; Types:full compact pic self eng notr compact;
-		//Name: plugins/PluginExt/freeapp; Description:FreeModeApp; Types:full self eng notr hen; Flags:dontinheritcheck
-		Name: plugins/PluginExt/halfundress; Description:HalfUnDressing; Types:full eng notr hen; Flags:dontinheritcheck;
-		Name: plugins/PluginExt/lookmaid; Description:LookAtYourMaid; Flags:dontinheritcheck
-		Name: plugins/PluginExt/lookmaster; Description:LookAtYourMaster; Flags:dontinheritcheck
-		Name: plugins/PluginExt/notecolor; Description:NoteColor; Types:full self eng notr hen; Flags:dontinheritcheck
-		Name: plugins/PluginExt/rhythmoption; Description: RhythmExtraOption; Types:full eng notr self hen; Flags:dontinheritcheck
-		Name: plugins/PluginExt/xtms; Description:XTMasterSlave+; Types:full eng notr self hen; Flags:dontinheritcheck;
-			Name: plugins/PluginExt/xtms/XTFutaBody; Description:XTFutaBody; Types:; Flags:dontinheritcheck
-			Name: plugins/PluginExt/xtms/XTFutaAccessories; Description:XTFutaAccessories; Types:;
-		
-		
-		
+  Name: plugins/rhythmoption; Description: RhythmExtraOption; Types:full eng notr self hen; Flags:dontinheritcheck
+  ;Name: plugins/PluginExt; Description:{cm:PluginExt}; Types:full compact pic self eng notr compact;
+		//Name: plugins/PluginExt/freeapp; Description:FreeModeApp; Types:full self eng notr hen; Flags:dontinheritcheck	
   Name: plugins/pngplace; Description:PNGPlacement; Types:full pic self eng notr; Flags: checkablealone;
     Name: plugins/pngplace/expng; Description:{cm:PNGPlaceExtraPNG}; Types:full self pic eng notr; Flags: dontinheritcheck
   Name: plugins/propitem; Description:PropMyItem; Types:full eng notr pic;
@@ -302,6 +295,9 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
   Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
   Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
+  Name: plugins/xtms; Description:XTMasterSlave+; Types:full eng notr self hen; Flags:dontinheritcheck;
+		Name: plugins/xtms/XTFutaBody; Description:XTFutaBody; Flags:dontinheritcheck
+		Name: plugins/xtms/XTFutaAccessories; Description:XTFutaAccessories;
   Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
 
 Name: misc; Description:{cm:MiscFiles}; Types: full compact;
@@ -311,9 +307,9 @@ Name: misc; Description:{cm:MiscFiles}; Types: full compact;
   Name:misc/uncensor; Description:{cm:Uncensor}; Types:full eng notr compact self pic hen;
   Name:misc/uncensormale; Description:{cm:UncensorMale}; Types:full eng notr compact self pic hen;
   Name:misc/extrauncensormale; Description:{cm:ExtraUncensorMale}; Types:full eng notr compact self pic hen;
-  Name: misc/body; Description:{cm:BodyReplacers}; Types:full eng compact self pic hen;
-    Name: misc/body/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen; Flags: Exclusive checkablealone
-    Name: misc/body/analkupa; Description:AnalKupa; Types:; Flags: Exclusive checkablealone
+  Name: misc/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen;
+    ;Name: misc/body/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen; Flags: Exclusive checkablealone
+    ;Name: misc/body/analkupa; Description:AnalKupa; Types:; Flags: Exclusive checkablealone
 		
 Name: ext; Description:{cm:ExternalFiles}; Types: full compact;
 	Name:ext/dlccheck; Description:DLC Checker (Kry Fork); Types:Full compact eng notr self pic;
@@ -327,7 +323,7 @@ Name:reg; Description:{cm:FixRegistry}; Check: NOT IsEmptyFolder();
 Name:clean; Description:{cm:Clean}; GroupDescription:{cm:CleanGroup}; Flags:unchecked
   Name:clean/moveold; Description:{cm:MoveOld}; Flags:checkablealone exclusive
     Name:clean/moveold/mods; Description:{cm:MoveOldMods}; Flags:unchecked dontinheritcheck
-    Name:clean/moveold/config; Description:{cm:PlaceConfigBack}; Flags:unchecked; Check: NOT IsEmptyFolder();
+    Name:clean/moveold/config; Description:{cm:PlaceConfigBack}; Flags:unchecked dontinheritcheck; Check: NOT IsEmptyFolder();
   Name:clean/deleteold; Description:{cm:DeleteOld}; Flags:unchecked exclusive checkablealone
     Name:clean/deleteold/mods; Description:{cm:DeleteOldMods}; Flags:unchecked dontinheritcheck
     Name:clean/deleteold/old; Description: {cm:DeleteOldInstalls}; Flags:unchecked dontinheritcheck

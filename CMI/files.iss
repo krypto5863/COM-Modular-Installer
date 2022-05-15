@@ -16,79 +16,79 @@
 [Files]
 
 //Loader Section
-Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components: Loader/bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components:bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{tmp}\BepInEx\plugins\COM3D2.API.dll"; DestDir: "{#bepp}"; Components:bepinEX; Flags: external
+Source: "{tmp}\BepInEx\plugins\CM3D2.Toolkit.Guest4168Branch.dll"; DestDir: "{#bepp}"; Components:bepinEX; Flags: external
 
-  Source: "{tmp}\BepInEx\plugins\COM3D2.AddYotogiSliderSE2.Plugin.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/addyot; Flags: external 
+  Source: "{tmp}\BepInEx\plugins\COM3D2.AddYotogiSliderSE2.Plugin.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/addyot; Flags: external 
 
-	Source: "{tmp}\BepInEx\plugins\COM3d2.AdvancedMaterialModifier.Plugin.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/AdvMatMod; Flags: external
+	Source: "{tmp}\BepInEx\plugins\COM3d2.AdvancedMaterialModifier.Plugin.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/AdvMatMod; Flags: external
 
-  Source: "{tmp}\BepInEx\plugins\COM3D2.AutoSave.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/autosave; Flags: external
+  Source: "{tmp}\BepInEx\plugins\COM3D2.AutoSave.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/autosave; Flags: external
 	
-	Source: "{#ibep}\CamConEx\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/cameracon; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#ibep}\CamConEx\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/cameracon; Flags: ignoreversion recursesubdirs createallsubdirs 
 	
-	Source: "{tmp}\BepInEx\plugins\CM3D2.Toolkit.Guest4168Branch.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/CM3D2Toolkit; Flags: external
-		Source: "{tmp}\BepInEx\plugins\COM3D2.ShortMenuVanillaDatabase.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/CM3D2Toolkit/ShortVanilla; Flags: external
-		Source: "{tmp}\BepInEx\plugins\System.Threading.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/CM3D2Toolkit/ShortVanilla; Flags: external
+	Source: "{tmp}\BepInEx\plugins\COM3D2.ShiftClickExplorer.*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShiftClick; Flags: external
+	
+	Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ConfigMan; Flags: external
+	
+	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/UpCheck; Flags: ignoreversion recursesubdirs createallsubdirs
+	
+	Source: "{tmp}\BepInEx\plugins\COM3D2.ExtendedErrorHandling.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/ExErrorHandle; Flags: external
+	
+  Source: "{tmp}\BepInEx\plugins\COM3D2.ExtendedPresetManagement.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/ExPresetMan; Flags: external
+	
+	Source: "{#ibep}\FPSUnlock\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/FPSUn; Flags: ignoreversion recursesubdirs createallsubdirs
+	
+	Source: "{tmp}\BepInEx\plugins\FPSCounter.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/FPSCount; Flags: external
+	
+	Source: "{tmp}\BepInEx\plugins\COM3D2.InputHotkeyBlock.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/InBlock; Flags: external
 
-	Source: "{tmp}\BepInEx\plugins\COM3D2.API.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/COM3D2API; Flags: external
-		Source: "{tmp}\BepInEx\plugins\COM3D2.ShapekeyMaster.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/COM3D2API/ShapekeyMaster; Flags: external
+  Source: "{#ibep}\MeidoPhoto\*"; DestDir: "{#bep}"; Components:bepinexPlugs/MeidoPhoto; Flags: ignoreversion recursesubdirs createallsubdirs
+		Source: "{#IMisc}\MMPoses\MultipleMaidsPose\*"; DestDir: "{app}\bepinex\config\MeidoPhotoStudio\Presets\Custom Poses\CMI 1900 Poses"; Components:bepinexPlugs/MeidoPhoto\Poses; Flags: ignoreversion recursesubdirs createallsubdirs solidbreak 
 	
-	Source: "{tmp}\BepInEx\plugins\COM3D2.ShiftClickExplorer.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ShiftClick; Flags: external
-	
-	Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ConfigMan; Flags: external
-	
-	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UpCheck; Flags: ignoreversion recursesubdirs createallsubdirs
-	
-	Source: "{tmp}\BepInEx\plugins\COM3D2.ExtendedErrorHandling.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ExErrorHandle; Flags: external
-	
-  Source: "{tmp}\BepInEx\plugins\COM3D2.ExtendedPresetManagement.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ExPresetMan; Flags: external
-	
-	Source: "{#ibep}\FPSUnlock\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSUn; Flags: ignoreversion recursesubdirs createallsubdirs
-	
-	Source: "{tmp}\BepInEx\plugins\FPSCounter.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/FPSCount; Flags: external
-	
-	Source: "{tmp}\BepInEx\plugins\COM3D2.InputHotkeyBlock.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/InBlock; Flags: external
-
-  Source: "{#ibep}\MeidoPhoto\*"; DestDir: "{#bep}"; Components: Loader/bepinEX/MeidoPhoto; Flags: ignoreversion recursesubdirs createallsubdirs
-		Source: "{#IMisc}\MMPoses\MultipleMaidsPose\*"; DestDir: "{app}\bepinex\config\MeidoPhotoStudio\Presets\Custom Poses\CMI 1900 Poses"; Components: Loader/bepinEX/MeidoPhoto\Poses; Flags: ignoreversion recursesubdirs createallsubdirs solidbreak 
-	
-	Source: "{#ibep}\ModRef\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/modref; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#ibep}\ModRef\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/modref; Flags: ignoreversion recursesubdirs createallsubdirs 
 	
 	//Source: "{tmp}\BepInEx\plugins\BepInEx.MuteInBackground.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/MuteBack; Flags: external
 	
 	//Source: "{tmp}\BepInEx\plugins\RuntimeUnityEditor\*"; DestDir: "{#bepp}\RuntimeUnityEditor"; Components: Loader/bepinEX/RunUniEdit; Flags: external
 	
-	Source: "{tmp}\BepInEx\plugins\BepInEx.OptimizeIMGUI.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/OptIMGUI; Flags: external
+	Source: "{tmp}\BepInEx\plugins\BepInEx.OptimizeIMGUI.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/OptIMGUI; Flags: external
 	 
-	Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/scriptloader; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\all_maids_in_private_mode.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/allprivate; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\add_subs_to_old_yotogi.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/oldsubs; Flags: ignoreversion recursesubdirs createallsubdirs     
-    Source: "{#ibep}\ScriptLoader\Scripts\CharacterEditSortRedux.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/charactersortredux; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\dump_game_info.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/dumpinfo; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\editable_names.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/editname; Flags: ignoreversion recursesubdirs createallsubdirs 
-    Source: "{#ibep}\ScriptLoader\Scripts\editBlinkStop.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\enable_scout_mode.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/enascout; Flags: ignoreversion recursesubdirs createallsubdirs 
-    Source: "{#ibep}\ScriptLoader\Scripts\fastFade.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/fastfade; Flags: ignoreversion recursesubdirs createallsubdirs 
-    Source: "{#ibep}\ScriptLoader\Scripts\ForceScheduleEvents.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/ForceSchedule; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\load_small_thumbs.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/thumbs; Flags: ignoreversion recursesubdirs createallsubdirs 
-    Source: "{#ibep}\ScriptLoader\Scripts\MemoriesModeUnlock.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/unlockmemories; Flags: ignoreversion recursesubdirs createallsubdirs 
-    Source: "{#ibep}\ScriptLoader\Scripts\nameExtender.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/nameext; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\quick_edit_scene.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/quickedit; Flags: ignoreversion recursesubdirs createallsubdirs 
-    Source: "{#ibep}\ScriptLoader\Scripts\saveSettingsInGame.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/savesettings; Flags: ignoreversion recursesubdirs createallsubdirs 
-    Source: "{#ibep}\ScriptLoader\Scripts\skipStartLogo.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/skiplogo; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\report_dupes.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/redupe; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\unlock_all_skills.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/unlockskills; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components: Loader/bepinEX/scriptloader/wrapmode; Flags: ignoreversion recursesubdirs createallsubdirs
+	Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/scriptloader; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\all_maids_in_private_mode.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/allprivate; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\add_subs_to_old_yotogi.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/oldsubs; Flags: ignoreversion recursesubdirs createallsubdirs     
+    Source: "{#ibep}\ScriptLoader\Scripts\CharacterEditSortRedux.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/charactersortredux; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\dump_game_info.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/dumpinfo; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\editable_names.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/editname; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\editBlinkStop.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/blinkstop; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\enable_scout_mode.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/enascout; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\fastFade.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/fastfade; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\ForceScheduleEvents.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/ForceSchedule; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\load_small_thumbs.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/thumbs; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\MemoriesModeUnlock.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/unlockmemories; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\MoreRandomNames.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/morenames; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\nameExtender.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/nameext; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\quick_edit_scene.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/quickedit; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\saveSettingsInGame.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/savesettings; Flags: ignoreversion recursesubdirs createallsubdirs 
+    Source: "{#ibep}\ScriptLoader\Scripts\skipStartLogo.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/skiplogo; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\report_dupes.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/redupe; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\unlock_all_skills.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/unlockskills; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/wrapmode; Flags: ignoreversion recursesubdirs createallsubdirs
 
-  Source: "{tmp}\BepInEx\plugins\ShortMenuLoader.Plugin.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ShortMenu; Flags: external
-  Source: "{tmp}\BepInEx\plugins\System.Threading.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/ShortMenu; Flags: external
+  Source: "{tmp}\BepInEx\plugins\COM3D2.ShapekeyMaster.*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShapekeyMaster; Flags: external
+  Source: "{tmp}\BepInEx\plugins\ShortMenuLoader.Plugin.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShortMenu; Flags: external
+  Source: "{tmp}\BepInEx\plugins\System.Threading.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShortMenu; Flags: external
+  Source: "{tmp}\BepInEx\plugins\COM3D2.ShortMenuVanillaDatabase.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShortVanilla; Flags: external
+	Source: "{tmp}\BepInEx\plugins\System.Threading.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShortVanilla; Flags: external
 
-	Source: "{#ibep}\i18nEx\core\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
-		Source: "{#iloader}\extratranslations\*"; DestDir: "{app}"; Components: Loader/bepinEX/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#ibep}\ResourceRedirector\*"; DestDir: "{#bep}"; Components: Loader/bepinEX/Translations/Resredir; Flags: ignoreversion recursesubdirs createallsubdirs
-		Source: "{#ibep}\Xuat\*"; DestDir: "{#bepp}"; Components: Loader/bepinEX/Translations/resredir/xuat; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#ibep}\i18nEx\core\*"; DestDir: "{app}"; Components:bepinexPlugs/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
+		Source: "{#iloader}\extratranslations\*"; DestDir: "{app}"; Components:bepinexPlugs/Translations/i18nEx/extrans; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#ibep}\ResourceRedirector\*"; DestDir: "{#bep}"; Components:bepinexPlugs/Translations/Resredir; Flags: ignoreversion recursesubdirs createallsubdirs
+		Source: "{#ibep}\Xuat\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/Translations/resredir/xuat; Flags: ignoreversion recursesubdirs createallsubdirs 
 
-  Source: "{tmp}\BepInEx\plugins\COM3D2.UndressUtil.dll"; DestDir: "{#bepp}"; Components: Loader/bepinEX/UndressUtil; Flags: external
+  Source: "{tmp}\BepInEx\plugins\COM3D2.UndressUtil.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/UndressUtil; Flags: external
 
 //Source: "{#isyb}\Core\*"; DestDir: "{app}"; Components: Loader/Sybaris; Flags: ignoreversion recursesubdirs createallsubdirs 
 	//Source: "{#isyb}\i18nEx\*"; DestDir: "{app}"; Components: Loader/Sybaris/Translations/i18nEx; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -158,16 +158,16 @@ Source: "{#IPlugin}\objexp\*"; DestDir: "{#syb}"; Components: plugins/objexp; Fl
 Source: "{#IPlugin}\partsedit\*"; DestDir: "{#syb}"; Components: plugins/partsedit; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\personaledit\*"; DestDir: "{#syb}"; Components: plugins/personaledit; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\plugmanage\*"; DestDir: "{#syb}"; Components: plugins/plugmanage; Flags: ignoreversion recursesubdirs createallsubdirs 
-Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: plugins/pluginext; Flags: ignoreversion recursesubdirs createallsubdirs 
-	//Source: "{#IPlugin}\freeapp\*"; DestDir: "{#syb}"; Components: plugins/pluginext/freeapp; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#IPlugin}\halfundress\*"; DestDir: "{#syb}"; Components: plugins/pluginext/halfundress; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#IPlugin}\lookmaid\*"; DestDir: "{#syb}"; Components: plugins/pluginext/lookmaid; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#IPlugin}\lookmaster\*"; DestDir: "{#syb}"; Components: plugins/pluginext/lookmaster; Flags: ignoreversion recursesubdirs createallsubdirs
-	Source: "{#IPlugin}\notecolor\*"; DestDir: "{#syb}"; Components: plugins/pluginext/notecolor; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#IPlugin}\rythmoption\*"; DestDir: "{#syb}"; Components: plugins/pluginext/rhythmoption; Flags: ignoreversion recursesubdirs createallsubdirs 
-	Source: "{#IPlugin}\xtms\Core\*"; DestDir: "{#syb}"; Components: plugins/pluginext/xtms; Flags: ignoreversion recursesubdirs createallsubdirs 
-		Source: "{#IPlugin}\xtms\XTFuta\*"; DestDir: "{#mod}\[CMI]Uncensors"; Components: plugins/pluginext/xtms/XTFutaBody; Flags: ignoreversion recursesubdirs createallsubdirs
-			Source: "{#IPlugin}\xtms\XTFutaAccessories\*"; DestDir: "{#mod}\[CMI]XTFutaAccessories"; Components: plugins/pluginext/xtms/XTFutaAccessories; Flags: ignoreversion recursesubdirs createallsubdirs
+	
+  //Source: "{#IPlugin}\freeapp\*"; DestDir: "{#syb}"; Components: plugins/pluginext/freeapp; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\halfundress\*"; DestDir: "{#syb}"; Components: plugins/halfundress; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\lookmaid\*"; DestDir: "{#syb}"; Components: plugins/lookmaid; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\lookmaster\*"; DestDir: "{#syb}"; Components: plugins/lookmaster; Flags: ignoreversion recursesubdirs createallsubdirs
+	Source: "{#IPlugin}\notecolor\*"; DestDir: "{#syb}"; Components: plugins/notecolor; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\rythmoption\*"; DestDir: "{#syb}"; Components: plugins/rhythmoption; Flags: ignoreversion recursesubdirs createallsubdirs 
+	Source: "{#IPlugin}\xtms\Core\*"; DestDir: "{#syb}"; Components: plugins/xtms; Flags: ignoreversion recursesubdirs createallsubdirs 
+		Source: "{#IPlugin}\xtms\XTFuta\*"; DestDir: "{#mod}\[CMI]Uncensors"; Components: plugins/xtms/XTFutaBody; Flags: ignoreversion recursesubdirs createallsubdirs
+			Source: "{#IPlugin}\xtms\XTFutaAccessories\*"; DestDir: "{#mod}\[CMI]XTFutaAccessories"; Components: plugins/xtms/XTFutaAccessories; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#IPlugin}\pngplace\core\*"; DestDir: "{#plug}"; Components: plugins/pngplace; Flags: ignoreversion recursesubdirs createallsubdirs 
 	Source: "{#IPlugin}\PngPlace\ExtraPNGs\*"; DestDir: "{#ucfg}"; Components: plugins/pngplace/expng; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{#IPlugin}\propitem\*"; DestDir: "{#syb}"; Components: plugins/propitem; Flags: ignoreversion recursesubdirs createallsubdirs 
@@ -201,14 +201,13 @@ Source: "{#IMisc}\TextureUncensors\MaleReplacer\*"; DestDir: "{#mod}\[CMI]Uncens
 Source: "{#IMisc}\TextureUncensors\DLCMaleReplacer\*"; DestDir: "{#mod}\[CMI]Uncensors\MaleUncensor\"; Components: misc/uncensormale; Flags: ignoreversion recursesubdirs  createallsubdirs solidbreak; Check:FileExists(ExpandConstant('{app}\GameData\parts_dlc219.arc'))
 Source: "{#IMisc}\TextureUncensors\MoreMaleUncensor\*"; DestDir: "{#mod}\[CMI]Uncensors\MaleUncensor\"; Components: misc/extrauncensormale; Flags: ignoreversion  recursesubdirs createallsubdirs solidbreak
 Source: "{#IMisc}\TextureUncensors\DLCMoreMaleUncensor\*"; DestDir: "{#mod}\[CMI]Uncensors\MaleUncensor\"; Components: misc/extrauncensormale; Flags: ignoreversion  recursesubdirs createallsubdirs solidbreak; Check:FileExists(ExpandConstant('{app}\GameData\parts_dlc219.arc'))
-Source: "{#IMisc}\TextureUncensors\body_analkupa\*"; DestDir: "{#mod}\[CMI]Uncensors\body_analkupa"; Components: misc/body/analkupa; Flags: ignoreversion recursesubdirs createallsubdirs solidbreak 
-Source: "{#IMisc}\TextureUncensors\lomob\*"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody"; Components: misc/body/LoMobBody; Flags: ignoreversion recursesubdirs createallsubdirs
-	Source: "{#IMisc}\TextureUncensors\lomob\LOmobchara_extra_v1_beta\model\underhair.model"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody\LOmobchara_extra_v1_beta\model"; DestName: "underhair_en.model"; Components: misc/body/LoMobBody; Flags: ignoreversion recursesubdirs createallsubdirs; Check: IsEngSimple(ExpandConstant('{app}'));
+Source: "{#IMisc}\TextureUncensors\lomob\*"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody"; Components: misc/LoMobBody; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#IMisc}\TextureUncensors\lomob\LOmobchara_extra_v1_beta\model\underhair.model"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody\LOmobchara_extra_v1_beta\model"; DestName: "underhair_en.model"; Components: misc/LoMobBody; Flags: ignoreversion recursesubdirs createallsubdirs; Check: IsEngSimple(ExpandConstant('{app}'));
 
 //Unrelated to files.
 Source: "{#IDocumentation}\CMI_Readme.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme nocompression
 //Source: "Documentation\MM_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/MM; Flags: isreadme
-Source: "{#IDocumentation}\MPS_readme.html"; DestDir: "{app}\CMI Documentation"; Components:Loader/bepinEX/meidophoto; Flags: isreadme
+Source: "{#IDocumentation}\MPS_readme.html"; DestDir: "{app}\CMI Documentation"; Components:bepinexPlugs/meidophoto; Flags: isreadme
 Source: "{#IDocumentation}\PosterLoader_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/texload/postload; Flags: isreadme
 
 [/Files]
