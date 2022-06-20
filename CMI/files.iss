@@ -20,6 +20,7 @@ Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components:bepinEX; Flags: ignorever
 Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: bepinEX; Flags: ignoreversion recursesubdirs createallsubdirs 
 Source: "{tmp}\BepInEx\plugins\COM3D2.API.dll"; DestDir: "{#bepp}"; Components:bepinEX; Flags: external
 Source: "{tmp}\BepInEx\plugins\CM3D2.Toolkit.Guest4168Branch.dll"; DestDir: "{#bepp}"; Components:bepinEX; Flags: external
+Source: "{tmp}\BepInEx\plugins\COM3D2.CornerMessage.dll"; DestDir: "{#bepp}"; Components:bepinEX; Flags: external
 
   Source: "{tmp}\BepInEx\plugins\COM3D2.AddYotogiSliderSE2.Plugin.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/addyot; Flags: external 
 

@@ -64,6 +64,7 @@ begin
 #if LMMT == false
 	AddToListOfAssets(links , 'bepinex', 'DeathWeasel1337/COM3D2_Plugins', '' ,'COM3D2.API.v1.0.zip', true, 'COM3D2.API', '');
 	AddToListOfAssets(links , 'bepinex', 'JustAGuest4168/CM3D2.Toolkit', 'BepInEx\plugins\' ,'CM3D2.Toolkit.Guest4168Branch.dll', true, 'CM3D2.Toolkit', '');
+  AddToListOfAssets(links , 'bepinex', 'krypto5863/COM3D2.CornerMessage', 'BepInEx\plugins\' ,'COM3D2.CornerMessage.dll', false, '', '');
 	AddToListOfAssets(links , 'bepinexPlugs/InBlock', 'DeathWeasel1337/COM3D2_Plugins', '' ,'InputHotkeyBlock.zip', true, 'InputHotkeyBlock', '');
   AddToListOfAssets(links , 'bepinexPlugs/FixEyeMov', '01010101lzy/gettapped/releases', '' ,'FixEyeMov.zip', true, 'FixEyeMov', '');
   //These can be fetched straight from the latest releases.
@@ -92,7 +93,7 @@ begin
 	end;
 #endif
 
-  ProgressPage := CreateOutputProgressPage('Processing External Assets', 'External downloads are being discovered, retrieved and processed.');
+  ProgressPage := CreateOutputProgressPage(CustomMessage('ProcExtAssets'), CustomMessage('ProcExtAssetsSub'));
 
   try
 
@@ -103,7 +104,7 @@ begin
       if (WizardIsComponentSelected(links[i].Name)) then
       begin
 
-        ProgressPage.SetText('Looking for file links in GitHub releases...', links[i].Link);
+        ProgressPage.SetText(CustomMessage('GithubLinkFetch'), links[i].Link);
 
         Log('Fetching releases for ' + links[i].Name);
       
@@ -168,7 +169,7 @@ begin
       
         Log('Unzipping ' + links[i].File);
 
-        ProgressPage.SetText('Extracting...', links[i].File);
+        ProgressPage.SetText(CustomMessage('Extracting'), links[i].File);
 
         DoUnzip(ExpandConstant('{tmp}\') + links[i].File, ExpandConstant('{tmp}'));
 

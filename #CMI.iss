@@ -89,7 +89,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl, {#SrcDir}\Messages\English
 Name: "armenian"; MessagesFile: "compiler:Languages\Armenian.isl"
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
-Name: "chinesesimplified"; MessagesFile: "compiler:Languages\Unofficial\ChineseSimplified.isl, {#SrcDir}\Messages\Simplified_ChineseCMI.isl"
+Name: "chinesesimplified"; MessagesFile: "{#SrcDir}\Messages\ChineseSimplifiedDefault.isl, {#SrcDir}\Messages\Simplified_ChineseCMI.isl"
 Name: "corsican"; MessagesFile: "compiler:Languages\Corsican.isl"
 Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
 Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
@@ -164,6 +164,8 @@ Name:"none"; Description:{cm:TypeNone};
 		
 		//Name: Loader/bepinEX/RunUniEdit; Description: RuntimeUnityEditor; Flags: dontinheritcheck;
 
+    Name:bepinexPlugs/OptIMGUI; Description: OptimizeIMGUI; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
+
     Name: bepinexPlugs/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 			Name:bepinexPlugs/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
 			Name:bepinexPlugs/scriptloader/allprivate; Description: All Maids In Private Mode Script; Flags: dontinheritcheck;
@@ -196,8 +198,6 @@ Name:"none"; Description:{cm:TypeNone};
 				Name:bepinexPlugs/Translations/i18nEx/extrans; Description:{cm:ExtraTrans}; Types:full compact self pic hen; Flags: dontinheritcheck;
       Name:bepinexPlugs/Translations/resredir; Description: Resource Redirector; Flags: dontinheritcheck;
         Name:bepinexPlugs/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen; Flags: dontinheritcheck;
-				
-		Name:bepinexPlugs/OptIMGUI; Description: OptimizeIMGUI; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 
     Name:bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
 

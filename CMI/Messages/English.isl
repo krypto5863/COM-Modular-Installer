@@ -113,6 +113,10 @@ MoveOldExcep=An exception was tossed while trying to move the old installation t
 MoveOldModExcep=An exception was tossed while trying to move the old mods to the old folder! Ensure that no game application is open and that none of the files or folders are open anywhere!! We are quitting to keep your data safe! Refer to the readme for troubleshooting steps!!!
 CannotRenameOld=The OldInstall folder could not be renamed but the installation is already complete. As a result, we will not abort as the error is harmless. It should be automatically renamed the next time CMI is run.
 
+ProcExtAssets=Processing External Assets
+ProcExtAssetsSub=External downloads are being discovered, retrieved and processed.
+GithubLinkFetch=Looking for file links in GitHub releases...
+Extracting=Extracting...
 AssetDownloadFailed=We failed to download files for some of the components selected. Please ensure that you are connected to the internet and have a functioning connection before trying again. Select YES to re-attempt the download. Otherwise press no and you can continue the installation, the missing assets simply will not be installed.
 
 SerializePrompt=We noticed you have a file that causes save data to be placed in the user Documents directory (serialize_storage_config.cfg). Normally this is removed, but it does not hurt to leave it. Shall we remove this file and place your savedata back in the game folder?'
