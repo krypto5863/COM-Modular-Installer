@@ -207,6 +207,7 @@ Source: "{#IMisc}\TextureUncensors\lomob\LOmobchara_extra_v1_beta\model\underhai
 
 //Unrelated to files.
 Source: "{#IDocumentation}\CMI_Readme.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme nocompression
+Source: "{#IDocumentation}\CMI_Readme_Chinese.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme nocompression; Languages: chinesesimplified
 //Source: "Documentation\MM_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/MM; Flags: isreadme
 Source: "{#IDocumentation}\MPS_readme.html"; DestDir: "{app}\CMI Documentation"; Components:bepinexPlugs/meidophoto; Flags: isreadme
 Source: "{#IDocumentation}\PosterLoader_Readme.txt"; DestDir: "{app}\CMI Documentation"; Components:plugins/texload/postload; Flags: isreadme

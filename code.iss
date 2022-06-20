@@ -54,7 +54,8 @@ var
 	ErrorCode: Integer;
 	FreeSpace, TotalSpace: Cardinal;
 	ManifestVersion: WideString;
-	VersionResult: Integer;	
+	VersionResult: Integer;
+  Readme: String;
 begin
 	Log('Initial setup is beginning...');
 
@@ -104,9 +105,20 @@ begin
 	if MsgBox(CustomMessage('ScamWarning') + #13#10#13#10 + CustomMessage('ReadmeRead'), mbConfirmation, MB_YESNO) = IDNO then
 	begin
 		MsgBox(CustomMessage('ReadmeExit'), mbCriticalError, MB_OK)
-		ExtractTemporaryFile('{#ShortName}_Readme.pdf');
+
+
+    if ActiveLanguage = 'chinesesimplified' then
+    begin
+      readme := '{#ShortName}_Readme_Chinese.pdf'
+    end
+    else
+    begin
+      readme := '{#ShortName}_Readme.pdf'
+    end;
+
+		ExtractTemporaryFile(readme);
 		ShellExecAsOriginalUser('open',
-		AddQuotes(ExpandConstant('{tmp}\{#ShortName}_Readme.pdf')), '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
+		AddQuotes(ExpandConstant('{tmp}\' + readme)), '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
 		abort
 	end;	
 	
