@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.12.1"
+#define MyAppVersion "2.5.13.1"
 #define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
 #define MinimumVersion 20900
 #define CRStartVersion 31300
@@ -136,6 +136,8 @@ Name:"none"; Description:{cm:TypeNone};
     Name: bepinexPlugs/autosave; Description: AutoSave; Types: Full eng notr hen self;
 		
 		Name: bepinexPlugs/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
+
+    Name: bepinexPlugs/choosypreset; Description:ChoosyPreset; Types:full pic eng notr self;
 	
 		Name: bepinexPlugs/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
 	
@@ -176,6 +178,7 @@ Name:"none"; Description:{cm:TypeNone};
       Name:bepinexPlugs/scriptloader/enascout; Description: Enable Scout Mode Script; Flags: dontinheritcheck;
       Name:bepinexPlugs/scriptloader/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
       Name:bepinexPlugs/scriptloader/forceschedule; Description: ForceScheduleEvents Script; Flags: dontinheritcheck;
+      ;Name:bepinexPlugs/scriptloader/highfpsfix; Description: HighFPSPhysicsFix Script; Flags: dontinheritcheck;
       Name:bepinexPlugs/scriptloader/unlockmemories; Description: MemoriesModeUnlock Script; Flags: dontinheritcheck;
       Name:bepinexPlugs/scriptloader/morenames; Description: MoreRandomNames Script; Types: Full notr eng hen; Flags: dontinheritcheck;
       Name:bepinexPlugs/scriptloader/nameext; Description: NameExtender Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;

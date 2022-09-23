@@ -71,6 +71,7 @@ begin
   AddToListOfAssets(links , 'bepinexPlugs/addyot', 'Vin-meido/COM3D2.AddYotogiSliderSE.Plugin', '' ,'COM3D2.AddYotogiSliderSE2.Plugin.zip', false, 'COM3D2.AddYotogiSliderSE2.Plugin.zip', '');
   AddToListOfAssets(links , 'bepinexPlugs/autosave', 'Pain-Brioche/COM3D2.AutoSave', 'BepInEx\plugins\' ,'COM3D2.AutoSave.dll', false, '', '');
   AddToListOfAssets(links , 'bepinexPlugs/ConfigMan', 'BepInEx/BepInEx.ConfigurationManager', '' ,'ConfigManager.zip', false, '', '');
+  AddToListOfAssets(links , 'bepinexPlugs/ChoosyPreset', 'krypto5863/COM3D2.ChoosyPreset', '' ,'ChoosyPreset.zip', false, '', '');
   AddToListOfAssets(links , 'bepinexPlugs/FPSCount', 'ManlyMarco/FPSCounter', '' ,'FPSCounter.zip', false, '', '');
 	AddToListOfAssets(links , 'bepinexPlugs/ShiftClick', 'krypto5863/COM3D2.ShiftClickExplorer', 'BepInEx\plugins\' ,'COM3D2.ShiftClickExplorer.dll', false, '', '');
   AddToListOfAssets(links , 'bepinexPlugs/ShapekeyMaster', 'krypto5863/COM3D2.ShapekeyMaster', 'BepInEx\plugins\' ,'COM3D2.ShapekeyMaster.Plugin.dll', false, '', '');

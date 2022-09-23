@@ -31,8 +31,11 @@ Source: "{tmp}\BepInEx\plugins\COM3D2.CornerMessage.dll"; DestDir: "{#bepp}"; Co
 	Source: "{#ibep}\CamConEx\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/cameracon; Flags: ignoreversion recursesubdirs createallsubdirs 
 	
 	Source: "{tmp}\BepInEx\plugins\COM3D2.ShiftClickExplorer.*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShiftClick; Flags: external
+
+  Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ConfigMan; Flags: external
 	
-	Source: "{tmp}\BepInEx\plugins\ConfigurationManager.*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ConfigMan; Flags: external
+	Source: "{tmp}\BepInEx\plugins\COM3D2.ChoosyPreset.*"; DestDir: "{#bepp}"; Components:bepinexPlugs/choosypreset; Flags: external
+  Source: "{tmp}\BepInEx\config\ChoosyPreset\*"; DestDir: "{#bep}\config\ChoosyPreset"; Components:bepinexPlugs/choosypreset; Flags: external
 	
 	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/UpCheck; Flags: ignoreversion recursesubdirs createallsubdirs
 	
@@ -67,6 +70,7 @@ Source: "{tmp}\BepInEx\plugins\COM3D2.CornerMessage.dll"; DestDir: "{#bepp}"; Co
 		Source: "{#ibep}\ScriptLoader\Scripts\enable_scout_mode.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/enascout; Flags: ignoreversion recursesubdirs createallsubdirs 
     Source: "{#ibep}\ScriptLoader\Scripts\fastFade.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/fastfade; Flags: ignoreversion recursesubdirs createallsubdirs 
     Source: "{#ibep}\ScriptLoader\Scripts\ForceScheduleEvents.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/ForceSchedule; Flags: ignoreversion recursesubdirs createallsubdirs 
+    ;Source: "{#ibep}\ScriptLoader\Scripts\HighFPSPhysicsFix.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/HighFpsFix; Flags: ignoreversion recursesubdirs createallsubdirs 
 		Source: "{#ibep}\ScriptLoader\Scripts\load_small_thumbs.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/thumbs; Flags: ignoreversion recursesubdirs createallsubdirs 
     Source: "{#ibep}\ScriptLoader\Scripts\MemoriesModeUnlock.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/unlockmemories; Flags: ignoreversion recursesubdirs createallsubdirs 
     Source: "{#ibep}\ScriptLoader\Scripts\MoreRandomNames.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/morenames; Flags: ignoreversion recursesubdirs createallsubdirs 

@@ -208,8 +208,8 @@ begin
 	DownloadPage.Clear;
 	DownloadPage.Show;
 	
-	if (FileExists(ExpandConstant('{tmp}\COMUpdate.zip')) = false) AND (DirExists(ExpandConstant('{tmp}\COMUpdate')) = false) then			
-		DownloadPage.Add(site, 'COMUpdate.zip', '');
+	if (FileExists(ExpandConstant('{src}\COMUpdate.zip')) = false) AND (DirExists(ExpandConstant('{src}\COMUpdate')) = false) then			
+		DownloadPage.Add(site, ExpandConstant('{src}\COMUpdate.zip'), '');
 		try
 			try
 				DownloadPage.Download;
@@ -219,12 +219,12 @@ begin
 		finally
 	end;
 	
-	if (DirExists(ExpandConstant('{tmp}\COMUpdate')) = false) then
+	if (DirExists(ExpandConstant('{src}\COMUpdate')) = false) then
 	begin				
-		DoUnZip(ExpandConstant('{tmp}\COMUpdate.zip'),ExpandConstant('{tmp}\COMUpdate'));			
+		DoUnZip(ExpandConstant('{src}\COMUpdate.zip'),ExpandConstant('{src}\COMUpdate'));			
 	end;
 	
-  FindFile('update.exe', ExpandConstant('{tmp}\COMUpdate'), FoundFile);
+  FindFile('update.exe', ExpandConstant('{src}\COMUpdate'), FoundFile);
   
   log(FoundFile)
     

@@ -71,8 +71,6 @@ begin
 			'XTFutaAccessories',
 			'Doc' + #39 + 's SA',
 			'HalfUnDressing',
-			'MtAccelerator',
-			'AllScene Version',
 			CustomMessage('EmoEarsMod'),
 			CustomMessage('EmoEarsAhoge'),
 			'EmotionalEars(and tails)',
