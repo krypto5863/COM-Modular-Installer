@@ -1,7 +1,30 @@
 <script type="text/javascript">
     
 var ChangesHTML;
-var JsonFile;
+var JsonFile; 
+    
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+    
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
     
 async function GetDownload() {
     location.href = JsonFile.assets[0].browser_download_url;
@@ -14,8 +37,19 @@ async function updateDLPage(){
 }
     
 async function fetchNotes(){
-    const contentDiv = document.getElementById("changelog");  
-    ChangesHTML = await render(JsonFile.body);
+    
+    const Notes = getCookie('notes');
+    
+    if (Notes == '')
+    {
+        const contentDiv = document.getElementById("changelog");  
+        ChangesHTML = await render(JsonFile.body);
+        setCookie('notes', ChangesHTML, 0.025);
+    }
+    else 
+    {
+        ChangesHTML = Notes;
+    }
     
     contentDiv.innerHTML = ChangesHTML;
 }
@@ -42,9 +76,17 @@ async function render(markdown) {
 }
 
 async function getJson(){
-    console.log("Fetching Git stuff...");
-    const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
-    return await response.json();
+    
+    const json = getCookie('json');
+    
+    if (json == ''){
+        console.log("Fetching Git stuff...");
+        const response = await fetch('https://api.github.com/repos/krypto5863/COM-Modular-Installer/releases/latest');
+        json = await response.json();
+        setCookie('json', json, 0.025);
+    }
+    
+    return json; 
 }
     
 </script>
