@@ -15,7 +15,6 @@ async function updateDLPage(){
     
 async function fetchNotes(){
     
-    const Notes = getCookie('notes');
     const contentDiv = document.getElementById("changelog");  
     ChangesHTML = await render(JsonFile.body);
     
