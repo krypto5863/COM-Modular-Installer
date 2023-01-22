@@ -77,7 +77,7 @@ async function render(markdown) {
 
 async function getJson(){
     
-    const json = getCookie('json');
+    var json = getCookie('json');
     
     if (json == ''){
         console.log("Fetching Git stuff...");
