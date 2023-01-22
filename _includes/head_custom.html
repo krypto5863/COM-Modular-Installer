@@ -39,10 +39,10 @@ async function updateDLPage(){
 async function fetchNotes(){
     
     const Notes = getCookie('notes');
+    const contentDiv = document.getElementById("changelog");  
     
     if (Notes == '')
     {
-        const contentDiv = document.getElementById("changelog");  
         ChangesHTML = await render(JsonFile.body);
         setCookie('notes', ChangesHTML, 0.025);
     }
