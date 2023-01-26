@@ -2,10 +2,12 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.13.1"
-#define MyAppURL "https://github.com/krypto5863/COM-Modular-Installer"
-#define MinimumVersion 20900
-#define CRStartVersion 31300
+#define MyAppVersion "2.5.15"
+#define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
+#define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
+#define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
+#define MinimumVersion 22500
+#define CRStartVersion 32500
 
 #define CRMinimumVersion 30100
 
@@ -47,8 +49,8 @@ AppId={{8143E460-C581-40B8-9D11-2FFC2DD35ADF}}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisherURL={#MyAppURL}
-AppSupportURL={#MyAppURL}
-AppUpdatesURL={#MyAppURL}
+AppSupportURL={#MyAppSupport}
+AppUpdatesURL={#MyAppUpdates}
 
 PrivilegesRequired=admin
 SetupLogging=yes
@@ -59,9 +61,6 @@ SolidCompression=yes
 LZMAUseSeparateProcess=yes
 LZMANumBlockThreads=4
 LZMABlockSize=92153
-//These settings aren't bad but they don't change much.
-//LZMANumFastBytes=273
-//LZMADictionarySize=524288
 
 DisableDirPage=no
 DefaultDirName={#MyAppName}
@@ -125,211 +124,163 @@ Name:"none"; Description:{cm:TypeNone};
 
 [Components]
 
-  Name: bepinex; Description: {cm:BepinEx}; Types: full notr compact eng pic self hen; Flags: checkablealone
+Name: bepinex; Description: {cm:BepinEx}; Types: full notr compact eng pic self hen; Flags: checkablealone
+Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng pic self hen; Flags: checkablealone
 
-  Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng pic self hen; Flags: checkablealone
+	Name: bepinexPlugs/addyot; Description: AddYotogiSliderSE2; Types: Full compact eng notr hen self;
+	Name: bepinexPlugs/AdvMatMod; Description: AdvancedMaterialModifier; Types: self;
+	Name: bepinexPlugs/autosave; Description: AutoSave; Types: Full eng notr hen self;
+	Name: bepinexPlugs/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
+	Name: bepinexPlugs/choosypreset; Description:ChoosyPreset; Types:full pic eng notr self;
+	Name: bepinexPlugs/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen;
+	Name: bepinexPlugs/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen;
+	Name: bepinexPlugs/ExErrorHandle; Description: ExtendedErrorHandling; Types:full notr compact eng pic self hen;
+	Name: bepinexPlugs/ExPresetMan; Description: ExtendedPresetManagement; Types:full notr compact eng pic self hen;
+	Name: bepinexPlugs/FPSCount; Description: FPSCounter; Types: self;
+	Name: bepinexPlugs/FPSUn; Description: FPSUnlock; Types: self;
+	Name: bepinexPlugs/GearFix; Description: GearMenuFix; Types:full notr compact eng pic self hen;
+	Name: bepinexPlugs/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen;
+	//Name: bepinexPlugs/MaidLoader; Description: MaidLoader; Types: full notr compact eng pic self hen;
+	Name: bepinexPlugs/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self;
+		Name: bepinexPlugs/meidophoto/Poses; Description: 1900 Poses for MPS; Flags: dontinheritcheck;
 
-    Name: bepinexPlugs/addyot; Description: AddYotogiSliderSE2; Types: Full compact eng notr hen self;
+	Name: bepinexPlugs/modref; Description: ModRefresh; Types:full pic self eng notr;
+	Name: bepinexPlugs/OptIMGUI; Description: OptimizeIMGUI; Types: Full notr compact eng pic self hen;
+	Name: bepinexPlugs/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen;
+		Name: bepinexPlugs/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script;
+		Name: bepinexPlugs/scriptloader/allprivate; Description: All Maids In Private Mode Script;
+		Name: bepinexPlugs/scriptloader/charactersortredux; Description: Character Edit Sort Redux Script; Types: Full notr eng self hen;
+		Name: bepinexPlugs/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen;
+		Name: bepinexPlugs/scriptloader/blinkstop; Description: EditBlinkStop Script; Types: Full notr eng pic self hen;
+		Name: bepinexPlugs/scriptloader/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen;
+		Name: bepinexPlugs/scriptloader/enascout; Description: Enable Scout Mode Script;
+		Name: bepinexPlugs/scriptloader/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen;
+		Name: bepinexPlugs/scriptloader/forceschedule; Description: ForceScheduleEvents Script;
+		Name: bepinexPlugs/scriptloader/unlockmemories; Description: MemoriesModeUnlock Script;
+		Name: bepinexPlugs/scriptloader/morenames; Description: MoreRandomNames Script; Types: Full notr eng hen;
+		Name: bepinexPlugs/scriptloader/nameext; Description: NameExtender Script; Types: Full compact eng notr pic self hen;
+		Name: bepinexPlugs/scriptloader/savesettings; Description: SaveSettingsInGame Script; Types: Full compact eng notr pic self hen;
+		Name: bepinexPlugs/scriptloader/skiplogo; Description: SkipStartLogo Script; Types: Full notr compact eng pic self hen;
+		Name: bepinexPlugs/scriptloader/thumbs; Description: Load Small Thumbs Script;
+		Name: bepinexPlugs/scriptloader/quickedit; Description: Quick Edit Scene Script;
+		Name: bepinexPlugs/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen;
+		Name: bepinexPlugs/scriptloader/unlockskills; Description: Unlock All Skills;
+		Name: bepinexPlugs/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen;
 
-		Name: bepinexPlugs/AdvMatMod; Description: AdvancedMaterialModifier; Types: self; Flags: dontinheritcheck;
+		Name: bepinexPlugs/ShapekeyMaster; Description: ShapekeyMaster; Types: Full notr compact eng pic self hen;
+		Name: bepinexPlugs/ShiftClick; Description: ShiftClickExplorer; Types: Full notr compact eng pic self hen;
 
-    Name: bepinexPlugs/autosave; Description: AutoSave; Types: Full eng notr hen self;
-		
-		Name: bepinexPlugs/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
+	Name: bepinexPlugs/ShortMenu; Description: ShortMenuLoader; Types: Full notr compact eng pic self hen;
+	Name: bepinexPlugs/ShortVanilla; Description: ShortMenuVanillaDatabase; Types: Full notr compact eng pic self hen;
+	Name: bepinexPlugs/ShortStart; Description: ShortStartLoader; Types: Full notr compact eng pic self hen;
 
-    Name: bepinexPlugs/choosypreset; Description:ChoosyPreset; Types:full pic eng notr self;
-	
-		Name: bepinexPlugs/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
-	
-		Name: bepinexPlugs/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
+	Name: bepinexPlugs/Translations; Description:{cm:TranslationPlugs}; Types: Full compact pic self hen;
+		Name: bepinexPlugs/Translations/i18nEx; Description: i18nEx;  Types: full compact pic self hen;
+			Name: bepinexPlugs/Translations/i18nEx/extrans; Description:{cm:ExtraTrans}; Types:full compact self pic hen;
+				
+		Name: bepinexPlugs/Translations/resredir; Description: Resource Redirector;
+			Name: bepinexPlugs/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen;
 
-		Name: bepinexPlugs/ExErrorHandle; Description: ExtendedErrorHandling; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
-		
-    Name: bepinexPlugs/ExPresetMan; Description: ExtendedPresetManagement; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
-		
-		//Name: Loader/bepinEX/FixEyeMov; Description: FixEyeMov; Types:full eng notr hen self; Flags: dontinheritcheck;
-		
-		Name: bepinexPlugs/FPSCount; Description: FPSCounter; Types: self; Flags: dontinheritcheck;
-	
-	  Name: bepinexPlugs/FPSUn; Description: FPSUnlock; Types: self; Flags: dontinheritcheck;
-
-    Name: bepinexPlugs/GearFix; Description: GearMenuFix; Types:full notr compact eng pic self hen; Flags: dontinheritcheck;
-		
-		Name: bepinexPlugs/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
-    
-    Name: bepinexPlugs/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self; Flags: dontinheritcheck;
-			Name: bepinexPlugs/meidophoto/Poses; Description: 1900 Poses for MPS; Flags: dontinheritcheck;
-		
-		Name: bepinexPlugs/modref; Description: ModRefresh; Types:full pic self eng notr; Flags: dontinheritcheck;
-		
-		//Name: Loader/bepinEX/MuteBack; Description: MuteInBackground; Types: full notr compact eng pic self hen; Flags: dontinheritcheck;
-		
-		//Name: Loader/bepinEX/RunUniEdit; Description: RuntimeUnityEditor; Flags: dontinheritcheck;
-
-    Name:bepinexPlugs/OptIMGUI; Description: OptimizeIMGUI; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-
-    Name: bepinexPlugs/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-			Name:bepinexPlugs/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script; Flags: dontinheritcheck;
-			Name:bepinexPlugs/scriptloader/allprivate; Description: All Maids In Private Mode Script; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/charactersortredux; Description: Character Edit Sort Redux Script; Types: Full notr eng self hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/blinkstop; Description: EditBlinkStop Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/enascout; Description: Enable Scout Mode Script; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/forceschedule; Description: ForceScheduleEvents Script; Flags: dontinheritcheck;
-      ;Name:bepinexPlugs/scriptloader/highfpsfix; Description: HighFPSPhysicsFix Script; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/unlockmemories; Description: MemoriesModeUnlock Script; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/morenames; Description: MoreRandomNames Script; Types: Full notr eng hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/nameext; Description: NameExtender Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/savesettings; Description: SaveSettingsInGame Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/skiplogo; Description: SkipStartLogo Script; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/thumbs; Description: Load Small Thumbs Script; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/quickedit; Description: Quick Edit Scene Script; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
-			Name:bepinexPlugs/scriptloader/unlockskills; Description: Unlock All Skills; Flags: dontinheritcheck;
-      Name:bepinexPlugs/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen; Flags: dontinheritcheck;
-
-		Name: bepinexPlugs/ShapekeyMaster; Description: ShapekeyMaster; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;			
-		Name: bepinexPlugs/ShiftClick; Description: ShiftClickExplorer; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-			
-    Name: bepinexPlugs/ShortMenu; Description: ShortMenuLoader; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-		Name: bepinexPlugs/ShortVanilla; Description: ShortMenuVanillaDatabase; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-
-    Name:bepinexPlugs/Translations; Description:{cm:TranslationPlugs}; Types: Full compact pic self hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/Translations/i18nEx; Description: i18nEx;  Types: full compact pic self hen; Flags: dontinheritcheck;
-				Name:bepinexPlugs/Translations/i18nEx/extrans; Description:{cm:ExtraTrans}; Types:full compact self pic hen; Flags: dontinheritcheck;
-      Name:bepinexPlugs/Translations/resredir; Description: Resource Redirector; Flags: dontinheritcheck;
-        Name:bepinexPlugs/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen; Flags: dontinheritcheck;
-
-    Name:bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen; Flags: dontinheritcheck;
-
-  ;Name: Loader/Sybaris; Description:{cm:Sybaris} ;Flags: Exclusive checkablealone
-
-    ;Name: Loader/Sybaris/Translations; Description:{cm:TranslationPlugs} (Syb); Flags: dontinheritcheck
-      //Name: Loader/Sybaris/Translations/i18nEx; Description: i18nEx (Syb);
-				//Name:Loader/Sybaris/Translations/i18nEx/extrans; Description:{cm:ExtraTrans} (Syb); Flags: dontinheritcheck;
-      ;Name: Loader/Sybaris/Translations/xuat; Description: XUnity AutoTranslator (Syb);
-			;Name: Loader/Sybaris/cacheedit; Description: CacheEditMenu;
-			;Name: Loader/Sybaris/CCfix; Description: CreatorSaveFix;
-			;Name: Loader/Sybaris/quickedit; Description: QuickEditStart;
-
+	Name: bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen;
 
 Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 
-  ;Name: Patchers/addscreen; Description: AddScreenSize; Types: full eng notr self ;
-  Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng notr pic self hen;
-  Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full compact eng notr pic self hen;
-  //Name: Patchers/blinkstop; Description: EditBlinkStop; Types: full eng notr pic self hen;
-  Name: Patchers/extsave; Description: ExternalSaveData; Types: Full self pic eng notr hen; Flags: checkablealone;
+	Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng notr pic self hen;
+	Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full compact eng notr pic self hen;
+	Name: Patchers/extsave; Description: ExternalSaveData; Types: Full self pic eng notr hen; Flags: checkablealone;
 		Name: Patchers/extsave/vibemaid; Description:VibeYourMaid;
-    Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng notr hen; Flags: checkablealone;
-      Name: Patchers/extsave/maidvoice/addmod; Description: AddModsSlider; Types: full self pic eng notr hen; Flags: checkablealone;
-        Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng notr hen; Flags: checkablealone;
-        Name: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Description:EyelashesAlpha; Types:; Flags: checkablealone;
-        Name: Patchers/extsave/maidvoice/addmod/seperateeye; Description:SeperateEyeParams; Types:full self pic eng notr hen; Flags: checkablealone;
-  Name: Patchers/facetype; Description: FaceType; Types:full compact self pic eng notr hen;
-  //Name: Patchers/fastfade; Description: FastFade; Types: self pic;
-  Name: Patchers/imgui; Description: IMGUITranslationLoader; types: full compact eng pic hen; Flags: checkablealone;
-    Name:Patchers/imgui/translations; Description: {cm:IMGUITrans}; Types:full compact eng pic self hen;
-  Name: Patchers/modloader; Description: ModLoader; types: full compact eng notr pic self hen;
-  //Name: Patchers/namext; Description: NameExtender; Types: full compact self pic eng notr hen;
-  Name: Patchers/neighuncen; Description: NeighUncensor; Types: full compact eng notr pic self hen;
-  Name: Patchers/ntrlight; Description: NTRLight; Types:;
-  Name: Patchers/rgbpal; Description: RGBPalette;
-  //Name: Patchers/saveset; Description: SaveSettingsInGame; Types: full compact self pic eng notr hen;
+	Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng notr hen; Flags: checkablealone;
+		Name: Patchers/extsave/maidvoice/addmod; Description: AddModsSlider; Types: full self pic eng notr hen; Flags: checkablealone;
+			Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng notr hen; Flags: checkablealone;
+			Name: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Description:EyelashesAlpha; Types:; Flags: checkablealone;
+			Name: Patchers/extsave/maidvoice/addmod/seperateeye; Description:SeperateEyeParams; Types:full self pic eng notr hen; Flags: checkablealone;
+	Name: Patchers/facetype; Description: FaceType; Types:full compact self pic eng notr hen;
+	Name: Patchers/imgui; Description: IMGUITranslationLoader; types: full compact eng pic hen; Flags: checkablealone;
+		Name: Patchers/imgui/translations; Description: {cm:IMGUITrans}; Types:full compact eng pic self hen;
+	Name: Patchers/modloader; Description: ModLoader; types: full compact eng notr pic self hen;
+	Name: Patchers/neighuncen; Description: NeighUncensor; Types: full compact eng notr pic self hen;
+	Name: Patchers/ntrlight; Description: NTRLight; Types:;
+	Name: Patchers/rgbpal; Description: RGBPalette;
 
 Name: plugins; Description: Unityinjector Plugins; Types: full compact;
-  Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng notr hen;
-  Name: plugins/eraseout; Description: AutoEraseOutline; types: full pic eng notr hen;
-  Name: plugins/camerautil; Description: CameraUtility; Types: Full pic self eng notr hen;
-  ;Name: plugins/hudclock; Description:ClockHud;
-  Name: plugins/colorhelp; Description: ColorPaletteHelper; Types:full self pic eng notr hen;
-  Name: plugins/conwindow; Description:ConsistentWindowPosition; Types:full self pic eng notr hen;
-  Name: plugins/nyou; Description:CustomNyou(Why...);
-  Name: plugins/dancecamadjust; Description:DanceCameraAdjust;
-  Name: plugins/dressdam; Description:DressDamage; Types:self pic;
-  Name: plugins/editmenufilt; Description: EditMenuFilter; Types:full self pic eng notr hen;
-  Name: plugins/editselanim; Description: EditMenuSelectedAnime; Types:full self pic eng notr hen;
-  Name: plugins/editundo; Description:EditSceneUndo;
-  Name: plugins/emoears; Description:EmotionalEars(and tails); Types:self; Flags:checkablealone;
-    Name: plugins/emoears/aho; Description:{cm:EmoEarsAhoge}; Types:; Flags:dontinheritcheck
-    Name: plugins/emoears/mod; Description:{cm:EmoEarsMod}; Types:self; Flags:dontinheritcheck
-  Name: plugins/extendrender; Description:ExtendRenderingRange; Types:full eng notr self pic;
-    Name: plugins/extendrender/config; Description:x10 Extend Config; Types:self; Flags:dontinheritcheck
-  ;Name: plugins/facecon; Description:FaceControl; Types:pic;
-  ;Name: plugins/freedress; Description:FreeModeDressKeeper; Types:full self eng notr hen;
-  Name: plugins/halfundress; Description:HalfUnDressing; Types:full eng notr hen; Flags:dontinheritcheck;
-  Name: plugins/inout; Description:InOutAnimation; Types:full eng notr self hen;
-  Name: plugins/lookmaid; Description:LookAtYourMaid; Flags:dontinheritcheck
+	Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng notr hen;
+	Name: plugins/eraseout; Description: AutoEraseOutline; types: full pic eng notr hen;
+	Name: plugins/camerautil; Description: CameraUtility; Types: Full pic self eng notr hen;
+	Name: plugins/colorhelp; Description: ColorPaletteHelper; Types:full self pic eng notr hen;
+	Name: plugins/conwindow; Description:ConsistentWindowPosition; Types:full self pic eng notr hen;
+	Name: plugins/nyou; Description:CustomNyou(Why...);
+	Name: plugins/dancecamadjust; Description:DanceCameraAdjust;
+	Name: plugins/dressdam; Description:DressDamage; Types:self pic;
+	Name: plugins/editmenufilt; Description: EditMenuFilter; Types:full self pic eng notr hen;
+	Name: plugins/editselanim; Description: EditMenuSelectedAnime; Types:full self pic eng notr hen;
+	Name: plugins/editundo; Description:EditSceneUndo;
+	Name: plugins/emoears; Description:EmotionalEars(and tails); Types:self; Flags:checkablealone;
+	Name: plugins/emoears/aho; Description:{cm:EmoEarsAhoge}; Types:; Flags:dontinheritcheck
+	Name: plugins/emoears/mod; Description:{cm:EmoEarsMod}; Types:self; Flags:dontinheritcheck
+	Name: plugins/extendrender; Description:ExtendRenderingRange; Types:full eng notr self pic;
+	Name: plugins/extendrender/config; Description:x10 Extend Config; Types:self; Flags:dontinheritcheck
+	Name: plugins/halfundress; Description:HalfUnDressing; Types:full eng notr hen; Flags:dontinheritcheck;
+	Name: plugins/inout; Description:InOutAnimation; Types:full eng notr self hen;
+	Name: plugins/lookmaid; Description:LookAtYourMaid; Flags:dontinheritcheck
 	Name: plugins/lookmaster; Description:LookAtYourMaster; Flags:dontinheritcheck
-  Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
-  Name: plugins/mtacc; Description: MtAccelerator;
+	Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
+	Name: plugins/mtacc; Description: MtAccelerator;
 		Name: plugins/mtacc/AllScene; Description: AllScene Version;
-  //Name: plugins/MM; Description:MultipleMaids; Types:full pic self eng notr;
-    //Name: plugins/mm/mmposes; Description:1900 Poses for MM; Flags:dontinheritcheck
-  Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
-  Name: plugins/notecolor; Description:NoteColor; Types:full self eng notr hen; Flags:dontinheritcheck
-  Name: plugins/NPRShader; Description:NPRShader; Types:;
-    Name: plugins/NPRShader/LightConfig; Description:{cm:NPRLightConfig}; Types:; Flags:dontinheritcheck
-  Name: plugins/objexp; Description:ObjectExplorer; Types:full self eng notr pic;
-  Name: plugins/partsedit; Description:PartsEdit; Types:full pic self eng notr;
-  Name: plugins/personaledit; Description:PersonalizedEditSceneSettings; Types:full pic self eng notr hen;
-  Name: plugins/plugmanage; Description:PluginManager; Types:full pic eng notr;
-  Name: plugins/rhythmoption; Description: RhythmExtraOption; Types:full eng notr self hen; Flags:dontinheritcheck
-  ;Name: plugins/PluginExt; Description:{cm:PluginExt}; Types:full compact pic self eng notr compact;
-		//Name: plugins/PluginExt/freeapp; Description:FreeModeApp; Types:full self eng notr hen; Flags:dontinheritcheck	
-  Name: plugins/pngplace; Description:PNGPlacement; Types:full pic self eng notr; Flags: checkablealone;
-    Name: plugins/pngplace/expng; Description:{cm:PNGPlaceExtraPNG}; Types:full self pic eng notr; Flags: dontinheritcheck
-  Name: plugins/propitem; Description:PropMyItem; Types:full eng notr pic;
-  Name: plugins/scenecap; Description:SceneCapture; Types:full pic self eng notr; Flags: checkablealone;
-    Name: plugins/scenecap/mpmats; Description:Modified Pmats; Flags: dontinheritcheck
-    Name: plugins/scenecap/VR; Description:VR Ini File; Flags: dontinheritcheck
-  Name: plugins/seieki; Description:Seieki; Types:pic;
-  Name: plugins/shaderchange; Description:ShaderChange; Types:full pic self eng notr;
-  Name: plugins/shapeanimator; Description:ShapeAnimator;
-    Name: plugins/shapeanimator/norm; Description:Standard SA; Flags: exclusive;
-    Name: plugins/shapeanimator/doc; Description:Doc's SA; Flags: exclusive;
-  Name: plugins/SKAcc; Description:SKAccelerator; Types:full pic self eng notr hen;
-  Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
-  Name: plugins/slimeshade; Description:SlimeShader; Types:;
+	Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
+	Name: plugins/notecolor; Description:NoteColor; Types:full self eng notr hen; Flags:dontinheritcheck
+	Name: plugins/NPRShader; Description:NPRShader; Types:;
+	Name: plugins/NPRShader/LightConfig; Description:{cm:NPRLightConfig}; Types:; Flags:dontinheritcheck
+	Name: plugins/objexp; Description:ObjectExplorer; Types:full self eng notr pic;
+	Name: plugins/partsedit; Description:PartsEdit; Types:full pic self eng notr;
+	Name: plugins/personaledit; Description:PersonalizedEditSceneSettings; Types:full pic self eng notr hen;
+	Name: plugins/plugmanage; Description:PluginManager; Types:full pic eng notr;
+	Name: plugins/rhythmoption; Description: RhythmExtraOption; Types:full eng notr self hen; Flags:dontinheritcheck
+	Name: plugins/pngplace; Description:PNGPlacement; Types:full pic self eng notr; Flags: checkablealone;
+	Name: plugins/pngplace/expng; Description:{cm:PNGPlaceExtraPNG}; Types:full self pic eng notr; Flags: dontinheritcheck
+	Name: plugins/propitem; Description:PropMyItem; Types:full eng notr pic;
+	Name: plugins/scenecap; Description:SceneCapture; Types:full pic self eng notr; Flags: checkablealone;
+	Name: plugins/scenecap/mpmats; Description:Modified Pmats; Flags: dontinheritcheck
+	Name: plugins/scenecap/VR; Description:VR Ini File; Flags: dontinheritcheck
+	Name: plugins/seieki; Description:Seieki; Types:pic;
+	Name: plugins/shaderchange; Description:ShaderChange; Types:full pic self eng notr;
+	Name: plugins/shapeanimator; Description:ShapeAnimator;
+	Name: plugins/shapeanimator/norm; Description:Standard SA; Flags: exclusive;
+	Name: plugins/shapeanimator/doc; Description:Doc's SA; Flags: exclusive;
+	Name: plugins/SKAcc; Description:SKAccelerator; Types:full pic self eng notr hen;
+	Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
+	Name: plugins/slimeshade; Description:SlimeShader; Types:;
 	Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
 	Name: plugins/TexLoad; Description:TextureLoader; Types:self;
 		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
-  Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
-  Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
-  Name: plugins/xtms; Description:XTMasterSlave+; Types:full eng notr self hen; Flags:dontinheritcheck;
+	Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
+	Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
+	Name: plugins/xtms; Description:XTMasterSlave+; Types:full eng notr self hen; Flags:dontinheritcheck;
 		Name: plugins/xtms/XTFutaBody; Description:XTFutaBody; Flags:dontinheritcheck
 		Name: plugins/xtms/XTFutaAccessories; Description:XTFutaAccessories;
-  Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
+	Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
 
 Name: misc; Description:{cm:MiscFiles}; Types: full compact;
-  Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full compact eng notr self pic;
-  Name:misc/mmposes; Description:{cm:StudioPoses};
-  Name:misc/bgnei; Description:{cm:AddMoreBG}; Types:Full eng notr self pic;
-  Name:misc/uncensor; Description:{cm:Uncensor}; Types:full eng notr compact self pic hen;
-  Name:misc/uncensormale; Description:{cm:UncensorMale}; Types:full eng notr compact self pic hen;
-  Name:misc/extrauncensormale; Description:{cm:ExtraUncensorMale}; Types:full eng notr compact self pic hen;
-  Name: misc/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen;
-    ;Name: misc/body/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen; Flags: Exclusive checkablealone
-    ;Name: misc/body/analkupa; Description:AnalKupa; Types:; Flags: Exclusive checkablealone
-		
-Name: ext; Description:{cm:ExternalFiles}; Types: full compact;
-	Name:ext/dlccheck; Description:DLC Checker (Kry Fork); Types:Full compact eng notr self pic;
-	Name:ext/maidfiddle; Description:{cm:MaidFiddler}; Flags: dontinheritcheck;
-
+	Name:misc/dlccheck; Description:DLC Checker (Kry Fork); Types:Full compact eng notr self pic;
+	Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full compact eng notr self pic;
+	Name:misc/mmposes; Description:{cm:StudioPoses};
+	Name:misc/bgnei; Description:{cm:AddMoreBG}; Types:Full eng notr self pic;
+	Name:misc/uncensor; Description:{cm:Uncensor}; Types:full eng notr compact self pic hen;
+	Name:misc/uncensormale; Description:{cm:UncensorMale}; Types:full eng notr compact self pic hen;
+	Name:misc/extrauncensormale; Description:{cm:ExtraUncensorMale}; Types:full eng notr compact self pic hen;
+	Name:misc/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen;
+	Name:misc/maidfiddle; Description:{cm:MaidFiddler}; Flags: dontinheritcheck;
 
 [Tasks]
 
 Name:reg; Description:{cm:FixRegistry}; Check: NOT IsEmptyFolder();
 
 Name:clean; Description:{cm:Clean}; GroupDescription:{cm:CleanGroup}; Flags:unchecked
-  Name:clean/moveold; Description:{cm:MoveOld}; Flags:checkablealone exclusive
-    Name:clean/moveold/mods; Description:{cm:MoveOldMods}; Flags:unchecked dontinheritcheck
-    Name:clean/moveold/config; Description:{cm:PlaceConfigBack}; Flags:unchecked dontinheritcheck; Check: NOT IsEmptyFolder();
-  Name:clean/deleteold; Description:{cm:DeleteOld}; Flags:unchecked exclusive checkablealone
-    Name:clean/deleteold/mods; Description:{cm:DeleteOldMods}; Flags:unchecked dontinheritcheck
-    Name:clean/deleteold/old; Description: {cm:DeleteOldInstalls}; Flags:unchecked dontinheritcheck
+	Name:clean/moveold; Description:{cm:MoveOld}; Flags:checkablealone exclusive
+		Name:clean/moveold/mods; Description:{cm:MoveOldMods}; Flags:unchecked dontinheritcheck
+		Name:clean/moveold/config; Description:{cm:PlaceConfigBack}; Flags:unchecked dontinheritcheck; Check: NOT IsEmptyFolder();
+	Name:clean/deleteold; Description:{cm:DeleteOld}; Flags:unchecked exclusive checkablealone
+		Name:clean/deleteold/mods; Description:{cm:DeleteOldMods}; Flags:unchecked dontinheritcheck
+		Name:clean/deleteold/old; Description: {cm:DeleteOldInstalls}; Flags:unchecked dontinheritcheck
 
 Name:readonly; Description: {cm:RemoveReadOnly}; GroupDescription:{cm:RemoveReadOnlyGroup}; Check: NOT IsEmptyFolder();
 
@@ -356,7 +307,7 @@ Type:filesandordirs; Name: "{app}\Mod\Mirror_props"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\PhotMot_NEI"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\PhotoBG_NEI"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\PhotoBG_OBJ_NEI"; Tasks:clean/deleteold/mods;
-Type:filesandordirs; Name: "{app}\Mod\Pose_sample"; Tasks:clean/deleteold/mods;    
+Type:filesandordirs; Name: "{app}\Mod\Pose_sample"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\[CMI]Uncensors"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\[CMI]PosterLoader"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\[CMI]XTFutaAccessories"; Tasks:clean/deleteold/mods;
@@ -368,10 +319,8 @@ Type:filesandordirs; Name: "{app}\Mod\CinemacicBloom_StreakPmats(SceneCapture)";
 Type:filesandordirs; Name: "{app}\OldInstall*"; Tasks:clean/deleteold/old;
 
 [Run]
-Filename: "{tmp}\MFInstall.exe"; Flags: runasoriginaluser skipifdoesntexist waituntilterminated; StatusMsg: {cm:MFInstall}
-
+Filename: "{tmp}\MaidFiddlerSetup.exe"; Flags: runasoriginaluser skipifdoesntexist waituntilterminated; StatusMsg: {cm:MFInstall}
 Filename: "https://forms.gle/PrXjqck2dQYMHvyY8"; Flags: shellexec runasoriginaluser postinstall; Description: {cm:Survey}
-
 Filename: "https://github.com/krypto5863/COM-Modular-Installer/releases"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: {cm:OfficialPage}
 
 [Registry]

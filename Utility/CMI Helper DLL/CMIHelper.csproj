@@ -57,7 +57,9 @@
   <ItemGroup>
     <None Include="CMD.cs" />
     <Compile Include="CMIHelper.cs" />
-    <Compile Include="GHRestRelease.cs" />
+    <None Include="GhAPILimit.cs" />
+    <None Include="GHRestRelease.cs" />
+    <None Include="LinkCacheFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,14 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Costura.Fody">
-      <Version>5.7.0</Version>
+      <Version>5.8.0-alpha0098</Version>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="DllExport">
       <Version>1.7.4</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>6.6.0</Version>
+      <Version>6.6.4</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -80,7 +82,7 @@
       <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+      <Version>13.0.2</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

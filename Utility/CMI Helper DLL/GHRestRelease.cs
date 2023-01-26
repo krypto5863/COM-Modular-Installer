@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CMIHelper
 {
-	internal class GHRest
+	[SuppressMessage("ReSharper", "UnusedMember.Global")]
+	internal class GhRest
 	{
 		public class Author
 		{
