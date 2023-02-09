@@ -98,7 +98,7 @@ namespace CMIHelper
 				return true;
 			}
 
-			path = null;
+			path = string.Empty;
 			return false;
 		}
 

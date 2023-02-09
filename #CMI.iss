@@ -2,14 +2,13 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.15"
+#define MyAppVersion "2.5.16"
 #define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
 #define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
 #define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
 #define MinimumVersion 22500
-#define CRStartVersion 32500
-
-#define CRMinimumVersion 30100
+#define CRMinimumVersion 32500
+#define CRStartVersion 30000
 
 #define LMMT false
 
@@ -134,6 +133,7 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 	Name: bepinexPlugs/choosypreset; Description:ChoosyPreset; Types:full pic eng notr self;
 	Name: bepinexPlugs/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen;
 	Name: bepinexPlugs/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen;
+	Name: bepinexPlugs/EditBodyLoadFix; Description: EditBodyLoadFix; Types:full notr compact eng pic self hen;
 	Name: bepinexPlugs/ExErrorHandle; Description: ExtendedErrorHandling; Types:full notr compact eng pic self hen;
 	Name: bepinexPlugs/ExPresetMan; Description: ExtendedPresetManagement; Types:full notr compact eng pic self hen;
 	Name: bepinexPlugs/FPSCount; Description: FPSCounter; Types: self;

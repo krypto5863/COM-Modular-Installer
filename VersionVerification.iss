@@ -80,12 +80,6 @@ begin
 
 	i := 0
 
-	if NOT FileExists(File) then
-	begin
-		result := false;
-		exit;
-	end;
-
 	if NOT LoadStringsFromFile(File, s) then
 	begin
 		MsgBox(FmtMessage(CustomMessage('VersionFetchLoadFail'), [File]), mbCriticalError, MB_OK);
@@ -198,7 +192,7 @@ begin
 	DownloadPage.Clear;
 	DownloadPage.Show;
 
-	if NOT FileExists(ExpandConstant('{src}\COMUpdate.zip')) = false AND DirExists(ExpandConstant('{src}\COMUpdate')) then
+	if NOT FileExists(ExpandConstant('{src}\COMUpdate.zip')) = false AND NOT DirExists(ExpandConstant('{src}\COMUpdate')) then
 	
 		DownloadPage.Add(site, ExpandConstant('{src}\COMUpdate.zip'), '');
 		
@@ -228,53 +222,57 @@ var
 	Version: Integer;
 	LineTarget: String;
 begin
-	if NOT EmptyFolder then
+	
+	IsCR := false;
+	
+	if NOT VersionFetch(WizardForm.DirEdit.Text + '\update.lst', Version, Format('{#Assembly}', [BitString])) then
+	begin
+		result := false;
+		exit;
+	end;
+	
+	Log('Fetched version: ' + IntToStr(Version));
+	Log('Minimum version: ' + IntToStr(MinimumVersion));
+
+#if LMMT == false	
+	if (Version >= CRStartVersion) then
 	begin
 	
-		if VersionFetch(WizardForm.DirEdit.Text + '\update.lst', Version, Format('{#Assembly}', [BitString])) then
+		IsCR := true;
+	
+		if (Version < CRMinimumVersion) then
 		begin
-
-			if (Version >= CRStartVersion) then
-			begin
-				IsCR := true;
-			end;
-
-			Log('Fetched version: ' + IntToStr(Version));
-			Log('Minimum version: ' + IntToStr(MinimumVersion));
-
-			if (Version < MinimumVersion) then
-			begin
-#if LMMT == false
-				if (Version >= CRStartVersion) then
-				begin
-					MsgBox(FmtMessage(CustomMessage('GameOutdated'),[IntToStr(CRMinimumVersion), IntToStr(Version) + ' ' + bitString]), mbCriticalError, MB_OK);
-					Result := false;
-					exit;
-				end;
-#endif
-
-				Log('Should show outdated message...');
-
-				MsgBox(FmtMessage(CustomMessage('GameOutdated'),[IntToStr(MinimumVersion), IntToStr(Version) + ' ' + bitString]), mbCriticalError, MB_OK);
-
-#if LMMT == false
-				if (IsEng(Dir) = 1) then
-				begin
-					VersionFetch(Dir + '\update.lst', Version, '{#AppLine}');
-				end;
-#endif
-				DownloadUpdate(Version, CRStartVersion, Dir);
-				Result := false;
-				exit;
-			end;
-
-			result := true;
-		end
-		else begin
-			result := false;
+			MsgBox(FmtMessage(CustomMessage('GameOutdated'),[IntToStr(CRMinimumVersion), IntToStr(Version) + ' ' + bitString]), mbCriticalError, MB_OK);
+			Result := false;
 			exit;
 		end;
+		
+		result := true;
+		exit;
+	
 	end;
+#endif
+
+	if (Version < MinimumVersion) then
+	begin
+	
+		Log('Should show outdated message...');
+		MsgBox(FmtMessage(CustomMessage('GameOutdated'),[IntToStr(MinimumVersion), IntToStr(Version) + ' ' + bitString]), mbCriticalError, MB_OK);
+
+#if LMMT == false
+		if (IsEng(Dir) = 1) then
+		begin
+			VersionFetch(Dir + '\update.lst', Version, '{#AppLine}');
+		end;
+#endif
+
+		DownloadUpdate(Version, CRStartVersion, Dir);
+		Result := false;
+		exit;
+		
+	end;
+	
+	Result := true;
 end;
 
 function NextButtonClick(const CurPageID: Integer): Boolean;

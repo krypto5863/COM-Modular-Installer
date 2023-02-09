@@ -38,6 +38,8 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 	Source: "{#ibep}\COM3D2.ChoosyPreset\*"; DestDir: "{app}"; Components:bepinexPlugs/choosypreset; Flags: {#stdFlags}
 
 	Source: "{#ibep}\UpCheck\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/UpCheck; Flags: {#stdFlags}
+	
+	Source: "{#ibep}\COM3D2.EditBodyLoadFix\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/EditBodyLoadFix; Flags: {#stdFlags}
 
 	Source: "{#ibep}\COM3D2.ExtendedErrorHandling\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ExErrorHandle; Flags: {#stdFlags}
 

@@ -60,6 +60,7 @@ begin
 
 	if IsCR then begin
 		NonCR := [
+			'EditBodyLoadFix',
 			'SmoothAnimation',
 			'XTMasterSlave+',
 			'XTFutaBody',
@@ -81,7 +82,8 @@ begin
 			//'ShortMenuLoader',
 			'ShortStartLoader',
 			'AlwaysColorChangeEX',
-			'AdvancedMaterialModifier'
+			//'AdvancedMaterialModifier',
+			CustomMessage('MaidFiddler')
 		];
 
 		for I := 0 to (GetArrayLength(NonCR)-1) do
