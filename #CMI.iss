@@ -142,7 +142,6 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 	Name: bepinexPlugs/FPSUn; Description: FPSUnlock; Types: self;
 	Name: bepinexPlugs/GearFix; Description: GearMenuFix; Types:full notr compact eng pic self hen;
 	Name: bepinexPlugs/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen;
-	//Name: bepinexPlugs/MaidLoader; Description: MaidLoader; Types: full notr compact eng pic self hen;
 	Name: bepinexPlugs/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self;
 		Name: bepinexPlugs/meidophoto/Poses; Description: 1900 Poses for MPS; Flags: dontinheritcheck;
 
@@ -185,6 +184,10 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 
 	Name: bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen;
 
+Name: ModLoader; Description: Patchers;
+    Name: ModLoader/modloader; Description: ModLoader; Flags: exclusive; Types: full compact eng notr pic hen;
+	Name: ModLoader/MaidLoader; Description: MaidLoader; Flags: dontinheritcheck exclusive; Types: self;
+
 Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 
 	Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng notr pic self hen;
@@ -199,7 +202,6 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 	Name: Patchers/facetype; Description: FaceType; Types:full compact self pic eng notr hen;
 	Name: Patchers/imgui; Description: IMGUITranslationLoader; types: full compact eng pic hen; Flags: checkablealone;
 		Name: Patchers/imgui/translations; Description: {cm:IMGUITrans}; Types:full compact eng pic self hen;
-	Name: Patchers/modloader; Description: ModLoader; types: full compact eng notr pic self hen;
 	Name: Patchers/neighuncen; Description: NeighUncensor; Types: full compact eng notr pic self hen;
 	Name: Patchers/ntrlight; Description: NTRLight; Types:;
 	Name: Patchers/rgbpal; Description: RGBPalette;

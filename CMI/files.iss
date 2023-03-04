@@ -50,9 +50,6 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 	Source: "{#ibep}\FPSCounter\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/FPSCount; Flags: {#stdFlags}
 
 	Source: "{#ibep}\COM3D2.InputHotkeyBlock\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/InBlock; Flags: {#stdFlags}
-
-	//Source: "{#ibep}\COM3D2.MaidLoader\*"; DestDir: "{#bep}"; Components:bepinexPlugs/MaidLoader; Flags: {#stdFlags}
-	//Source: "{#IPatch}\ModLoader\Mod\*"; DestDir: "{#mod}"; Components: bepinexPlugs/MaidLoader; Flags: {#stdFlags}
 	
 	Source: "{#ibep}\MeidoPhoto\*"; DestDir: "{#bep}"; Components:bepinexPlugs/MeidoPhoto; Flags: {#stdFlags}
 		Source: "{#IMisc}\MMPoses\MultipleMaidsPose\*"; DestDir: "{app}\bepinex\config\MeidoPhotoStudio\Presets\Custom Poses\CMI 1900 Poses"; Components:bepinexPlugs/MeidoPhoto\Poses; Flags: {#stdFlags} solidbreak
@@ -94,6 +91,11 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 
 	Source: "{#ibep}\COM3D2.UndressUtil\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/UndressUtil; Flags: {#stdFlags}
 
+;ModLoader
+Source: "{#IPatch}\ModLoader\Mod\*"; DestDir: "{#mod}"; Components: ModLoader; Flags: {#stdFlags}
+    Source: "{#ibep}\COM3D2.MaidLoader\*"; DestDir: "{#bep}"; Components:ModLoader/MaidLoader; Flags: {#stdFlags}
+    Source: "{#IPatch}\ModLoader\Sybaris\*"; DestDir: "{#syb}"; Components: ModLoader/modloader; Flags: {#stdFlags}
+
 ;Patchers
 Source: "{#IPatch}\AutoConverter\*"; DestDir: "{#syb}"; Components: Patchers/autocon; Flags: {#stdFlags}
 Source: "{#IPatch}\BodyCategoryAdd\*"; DestDir: "{#syb}"; Components: Patchers/bodycat; Flags: {#stdFlags}
@@ -108,8 +110,6 @@ Source: "{#IPlugin}\MaidVoice\*"; DestDir: "{#syb}"; Components: Patchers/extsav
 Source: "{#IPatch}\FaceType\*"; DestDir: "{#syb}"; Components: Patchers/facetype; Flags: {#stdFlags}
 Source: "{#IPatch}\IMGUITranslator\Sybaris\*"; DestDir: "{#syb}"; Components: Patchers/imgui; Flags: {#stdFlags}
 	Source: "{#IPatch}\IMGUITranslator\IMGUITranslationLoader\*"; DestDir: "{app}\IMGUITranslationLoader"; Components: Patchers/imgui/translations; Flags: {#stdFlags}
-Source: "{#IPatch}\ModLoader\Sybaris\*"; DestDir: "{#syb}"; Components: Patchers/modloader; Flags: {#stdFlags}
-	Source: "{#IPatch}\ModLoader\Mod\*"; DestDir: "{#mod}"; Components: Patchers/modloader; Flags: {#stdFlags}
 Source: "{#IPatch}\NeighUnce\*"; DestDir: "{#syb}"; Components: Patchers/neighuncen; Flags: {#stdFlags}
 Source: "{#IPatch}\ntrlight\*"; DestDir: "{#syb}"; Components: Patchers/ntrlight; Flags: {#stdFlags}
 Source: "{#IPatch}\rgbpal\*"; DestDir: "{#syb}"; Components: Patchers/rgbpal; Flags: {#stdFlags}
