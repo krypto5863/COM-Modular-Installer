@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.16"
+#define MyAppVersion "2.5.17"
 #define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
 #define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
 #define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
@@ -80,6 +80,8 @@ Source: "{#SrcDir}\UI\rabbit.bmp"; Flags: dontcopy
 Source: "{#SrcDir}\UI\kite.bmp"; Flags: dontcopy
 Source: "{#SrcDir}\UI\kry.bmp"; Flags: dontcopy
 Source: "{#SrcDir}\UI\pain.bmp"; Flags: dontcopy
+Source: "{#SrcDir}\UI\joco.bmp"; Flags: dontcopy
+Source: "{#SrcDir}\UI\shin.bmp"; Flags: dontcopy
 [/Files]
 
 [Languages]

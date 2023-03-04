@@ -167,7 +167,9 @@ begin
 		'Rabbit.bmp',
 		'Kite.bmp',
 		'kry.bmp',
-		'pain.bmp'
+		'pain.bmp',
+        'joco.bmp',
+        'shin.bmp'
 	];
 
 	if (Sender = nil) then
