@@ -184,9 +184,9 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 
 	Name: bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen;
 
-Name: ModLoader; Description: Modding Extensions;
-    Name: ModLoader/modloader; Description: ModLoader; Flags: exclusive; Types: full compact eng notr pic hen;
-	Name: ModLoader/MaidLoader; Description: MaidLoader; Flags: exclusive; Types: self;
+Name: ModExt; Description: Modding Extensions;
+    Name: ModExt/modloader; Description: ModLoader; Flags: exclusive; Types: full compact eng notr pic hen;
+	Name: ModExt/MaidLoader; Description: MaidLoader; Flags: exclusive; Types: self;
 
 Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 

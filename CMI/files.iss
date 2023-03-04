@@ -92,9 +92,9 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 	Source: "{#ibep}\COM3D2.UndressUtil\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/UndressUtil; Flags: {#stdFlags}
 
 ;ModLoader
-Source: "{#IPatch}\ModLoader\Mod\*"; DestDir: "{#mod}"; Components: ModLoader; Flags: {#stdFlags}
-    Source: "{#ibep}\COM3D2.MaidLoader\*"; DestDir: "{#bep}"; Components:ModLoader/MaidLoader; Flags: {#stdFlags}
-    Source: "{#IPatch}\ModLoader\Sybaris\*"; DestDir: "{#syb}"; Components: ModLoader/modloader; Flags: {#stdFlags}
+Source: "{#IPatch}\ModLoader\Mod\*"; DestDir: "{#mod}"; Components: ModExt; Flags: {#stdFlags}
+    Source: "{#ibep}\COM3D2.MaidLoader\*"; DestDir: "{#bep}"; Components:ModExt/MaidLoader; Flags: {#stdFlags}
+    Source: "{#IPatch}\ModLoader\Sybaris\*"; DestDir: "{#syb}"; Components: ModExt/modloader; Flags: {#stdFlags}
 
 ;Patchers
 Source: "{#IPatch}\AutoConverter\*"; DestDir: "{#syb}"; Components: Patchers/autocon; Flags: {#stdFlags}
