@@ -15,14 +15,14 @@ COM Modular Installer, abbreviated as CMI, is a completely free All-In-One plugi
 - CR Japanese/COM3D2.5 (Version 3.x)
 - English (R18 Only)
 
-<h2> Main Features </h2>
+<h2 align="center"> Main Features </h2>
 
 - Quickly install a host of plugins and mods including but not limited to: uncensors, plugins, translations, tweaks and fixes.
 - The contents are heavily curated and some components are exclusive to this tool.
 - CMI is meant to be as stable as possible for a better user experience.
 - Centered around BepInEx, the currently superior Unity Modding Framework.
 
-<h2> Why should I use it? </h2>
+<h2 align="center"> Why should I use it? </h2>
 
 If you don't like micro-managing and you don't want to reinvent the wheel, you can use CMI to get yourself the bare-bone basics or everything you truly need to make the game enjoyable for you. It's basically a curated mod list. CMI isn't required or neccessary to play the game, however. But most users will develop a specific preference of what they want to see or do in their games.
 
