@@ -9,18 +9,20 @@ title: Home
 
 Welcome to the COM3D2 Modular Installer! Meido can be a very complex game, and we’re here to make it simple. Since the great depression caused by the release of CM3D2, I’ve endeavored to fine tune and keep a clean game setup. This only becomes more difficult as the game ages and the amount of plugins and addons increase. Many issues arise from users making simple mistakes or people who suffer from brain deficits. This installer is designed to make things quick, easy, simple, safe and clean. You get to pick exactly what you want and discard what you do not. We’ll take care of the rest so you can right get in there and enjoy your meidos!
 
-COM Modular Installer, abbreviated as CMI, is a completely free All-In-One plugin and mod installer built under the GPL 3.0 license for the following versions of COM. It's core purpose is to quickly and safely install user selected mods to your game:
-
-- Standard Japanese (Version 2.x)
-- CR Japanese/COM3D2.5 (Version 3.x)
-- English (R18 Only)
-
 <h2 align="center"> Main Features </h2>
+
+COM Modular Installer, abbreviated as CMI, is a completely free All-In-One plugin and mod installer built under the GPL 3.0 license.
 
 - Quickly install a host of plugins and mods including but not limited to: uncensors, plugins, translations, tweaks and fixes.
 - The contents are heavily curated and some components are exclusive to this tool.
 - CMI is meant to be as stable as possible for a better user experience.
 - Centered around BepInEx, the currently superior Unity Modding Framework.
+
+CMI targets the following versions of COM:
+
+- Standard Japanese (Version 2.x)
+- CR Japanese/COM3D2.5 (Version 3.x)
+- English (R18 Only)
 
 <h2 align="center"> Why should I use it? </h2>
 
