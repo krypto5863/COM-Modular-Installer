@@ -3,7 +3,9 @@
 Compiled_EXE
 CMI/Documentation
 CMI/UI
-CMI/#CREdit
+CMI/#CREdit/Loader
+CMI/#CREdit/Patchers
+CMI/#CREdit/Plugins
 CMI/#NoneCREdit
 Utility/7zip
 Utility/DLL
