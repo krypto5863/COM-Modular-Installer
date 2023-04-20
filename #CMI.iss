@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.17"
+#define MyAppVersion "2.5.18"
 #define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
 #define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
 #define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
@@ -70,8 +70,8 @@ LicenseFile={#SrcDir}\Documentation\license.txt
 InfoBeforeFile={#SrcDir}\Documentation\info.txt
 
 WizardStyle=modern
-SetupIconFile={#SrcDir}\UI\Icon.ico
-WizardSmallImageFile={#SrcDir}\UI\Icon.bmp
+SetupIconFile={#SrcDir}\UI\icon.ico
+WizardSmallImageFile={#SrcDir}\UI\icon.bmp
 WizardSizePercent=150
 
 //Banner Images.
@@ -324,7 +324,10 @@ Type:filesandordirs; Name: "{app}\OldInstall*"; Tasks:clean/deleteold/old;
 
 [Run]
 Filename: "{tmp}\MaidFiddlerSetup.exe"; Flags: runasoriginaluser skipifdoesntexist waituntilterminated; StatusMsg: {cm:MFInstall}
-Filename: "https://forms.gle/PrXjqck2dQYMHvyY8"; Flags: shellexec runasoriginaluser postinstall; Description: {cm:Survey}
+;Filename: "https://forms.gle/PrXjqck2dQYMHvyY8"; Flags: shellexec runasoriginaluser postinstall; Description: {cm:Survey}
+FileName: "https://discord.gg/custommaid"; Flags: shellexec runasoriginaluser postinstall; Description: Join Custom Maid Discord!
+//It's just a prank bro
+FileName: "https://dlshop.illu-member.jp/products/detail.php?product_id=251"; Flags: shellexec runasoriginaluser postinstall; Description: Get a better game!; Check: GetRandAbove(100, 9)
 Filename: "https://github.com/krypto5863/COM-Modular-Installer/releases"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: {cm:OfficialPage}
 
 [Registry]

@@ -1,4 +1,11 @@
 [Code]
+function GetRandAbove(const range: Integer; const atOrBelow: Integer): Boolean;
+begin
+
+    result := Random(range) <= atOrBelow;
+
+end;
+
 function IsEng(const path: String): Integer;
 begin
 	//2 is INM. 1 is R18. 0 is not Eng.
@@ -81,7 +88,7 @@ begin
 			//'ShapekeyMaster',
 			//'ShortMenuLoader',
 			'ShortStartLoader',
-			'AlwaysColorChangeEX',
+			//'AlwaysColorChangeEX',
 			//'AdvancedMaterialModifier',
 			CustomMessage('MaidFiddler')
 		];
