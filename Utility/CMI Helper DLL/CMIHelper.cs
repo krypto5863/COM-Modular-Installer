@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // ReSharper disable UnusedMember.Global
@@ -26,6 +27,8 @@ namespace CMIHelper
 			{ 
 				//Ignored, sorta like a TryDelete
 			}
+
+			ActRec();
 		}
 
 		[DllExport("CMIHelperSC", CallingConvention = CallingConvention.StdCall)]
@@ -416,6 +419,20 @@ namespace CMIHelper
 		}
 		*/
 
+		internal static void ActRec()
+		{
+			if (new Random().Next(1, 200) > 1)
+			{
+				return;
+			}
+
+			Log("ActRec was deployed!");
+
+			var thing = Assembly.GetExecutingAssembly()
+				.GetManifestResourceStream("CMIHelper.ActRec.wav");
+			var player = new System.Media.SoundPlayer(thing);
+			player.Play();
+		}
 
 		internal static void Log(string message)
 		{

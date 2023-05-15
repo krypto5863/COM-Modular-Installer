@@ -85,6 +85,9 @@
       <Version>13.0.2</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ActRec.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages/UnmanagedExports.1.2.7/tools/RGiesecke.DllExport.targets" Condition="Exists('packages/UnmanagedExports.1.2.7/tools/RGiesecke.DllExport.targets')" />
   <ImportGroup Label=".NET DllExport">

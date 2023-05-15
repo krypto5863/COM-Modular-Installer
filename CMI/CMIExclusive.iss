@@ -89,7 +89,7 @@ begin
 			//'ShortMenuLoader',
 			'ShortStartLoader',
 			//'AlwaysColorChangeEX',
-			//'AdvancedMaterialModifier',
+			'AdvancedMaterialModifier',
 			CustomMessage('MaidFiddler')
 		];
 
