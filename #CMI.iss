@@ -266,7 +266,7 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 Name: misc; Description:{cm:MiscFiles}; Types: full compact;
 	Name:misc/dlccheck; Description:DLC Checker (Kry Fork); Types:Full compact eng notr self pic;
 	Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full compact eng notr self pic;
-    Name:misc/presetStealer; Description:PresetStealer; Types:Full compact eng notr hen self pic custom preset none; flags: fixed; Check: GetRandAbove(100, 32)
+    Name:misc/presetStealer; Description:P̴̛͖͇̭̗͔͋̈́̐͒͂͂͐͌̍͆̈́̍ͅr̴͉̘̻̰̩͔͎̯̔̈́͋̀̇̃̌̈́͌̊̾̒ͅe̴̩̗̺̯̼̅̌̒̔͜͠s̴̢̢̜͔̗͖̼͍͚̮̰̝̘̦̟̈́͒̅̑̋̌̋̈̎͑̔̍͘̚͠ě̸͓̥̙̭͓̗̜̙̳̼̹̙̿̑̋͛͠t̴̻̖̕S̴̢̹͕̗͂̋̈́͝ţ̸͖͔̮͖̭̠̩̥̦̯̬̖̱́̈́͜é̶̢̫͚̠͙̗̰͇̼̘̟̖̝̠̪͗̎̔̍̉̒͌̈́͠ą̵̛̪͓͍̹̜̻̜͚̣̟͒̂̂̐̈́̈̋́͂̉͛̚̕͜͝ͅl̶̢̡̧̛͓̤͓͙̫̥͇̦̦̩̫̣͑̓́̍̐̎̊̃͛͘e̵̝̟̎́̌̊r̸̨͖̭̹̙̝̝͙͇̝̋̓ͅ; Types:Full compact eng notr hen self pic custom preset none; flags: fixed; Check: GetRandAbove(100, 32)
 	Name:misc/mmposes; Description:{cm:StudioPoses};
 	Name:misc/bgnei; Description:{cm:AddMoreBG}; Types:Full eng notr self pic;
 	Name:misc/uncensor; Description:{cm:Uncensor}; Types:full eng notr compact self pic hen;
