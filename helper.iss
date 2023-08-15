@@ -1,22 +1,19 @@
 [Code]
 //Checks if a given string contains another given string.
 function StringContains(const string: WideString; const substring: WideString): Boolean;
-external 'CMIHelperSC@files:CMIHelper.dll stdcall delayload';
+external 'CMIHelperSC@{#HelperDLLCodes}';
 //This function compares versions, returns if comparison was successful and puts the result to an out
 function VersionCompare(const VersionOld: WideString; const VersionNew: WideString; out res: Integer): Boolean;
-external 'CMIHelperIVOT@files:CMIHelper.dll stdcall delayload';
+external 'CMIHelperIVOT@{#HelperDLLCodes}';
 //Will get a Directories creation time. Mostly used to change name of OldInstall directory.
 function GetDirectoryCreationTime(const path: WideString; out time: WideString): Boolean;
-external 'CMIHelperGDCT@files:CMIHelper.dll stdcall delayload';
+external 'CMIHelperGDCT@{#HelperDLLCodes}';
 //Find file in directory and sub directories...
 function FindFile(const file: WideString; const directory: WideString; out path: WideString): Boolean;
-external 'CMIHelperFF@files:CMIHelper.dll stdcall delayload';
-//Gets the latest game file from the update site.
-procedure InitHelper();
-external 'CMIHelperInit@files:CMIHelper.dll stdcall delayload';
+external 'CMIHelperFF@{#HelperDLLCodes}';
 
 procedure FetchUpdateFile(const site: WideString; out file: WideString);
-external 'CMIHelperGLU@files:CMIHelper.dll stdcall delayload';
+external 'CMIHelperGLU@{#HelperDLLCodes}';
 {
 //Attempts to dynamically fetch a file given a search string, some modders use non-standard names. This goes through several releases, not just the latest. If the version string is empty though, just goes through the latest
 procedure FetchDRelease(const site: WideString; const searchString: WideString; const version: WideString; out dlink: WideString);

@@ -31,9 +31,11 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 
 	Source: "{#ibep}\CamConEx\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/cameracon; Flags: {#stdFlags}
 
-	Source: "{#ibep}\COM3D2.ShiftClickExplorer\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShiftClick; Flags: {#stdFlags}
+    Source: "{#ibep}\COM3D2.ColorPresetNum\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ConfigMan; Flags: {#stdFlags}
 
 	Source: "{#ibep}\ConfigurationManager\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ConfigMan; Flags: {#stdFlags}
+
+    Source: "{#ibep}\COM3D2.CheatMenu\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/cheatMenu; Flags: {#stdFlags}
 
 	Source: "{#ibep}\COM3D2.ChoosyPreset\*"; DestDir: "{app}"; Components:bepinexPlugs/choosypreset; Flags: {#stdFlags}
 
@@ -58,6 +60,8 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 
 	Source: "{#ibep}\BepInEx.OptimizeIMGUI\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/OptIMGUI; Flags: {#stdFlags}
 
+    //Source: "{#ibep}\PropItem\*"; DestDir: "{#bepp}"; Components: bepinexPlugs/propitem; Flags: {#stdFlags}
+
 	Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Components:bepinexPlugs/scriptloader; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\all_maids_in_private_mode.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/allprivate; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\add_subs_to_old_yotogi.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/oldsubs; Flags: {#stdFlags}
@@ -80,6 +84,7 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 		Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/wrapmode; Flags: {#stdFlags}
 
 	Source: "{#ibep}\COM3D2.ShapekeyMaster\*"; DestDir: "{app}"; Components:bepinexPlugs/ShapekeyMaster; Flags: {#stdFlags}
+    Source: "{#ibep}\COM3D2.ShiftClickExplorer\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShiftClick; Flags: {#stdFlags}
 	Source: "{#ibep}\COM3D2.ShortMenuLoader\*"; DestDir: "{app}"; Components:bepinexPlugs/ShortMenu; Flags: {#stdFlags}
 	Source: "{#ibep}\COM3D2.ShortMenuVanillaDatabase\*"; DestDir: "{app}"; Components:bepinexPlugs/ShortVanilla; Flags: {#stdFlags}
 	Source: "{#ibep}\COM3D2.ShortStartLoader\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShortStart; Flags: {#stdFlags}
@@ -88,6 +93,8 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 		Source: "{#iloader}\extratranslations\*"; DestDir: "{app}"; Components:bepinexPlugs/Translations/i18nEx/extrans; Flags: {#stdFlags}
 	Source: "{#ibep}\ResourceRedirector\*"; DestDir: "{#bep}"; Components:bepinexPlugs/Translations/Resredir; Flags: {#stdFlags}
 		Source: "{#ibep}\Xuat\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/Translations/resredir/xuat; Flags: {#stdFlags}
+
+    Source: "{#ibep}\COM3D2.TimeDependentPhysics\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/TimeDependentPhysics; Flags: {#stdFlags}
 
 	Source: "{#ibep}\COM3D2.UndressUtil\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/UndressUtil; Flags: {#stdFlags}
 
@@ -156,7 +163,6 @@ Source: "{#IPlugin}\xtms\Core\*"; DestDir: "{#syb}"; Components: plugins/xtms; F
 			
 Source: "{#IPlugin}\pngplace\core\*"; DestDir: "{#plug}"; Components: plugins/pngplace; Flags: {#stdFlags}
 	Source: "{#IPlugin}\PngPlace\ExtraPNGs\*"; DestDir: "{#ucfg}"; Components: plugins/pngplace/expng; Flags: {#stdFlags}
-Source: "{#IPlugin}\propitem\*"; DestDir: "{#syb}"; Components: plugins/propitem; Flags: {#stdFlags}
 Source: "{#IPlugin}\scenecap\Norm\*"; DestDir: "{#syb}"; Components: plugins/scenecap; Flags: {#stdFlags}
 	Source: "{#IPlugin}\scenecap\Modpmats\*"; DestDir: "{#mod}"; Components: plugins/scenecap/mpmats; Flags: {#stdFlags}
 	Source: "{#IPlugin}\scenecap\VR\*"; DestDir: "{#syb}"; Components: plugins/scenecap/VR; Flags: {#stdFlags}
@@ -167,7 +173,7 @@ Source: "{#IPlugin}\shapeanimdoc\*"; DestDir: "{#syb}"; Components: plugins/shap
 Source: "{#IPlugin}\SKAcc\*"; DestDir: "{#syb}"; Components: plugins/SKAcc; Flags: {#stdFlags}
 Source: "{#IPlugin}\skillcomshort\*"; DestDir: "{#syb}"; Components: plugins/skillcomshort; Flags: {#stdFlags}
 Source: "{#IPlugin}\slimeshade\*"; DestDir: "{#syb}"; Components: plugins/slimeshade; Flags: {#stdFlags}
-Source: "{#IPlugin}\smoothanim\*"; DestDir: "{#syb}"; Components: plugins/smoothanim; Flags: {#stdFlags}
+//Source: "{#IPlugin}\smoothanim\*"; DestDir: "{#syb}"; Components: plugins/smoothanim; Flags: {#stdFlags}
 Source: "{#IPlugin}\texload\core\*"; DestDir: "{#plug}"; Components: plugins/texload; Flags: {#stdFlags}
 	Source: "{#IPlugin}\texload\postload\*"; DestDir: "{app}"; Components: plugins/texload/postload; Flags: {#stdFlags}
 Source: "{#IPlugin}\toukascreen\*"; DestDir: "{#syb}"; Components: plugins/toukascreen; Flags: {#stdFlags}
@@ -185,7 +191,7 @@ Source: "{#IMisc}\TextureUncensors\MoreMaleUncensor\*"; DestDir: "{#mod}\[CMI]Un
 Source: "{#IMisc}\TextureUncensors\DLCMoreMaleUncensor\*"; DestDir: "{#mod}\[CMI]Uncensors\MaleUncensor\"; Components: misc/extrauncensormale; Flags: {#stdFlags} solidbreak; Check:FileExists(ExpandConstant('{app}\GameData\parts_dlc219.arc'))
 Source: "{#IMisc}\TextureUncensors\lomob\*"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody"; Components: misc/LoMobBody; Flags: {#stdFlags}
 Source: "{#IMisc}\TextureUncensors\lomob\LOmobchara_extra_v1_beta\model\underhair.model"; DestDir: "{#mod}\[CMI]Uncensors\LoMobBody\LOmobchara_extra_v1_beta\model"; DestName: "underhair_en.model"; Components: misc/LoMobBody; Flags: {#stdFlags}; Check: IsEngSimple(ExpandConstant('{app}'));
-Source: "{#IMisc}\MaidFiddler\*"; DestDir: "{tmp}"; Components: misc/maidfiddle; Flags: {#stdFlags} deleteafterinstall solidbreak
+//Source: "{#IMisc}\MaidFiddler\*"; DestDir: "{tmp}"; Components: misc/maidfiddle; Flags: {#stdFlags} deleteafterinstall solidbreak
 
 //Unrelated to files.
 Source: "{#IDocumentation}\CMI_Readme.pdf"; DestDir: "{app}\CMI Documentation"; Flags: isreadme nocompression

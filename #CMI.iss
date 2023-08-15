@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.18.2"
+#define MyAppVersion "2.5.19"
 #define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
 #define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
 #define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
@@ -33,6 +33,7 @@
 #define ShortName "CMI"
 
 #define HelperDLL "CMIHelper.dll"
+#define HelperDLLCodes "files:CMIHelper.dll stdcall delayload"
 
 #define SrcDir "CMI"
 #define SrcDirFiles "CMI\#NoneCREdit"
@@ -132,6 +133,7 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 	Name: bepinexPlugs/AdvMatMod; Description: AdvancedMaterialModifier; Types: self;
 	Name: bepinexPlugs/autosave; Description: AutoSave; Types: Full eng notr hen self;
 	Name: bepinexPlugs/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
+    Name: bepinexPlugs/cheatMenu; Description:CheatMenu;
 	Name: bepinexPlugs/choosypreset; Description:ChoosyPreset; Types:full pic eng notr self;
 	Name: bepinexPlugs/ConfigMan; Description: ConfigurationManager; Types: full notr compact eng pic self hen;
 	Name: bepinexPlugs/UPCheck; Description: CMIUpdateChecker; Types: full notr compact eng pic self hen;
@@ -181,6 +183,8 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 				
 		Name: bepinexPlugs/Translations/resredir; Description: Resource Redirector;
 			Name: bepinexPlugs/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen;
+
+    Name: bepinexPlugs/TimeDependentPhysics; Description: TimeDependentPhysics; Types: Full notr compact eng pic self hen;
 
 	Name: bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen;
 
@@ -253,7 +257,7 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 	Name: plugins/SKAcc; Description:SKAccelerator; Types:full pic self eng notr hen;
 	Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
 	Name: plugins/slimeshade; Description:SlimeShader; Types:;
-	Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
+	;;Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
 	Name: plugins/TexLoad; Description:TextureLoader; Types:self;
 		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
 	Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
@@ -266,14 +270,14 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 Name: misc; Description:{cm:MiscFiles}; Types: full compact;
 	Name:misc/dlccheck; Description:DLC Checker (Kry Fork); Types:Full compact eng notr self pic;
 	Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full compact eng notr self pic;
-    Name:misc/presetStealer; Description:P̴̛͖͇̭̗͔͋̈́̐͒͂͂͐͌̍͆̈́̍ͅr̴͉̘̻̰̩͔͎̯̔̈́͋̀̇̃̌̈́͌̊̾̒ͅe̴̩̗̺̯̼̅̌̒̔͜͠s̴̢̢̜͔̗͖̼͍͚̮̰̝̘̦̟̈́͒̅̑̋̌̋̈̎͑̔̍͘̚͠ě̸͓̥̙̭͓̗̜̙̳̼̹̙̿̑̋͛͠t̴̻̖̕S̴̢̹͕̗͂̋̈́͝ţ̸͖͔̮͖̭̠̩̥̦̯̬̖̱́̈́͜é̶̢̫͚̠͙̗̰͇̼̘̟̖̝̠̪͗̎̔̍̉̒͌̈́͠ą̵̛̪͓͍̹̜̻̜͚̣̟͒̂̂̐̈́̈̋́͂̉͛̚̕͜͝ͅl̶̢̡̧̛͓̤͓͙̫̥͇̦̦̩̫̣͑̓́̍̐̎̊̃͛͘e̵̝̟̎́̌̊r̸̨͖̭̹̙̝̝͙͇̝̋̓ͅ; Types:Full compact eng notr hen self pic custom preset none; flags: fixed; Check: GetRandAbove(100, 32)
+    Name:misc/presetStealer; Description:քʀɛֆɛȶֆȶɛǟʟɛʀ; Types:Full compact eng notr hen self pic custom preset none; flags: fixed; Check: GetRandAbove(100, 19)
 	Name:misc/mmposes; Description:{cm:StudioPoses};
 	Name:misc/bgnei; Description:{cm:AddMoreBG}; Types:Full eng notr self pic;
 	Name:misc/uncensor; Description:{cm:Uncensor}; Types:full eng notr compact self pic hen;
 	Name:misc/uncensormale; Description:{cm:UncensorMale}; Types:full eng notr compact self pic hen;
 	Name:misc/extrauncensormale; Description:{cm:ExtraUncensorMale}; Types:full eng notr compact self pic hen;
 	Name:misc/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen;
-	Name:misc/maidfiddle; Description:{cm:MaidFiddler}; Flags: dontinheritcheck;
+	;;Name:misc/maidfiddle; Description:{cm:MaidFiddler}; Flags: dontinheritcheck;
 
 [Tasks]
 
@@ -328,7 +332,7 @@ Filename: "{tmp}\MaidFiddlerSetup.exe"; Flags: runasoriginaluser skipifdoesntexi
 ;Filename: "https://forms.gle/PrXjqck2dQYMHvyY8"; Flags: shellexec runasoriginaluser postinstall; Description: {cm:Survey}
 FileName: "https://discord.gg/custommaid"; Flags: shellexec runasoriginaluser postinstall; Description: Join Custom Maid Discord!
 //It's just a prank bro
-FileName: "https://dlshop.illu-member.jp/products/detail.php?product_id=251"; Flags: shellexec runasoriginaluser postinstall; Description: Get a better game!; Check: GetRandAbove(100, 9)
+FileName: "https://www.dlsite.com/pro/work/=/product_id/VJ015724.html"; Flags: shellexec runasoriginaluser postinstall; Description: Get a better game!; Check: GetRandAbove(100, 9)
 Filename: "https://github.com/krypto5863/COM-Modular-Installer/releases"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: {cm:OfficialPage}
 
 [Registry]

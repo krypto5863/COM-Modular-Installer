@@ -1,5 +1,4 @@
-﻿using Knyaz.Optimus;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -12,10 +11,6 @@ namespace CMIHelper
 {
 	public static class CmiHelper
 	{
-		private static readonly Engine MainEngine = EngineBuilder.New().Build();
-		//private static DateTimeOffset _apiLimitResetTime;
-		//private static bool _warnedOfLimit;
-
 		static CmiHelper ()
 		{
 			Log("CMIHelper has initialized!");
@@ -24,7 +19,7 @@ namespace CMIHelper
 				File.Delete(Environment.CurrentDirectory + "\\CMIHelperLog.txt");
 			} 
 			catch 
-			{ 
+			{
 				//Ignored, sorta like a TryDelete
 			}
 
@@ -138,24 +133,19 @@ namespace CMIHelper
 		}
 
 		[DllExport("CMIHelperGLU", CallingConvention = CallingConvention.StdCall)]
-		public static void FetchLatestGameUpdate([MarshalAs(UnmanagedType.BStr)] string url, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
+		public static void FetchLatestGameUpdate([MarshalAs(UnmanagedType.BStr)] string url,
+			[MarshalAs(UnmanagedType.BStr)] out string downloadLink)
 		{
-
-			//Request the web page.
-			var page = MainEngine.OpenUrl(url);
-			if (page.Wait(10000) == false)
+			try
 			{
-				Log($"Timed out waiting for {url} to open.");
-				downloadLink = string.Empty;
-				return;
+				UpdateStuff.FetchLatestGameUpdate(url, out downloadLink);
 			}
-
-			var document = page.Result.Document;
-			var button = document.GetElementsByClassName("spec_in").First().GetElementsByTagName("p")[0];
-
-			downloadLink = button.TextContent.Trim();
-
-		}
+			catch
+			{
+				Log("Failed to fetch latest game update.");
+				downloadLink = string.Empty;
+			}
+		} 
 
 		/*
 		[DllExport("CMIHelperFLV", CallingConvention = CallingConvention.StdCall)]
@@ -437,6 +427,28 @@ namespace CMIHelper
 		internal static void Log(string message)
 		{
 			File.AppendAllText(Environment.CurrentDirectory + "\\CMIHelperLog.txt", DateTimeOffset.Now + " :: " + message + "\n");
+		}
+	}
+
+	public static class UpdateStuff
+	{
+		private static readonly Knyaz.Optimus.Engine MainEngine = Knyaz.Optimus.EngineBuilder.New().Build();
+		public static void FetchLatestGameUpdate([MarshalAs(UnmanagedType.BStr)] string url, [MarshalAs(UnmanagedType.BStr)] out string downloadLink)
+		{
+			//Request the web page.
+			var page = MainEngine.OpenUrl(url);
+			if (page.Wait(10000) == false)
+			{
+				CmiHelper.Log($"Timed out waiting for {url} to open.");
+				downloadLink = string.Empty;
+				return;
+			}
+
+			var document = page.Result.Document;
+			var button = document.GetElementsByClassName("spec_in").First().GetElementsByTagName("p")[0];
+
+			downloadLink = button.TextContent.Trim();
+
 		}
 	}
 }

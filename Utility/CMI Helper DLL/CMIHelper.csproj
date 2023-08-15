@@ -67,26 +67,25 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Costura.Fody">
-      <Version>5.8.0-alpha0098</Version>
+      <Version>5.7.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="DllExport">
       <Version>1.7.4</Version>
     </PackageReference>
-    <PackageReference Include="Fody">
-      <Version>6.6.4</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Knyaz.Optimus">
       <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.2</Version>
+      <Version>13.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ActRec.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages/UnmanagedExports.1.2.7/tools/RGiesecke.DllExport.targets" Condition="Exists('packages/UnmanagedExports.1.2.7/tools/RGiesecke.DllExport.targets')" />

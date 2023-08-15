@@ -31,7 +31,7 @@ ReadmeExit=Go back and read it before installing CMI
 
 EnglishVersionAlert=If you are not on an English version of the game quit the install right now and refer to the readme!!%n%nEnglish version was found!! Be advised, English versions are not as feature full or as supported as the Japanese version!
 EnglishVersionCompatibility=Translation plugins and related components can be harmful or incompatible to your English game.%n%nShould we disable these components in order to keep you safe? (Recommended)
-CRVersionAlert=If you are not on a CR (COM3D2.5) version of the game quit the install right now and refer to the readme!!%n%nCR version was found!! Be advised, CR versions are not as feature full or as supported as the standard version! Some components will be disabled for your safety!
+CRVersionAlert=COM3D2.5 was made for usage with the KC/CR-Editor, as such any plugins having to do with the legacy editor will be disabled. There are also incompatible plugins that will be disabled. If you are not on a CR (COM3D2.5) version of the game quit the install right now and refer to the readme!!%n%nCR version was found!!
 
 CMDetected=This is CM3D2 not COM3D2! CMI was not made for CM3D2! For CM3D2, please use Legacy Meido Modular Toolbox (LMMT)
 NotaGameDir=This does not appear to be a COM3d2 Directory! We can still continue the installation but you may be installing to the wrong directory, some functions will also be rendered ineffectual. Do we continue anyways?

@@ -1,8 +1,4 @@
 [Code]
-//Calls for function that facilitate version checking from C# DLL
-function VersionCheck(const path: WideString; const gver: Integer): Integer;
-external 'CMIHelper@files:CMIHelper.dll stdcall delayload';
-
 Function VerifyPath(const DirName: String): Boolean;
 begin
 	//the result is intially true. If none of the checks are met, it passes true back. However, if any checks are met, it flips the switch to false but still does every other check. This is meant to point out all issues in a setup first run instead of forcing users to run multiple times a new issue crops up.
@@ -295,22 +291,26 @@ begin
 		exit;
 	end;
 
-	if NOT VerifyPath(WizardForm.DirEdit.Text)then
-	begin
-		Result := false;
-		exit;
-	end;
+    try 
+        if NOT VerifyPath(WizardForm.DirEdit.Text)then
+        begin
+            Result := false;
+            exit;
+        end;
 
-#if LMMT == true
-	log('Now noting the bits down...');
-	NoteBits(WizardForm.DirEdit.Text);
-#endif
+    #if LMMT == true
+        log('Now noting the bits down...');
+        NoteBits(WizardForm.DirEdit.Text);
+    #endif
 
-	if NOT EmptyFolder AND NOT VerifyVersion(WizardForm.DirEdit.Text, {#MinimumVersion}, {#CRStartVersion}, {#CRMinimumVersion}) then
-	begin
-		Result := false;
-		exit;
-	end;
+        if NOT EmptyFolder AND NOT VerifyVersion(WizardForm.DirEdit.Text, {#MinimumVersion}, {#CRStartVersion}, {#CRMinimumVersion}) then
+        begin
+            Result := false;
+            exit;
+        end;
+    except;
+        MsgBox('We ran into a failure while trying to verify the selected directory, game version, and integrity. If you are on Linux this is normal. Install will continue as normal, it is up to you to make sure things are working fine.', mbInformation, MB_OK);
+    end;
 
 	//Small advisory, hope users follow it.
 	MsgBox(CustomMessage('EnsureGameClosed'), mbInformation, MB_OK);
