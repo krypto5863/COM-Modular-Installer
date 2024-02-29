@@ -19,9 +19,12 @@
 //Loader Section
 Source: "{#ibep}\Core\*"; DestDir: "{app}"; Components:bepinEX; Flags: {#stdFlags};
 Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: bepinEX; Flags: {#stdFlags}
+Source: "{#IPatch}\Mono.Cecil.Inject\*"; DestDir: "{#syb}"; Components: bepinEX; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.API\*"; DestDir: "{#bepp}"; Components:bepinEX;  Flags: {#stdFlags}
 Source: "{#ibep}\CM3D2.Toolkit\*"; DestDir: "{#bepp}"; Components:bepinEX; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX; Flags: {#stdFlags}
+Source: "{#ibep}\System.Threading\*"; DestDir: "{#bepp}"; Components:bepinEX; Flags: {#stdFlags}
+Source: "{#ibep}\CM3D2.Serialization\*"; DestDir: "{#bepp}"; Components:bepinEX; Flags: {#stdFlags}
 
 	Source: "{#ibep}\COM3D2.AddYotogiSliderSE\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/addyot; Flags: {#stdFlags}
 
@@ -58,7 +61,7 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 
 	Source: "{#ibep}\ModRef\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/modref; Flags: {#stdFlags}
 
-	Source: "{#ibep}\BepInEx.OptimizeIMGUI\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/OptIMGUI; Flags: {#stdFlags}
+	//Source: "{#ibep}\BepInEx.OptimizeIMGUI\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/OptIMGUI; Flags: {#stdFlags}
 
     //Source: "{#ibep}\PropItem\*"; DestDir: "{#bepp}"; Components: bepinexPlugs/propitem; Flags: {#stdFlags}
 
@@ -70,19 +73,25 @@ Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Components:bepinEX
 		Source: "{#ibep}\ScriptLoader\Scripts\editable_names.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/editname; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\editBlinkStop.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/blinkstop; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\enable_scout_mode.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/enascout; Flags: {#stdFlags}
+        Source: "{#ibep}\ScriptLoader\Scripts\EventCharacterListFix.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/EventCharacterListFix; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\fastFade.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/fastfade; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\ForceScheduleEvents.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/ForceSchedule; Flags: {#stdFlags}
+        Source: "{#ibep}\ScriptLoader\Scripts\InvertLearntStat.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/InvertLearntStat; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\load_small_thumbs.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/thumbs; Flags: {#stdFlags}
+        Source: "{#ibep}\ScriptLoader\Scripts\loadeditedNPCs.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/loadeditednpcs; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\MemoriesModeUnlock.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/unlockmemories; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\MoreRandomNames.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/morenames; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\nameExtender.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/nameext; Flags: {#stdFlags}
+        Source: "{#ibep}\ScriptLoader\Scripts\NoMoanSubs.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/NoMoanSubs; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\quick_edit_scene.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/quickedit; Flags: {#stdFlags}
+        Source: "{#ibep}\ScriptLoader\Scripts\QuickWorkSchedule.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/quickworkschedule; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\saveSettingsInGame.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/savesettings; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\skipStartLogo.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/skiplogo; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\report_dupes.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/redupe; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\unlock_all_skills.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/unlockskills; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/wrapmode; Flags: {#stdFlags}
 
+    Source: "{#ibep}\COM3D2.ShaderServant\*"; DestDir: "{app}"; Components:bepinexPlugs/ShapekeyMaster; Flags: {#stdFlags}
 	Source: "{#ibep}\COM3D2.ShapekeyMaster\*"; DestDir: "{app}"; Components:bepinexPlugs/ShapekeyMaster; Flags: {#stdFlags}
     Source: "{#ibep}\COM3D2.ShiftClickExplorer\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShiftClick; Flags: {#stdFlags}
 	Source: "{#ibep}\COM3D2.ShortMenuLoader\*"; DestDir: "{app}"; Components:bepinexPlugs/ShortMenu; Flags: {#stdFlags}
@@ -107,8 +116,8 @@ Source: "{#IPatch}\ModLoader\Mod\*"; DestDir: "{#mod}"; Components: ModExt; Flag
 Source: "{#IPatch}\AutoConverter\*"; DestDir: "{#syb}"; Components: Patchers/autocon; Flags: {#stdFlags}
 Source: "{#IPatch}\BodyCategoryAdd\*"; DestDir: "{#syb}"; Components: Patchers/bodycat; Flags: {#stdFlags}
 Source: "{#IPatch}\ExternalSave\*"; DestDir: "{#syb}"; Components: Patchers/extsave; Flags: {#stdFlags}
-	Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: {#stdFlags}
-	Source: "{#IPlugin}\vibemaid\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: {#stdFlags}
+	;Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: {#stdFlags}
+	;Source: "{#IPlugin}\vibemaid\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: {#stdFlags}
 Source: "{#IPlugin}\MaidVoice\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice; Flags: {#stdFlags}
 	Source: "{#IPlugin}\AddMod\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod; Flags: {#stdFlags}
 		Source: "{#IPlugin}\Lashalpha\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Flags: {#stdFlags}
@@ -124,19 +133,19 @@ Source: "{#IPatch}\rgbpal\*"; DestDir: "{#syb}"; Components: Patchers/rgbpal; Fl
 
 ;Plugins
 Source: "{#IPlugin}\ACCex\*"; DestDir: "{#syb}"; Components: plugins/accex; Flags: {#stdFlags}
-Source: "{#IPlugin}\eraseout\*"; DestDir: "{#syb}"; Components: plugins/eraseout; Flags: {#stdFlags}
+;;Source: "{#IPlugin}\eraseout\*"; DestDir: "{#syb}"; Components: plugins/eraseout; Flags: {#stdFlags}
 Source: "{#IPlugin}\camerautil\*"; DestDir: "{#syb}"; Components: plugins/camerautil; Flags: {#stdFlags}
 Source: "{#IPlugin}\colorhelp\*"; DestDir: "{#syb}"; Components: plugins/colorhelp; Flags: {#stdFlags}
 Source: "{#IPlugin}\conwindow\*"; DestDir: "{#syb}"; Components: plugins/conwindow; Flags: {#stdFlags}
-Source: "{#IPlugin}\nyou\*"; DestDir: "{#syb}"; Components: plugins/nyou; Flags: {#stdFlags}
+;;Source: "{#IPlugin}\nyou\*"; DestDir: "{#syb}"; Components: plugins/nyou; Flags: {#stdFlags}
 Source: "{#IPlugin}\dancecamadjust\*"; DestDir: "{#syb}"; Components: plugins/dancecamadjust; Flags: {#stdFlags}
 Source: "{#IPlugin}\dressdam\*"; DestDir: "{#syb}"; Components: plugins/dressdam; Flags: {#stdFlags}
 Source: "{#IPlugin}\editmenufilt\*"; DestDir: "{#syb}"; Components: plugins/editmenufilt; Flags: {#stdFlags}
 Source: "{#IPlugin}\editselanime\*"; DestDir: "{#syb}"; Components: plugins/editselanim; Flags: {#stdFlags}
 Source: "{#IPlugin}\editundo\*"; DestDir: "{#syb}"; Components: plugins/editundo; Flags: {#stdFlags}
-Source: "{#IPlugin}\emoears\norm\Core\*"; DestDir: "{#plug}"; Components: plugins/emoears; Flags: {#stdFlags}
-	Source: "{#IPlugin}\emoears\aho\Mod\*"; DestDir: "{#mod}\EmotionalEars"; Components: plugins/emoears/aho; Flags: {#stdFlags}
-	Source: "{#IPlugin}\emoears\norm\Mod\*"; DestDir: "{#mod}\EmotionalEars"; Components: plugins/emoears/mod; Flags: {#stdFlags}
+;Source: "{#IPlugin}\emoears\norm\Core\*"; DestDir: "{#plug}"; Components: plugins/emoears; Flags: {#stdFlags}
+	;Source: "{#IPlugin}\emoears\aho\Mod\*"; DestDir: "{#mod}\EmotionalEars"; Components: plugins/emoears/aho; Flags: {#stdFlags}
+	;Source: "{#IPlugin}\emoears\norm\Mod\*"; DestDir: "{#mod}\EmotionalEars"; Components: plugins/emoears/mod; Flags: {#stdFlags}
 Source: "{#IPlugin}\extendrender\norm\*"; DestDir: "{#syb}"; Components: plugins/extendrender; Flags: {#stdFlags}
 	Source: "{#IPlugin}\extendrender\optional\*"; DestDir: "{#ucfg}"; Components: plugins/extendrender/config; Flags: {#stdFlags}
 Source: "{#IPlugin}\InOut\*"; DestDir: "{#syb}"; Components: plugins/inout; Flags: {#stdFlags}
@@ -145,8 +154,8 @@ Source: "{#IPlugin}\mirrorprops\Sybaris\*"; DestDir: "{#syb}"; Components: plugi
 Source: "{#IPlugin}\MTAcc\Norm\*"; DestDir: "{#syb}"; Components: plugins/mtacc; Flags: {#stdFlags}
 Source: "{#IPlugin}\MTAcc\AllScene\*"; DestDir: "{#plug}"; Components: plugins/mtacc/AllScene; Flags: {#stdFlags}
 Source: "{#IPlugin}\NormExcite\*"; DestDir: "{#syb}"; Components: plugins/normexcite; Flags: {#stdFlags}
-Source: "{#IPlugin}\NPRShader\core\*"; DestDir: "{#syb}"; Components: plugins/NPRShader; Flags: {#stdFlags}
-	Source: "{#IPlugin}\NPRShader\lightconfig\*"; DestDir: "{#ucfg}"; Components: plugins/NPRShader/LightConfig; Flags: {#stdFlags}
+//Source: "{#IPlugin}\NPRShader\core\*"; DestDir: "{#syb}"; Components: plugins/NPRShader; Flags: {#stdFlags}
+	//Source: "{#IPlugin}\NPRShader\lightconfig\*"; DestDir: "{#ucfg}"; Components: plugins/NPRShader/LightConfig; Flags: {#stdFlags}
 Source: "{#IPlugin}\objexp\*"; DestDir: "{#syb}"; Components: plugins/objexp; Flags: {#stdFlags}
 Source: "{#IPlugin}\partsedit\*"; DestDir: "{#syb}"; Components: plugins/partsedit; Flags: {#stdFlags}
 Source: "{#IPlugin}\personaledit\*"; DestDir: "{#syb}"; Components: plugins/personaledit; Flags: {#stdFlags}
