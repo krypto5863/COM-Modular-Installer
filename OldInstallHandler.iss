@@ -55,6 +55,7 @@ begin
 		'\scripts',
 		'\IMG',
         '\ShaderServantPacks',
+        '\ML_temp',
 		'\doorstop_config.ini',
 		'\winhttp.dll',
 		'\version.dll',
