@@ -34,7 +34,7 @@ Source: "{#ibep}\CM3D2.Serialization\*"; DestDir: "{#bepp}"; Components:bepinEX;
 
 	Source: "{#ibep}\CamConEx\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/cameracon; Flags: {#stdFlags}
 
-    Source: "{#ibep}\COM3D2.ColorPresetNum\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ConfigMan; Flags: {#stdFlags}
+    Source: "{#ibep}\COM3D2.ColorPresetNum\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/colorpresetnum; Flags: {#stdFlags}
 
 	Source: "{#ibep}\ConfigurationManager\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ConfigMan; Flags: {#stdFlags}
 
@@ -91,7 +91,7 @@ Source: "{#ibep}\CM3D2.Serialization\*"; DestDir: "{#bepp}"; Components:bepinEX;
 		Source: "{#ibep}\ScriptLoader\Scripts\unlock_all_skills.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/unlockskills; Flags: {#stdFlags}
 		Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components:bepinexPlugs/scriptloader/wrapmode; Flags: {#stdFlags}
 
-    Source: "{#ibep}\COM3D2.ShaderServant\*"; DestDir: "{app}"; Components:bepinexPlugs/ShapekeyMaster; Flags: {#stdFlags}
+    Source: "{#ibep}\COM3D2.ShaderServant\*"; DestDir: "{app}"; Components:bepinexPlugs/ShaderServant; Flags: {#stdFlags}
 	Source: "{#ibep}\COM3D2.ShapekeyMaster\*"; DestDir: "{app}"; Components:bepinexPlugs/ShapekeyMaster; Flags: {#stdFlags}
     Source: "{#ibep}\COM3D2.ShiftClickExplorer\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShiftClick; Flags: {#stdFlags}
 	Source: "{#ibep}\COM3D2.ShortMenuLoader\*"; DestDir: "{app}"; Components:bepinexPlugs/ShortMenu; Flags: {#stdFlags}
@@ -120,8 +120,8 @@ Source: "{#IPatch}\ExternalSave\*"; DestDir: "{#syb}"; Components: Patchers/exts
 	;Source: "{#IPlugin}\vibemaid\*"; DestDir: "{#syb}"; Components: Patchers/extsave/vibemaid; Flags: {#stdFlags}
 Source: "{#IPlugin}\MaidVoice\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice; Flags: {#stdFlags}
 	Source: "{#IPlugin}\AddMod\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod; Flags: {#stdFlags}
-		Source: "{#IPlugin}\Lashalpha\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Flags: {#stdFlags}
-		Source: "{#IPlugin}\Seperateeye\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/seperateeye; Flags: {#stdFlags}
+		;Source: "{#IPlugin}\Lashalpha\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Flags: {#stdFlags}
+		;Source: "{#IPlugin}\Seperateeye\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/seperateeye; Flags: {#stdFlags}
 		Source: "{#IPlugin}\distortcorrect\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/distort; Flags: {#stdFlags}
 Source: "{#IPatch}\FaceType\*"; DestDir: "{#syb}"; Components: Patchers/facetype; Flags: {#stdFlags}
 Source: "{#IPatch}\IMGUITranslator\Sybaris\*"; DestDir: "{#syb}"; Components: Patchers/imgui; Flags: {#stdFlags}
@@ -177,10 +177,10 @@ Source: "{#IPlugin}\scenecap\Norm\*"; DestDir: "{#syb}"; Components: plugins/sce
 	Source: "{#IPlugin}\scenecap\VR\*"; DestDir: "{#syb}"; Components: plugins/scenecap/VR; Flags: {#stdFlags}
 Source: "{#IPlugin}\seieki\*"; DestDir: "{#syb}"; Components: plugins/seieki; Flags: {#stdFlags}
 Source: "{#IPlugin}\shaderchange\*"; DestDir: "{#syb}"; Components: plugins/shaderchange; Flags: {#stdFlags}
-Source: "{#IPlugin}\shapeanim\*"; DestDir: "{#syb}"; Components: plugins/shapeanimator/norm; Flags: {#stdFlags}; Check: NOT GetIsCR()
-Source: "{#IPlugin}\shapeanimdoc\*"; DestDir: "{#syb}"; Components: plugins/shapeanimator/doc; Flags: {#stdFlags}; Check: NOT GetIsCR()
+;Source: "{#IPlugin}\shapeanim\*"; DestDir: "{#syb}"; Components: plugins/shapeanimator/norm; Flags: {#stdFlags}; Check: NOT GetIsCR()
+;Source: "{#IPlugin}\shapeanimdoc\*"; DestDir: "{#syb}"; Components: plugins/shapeanimator/doc; Flags: {#stdFlags}; Check: NOT GetIsCR()
 Source: "{#IPlugin}\SKAcc\*"; DestDir: "{#syb}"; Components: plugins/SKAcc; Flags: {#stdFlags}
-Source: "{#IPlugin}\skillcomshort\*"; DestDir: "{#syb}"; Components: plugins/skillcomshort; Flags: {#stdFlags}
+;Source: "{#IPlugin}\skillcomshort\*"; DestDir: "{#syb}"; Components: plugins/skillcomshort; Flags: {#stdFlags}
 Source: "{#IPlugin}\slimeshade\*"; DestDir: "{#syb}"; Components: plugins/slimeshade; Flags: {#stdFlags}
 //Source: "{#IPlugin}\smoothanim\*"; DestDir: "{#syb}"; Components: plugins/smoothanim; Flags: {#stdFlags}
 Source: "{#IPlugin}\texload\core\*"; DestDir: "{#plug}"; Components: plugins/texload; Flags: {#stdFlags}

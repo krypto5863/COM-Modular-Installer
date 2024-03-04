@@ -162,6 +162,7 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 		Name: bepinexPlugs/scriptloader/enascout; Description: Enable Scout Mode Script;
         Name: bepinexPlugs/scriptloader/eventcharacterlistfix; Description: EventCharacterListFix Script; Types: Full notr compact eng pic self hen;
 		Name: bepinexPlugs/scriptloader/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen;
+        Name: bepinexPlugs/scriptloader/fastfade; Description: FreeGuest Script;
 		Name: bepinexPlugs/scriptloader/forceschedule; Description: ForceScheduleEvents Script; 
         Name: bepinexPlugs/scriptloader/invertlearntstat; Description: InvertLearntStat Script;
 		Name: bepinexPlugs/scriptloader/unlockmemories; Description: MemoriesModeUnlock Script;
@@ -198,8 +199,8 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 	Name: bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen;
 
 Name: ModExt; Description: Modding Extensions;
-    Name: ModExt/modloader; Description: ModLoader; Flags: exclusive; Types: full compact eng notr pic hen;
-	Name: ModExt/MaidLoader; Description: MaidLoader; Flags: exclusive; Types: self;
+    Name: ModExt/MaidLoader; Description: MaidLoader; Flags: exclusive; Types: full compact eng notr pic hen self;
+    Name: ModExt/modloader; Description: ModLoader; Flags: exclusive; 
 
 Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 
@@ -210,8 +211,8 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 	Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng notr hen; Flags: checkablealone;
 		Name: Patchers/extsave/maidvoice/addmod; Description: AddModsSlider; Types: full self pic eng notr hen; Flags: checkablealone;
 			Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng notr hen; Flags: checkablealone;
-			Name: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Description:EyelashesAlpha; Types:; Flags: checkablealone;
-			Name: Patchers/extsave/maidvoice/addmod/seperateeye; Description:SeperateEyeParams; Types:full self pic eng notr hen; Flags: checkablealone;
+			//Name: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Description:EyelashesAlpha; Types:; Flags: checkablealone;
+			//Name: Patchers/extsave/maidvoice/addmod/seperateeye; Description:SeperateEyeParams; Types:full self pic eng notr hen; Flags: checkablealone;
 	Name: Patchers/facetype; Description: FaceType; Types:full compact self pic eng notr hen;
 	Name: Patchers/imgui; Description: IMGUITranslationLoader; types: full compact eng pic hen; Flags: checkablealone;
 		Name: Patchers/imgui/translations; Description: {cm:IMGUITrans}; Types:full compact eng pic self hen;
@@ -259,11 +260,11 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 	Name: plugins/scenecap/VR; Description:VR Ini File; Flags: dontinheritcheck
 	Name: plugins/seieki; Description:Seieki; Types:pic;
 	Name: plugins/shaderchange; Description:ShaderChange; Types:full pic self eng notr;
-	Name: plugins/shapeanimator; Description:ShapeAnimator;
-	Name: plugins/shapeanimator/norm; Description:Standard SA; Flags: exclusive;
-	Name: plugins/shapeanimator/doc; Description:Doc's SA; Flags: exclusive;
+	;;Name: plugins/shapeanimator; Description:ShapeAnimator;
+	;;Name: plugins/shapeanimator/norm; Description:Standard SA; Flags: exclusive;
+	;;Name: plugins/shapeanimator/doc; Description:Doc's SA; Flags: exclusive;
 	Name: plugins/SKAcc; Description:SKAccelerator; Types:full pic self eng notr hen;
-	Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
+	;;Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
 	Name: plugins/slimeshade; Description:SlimeShader; Types:;
 	;;Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
 	Name: plugins/TexLoad; Description:TextureLoader; Types:self;
