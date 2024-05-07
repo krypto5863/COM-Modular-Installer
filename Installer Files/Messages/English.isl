@@ -40,7 +40,7 @@ IsInDownload=It seems your game is located in the Downloads directory, this can 
 IsInProgramFiles=It seems your game is located in the Program Files directory, this can cause issues with UAC and lead to improper CMI installs! Please move it somewhere safer (Example: C:/KISS/COM3D2)
 IsINM=We have detected INM! INM is not supported by CMI due to technical differences.%n%nTo use CMI, please install the R18/Adult Content Supplement Patch.%n%nIf your are not actually on an INM version of the game, then you have likely installed Eng DLC/files into your japanese game. Please refer to the readme on repair instructions.
 
-GameOutdated=Your game is outdated! Please update it immediately.%n%nMinimum Version: %1%n%nFound Version: %2
+GameOutdated=Your game is outdated! Please update it immediately.%n%nMinimum Version: %1%n%nFound Version: %2%n%nWould you like to go to the download page now?
 GameUpdateNotSupported=We cannot update CR-edit versions of the game via the installer because it requires extra steps. Please update your game manually.
 
 MissingUpdateLst=While this appears to be a game folder, there is no Update.lst file! This is very bad!%n%nPlease update your game immediately and ensure that your game is functioning before attempting to install CMI again.
@@ -75,6 +75,7 @@ TypeSelf=Doc's Selections
 TypeCustom=Okay, make your own choices
 TypePreset=Custom Preset
 TypeNone=I want nothing!
+TypeCore=Core Only
 
 ModLoader=Mod Loader (Required for just about everything)
 BepinEx=BepInEX (Recommended)

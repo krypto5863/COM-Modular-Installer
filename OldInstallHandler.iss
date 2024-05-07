@@ -1,39 +1,46 @@
 [Code]
 function MoveDirFileRecurse(const GameDirectory: String; const SubDirs: Array of String; const ThingsToMove: Array of String): Boolean;
 var
-	I, I1 : Integer;
+	I, I1, M : Integer;
 	Path : String;
+    Destination : String;
+    DirectoriesToMove: Array of String;
 begin
-	for i := 0 to (GetArrayLength(ThingsToMove) - 1) do
+
+    for i1 := 0 to (GetArrayLength(SubDirs) - 1) do
 	begin
-		for i1 := 0 to (GetArrayLength(SubDirs) - 1) do
-		begin
-		
-			Path := GameDirectory + SubDirs[i1] + ThingsToMove[i];
-		
-			if not DirExists(Path) AND not FileExists(Path) then
+        
+        SetArrayLength(DirectoriesToMove, 0);
+        Destination := AddBackslash(GameDirectory) + 'OldInstall\' + SubDirs[i1]
+        Destination := RemoveBackslashUnlessRoot(Destination)
+
+        for i := 0 to (GetArrayLength(ThingsToMove) - 1) do
+        begin
+
+            Path := AddBackslash(GameDirectory) + AddBackslash(SubDirs[i1]) + ThingsToMove[i];
+
+            Log('Checking if path exists to move: ' + Path)
+
+            if not DirExists(Path) AND not FileExists(Path) then
 				continue;
 
-			if NOT DirExists(GameDirectory + '\OldInstall' + SubDirs[i1]) then
-			begin
-				if NOT ForceDirectories(GameDirectory + '\OldInstall' + SubDirs[i1]) then
-				begin
-					Log('Failed to make path in oldinstall in ' + GameDirectory + '\OldInstall' + SubDirs[i1]);
-					result := false;
-					exit;
-				end;
-			end;
+            SetArrayLength(DirectoriesToMove, GetArrayLength(DirectoriesToMove) + 1);
+            DirectoriesToMove[GetArrayLength(DirectoriesToMove) - 1] := Path;
 
-			Log('Moving: ' + Path);
+        end;
+        
+        if (GetArrayLength(DirectoriesToMove) > 0) then
+        begin
+            if NOT ShellMoveMultiple(DirectoriesToMove, Destination) then
+            begin
 
-			if NOT Move(Path, GameDirectory + '\OldInstall' + SubDirs[i1] + ThingsToMove[i]) then
-			begin
-				result := false;
-				exit;
-			end;
-				
-		end;
-	end;
+                Result := false;
+                exit;
+
+            end;
+        end;
+
+    end;
 	
 	result := true;
 end;
@@ -45,51 +52,26 @@ var
 	Path : String;
 begin
 
-	#if LMMT == false
 	ThingsToMove := [
-		'\Sybaris',
-		'\BepinEX',
-        '\BepInEx_Shim_Backup',
-		'\i18nEx',
-		'\IMGUITranslationLoader',
-		'\scripts',
-		'\IMG',
-        '\ShaderServantPacks',
-        '\ML_temp',
-		'\doorstop_config.ini',
-		'\winhttp.dll',
-		'\version.dll',
-		'\opengl32.dll',
-		'\EngSybarisArcEditor.exe',
-		'\SybarisArcEditor.exe',
-		'\CMI Documentation',
-		'\CMI.ver',
-		'\COM3D2 DLC Checker.exe'
+		'Sybaris',
+		'BepinEX',
+        'BepInEx_Shim_Backup',
+		'i18nEx',
+		'IMGUITranslationLoader',
+		'scripts',
+		'IMG',
+        'ShaderServantPacks',
+        'ML_temp',
+		'doorstop_config.ini',
+		'winhttp.dll',
+		'version.dll',
+		'opengl32.dll',
+		'EngSybarisArcEditor.exe',
+		'SybarisArcEditor.exe',
+		'CMI Documentation',
+		'CMI.ver',
+		'COM3D2 DLC Checker.exe'
 	];
-	#else
-	ThingsToMove := [
-		'\Loader',
-		'\Plugins',
-		'\Poses',
-		'\Preset',
-		'\IgnoreMenus.txt',
-		'\BepinEX',
-        '\BepInEx_Shim_Backup',
-		'\i18nEx',
-		'\IMGUITranslationLoader',
-		'\scripts',
-		'\IMG',
-		'\doorstop_config.ini',
-		'\winhttp.dll',
-		'\version.dll',
-		'\opengl32.dll',
-		'\EngSybarisArcEditor.exe',
-		'\SybarisArcEditor.exe',
-		'\LMMT Documentation',
-		'\LMMT.ver',
-		'\CM3D2 DLC Checker.exe'
-	];
-	#endif
 	
 	result := MoveDirFileRecurse(GameDirectory, SubDirs, ThingsToMove);
 end;
@@ -100,83 +82,80 @@ var
 	I, I1 : Integer;
 begin
 
-#if LMMT == false
 	ModsToMove := [
-		'\MultipleMaidsPose',
-		'\Extra Desk Items',
-		'\Mirror_props',
-		'\PhotMot_Nei',
-		'\PhotoBG_NEI',
-		'\PhotoBG_OBJ_NEI',
-		'\Pose_sample',
-		'\[CMI]Uncensors',
-		'\[CMI]XTFutaAccessories',
-		'\[CMI]PosterLoader',
-		'\TextureUncensors',
-		'\EmotionalEars',
-		'\CinemacicBloom_StreakPmats(SceneCapture)'
+		'MultipleMaidsPose',
+		'Extra Desk Items',
+		'Mirror_props',
+		'PhotMot_Nei',
+		'PhotoBG_NEI',
+		'PhotoBG_OBJ_NEI',
+		'Pose_sample',
+		'[CMI]Uncensors',
+		'[CMI]XTFutaAccessories',
+		'[CMI]PosterLoader',
+		'TextureUncensors',
+		'EmotionalEars',
+		'CinemacicBloom_StreakPmats(SceneCapture)'
 	];
-#else
-	ModsToMove := [
-		'\MultipleMaidsPose',
-		'\[CMI]EmotionalEars',
-		'\[CMI]VYM Files',
-		'\[CMI]Uncensors'
-	];
-#endif
 
 	result := MoveDirFileRecurse(GameDirectory, SubDirs, ModsToMove);
 end;
 
 function MoveOldConfigBack(const path: String): boolean;
 var
+    OldPath, NewPath: String;
 	ConfigsToMove: array of string;
+    SourcePaths, DestinationPaths: array of string;
 	i : integer;
 begin
 
-#if LMMT == false
 	ConfigsToMove := [
-		'\Sybaris\UnityInjector\Config',
-		'\i18nEx',
-		'\BepinEx\Config'
+		'Sybaris\UnityInjector\Config',
+		'i18nEx',
+		'BepinEx\Config'
 	];
-#else
-	ConfigsToMove := [
-		'\Sybaris\Plugins\UnityInjector\Config',
-		'\BepinEx\Config'
-	];
-#endif
 
 	for i := 0 to (GetArrayLength(ConfigsToMove) - 1) do
 	begin
+
+        OldPath := AddBackSlash(path) + 'OldInstall\' + ConfigsToMove[i]
+        NewPath := AddBackSlash(path) + ConfigsToMove[i]
 	
-		if DirExists(path + '\OldInstall' + ConfigsToMove[i]) AND DirExists(path + ConfigsToMove[i]) then
+		if DirExists(OldPath) then
 		begin
-		
-			if NOT Copy(path + '\OldInstall' + ConfigsToMove[i], path + ConfigsToMove[i]) then
-			begin			
-				result := false;
-				exit;
-			end;		
+            SetArrayLength(SourcePaths, GetArrayLength(SourcePaths) + 1);
+            SourcePaths[GetArrayLength(SourcePaths) - 1] := AddBackSlash(OldPath) + '*';
+
+            SetArrayLength(DestinationPaths, GetArrayLength(DestinationPaths) + 1);
+            DestinationPaths[GetArrayLength(DestinationPaths) - 1] := NewPath;
 		end;	
+	end;
+
+    if NOT ShellCopyMultipleDest(SourcePaths, DestinationPaths) then
+	begin
+        Log('Failed to move files from ' + OldPath + ' to ' + NewPath)
+		result := false;
+		exit;
 	end;
 
 	result := true;
 end;
 
-function AppendCreationTimeToName(const path: String): boolean;
+function AppendCreationTimeToName(const Path: String): boolean;
 var
-DateTime: WideString;
+    DateTime: String;
 begin
-	if NOT GetDirectoryCreationTime(path, DateTime) then
+
+	if NOT GetCreatedFileDate(Path, DateTime) then
 	begin
+        log('Could not get created file date for ' + path);
 		result := false;
 		exit;
 	end;
 
-	if NOT Rename(path, 'OldInstall ' + DateTime) then
+	if NOT ShellRename(Path, Path + ' ' + DateTime) then
 	begin
-		log('Could not rename: ' + path + ' to ' + path + ' ' + DateTime);
+		log('Could not rename: ' + Path + ' to ' + ExtractFileName(Path) + ' ' + DateTime);
 		result := false;
 		exit;
 	end;

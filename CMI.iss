@@ -2,43 +2,26 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.5.21"
+#define MyAppVersion "2.6"
 #define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
 #define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
 #define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
+
 #define MinimumVersion 23400
 #define CRMinimumVersion 33400
 #define CRStartVersion 30000
 
-#define LMMT false
-
-#define TargetApp "\COM3D2.exe"
-#define WrongTarget '\CM3D2.exe'
-#define Assembly "COM3D2x64_Data\Managed\Assembly-CSharp.dll"
-#define AppLine "COM3D2.exe"
-
-#define UpdateSite1 "http://com3d2.jp/update/"
-#define UpdateSite2 "https://com3d2.world/r18/update/"
-#define UpdateSite3 "https://com3d2.jp/com3d25/update/index.html#update"
-#define UpdateFile "com3d2_up%s%s%s"
-
-#define UpdateFetch1 "http://p2-dl0.kisskiss.tv/com3d2/update/"
-#define UpdateFetch2 "http://7.242.238.202.static.iijgio.jp/"
-
-#define ManifestLink "https://raw.githubusercontent.com/krypto5863/COM-Modular-Installer/master/manifest.txt"
-
-#define EnglishRegistry "Software\KISS\CUSTOM ORDER MAID3D 2"
 #define JapRegistry "Software\KISS\カスタムオーダーメイド3D2"
+#define JapRegistryCR "Software\KISS\カスタムオーダーメイド3D2.5"
+#define EnglishRegistry "Software\KISS\CUSTOM ORDER MAID3D 2"
+#define EnglishRegistryCR "Software\KISS\CUSTOM ORDER MAID3D 2.5"
 
 #define ShortName "CMI"
 
-#define HelperDLL "CMIHelper.dll"
-#define HelperDLLCodes "files:CMIHelper.dll stdcall delayload"
+#define SrcDir "Installer Files"
+#define SrcDirFiles "Installer Files/Components"
 
-#define SrcDir "CMI"
-#define SrcDirFiles "CMI\#NoneCREdit"
-
-#define ModDir "\Mod"
+#define ModDir "Mod"
 [Setup]
 OutputBaseFilename={#MyAppName} {#MyAppVersion}
 OutputDir=Compiled_EXE
@@ -54,13 +37,14 @@ AppUpdatesURL={#MyAppUpdates}
 
 PrivilegesRequired=admin
 SetupLogging=yes
-Uninstallable=no
+Uninstallable=yes
+CreateUninstallRegKey=no
 
 Compression=lzma2/ultra64
-SolidCompression=yes
 LZMAUseSeparateProcess=yes
-LZMANumBlockThreads=4
-LZMABlockSize=92153
+LZMANumBlockThreads=12
+LZMADictionarySize=1048576
+LZMANumFastBytes=273
 
 DisableDirPage=no
 DefaultDirName={#MyAppName}
@@ -114,21 +98,23 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [Types]
 Name:"compact"; Description:{cm:TypeCompact}
-Name:"full"; Description:{cm:TypeFull};
+Name:"full"; Description:{cm:TypeFull}
 Name:"eng"; Description:{cm:TypeEng}
 Name:"notr"; Description:{cm:TypeNoTr}
 Name:"pic"; Description:{cm:TypePic}
 Name:"hen"; Description:{cm:TypeHen}
 Name:"self"; Description:{cm:TypeSelf}
 Name:"custom"; Description:{cm:TypeCustom}; Flags:iscustom
-Name:"preset"; Description:{cm:TypePreset};
-Name:"none"; Description:{cm:TypeNone};
+Name:"preset"; Description:{cm:TypePreset}
+Name:"core"; Description:{cm:TypeCore}
 
 [Components]
 
-Name: bepinex; Description: {cm:BepinEx}; Types: full notr compact eng pic self hen; Flags: checkablealone
-Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng pic self hen; Flags: checkablealone
+Name: ModExt; Description: Modding Extensions;
+    Name: ModExt/MaidLoader; Description: MaidLoader; Flags: exclusive; Types: full compact eng notr pic hen self;
+    Name: ModExt/modloader; Description: ModLoader; Flags: exclusive;
 
+Name: bepinexPlugs; Description: BepInEx Plugins;
 	Name: bepinexPlugs/addyot; Description: AddYotogiSliderSE2; Types: Full compact eng notr hen self;
 	Name: bepinexPlugs/AdvMatMod; Description: AdvancedMaterialModifier; Types: self;
 	Name: bepinexPlugs/autosave; Description: AutoSave; Types: Full eng notr hen self;
@@ -148,41 +134,10 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 	Name: bepinexPlugs/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen;
 	Name: bepinexPlugs/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self;
 		Name: bepinexPlugs/meidophoto/Poses; Description: 1900 Poses for MPS; Flags: dontinheritcheck;
-
 	Name: bepinexPlugs/modref; Description: ModRefresh; Types:full pic self eng notr;
-	//Name: bepinexPlugs/OptIMGUI; Description: OptimizeIMGUI; Types: Full notr compact eng pic self hen;
-    //Name: bepinexPlugs/propitem; Description:PropMyItem; Types:full eng notr pic;
-	Name: bepinexPlugs/scriptloader; Description: ScriptLoader; Types: Full notr compact eng pic self hen;
-		Name: bepinexPlugs/scriptloader/oldsubs; Description: Add Subs to Old Yotogi Script;
-		Name: bepinexPlugs/scriptloader/allprivate; Description: All Maids In Private Mode Script;
-		Name: bepinexPlugs/scriptloader/charactersortredux; Description: Character Edit Sort Redux Script; Types: Full notr eng self hen;
-		Name: bepinexPlugs/scriptloader/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen;
-		Name: bepinexPlugs/scriptloader/blinkstop; Description: EditBlinkStop Script; Types: Full notr eng pic self hen;
-		Name: bepinexPlugs/scriptloader/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen;
-		Name: bepinexPlugs/scriptloader/enascout; Description: Enable Scout Mode Script;
-        Name: bepinexPlugs/scriptloader/eventcharacterlistfix; Description: EventCharacterListFix Script; Types: Full notr compact eng pic self hen;
-		Name: bepinexPlugs/scriptloader/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen;
-        Name: bepinexPlugs/scriptloader/fastfade; Description: FreeGuest Script;
-		Name: bepinexPlugs/scriptloader/forceschedule; Description: ForceScheduleEvents Script; 
-        Name: bepinexPlugs/scriptloader/invertlearntstat; Description: InvertLearntStat Script;
-		Name: bepinexPlugs/scriptloader/unlockmemories; Description: MemoriesModeUnlock Script;
-		Name: bepinexPlugs/scriptloader/morenames; Description: MoreRandomNames Script; Types: Full eng hen;
-		Name: bepinexPlugs/scriptloader/nameext; Description: NameExtender Script; Types: Full compact eng notr pic self hen;
-        Name: bepinexPlugs/scriptloader/nomoansubs; Description: NoMoanSubs Script; Types: Full eng notr self hen;
-		Name: bepinexPlugs/scriptloader/savesettings; Description: SaveSettingsInGame Script; Types: Full compact eng notr pic self hen;
-		Name: bepinexPlugs/scriptloader/skiplogo; Description: SkipStartLogo Script; Types: Full notr compact eng pic self hen;
-        Name: bepinexPlugs/scriptloader/loadeditednpcs; Description: LoadEditedNPCs Script; Types: Full eng notr self hen;
-		Name: bepinexPlugs/scriptloader/thumbs; Description: Load Small Thumbs Script;
-		Name: bepinexPlugs/scriptloader/quickedit; Description: Quick Edit Scene Script;
-        Name: bepinexPlugs/scriptloader/quickworkschedule; Description: QuickWorkSchedule Script; Types: Full eng notr self hen;
-		Name: bepinexPlugs/scriptloader/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen;
-		Name: bepinexPlugs/scriptloader/unlockskills; Description: Unlock All Skills;
-		Name: bepinexPlugs/scriptloader/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen;
-
     Name: bepinexPlugs/ShaderServant; Description: ShaderServant; Types: Full notr eng pic self hen;
 	Name: bepinexPlugs/ShapekeyMaster; Description: ShapekeyMaster; Types: Full notr eng pic self hen;
 	Name: bepinexPlugs/ShiftClick; Description: ShiftClickExplorer; Types: Full notr compact eng pic self hen;
-
 	Name: bepinexPlugs/ShortMenu; Description: ShortMenuLoader; Types: Full notr compact eng pic self hen;
 	Name: bepinexPlugs/ShortVanilla; Description: ShortMenuVanillaDatabase; Types: Full notr compact eng pic self hen;
 	Name: bepinexPlugs/ShortStart; Description: ShortStartLoader; Types: Full notr compact eng pic self hen;
@@ -195,24 +150,43 @@ Name: bepinexPlugs; Description: BepInEx Plugins; Types: full notr compact eng p
 			Name: bepinexPlugs/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen;
 
     Name: bepinexPlugs/TimeDependentPhysics; Description: TimeDependentPhysics; Types: Full notr compact eng pic self hen;
-
 	Name: bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen;
+    
+Name: Scripts; Description: ScriptLoader Scripts;
+    Name: Scripts/oldsubs; Description: Add Subs to Old Yotogi Script;
+    Name: Scripts/allprivate; Description: All Maids In Private Mode Script;
+    Name: Scripts/charactersortredux; Description: Character Edit Sort Redux Script; Types: Full notr eng self hen;
+    Name: Scripts/dumpinfo; Description: DumpGameInfo Script; Types: Full notr compact eng pic self hen;
+    Name: Scripts/blinkstop; Description: EditBlinkStop Script; Types: Full notr eng pic self hen;
+    Name: Scripts/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen;
+    Name: Scripts/enascout; Description: Enable Scout Mode Script;
+    Name: Scripts/eventcharacterlistfix; Description: EventCharacterListFix Script; Types: Full notr compact eng pic self hen;
+    Name: Scripts/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen;
+    Name: Scripts/freeguest; Description: FreeGuest Script;
+    Name: Scripts/forceschedule; Description: ForceScheduleEvents Script; 
+    Name: Scripts/invertlearntstat; Description: InvertLearntStat Script;
+    Name: Scripts/unlockmemories; Description: MemoriesModeUnlock Script;
+    Name: Scripts/morenames; Description: MoreRandomNames Script; Types: Full eng hen;
+    Name: Scripts/nameext; Description: NameExtender Script; Types: Full compact eng notr pic self hen;
+    Name: Scripts/nomoansubs; Description: NoMoanSubs Script; Types: Full eng notr self hen;
+    Name: Scripts/savesettings; Description: SaveSettingsInGame Script; Types: Full compact eng notr pic self hen;
+    Name: Scripts/skiplogo; Description: SkipStartLogo Script; Types: Full notr compact eng pic self hen;
+    Name: Scripts/loadeditednpcs; Description: LoadEditedNPCs Script; Types: Full eng notr self hen;
+    Name: Scripts/thumbs; Description: Load Small Thumbs Script;
+    Name: Scripts/quickedit; Description: Quick Edit Scene Script;
+    Name: Scripts/quickworkschedule; Description: QuickWorkSchedule Script; Types: Full eng notr self hen;
+    Name: Scripts/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen;
+    Name: Scripts/unlockskills; Description: Unlock All Skills;
+    Name: Scripts/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen;
 
-Name: ModExt; Description: Modding Extensions;
-    Name: ModExt/MaidLoader; Description: MaidLoader; Flags: exclusive; Types: full compact eng notr pic hen self;
-    Name: ModExt/modloader; Description: ModLoader; Flags: exclusive; 
-
-Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
+Name: Patchers; Description: Sybaris Plugins;
 
 	Name: Patchers/autocon; Description: AutoConverter; Types: full compact eng notr pic self hen;
 	Name: Patchers/bodycat; Description: BodyCategoryAdd; Types: full compact eng notr pic self hen;
 	Name: Patchers/extsave; Description: ExternalSaveData; Types: Full self pic eng notr hen; Flags: checkablealone;
-		;Name: Patchers/extsave/vibemaid; Description:VibeYourMaid;
 	Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng notr hen; Flags: checkablealone;
 		Name: Patchers/extsave/maidvoice/addmod; Description: AddModsSlider; Types: full self pic eng notr hen; Flags: checkablealone;
 			Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng notr hen; Flags: checkablealone;
-			//Name: Patchers/extsave/maidvoice/addmod/eyelashesalpha; Description:EyelashesAlpha; Types:; Flags: checkablealone;
-			//Name: Patchers/extsave/maidvoice/addmod/seperateeye; Description:SeperateEyeParams; Types:full self pic eng notr hen; Flags: checkablealone;
 	Name: Patchers/facetype; Description: FaceType; Types:full compact self pic eng notr hen;
 	Name: Patchers/imgui; Description: IMGUITranslationLoader; types: full compact eng pic hen; Flags: checkablealone;
 		Name: Patchers/imgui/translations; Description: {cm:IMGUITrans}; Types:full compact eng pic self hen;
@@ -220,25 +194,21 @@ Name: Patchers; Description: Patchers; types: full compact eng pic self hen;
 	Name: Patchers/ntrlight; Description: NTRLight; Types:;
 	Name: Patchers/rgbpal; Description: RGBPalette;
 
-Name: plugins; Description: Unityinjector Plugins; Types: full compact;
+Name: plugins; Description: Unityinjector Plugins;
 	Name: plugins/accex; Description: AlwaysColorChangeEX; Types: full self pic eng notr hen;
-	;;Name: plugins/eraseout; Description: AutoEraseOutline; types: full pic eng notr hen;
 	Name: plugins/camerautil; Description: CameraUtility; Types: Full pic self eng notr hen;
 	Name: plugins/colorhelp; Description: ColorPaletteHelper; Types:full self pic eng notr hen;
 	Name: plugins/conwindow; Description:ConsistentWindowPosition; Types:full self pic eng notr hen;
-	;;Name: plugins/nyou; Description:CustomNyou(Why...);
 	Name: plugins/dancecamadjust; Description:DanceCameraAdjust;
 	Name: plugins/dressdam; Description:DressDamage; Types:self pic;
 	Name: plugins/editmenufilt; Description: EditMenuFilter; Types:full self pic eng notr hen;
 	Name: plugins/editselanim; Description: EditMenuSelectedAnime; Types:full self pic eng notr hen;
 	Name: plugins/editundo; Description:EditSceneUndo;
-	;Name: plugins/emoears; Description:EmotionalEars(and tails); Types:self; Flags:checkablealone;
-	;Name: plugins/emoears/aho; Description:{cm:EmoEarsAhoge}; Types:; Flags:dontinheritcheck
-	;Name: plugins/emoears/mod; Description:{cm:EmoEarsMod}; Types:self; Flags:dontinheritcheck
 	Name: plugins/extendrender; Description:ExtendRenderingRange; Types:full eng notr self pic;
 	Name: plugins/extendrender/config; Description:x10 Extend Config; Types:self; Flags:dontinheritcheck
 	Name: plugins/halfundress; Description:HalfUnDressing; Types:full eng notr hen; Flags:dontinheritcheck;
 	Name: plugins/inout; Description:InOutAnimation; Types:full eng notr self hen;
+    Name: plugins/limitBreak; Description:LimitBreak2; Flags:dontinheritcheck
 	Name: plugins/lookmaid; Description:LookAtYourMaid; Flags:dontinheritcheck
 	Name: plugins/lookmaster; Description:LookAtYourMaster; Flags:dontinheritcheck
 	Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
@@ -246,8 +216,6 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 		Name: plugins/mtacc/AllScene; Description: AllScene Version;
 	Name: plugins/normexcite; Description:NormalizeExcite; Types:full eng notr self hen;
 	Name: plugins/notecolor; Description:NoteColor; Types:full self eng notr hen; Flags:dontinheritcheck
-	//Name: plugins/NPRShader; Description:NPRShader; Types:;
-	//Name: plugins/NPRShader/LightConfig; Description:{cm:NPRLightConfig}; Types:; Flags:dontinheritcheck
 	Name: plugins/objexp; Description:ObjectExplorer; Types:full self eng notr pic;
 	Name: plugins/partsedit; Description:PartsEdit; Types:full pic self eng notr;
 	Name: plugins/personaledit; Description:PersonalizedEditSceneSettings; Types:full pic self eng notr hen;
@@ -260,13 +228,8 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 	Name: plugins/scenecap/VR; Description:VR Ini File; Flags: dontinheritcheck
 	Name: plugins/seieki; Description:Seieki; Types:pic;
 	Name: plugins/shaderchange; Description:ShaderChange; Types:full pic self eng notr;
-	;;Name: plugins/shapeanimator; Description:ShapeAnimator;
-	;;Name: plugins/shapeanimator/norm; Description:Standard SA; Flags: exclusive;
-	;;Name: plugins/shapeanimator/doc; Description:Doc's SA; Flags: exclusive;
 	Name: plugins/SKAcc; Description:SKAccelerator; Types:full pic self eng notr hen;
-	;;Name: plugins/skillcomshort; Description:SkillCommandShortCut; Types:full eng notr hen;
 	Name: plugins/slimeshade; Description:SlimeShader; Types:;
-	;;Name: plugins/smoothanim; Description: SmoothAnimation; Types:self;
 	Name: plugins/TexLoad; Description:TextureLoader; Types:self;
 		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
 	Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
@@ -276,17 +239,18 @@ Name: plugins; Description: Unityinjector Plugins; Types: full compact;
 		Name: plugins/xtms/XTFutaAccessories; Description:XTFutaAccessories;
 	Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
 
-Name: misc; Description:{cm:MiscFiles}; Types: full compact;
-	Name:misc/dlccheck; Description:DLC Checker (Kry Fork); Types:Full compact eng notr self pic;
-	Name:misc/sybarc; Description:Sybaris Arc Editor; Types:Full compact eng notr self pic;
-    Name:misc/presetStealer; Description:քʀɛֆɛȶֆȶɛǟʟɛʀ; Types:Full compact eng notr hen self pic custom preset none; flags: fixed; Check: GetRandAbove(100, 19)
-	Name:misc/mmposes; Description:{cm:StudioPoses};
-	Name:misc/bgnei; Description:{cm:AddMoreBG}; Types:Full eng notr self pic;
-	Name:misc/uncensor; Description:{cm:Uncensor}; Types:full eng notr compact self pic hen;
-	Name:misc/uncensormale; Description:{cm:UncensorMale}; Types:full eng notr compact self pic hen;
-	Name:misc/extrauncensormale; Description:{cm:ExtraUncensorMale}; Types:full eng notr compact self pic hen;
-	Name:misc/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen;
-	;;Name:misc/maidfiddle; Description:{cm:MaidFiddler}; Flags: dontinheritcheck;
+Name: Mods; Description:{cm:MiscFiles};
+	Name:Mods/mmposes; Description:{cm:StudioPoses};
+    Name:Mods/bgnei; Description:{cm:AddMoreBG}; Types:Full eng notr self pic;
+	Name:Mods/uncensor; Description:{cm:Uncensor}; Types:full eng notr compact self pic hen;
+	Name:Mods/uncensormale; Description:{cm:UncensorMale}; Types:full eng notr compact self pic hen;
+	Name:Mods/extrauncensormale; Description:{cm:ExtraUncensorMale}; Types:full eng notr compact self pic hen;
+	Name:Mods/LoMobBody; Description:LoMobChara; Types:full eng notr compact self pic hen;
+
+Name: Tools; Description:Tools;
+	Name:Tools/dlccheck; Description:DLC Checker (Kry Fork); Types:Full compact eng notr self pic;
+	Name:Tools/sybarc; Description:Sybaris Arc Editor; Types:Full compact eng notr self pic;
+    Name:Tools/presetStealer; Description:քʀɛֆɛȶֆȶɛǟʟɛʀ; Types:Full compact eng notr hen self pic custom preset core; flags: fixed; Check: GetRandAbove(100, 19)
 
 [Tasks]
 
@@ -305,7 +269,7 @@ Name:readonly; Description: {cm:RemoveReadOnly}; GroupDescription:{cm:RemoveRead
 [InstallDelete]
 
 Type:filesandordirs; Name: "{app}\Sybaris"; Tasks:clean/deleteold;
-Type:filesandordirs; Name: "{app}\opengl32.dll"; Tasks:clean/deleteold;
+Type:files; Name: "{app}\opengl32.dll"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\BepinEX"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\i18nEx"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\scripts"; Tasks:clean/deleteold;
@@ -313,15 +277,16 @@ Type:filesandordirs; Name: "{app}\IMG"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\ShaderServantPacks"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\ML_temp"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\Bepinex_Shim_Backup"; Tasks:clean/deleteold;
-Type:filesandordirs; Name: "{app}\doorstop_config.ini"; Tasks:clean/deleteold;
-Type:filesandordirs; Name: "{app}\winhttp.dll"; Tasks:clean/deleteold;
-Type:filesandordirs; Name: "{app}\version.dll"; Tasks:clean/deleteold;
-Type:filesandordirs; Name: "{app}\EngSybarisArcEditor.exe"; Tasks:clean/deleteold;
-Type:filesandordirs; Name: "{app}\SybarisArcEditor.exe"; Tasks:clean/deleteold;
-Type:filesandordirs; Name: "{app}\COM3D2 DlC Checker.exe"; Tasks:clean/deleteold;
+Type:files; Name: "{app}\doorstop_config.ini"; Tasks:clean/deleteold;
+Type:files; Name: "{app}\winhttp.dll"; Tasks:clean/deleteold;
+Type:files; Name: "{app}\version.dll"; Tasks:clean/deleteold;
+Type:files; Name: "{app}\EngSybarisArcEditor.exe"; Tasks:clean/deleteold;
+Type:files; Name: "{app}\SybarisArcEditor.exe"; Tasks:clean/deleteold;
+Type:files; Name: "{app}\COM3D2_DlC_Checker.exe"; Tasks:clean/deleteold;
+Type:files; Name: "{app}\COM_NewListDLC.lst"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\IMGUITranslationLoader"; Tasks:clean/deleteold;
 Type:filesandordirs; Name: "{app}\CMI Documentation"; Tasks:clean/deleteold;
-Type:filesandordirs; Name: "{app}\CMI.ver"; Tasks:clean/deleteold;
+Type:files; Name: "{app}\CMI.ver"; Tasks:clean/deleteold;
 
 Type:filesandordirs; Name: "{app}\Mod\Extra Desk Items"; Tasks:clean/deleteold/mods;
 Type:filesandordirs; Name: "{app}\Mod\Mirror_props"; Tasks:clean/deleteold/mods;
@@ -339,19 +304,57 @@ Type:filesandordirs; Name: "{app}\Mod\CinemacicBloom_StreakPmats(SceneCapture)";
 
 Type:filesandordirs; Name: "{app}\OldInstall*"; Tasks:clean/deleteold/old;
 
+[UninstallDelete]
+
+Type:filesandordirs; Name: "{app}\Sybaris";
+Type:files; Name: "{app}\opengl32.dll";
+Type:filesandordirs; Name: "{app}\BepinEX";
+Type:filesandordirs; Name: "{app}\i18nEx";
+Type:filesandordirs; Name: "{app}\scripts";
+Type:filesandordirs; Name: "{app}\IMG";
+Type:filesandordirs; Name: "{app}\ShaderServantPacks";
+Type:filesandordirs; Name: "{app}\ML_temp";
+Type:filesandordirs; Name: "{app}\Bepinex_Shim_Backup";
+Type:files; Name: "{app}\doorstop_config.ini";
+Type:files; Name: "{app}\winhttp.dll";
+Type:files; Name: "{app}\version.dll";
+Type:files; Name: "{app}\EngSybarisArcEditor.exe";
+Type:files; Name: "{app}\SybarisArcEditor.exe";
+Type:files; Name: "{app}\COM3D2_DlC_Checker.exe";
+Type:files; Name: "{app}\COM_NewListDLC.lst";
+Type:filesandordirs; Name: "{app}\IMGUITranslationLoader";
+Type:filesandordirs; Name: "{app}\CMI Documentation";
+Type:files; Name: "{app}\CMI.ver";
+Type:files; Name: "{app}\Custom.CMIType"
+
+Type:filesandordirs; Name: "{app}\Mod\Extra Desk Items";
+Type:filesandordirs; Name: "{app}\Mod\Mirror_props";
+Type:filesandordirs; Name: "{app}\Mod\PhotMot_NEI";
+Type:filesandordirs; Name: "{app}\Mod\PhotoBG_NEI";
+Type:filesandordirs; Name: "{app}\Mod\PhotoBG_OBJ_NEI";
+Type:filesandordirs; Name: "{app}\Mod\Pose_sample";
+Type:filesandordirs; Name: "{app}\Mod\[CMI]Uncensors";
+Type:filesandordirs; Name: "{app}\Mod\[CMI]PosterLoader";
+Type:filesandordirs; Name: "{app}\Mod\[CMI]XTFutaAccessories";
+Type:filesandordirs; Name: "{app}\Mod\TextureUncensors";
+Type:filesandordirs; Name: "{app}\Mod\EmotionalEars";
+Type:filesandordirs; Name: "{app}\Mod\MultipleMaidsPose";
+Type:filesandordirs; Name: "{app}\Mod\CinemacicBloom_StreakPmats(SceneCapture)";
+
+Type:filesandordirs; Name: "{app}\OldInstall*";
+
 [Run]
-Filename: "{tmp}\MaidFiddlerSetup.exe"; Flags: runasoriginaluser skipifdoesntexist waituntilterminated; StatusMsg: {cm:MFInstall}
 ;Filename: "https://forms.gle/PrXjqck2dQYMHvyY8"; Flags: shellexec runasoriginaluser postinstall; Description: {cm:Survey}
 FileName: "https://discord.gg/custommaid"; Flags: shellexec runasoriginaluser postinstall; Description: Join Custom Maid Discord!
 //Honeycome is worse than koi but the joke must go on...
 FileName: "https://www.illgames.jp/product/honeycome/"; Flags: shellexec runasoriginaluser postinstall; Description: Get a better game!; Check: GetRandAbove(100, 9)
-Filename: "https://github.com/krypto5863/COM-Modular-Installer/releases"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: {cm:OfficialPage}
+Filename: "https://krypto5863.github.io/COM-Modular-Installer/"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: {cm:OfficialPage}
 
 [Registry]
-Root: HKCU; Subkey: "{#JapRegistry}"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Check: NOT IsEmptyFolder() AND NOT GetIsCR() AND NOT IsEngSimple(ExpandConstant('{app}')); Tasks:reg
-Root: HKCU; Subkey: "{#EnglishRegistry}"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Check: NOT IsEmptyFolder() AND NOT GetIsCR() AND IsEngSimple(ExpandConstant('{app}')); Tasks:reg
+Root: HKCU; Subkey: "{#JapRegistry}"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Check: NOT IsEmptyFolder() AND NOT GetIsCR() AND NOT GetIsEngSimple(ExpandConstant('{app}')); Tasks:reg
+Root: HKCU; Subkey: "{#EnglishRegistry}"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Check: NOT IsEmptyFolder() AND NOT GetIsCR() AND GetIsEngSimple(ExpandConstant('{app}')); Tasks:reg
 
 //Very large, moved to secondary script to make management easier.
-#include "CMI\files.iss"
+#include "Installer Files\Files.iss"
 //Very large, moved to tertiary script to make management easier.
-#include "code.iss"
+#include "MainCode.iss"

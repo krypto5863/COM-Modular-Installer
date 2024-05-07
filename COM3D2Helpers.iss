@@ -1,21 +1,18 @@
 [Code]
-function GetRandAbove(const range: Integer; const atOrBelow: Integer): Boolean;
-begin
+var
+    IsEng: Boolean;
+    IsCR: Boolean;
 
-    result := Random(range) <= atOrBelow;
-
-end;
-
-function IsEng(const path: String): Integer;
+function GetIsEng(const path: String): Integer;
 begin
 	//2 is INM. 1 is R18. 0 is not Eng.
-	if NOT FileExists(path + '\localize.dat') then
+	if NOT FileExists(AddBackSlash(path) + 'localize.dat') then
 	begin
 		result := 0;
 		exit;
 	end;
 
-	if FileExists(path + '\GameData\system_en.arc') OR FileExists(path + '\GameData\bg-en.arc') then
+	if FileExists(AddBackSlash(path) + 'GameData\system_en.arc') OR FileExists(AddBackSlash(path) + 'GameData\bg-en.arc') then
 	begin
 		result := 1;
 		exit;
@@ -24,10 +21,17 @@ begin
 	result := 2;
 end;
 
-function IsEngSimple(const path: String): Boolean;
+function GetIsEngSimple(const path: String): Boolean;
 begin
+
+    if IsEng then
+    begin
+        result := IsEng
+        exit;
+    end;
+
 	//True is Eng, any type. False is not eng.
-	if FileExists(path + '\localize.dat') then
+	if FileExists(AddBackslash(path) + 'localize.dat') then
 	begin
 		Result := true;
 		exit;
@@ -36,34 +40,39 @@ begin
 	result := false;
 end;
 
-[Code]
+function GetIsCR(): Boolean;
+begin
+	Log('Checking GetIsCR');
+	result := IsCR;
+end;
+
+function GetRandAbove(const range: Integer; const atOrBelow: Integer): Boolean;
+begin
+    result := Random(range) <= atOrBelow;
+end;
+
 Function FixComponents(): Boolean;
 var
 	NonCR: Array of string;
 	NonEng: Array of string;
 	CRComps: Array of string;
-	I: Integer;
+    Path: String;
 begin
+    
+    Path := ExpandConstant('{app}')
 
 	//If english version is detected, run the below code.
-	if (IsEng(path) > 0) AND EngDisable then
+	if (GetIsEng(path) > 0) AND EngDisable then
 	begin
 		NonEng := [
 			'i18nEx',
-			'i18nEx (Syb)',
 			'XUnity AutoTranslator',
-			'XUnity AutoTranslator (Syb)',
 			'Resource Redirector',
 			CustomMessage('TranslationPlugs'),
-			CustomMessage('TranslationPlugs') + ' (Syb)',
-			CustomMessage('ExtraTrans'),
-			CustomMessage('ExtraTrans') + ' (Syb)'
+			CustomMessage('ExtraTrans')
 		];
 
-		for I := 0 to (GetArrayLength(NonEng)-1) do
-		begin
-			RemoveComponent(NonEng[I]);
-		end;
+		UncheckDisableComponents(NonEng);
 	end;
 
 	if IsCR then begin
@@ -81,7 +90,6 @@ begin
             'ColorPaletteHelper',
             'ColorPresetNum',
             'DistortCorrect',
-            'Doc' + #39 + 's SA',
             'DressDamage',
             'EditBlinkStop Script',
             'EditBodyLoadFix',
@@ -89,13 +97,12 @@ begin
             'EditMenuSelectedAnime',
             'EditModeHighlights',
             'EditSceneUndo',
-            'EmotionalEars(and tails)',
             'ExtendedPresetManagement',
             'ExternalSaveData',
-            'EyelashesAlpha',
             'FaceType',
             'HalfUnDressing',
             'InOutAnimation',
+            'LimitBreak2',
             'LoMobChara',
             'LoadEditedNPCs Script',
             'LookAtYourMaid',
@@ -113,8 +120,8 @@ begin
             'PersonalizedEditSceneSettings',
             'Quick Edit Scene Script',
             'RGBPalette',
+            'SlimeShader',
             'SKAccelerator',
-            'SeperateEyeParams',
             'ShapeAnimator',
             'ShapekeyMaster',
             'ShaderServant',
@@ -122,7 +129,6 @@ begin
             'ShortMenuLoader',
             'ShortMenuVanillaDatabase',
             'ShortStartLoader',
-            'Standard SA',
             'UndressUtil',
             'VibeYourMaid',
             'VoiceNormalizer',
@@ -131,30 +137,13 @@ begin
             'XTFutaBody',
             'XTMasterSlave+',
             'YotogiUtil',
-            //'PropMyItem',
-            //'SmoothAnimation',
             CustomMessage('AddMoreBG'),
-            CustomMessage('EmoEarsAhoge'),
-            CustomMessage('EmoEarsMod'),
             CustomMessage('ExtraUncensorMale'),
             CustomMessage('Uncensor'),
             CustomMessage('UncensorMale')
 		];
 
-		for I := 0 to (GetArrayLength(NonCR)-1) do
-		begin
-			RemoveComponent(NonCR[I]);
-		end;
-
-        for I := (GetArrayLength(NonCR)-1) to 0 do
-		begin
-			RemoveComponent(NonCR[I]);
-		end;
-
-		if Wizardform.ComponentsList.Checked[GetComponentIndex('ShapeAnimator')] then
-		begin
-			Wizardform.ComponentsList.CheckItem(GetComponentIndex('Standard SA'), coCheck);
-		end;
+        UncheckDisableComponents(NonCR);
 
 		exit;
 	end;
@@ -164,17 +153,14 @@ begin
 		'GearMenuFix'
 	];
 
-	for I := 0 to (GetArrayLength(CRComps)-1) do
-	begin
-		RemoveComponent(CRComps[I]);
-	end;
+	UncheckDisableComponents(CRComps);
 
 end;
 
-Function HandleSer(const GamePath: String): Boolean;
+Function HandleNutakuSerialization(const GamePath: String): Boolean;
 begin
 
-  If NOT FileExists(GamePath + '\serialize_storage_config.cfg') then
+  If NOT FileExists(AddBackslash(GamePath) + 'serialize_storage_config.cfg') then
   begin
 	result := true;
 	exit;
@@ -186,7 +172,7 @@ begin
 		exit;
 	end;
 
-	if NOT DeleteFile(GamePath + '\serialize_storage_config.cfg') then
+	if NOT DeleteFile(AddBackslash(GamePath) + 'serialize_storage_config.cfg') then
 	begin
 		MsgBox(FmtMessage(CustomMessage('SerializeDeleteFail'),[GamePath]) , mbCriticalError, MB_OK);
 		result := false;
@@ -199,7 +185,7 @@ begin
 		exit;
 	end;
 
-	if NOT Copy(ExpandConstant('{userdocs}\KISS\COM3D2'), GamePath) then
+	if NOT ShellCopy(ExpandConstant('{userdocs}\KISS\COM3D2\*'), GamePath) then
 	begin
 		MsgBox(FmtMessage(CustomMessage('SerializeCopyFail'),[ExpandConstant('{userdocs}\KISS\COM3D2')]) , mbCriticalError, MB_OK);
 		result := false;
@@ -210,15 +196,7 @@ begin
 end;
 
 var
-	IsCRAsked: Boolean;
-function GetIsCR(): Boolean;
-begin
-	Log('Checking GetIsCR');
-	result := IsCR;
-end;
-
-var
-	Choice: Integer;
+	CurrentImageIndex: Integer;
 procedure SetBanner(const Sender: TObject);
 var
 	Images: Array of string;
@@ -234,27 +212,27 @@ begin
 
 	if (Sender = nil) then
 	begin
-		Choice := Random(GetArrayLength(Images));
+		CurrentImageIndex := Random(GetArrayLength(Images));
 	end
 	else
 	begin
-		if (Choice = GetArrayLength(Images) - 1) then
+		if (CurrentImageIndex = GetArrayLength(Images) - 1) then
 		begin
-			Choice := 0;
+			CurrentImageIndex := 0;
 		end
 		else
 		begin
-			Choice := Choice + 1;
+			CurrentImageIndex := CurrentImageIndex + 1;
 		end;
 	end;
 
-	Log(Images[Choice] + ' was selected as a banner from ' + IntToStr(GetArrayLength(Images)) + ' choices...');
+	Log(Images[CurrentImageIndex] + ' was selected as a banner from ' + IntToStr(GetArrayLength(Images)) + ' choices...');
 
-	if not FileExists(ExpandConstant('{tmp}\') + Images[Choice]) then
+	if not FileExists(ExpandConstant('{tmp}\') + Images[CurrentImageIndex]) then
 	begin
-		ExtractTemporaryFile(Images[Choice]);
+		ExtractTemporaryFile(Images[CurrentImageIndex]);
 	end;
 
-	WizardForm.WizardBitmapImage2.Bitmap.LoadFromFile(ExpandConstant('{tmp}\') + Images[Choice]);
+	WizardForm.WizardBitmapImage2.Bitmap.LoadFromFile(ExpandConstant('{tmp}\') + Images[CurrentImageIndex]);
 end;
 [/Code]
