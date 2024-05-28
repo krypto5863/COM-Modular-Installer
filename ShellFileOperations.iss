@@ -32,8 +32,8 @@ begin
 
   FileOp.hwnd := WizardForm.Handle;
   FileOp.wFunc := Operation;
-  FileOp.pFrom := Source;
-  FileOp.pTo := Destination;
+  FileOp.pFrom := PAnsiChar(Source);
+  FileOp.pTo := PAnsiChar(Destination);
   FileOp.fFlags := FOF_NOCONFIRMATION or FOF_NOCONFIRMMKDIR or extraFlags;
 
   OperationResult := SHFileOperation(FileOp)

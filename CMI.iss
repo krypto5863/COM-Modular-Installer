@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.6"
+#define MyAppVersion "2.6.1"
 #define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
 #define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
 #define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
@@ -42,9 +42,9 @@ CreateUninstallRegKey=no
 
 Compression=lzma2/ultra64
 LZMAUseSeparateProcess=yes
-LZMANumBlockThreads=12
-LZMADictionarySize=1048576
-LZMANumFastBytes=273
+;LZMANumBlockThreads=12
+;LZMADictionarySize=1048576
+;LZMANumFastBytes=273
 
 DisableDirPage=no
 DefaultDirName={#MyAppName}

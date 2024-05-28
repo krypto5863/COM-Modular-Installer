@@ -129,7 +129,6 @@ begin
             'ShortMenuLoader',
             'ShortMenuVanillaDatabase',
             'ShortStartLoader',
-            'UndressUtil',
             'VibeYourMaid',
             'VoiceNormalizer',
             'Wrap Mode Extend Script',

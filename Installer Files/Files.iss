@@ -61,7 +61,7 @@ Source: "{#ibep}\COM3D2.ShortMenuLoader\*"; DestDir: "{app}"; Components:bepinex
 Source: "{#ibep}\COM3D2.ShortMenuVanillaDatabase\*"; DestDir: "{app}"; Components:bepinexPlugs/ShortVanilla; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.ShortStartLoader\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShortStart; Flags: {#stdFlags}
 Source: "{#ibep}\i18nEx\core\*"; DestDir: "{app}"; Components:bepinexPlugs/Translations/i18nEx; Flags: {#stdFlags}
-    Source: "{#iloader}\extratranslations\*"; DestDir: "{app}"; Components:bepinexPlugs/Translations/i18nEx/extrans; Flags: {#stdFlags}
+    Source: "{#ibep}\i18nEx\extraTranslations\*"; DestDir: "{app}\i18nEx"; Components:bepinexPlugs/Translations/i18nEx/extrans; Flags: {#stdFlags}
 Source: "{#ibep}\ResourceRedirector\*"; DestDir: "{#bep}"; Components:bepinexPlugs/Translations/Resredir; Flags: {#stdFlags}
     Source: "{#ibep}\Xuat\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/Translations/resredir/xuat; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.TimeDependentPhysics\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/TimeDependentPhysics; Flags: {#stdFlags}
