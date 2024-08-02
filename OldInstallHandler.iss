@@ -141,6 +141,7 @@ begin
 	result := true;
 end;
 
+{
 function AppendCreationTimeToName(const Path: String): boolean;
 var
     DateTime: String;
@@ -162,4 +163,5 @@ begin
 
 	result := true;
 end;
+}
 [/Code]

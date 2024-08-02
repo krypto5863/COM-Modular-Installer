@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.6.1"
+#define MyAppVersion "2.6.2"
 #define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
 #define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
 #define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
@@ -134,7 +134,7 @@ Name: bepinexPlugs; Description: BepInEx Plugins;
 	Name: bepinexPlugs/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen;
 	Name: bepinexPlugs/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self;
 		Name: bepinexPlugs/meidophoto/Poses; Description: 1900 Poses for MPS; Flags: dontinheritcheck;
-	Name: bepinexPlugs/modref; Description: ModRefresh; Types:full pic self eng notr;
+	Name: bepinexPlugs/modref; Description: ModRefresh;
     Name: bepinexPlugs/ShaderServant; Description: ShaderServant; Types: Full notr eng pic self hen;
 	Name: bepinexPlugs/ShapekeyMaster; Description: ShapekeyMaster; Types: Full notr eng pic self hen;
 	Name: bepinexPlugs/ShiftClick; Description: ShiftClickExplorer; Types: Full notr compact eng pic self hen;
@@ -161,7 +161,7 @@ Name: Scripts; Description: ScriptLoader Scripts;
     Name: Scripts/editname; Description: EditableNames Script; Types: Full notr compact eng pic self hen;
     Name: Scripts/enascout; Description: Enable Scout Mode Script;
     Name: Scripts/eventcharacterlistfix; Description: EventCharacterListFix Script; Types: Full notr compact eng pic self hen;
-    Name: Scripts/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen;
+    //Name: Scripts/fastfade; Description: FastFade Script; Types: Full notr eng pic self hen;
     Name: Scripts/freeguest; Description: FreeGuest Script;
     Name: Scripts/forceschedule; Description: ForceScheduleEvents Script; 
     Name: Scripts/invertlearntstat; Description: InvertLearntStat Script;

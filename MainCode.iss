@@ -179,7 +179,7 @@ begin
 
         OldInstallPath := AddBackSlash(path) + 'OldInstall'
 	
-		while DirExists(OldInstallPath) AND NOT AppendCreationTimeToName(OldInstallPath) do
+		while DirExists(OldInstallPath) AND NOT AppendToName(OldInstallPath, GetDateTimeString('ddddd.h.nn.ss', '.', '.')) do
 		begin
 		
 			case SuppressibleMsgBox('Encountered an issue while attempting to rename OldInstall folder.', mbError, MB_ABORTRETRYIGNORE, IDIGNORE) of
@@ -247,7 +247,7 @@ begin
 
     OldInstallPath := AddBackSlash(path) + 'OldInstall'
 
-	while DirExists(OldInstallPath) AND NOT AppendCreationTimeToName(OldInstallPath) do
+	while DirExists(OldInstallPath) AND NOT AppendToName(OldInstallPath, GetDateTimeString('ddddd.h.nn.ss', '.', '.')) do
 	begin
 		case SuppressibleMsgBox(CustomMessage('CannotRenameOld'), mbError, MB_ABORTRETRYIGNORE, IDIGNORE) of
 			IDIGNORE: break;

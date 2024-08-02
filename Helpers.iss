@@ -43,6 +43,20 @@ begin
 	Result := true;
 end;
 
+function AppendToName(const Path: String; const Suffix: String): boolean;
+begin
+
+	if NOT ShellRename(Path, Path + ' ' + Suffix) then
+	begin
+		log('Could not rename: ' + Path + ' to ' + ExtractFileName(Path) + ' ' + Suffix);
+		result := false;
+		exit;
+	end;
+
+	result := true;
+end;
+
+{
 type  
 SYSTEMTIME = record 
   Year:         WORD; 
@@ -88,6 +102,7 @@ begin
         FindClose(FindRec);
     end;
 end;
+}
 
 procedure ApplyCustomPreset(const path: String);
 var

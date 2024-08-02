@@ -76,7 +76,7 @@ Source: "{#ibep}\ScriptLoader\Scripts\editable_names.cs"; DestDir: "{app}\script
 Source: "{#ibep}\ScriptLoader\Scripts\editBlinkStop.cs"; DestDir: "{app}\scripts"; Components:scripts/blinkstop; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\enable_scout_mode.cs"; DestDir: "{app}\scripts"; Components:scripts/enascout; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\EventCharacterListFix.cs"; DestDir: "{app}\scripts"; Components:scripts/EventCharacterListFix; Flags: {#stdFlags}
-Source: "{#ibep}\ScriptLoader\Scripts\fastFade.cs"; DestDir: "{app}\scripts"; Components:scripts/fastfade; Flags: {#stdFlags}
+;Source: "{#ibep}\ScriptLoader\Scripts\fastFade.cs"; DestDir: "{app}\scripts"; Components:scripts/fastfade; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\freeGuest.cs"; DestDir: "{app}\scripts"; Components:scripts/freeguest; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\ForceScheduleEvents.cs"; DestDir: "{app}\scripts"; Components:scripts/ForceSchedule; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\InvertLearntStat.cs"; DestDir: "{app}\scripts"; Components:scripts/InvertLearntStat; Flags: {#stdFlags}
