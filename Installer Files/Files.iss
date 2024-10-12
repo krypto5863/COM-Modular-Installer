@@ -32,7 +32,7 @@ Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Flags:
 
 ;ModLoader
 Source: "{#IPatch}\ModLoader\Mod\*"; DestDir: "{#mod}"; Components: ModExt; Flags: {#stdFlags}
-    Source: "{#IPatch}\ModLoader\Sybaris\*"; DestDir: "{#syb}"; Components: ModExt/modloader; Flags: {#stdFlags}
+    ;Source: "{#IPatch}\ModLoader\Sybaris\*"; DestDir: "{#syb}"; Components: ModExt/modloader; Flags: {#stdFlags}
     Source: "{#ibep}\COM3D2.MaidLoader\*"; DestDir: "{#bepp}"; Components:ModExt/MaidLoader; Flags: {#stdFlags}
 
 ;Bepinex
@@ -136,11 +136,12 @@ Source: "{#IPlugin}\halfundress\*"; DestDir: "{#syb}"; Components: plugins/halfu
 Source: "{#IPlugin}\limitBreak\*"; DestDir: "{#syb}"; Components: plugins/limitBreak; Flags: {#stdFlags}
 Source: "{#IPlugin}\lookmaid\*"; DestDir: "{#syb}"; Components: plugins/lookmaid; Flags: {#stdFlags}
 Source: "{#IPlugin}\lookmaster\*"; DestDir: "{#syb}"; Components: plugins/lookmaster; Flags: {#stdFlags}
+Source: "{#IPlugin}\manualmaidsort\*"; DestDir: "{#syb}"; Components: plugins/manualmaidsort; Flags: {#stdFlags}
 Source: "{#IPlugin}\notecolor\*"; DestDir: "{#syb}"; Components: plugins/notecolor; Flags: {#stdFlags}
 Source: "{#IPlugin}\rythmoption\*"; DestDir: "{#syb}"; Components: plugins/rhythmoption; Flags: {#stdFlags}
-Source: "{#IPlugin}\xtms\Core\*"; DestDir: "{#syb}"; Components: plugins/xtms; Flags: {#stdFlags}
-	Source: "{#IPlugin}\xtms\XTFuta\*"; DestDir: "{#mod}\[CMI]Uncensors"; Components: plugins/xtms/XTFutaBody; Flags: {#stdFlags}
-		Source: "{#IPlugin}\xtms\XTFutaAccessories\*"; DestDir: "{#mod}\[CMI]XTFutaAccessories"; Components: plugins/xtms/XTFutaAccessories; Flags: {#stdFlags}
+;Source: "{#IPlugin}\xtms\Core\*"; DestDir: "{#syb}"; Components: plugins/xtms; Flags: {#stdFlags}
+	;;Source: "{#IPlugin}\xtms\XTFuta\*"; DestDir: "{#mod}\[CMI]Uncensors"; Components: plugins/xtms/XTFutaBody; Flags: {#stdFlags}
+		;Source: "{#IPlugin}\xtms\XTFutaAccessories\*"; DestDir: "{#mod}\[CMI]XTFutaAccessories"; Components: plugins/xtms/XTFutaAccessories; Flags: {#stdFlags}
 			
 Source: "{#IPlugin}\pngplace\core\*"; DestDir: "{#plug}"; Components: plugins/pngplace; Flags: {#stdFlags}
 	Source: "{#IPlugin}\PngPlace\ExtraPNGs\*"; DestDir: "{#ucfg}"; Components: plugins/pngplace/expng; Flags: {#stdFlags}

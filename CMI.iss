@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.6.2"
+#define MyAppVersion "2.6.3"
 #define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
 #define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
 #define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
@@ -112,7 +112,7 @@ Name:"core"; Description:{cm:TypeCore}
 
 Name: ModExt; Description: Modding Extensions;
     Name: ModExt/MaidLoader; Description: MaidLoader; Flags: exclusive; Types: full compact eng notr pic hen self;
-    Name: ModExt/modloader; Description: ModLoader; Flags: exclusive;
+    ;Name: ModExt/modloader; Description: ModLoader; Flags: exclusive;
 
 Name: bepinexPlugs; Description: BepInEx Plugins;
 	Name: bepinexPlugs/addyot; Description: AddYotogiSliderSE2; Types: Full compact eng notr hen self;
@@ -211,6 +211,7 @@ Name: plugins; Description: Unityinjector Plugins;
     Name: plugins/limitBreak; Description:LimitBreak2; Flags:dontinheritcheck
 	Name: plugins/lookmaid; Description:LookAtYourMaid; Flags:dontinheritcheck
 	Name: plugins/lookmaster; Description:LookAtYourMaster; Flags:dontinheritcheck
+  Name: plugins/manualmaidsort; Description:Manual Maid Sort;
 	Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
 	Name: plugins/mtacc; Description: MtAccelerator;
 		Name: plugins/mtacc/AllScene; Description: AllScene Version;
@@ -234,9 +235,9 @@ Name: plugins; Description: Unityinjector Plugins;
 		Name: plugins/TexLoad/PostLoad; Description:PosterLoader; Types:self;
 	Name: plugins/toukaScreen; Description:ToukaScreenShot; Types:full pic self eng notr;
 	Name: plugins/voicenorm; Description:VoiceNormalizer; Types:full self eng notr hen;
-	Name: plugins/xtms; Description:XTMasterSlave+; Types:full eng notr self hen; Flags:dontinheritcheck;
-		Name: plugins/xtms/XTFutaBody; Description:XTFutaBody; Flags:dontinheritcheck
-		Name: plugins/xtms/XTFutaAccessories; Description:XTFutaAccessories;
+	;Name: plugins/xtms; Description:XTMasterSlave+; Types:full eng notr self hen; Flags:dontinheritcheck;
+		;Name: plugins/xtms/XTFutaBody; Description:XTFutaBody; Flags:dontinheritcheck
+		;Name: plugins/xtms/XTFutaAccessories; Description:XTFutaAccessories;
 	Name: plugins/yotutil; Description:YotogiUtil; Types:full eng notr;
 
 Name: Mods; Description:{cm:MiscFiles};
