@@ -5,6 +5,7 @@ nav_order: 2
 
 <center>
   <h1>Download</h1>
+  <img alt="Downloads" src="https://img.shields.io/github/downloads/krypto5863/COM-Modular-Installer/total.svg?style=flat">
   Be sure you <b>give the readme a read</b>, either before or during your installation of CMI!
   <br><br>
   <a id="downloadButton" onclick="GetDownload()" class="btn btn-green">Download</a>
