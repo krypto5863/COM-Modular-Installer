@@ -1,3 +1,4 @@
+[![Downloads](https://img.shields.io/github/downloads/krypto5863/COM-Modular-Installer/total.svg?style=flat)](https://github.com/krypto5863/COM-Modular-Installer/releases)
 # COM Modular Installer
 This repo is dedicated to the COM Modular Installer. An installer built in Inno Setup.
 
