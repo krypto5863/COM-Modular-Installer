@@ -2,13 +2,13 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "COM Modular Installer"
-#define MyAppVersion "2.6.3"
+#define MyAppVersion "2.6.4"
 #define MyAppURL "https://krypto5863.github.io/COM-Modular-Installer/"
 #define MyAppUpdates "https://github.com/krypto5863/COM-Modular-Installer/releases"
 #define MyAppSupport "https://github.com/krypto5863/COM-Modular-Installer/issues"
 
 #define MinimumVersion 23400
-#define CRMinimumVersion 33400
+#define CRMinimumVersion 34100
 #define CRStartVersion 30000
 
 #define JapRegistry "Software\KISS\カスタムオーダーメイド3D2"
@@ -110,15 +110,12 @@ Name:"core"; Description:{cm:TypeCore}
 
 [Components]
 
-Name: ModExt; Description: Modding Extensions;
-    Name: ModExt/MaidLoader; Description: MaidLoader; Flags: exclusive; Types: full compact eng notr pic hen self;
-    ;Name: ModExt/modloader; Description: ModLoader; Flags: exclusive;
-
 Name: bepinexPlugs; Description: BepInEx Plugins;
 	Name: bepinexPlugs/addyot; Description: AddYotogiSliderSE2; Types: Full compact eng notr hen self;
 	Name: bepinexPlugs/AdvMatMod; Description: AdvancedMaterialModifier; Types: self;
 	Name: bepinexPlugs/autosave; Description: AutoSave; Types: Full eng notr hen self;
-	Name: bepinexPlugs/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
+  Name: bepinexPlugs/bodycat; Description: BodyCategoryAdd 2.5; Types: full compact eng notr pic self hen;
+	;Name: bepinexPlugs/cameracon; Description:CameraControlEx; Types:full pic eng notr self;
     Name: bepinexPlugs/cheatMenu; Description:CheatMenu;
 	Name: bepinexPlugs/choosypreset; Description:ChoosyPreset; Types:full pic eng notr self;
     Name: bepinexPlugs/colorpresetnum; Description:ColorPresetNum;
@@ -132,6 +129,7 @@ Name: bepinexPlugs; Description: BepInEx Plugins;
 	Name: bepinexPlugs/FPSUn; Description: FPSUnlock; Types: self;
 	Name: bepinexPlugs/GearFix; Description: GearMenuFix; Types:full notr compact eng pic self hen;
 	Name: bepinexPlugs/InBlock; Description: InputHotkeyBlock; Types: full notr compact eng pic self hen;
+  Name: bepinexPlugs/MaidLoader; Description: MaidLoader; Types: full compact eng notr pic hen self;
 	Name: bepinexPlugs/meidophoto; Description: MeidoPhotoStudio; Types: full notr eng pic self;
 		Name: bepinexPlugs/meidophoto/Poses; Description: 1900 Poses for MPS; Flags: dontinheritcheck;
 	Name: bepinexPlugs/modref; Description: ModRefresh;
@@ -149,7 +147,9 @@ Name: bepinexPlugs; Description: BepInEx Plugins;
 		Name: bepinexPlugs/Translations/resredir; Description: Resource Redirector;
 			Name: bepinexPlugs/Translations/resredir/xuat; Description: XUnity AutoTranslator; Types: full compact pic self hen;
 
-    Name: bepinexPlugs/TimeDependentPhysics; Description: TimeDependentPhysics; Types: Full notr compact eng pic self hen;
+  
+  Name: bepinexPlugs/SliderDelimiter; Description: SliderDelimiter; Types: full notr compact eng pic self hen;    
+  Name: bepinexPlugs/TimeDependentPhysics; Description: TimeDependentPhysics; Types: Full notr compact eng pic self hen;
 	Name: bepinexPlugs/UndressUtil; Description: UndressUtil; Types: Full notr compact eng pic self hen;
     
 Name: Scripts; Description: ScriptLoader Scripts;
@@ -168,6 +168,7 @@ Name: Scripts; Description: ScriptLoader Scripts;
     Name: Scripts/unlockmemories; Description: MemoriesModeUnlock Script;
     Name: Scripts/morenames; Description: MoreRandomNames Script; Types: Full eng hen;
     Name: Scripts/nameext; Description: NameExtender Script; Types: Full compact eng notr pic self hen;
+    Name: Scripts/ntrlight; Description: NTRLight Script;
     Name: Scripts/nomoansubs; Description: NoMoanSubs Script; Types: Full eng notr self hen;
     Name: Scripts/savesettings; Description: SaveSettingsInGame Script; Types: Full compact eng notr pic self hen;
     Name: Scripts/skiplogo; Description: SkipStartLogo Script; Types: Full notr compact eng pic self hen;
@@ -187,11 +188,9 @@ Name: Patchers; Description: Sybaris Plugins;
 	Name: Patchers/extsave/maidvoice; Description: MaidVoicePitch; Types: full self pic eng notr hen; Flags: checkablealone;
 		Name: Patchers/extsave/maidvoice/addmod; Description: AddModsSlider; Types: full self pic eng notr hen; Flags: checkablealone;
 			Name: Patchers/extsave/maidvoice/addmod/distort; Description: DistortCorrect; Types:full self pic eng notr hen; Flags: checkablealone;
-	Name: Patchers/facetype; Description: FaceType; Types:full compact self pic eng notr hen;
 	Name: Patchers/imgui; Description: IMGUITranslationLoader; types: full compact eng pic hen; Flags: checkablealone;
 		Name: Patchers/imgui/translations; Description: {cm:IMGUITrans}; Types:full compact eng pic self hen;
 	Name: Patchers/neighuncen; Description: NeighUncensor; Types: full compact eng notr pic self hen;
-	Name: Patchers/ntrlight; Description: NTRLight; Types:;
 	Name: Patchers/rgbpal; Description: RGBPalette;
 
 Name: plugins; Description: Unityinjector Plugins;
@@ -211,7 +210,7 @@ Name: plugins; Description: Unityinjector Plugins;
     Name: plugins/limitBreak; Description:LimitBreak2; Flags:dontinheritcheck
 	Name: plugins/lookmaid; Description:LookAtYourMaid; Flags:dontinheritcheck
 	Name: plugins/lookmaster; Description:LookAtYourMaster; Flags:dontinheritcheck
-  Name: plugins/manualmaidsort; Description:Manual Maid Sort;
+  Name: plugins/manualmaidsort; Description:ManualMaidSort;
 	Name: plugins/mirror; Description:Mirror Props; Types:full eng notr;
 	Name: plugins/mtacc; Description: MtAccelerator;
 		Name: plugins/mtacc/AllScene; Description: AllScene Version;
@@ -346,10 +345,11 @@ Type:filesandordirs; Name: "{app}\OldInstall*";
 
 [Run]
 ;Filename: "https://forms.gle/PrXjqck2dQYMHvyY8"; Flags: shellexec runasoriginaluser postinstall; Description: {cm:Survey}
-FileName: "https://discord.gg/custommaid"; Flags: shellexec runasoriginaluser postinstall; Description: Join Custom Maid Discord!
+FileName: "https://discord.gg/custommaid"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: Join Custom Maid Discord!
 //Honeycome is worse than koi but the joke must go on...
 FileName: "https://www.illgames.jp/product/honeycome/"; Flags: shellexec runasoriginaluser postinstall; Description: Get a better game!; Check: GetRandAbove(100, 9)
 Filename: "https://krypto5863.github.io/COM-Modular-Installer/"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: {cm:OfficialPage}
+Filename: "https://patreon.com/krypto5863"; Flags: shellexec runasoriginaluser postinstall unchecked; Description: {cm:Patreon}
 
 [Registry]
 Root: HKCU; Subkey: "{#JapRegistry}"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Check: NOT IsEmptyFolder() AND NOT GetIsCR() AND NOT GetIsEngSimple(ExpandConstant('{app}')); Tasks:reg

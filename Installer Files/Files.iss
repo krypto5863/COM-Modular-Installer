@@ -4,14 +4,11 @@
 #define syb "{app}\Sybaris"
 #define plug "{app}\Sybaris\UnityInjector"
 #define ucfg "{app}\Sybaris\UnityInjector\config"
-#define ucfg "{app}\Sybaris\UnityInjector\config"
 #define mod "{app}\Mod"
 
-#define ibep 'Installer Files\Components\Loader\BepinEX'
-#define iloader 'Installer Files\Components\Loader'
-#define isyb "Installer Files\Components\Loader\Sybaris"
-#define iPatch "Installer Files\Components\Patchers"
-#define iPlugin "Installer Files\Components\Plugins"
+#define ibep 'Installer Files\Components\BepInEX'
+#define iPatch "Installer Files\Components\Sybaris"
+#define iPlugin "Installer Files\Components\Sybaris\UnityInjector"
 #define iMisc "Installer Files\Components\Misc"
 #define iDocumentation "Installer Files\Documentation"
 
@@ -21,25 +18,20 @@
 
 ;Core
 Source: "{#ibep}\Core\*"; DestDir: "{app}"; Flags: {#stdFlags};
-Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Flags: {#stdFlags}
+Source: "{#IPlugin}\pluginext\*"; DestDir: "{#syb}"; Flags: {#stdFlags}; Check: NOT GetIsCR()
 Source: "{#IPatch}\Mono.Cecil.Inject\*"; DestDir: "{#syb}"; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.API\*"; DestDir: "{#bepp}";  Flags: {#stdFlags}
 Source: "{#ibep}\CM3D2.Toolkit\*"; DestDir: "{#bepp}"; Flags: {#stdFlags}
-Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Flags: {#stdFlags}
-Source: "{#ibep}\System.Threading\*"; DestDir: "{#bepp}"; Flags: {#stdFlags}
+Source: "{#ibep}\COM3D2.CornerMessage\*"; DestDir: "{#bepp}"; Flags: {#stdFlags}; Check: NOT GetIsCR()
+Source: "{#ibep}\System.Threading\*"; DestDir: "{#bepp}"; Flags: {#stdFlags}; Check: NOT GetIsCR()
 Source: "{#ibep}\CM3D2.Serialization\*"; DestDir: "{#bepp}"; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Core\ScriptLoader.dll"; DestDir: "{#bepp}"; Flags: {#stdFlags}
-
-;ModLoader
-Source: "{#IPatch}\ModLoader\Mod\*"; DestDir: "{#mod}"; Components: ModExt; Flags: {#stdFlags}
-    ;Source: "{#IPatch}\ModLoader\Sybaris\*"; DestDir: "{#syb}"; Components: ModExt/modloader; Flags: {#stdFlags}
-    Source: "{#ibep}\COM3D2.MaidLoader\*"; DestDir: "{#bepp}"; Components:ModExt/MaidLoader; Flags: {#stdFlags}
 
 ;Bepinex
 Source: "{#ibep}\COM3D2.AddYotogiSliderSE\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/addyot; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.AdvancedMaterialModifier\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/AdvMatMod; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.AutoSave\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/autosave; Flags: {#stdFlags}
-Source: "{#ibep}\CamConEx\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/cameracon; Flags: {#stdFlags}
+;Source: "{#ibep}\CamConEx\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/cameracon; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.ColorPresetNum\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/colorpresetnum; Flags: {#stdFlags}
 Source: "{#ibep}\ConfigurationManager\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ConfigMan; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.CheatMenu\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/cheatMenu; Flags: {#stdFlags}
@@ -51,6 +43,7 @@ Source: "{#ibep}\COM3D2.ExtendedPresetManagement\*"; DestDir: "{#bepp}"; Compone
 Source: "{#ibep}\FPSUnlock\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/FPSUn; Flags: {#stdFlags}
 Source: "{#ibep}\FPSCounter\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/FPSCount; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.InputHotkeyBlock\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/InBlock; Flags: {#stdFlags}
+Source: "{#ibep}\COM3D2.MaidLoader\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/MaidLoader; Flags: {#stdFlags}; Check: NOT GetIsCR()
 Source: "{#ibep}\MeidoPhoto\*"; DestDir: "{#bep}"; Components:bepinexPlugs/MeidoPhoto; Flags: {#stdFlags}
     Source: "{#IMisc}\MMPoses\MultipleMaidsPose\*"; DestDir: "{app}\bepinex\config\MeidoPhotoStudio\Presets\Custom Poses\CMI 1900 Poses"; Components:bepinexPlugs/MeidoPhoto/Poses; Flags: {#stdFlags} solidbreak
 Source: "{#ibep}\ModRef\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/modref; Flags: {#stdFlags}
@@ -60,8 +53,8 @@ Source: "{#ibep}\COM3D2.ShiftClickExplorer\*"; DestDir: "{#bepp}"; Components:be
 Source: "{#ibep}\COM3D2.ShortMenuLoader\*"; DestDir: "{app}"; Components:bepinexPlugs/ShortMenu; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.ShortMenuVanillaDatabase\*"; DestDir: "{app}"; Components:bepinexPlugs/ShortVanilla; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.ShortStartLoader\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/ShortStart; Flags: {#stdFlags}
-Source: "{#ibep}\i18nEx\core\*"; DestDir: "{app}"; Components:bepinexPlugs/Translations/i18nEx; Flags: {#stdFlags}
-    Source: "{#ibep}\i18nEx\extraTranslations\*"; DestDir: "{app}\i18nEx"; Components:bepinexPlugs/Translations/i18nEx/extrans; Flags: {#stdFlags}
+Source: "{#ibep}\i18nEx\core\*"; DestDir: "{app}"; Components:bepinexPlugs/Translations/i18nEx; Flags: {#stdFlags}; Check: NOT GetIsCR()
+    Source: "{#ibep}\i18nEx\extraTranslations\*"; DestDir: "{app}\i18nEx"; Components:bepinexPlugs/Translations/i18nEx/extrans; Flags: {#stdFlags}; Check: NOT GetIsCR()
 Source: "{#ibep}\ResourceRedirector\*"; DestDir: "{#bep}"; Components:bepinexPlugs/Translations/Resredir; Flags: {#stdFlags}
     Source: "{#ibep}\Xuat\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/Translations/resredir/xuat; Flags: {#stdFlags}
 Source: "{#ibep}\COM3D2.TimeDependentPhysics\*"; DestDir: "{#bepp}"; Components:bepinexPlugs/TimeDependentPhysics; Flags: {#stdFlags}
@@ -78,6 +71,7 @@ Source: "{#ibep}\ScriptLoader\Scripts\enable_scout_mode.cs"; DestDir: "{app}\scr
 Source: "{#ibep}\ScriptLoader\Scripts\EventCharacterListFix.cs"; DestDir: "{app}\scripts"; Components:scripts/EventCharacterListFix; Flags: {#stdFlags}
 ;Source: "{#ibep}\ScriptLoader\Scripts\fastFade.cs"; DestDir: "{app}\scripts"; Components:scripts/fastfade; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\freeGuest.cs"; DestDir: "{app}\scripts"; Components:scripts/freeguest; Flags: {#stdFlags}
+Source: "{#ibep}\ScriptLoader\Scripts\NTRLight.cs"; DestDir: "{app}\scripts"; Components:scripts/ntrlight; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\ForceScheduleEvents.cs"; DestDir: "{app}\scripts"; Components:scripts/ForceSchedule; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\InvertLearntStat.cs"; DestDir: "{app}\scripts"; Components:scripts/InvertLearntStat; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\load_small_thumbs.cs"; DestDir: "{app}\scripts"; Components:scripts/thumbs; Flags: {#stdFlags}
@@ -101,16 +95,14 @@ Source: "{#IPatch}\ExternalSave\*"; DestDir: "{#syb}"; Components: Patchers/exts
 Source: "{#IPlugin}\MaidVoice\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice; Flags: {#stdFlags}
 	Source: "{#IPlugin}\AddMod\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod; Flags: {#stdFlags}
 		Source: "{#IPlugin}\distortcorrect\*"; DestDir: "{#syb}"; Components: Patchers/extsave/maidvoice/addmod/distort; Flags: {#stdFlags}
-Source: "{#IPatch}\FaceType\*"; DestDir: "{#syb}"; Components: Patchers/facetype; Flags: {#stdFlags}
 Source: "{#IPatch}\IMGUITranslator\Sybaris\*"; DestDir: "{#syb}"; Components: Patchers/imgui; Flags: {#stdFlags}
 	Source: "{#IPatch}\IMGUITranslator\IMGUITranslationLoader\*"; DestDir: "{app}\IMGUITranslationLoader"; Components: Patchers/imgui/translations; Flags: {#stdFlags}
 Source: "{#IPatch}\NeighUnce\*"; DestDir: "{#syb}"; Components: Patchers/neighuncen; Flags: {#stdFlags}
-Source: "{#IPatch}\ntrlight\*"; DestDir: "{#syb}"; Components: Patchers/ntrlight; Flags: {#stdFlags}
 Source: "{#IPatch}\rgbpal\*"; DestDir: "{#syb}"; Components: Patchers/rgbpal; Flags: {#stdFlags}
 
 
 ;Plugins
-Source: "{#IPlugin}\ACCex\*"; DestDir: "{#syb}"; Components: plugins/accex; Flags: {#stdFlags}
+Source: "{#IPlugin}\ACCex\*"; DestDir: "{#syb}"; Components: plugins/accex; Flags: {#stdFlags}; Check: NOT GetIsCR()
 Source: "{#IPlugin}\camerautil\*"; DestDir: "{#syb}"; Components: plugins/camerautil; Flags: {#stdFlags}
 Source: "{#IPlugin}\colorhelp\*"; DestDir: "{#syb}"; Components: plugins/colorhelp; Flags: {#stdFlags}
 Source: "{#IPlugin}\conwindow\*"; DestDir: "{#syb}"; Components: plugins/conwindow; Flags: {#stdFlags}
@@ -118,19 +110,19 @@ Source: "{#IPlugin}\dancecamadjust\*"; DestDir: "{#syb}"; Components: plugins/da
 Source: "{#IPlugin}\dressdam\*"; DestDir: "{#syb}"; Components: plugins/dressdam; Flags: {#stdFlags}
 Source: "{#IPlugin}\editmenufilt\*"; DestDir: "{#syb}"; Components: plugins/editmenufilt; Flags: {#stdFlags}
 Source: "{#IPlugin}\editselanime\*"; DestDir: "{#syb}"; Components: plugins/editselanim; Flags: {#stdFlags}
-Source: "{#IPlugin}\editundo\*"; DestDir: "{#syb}"; Components: plugins/editundo; Flags: {#stdFlags}
-Source: "{#IPlugin}\extendrender\norm\*"; DestDir: "{#syb}"; Components: plugins/extendrender; Flags: {#stdFlags}
+Source: "{#IPlugin}\editundo\*"; DestDir: "{#syb}"; Components: plugins/editundo; Flags: {#stdFlags}; Check: NOT GetIsCR()
+Source: "{#IPlugin}\extendrender\norm\*"; DestDir: "{#syb}"; Components: plugins/extendrender; Flags: {#stdFlags}; Check: NOT GetIsCR()
 	Source: "{#IPlugin}\extendrender\optional\*"; DestDir: "{#ucfg}"; Components: plugins/extendrender/config; Flags: {#stdFlags}
 Source: "{#IPlugin}\InOut\*"; DestDir: "{#syb}"; Components: plugins/inout; Flags: {#stdFlags}
 Source: "{#IPlugin}\mirrorprops\Sybaris\*"; DestDir: "{#syb}"; Components: plugins/mirror; Flags: {#stdFlags}
 	Source: "{#IPlugin}\mirrorprops\Mod\*"; DestDir: "{#mod}"; Components: plugins/mirror; Flags: {#stdFlags}
 Source: "{#IPlugin}\MTAcc\Norm\*"; DestDir: "{#syb}"; Components: plugins/mtacc; Flags: {#stdFlags}
 Source: "{#IPlugin}\MTAcc\AllScene\*"; DestDir: "{#plug}"; Components: plugins/mtacc/AllScene; Flags: {#stdFlags}
-Source: "{#IPlugin}\NormExcite\*"; DestDir: "{#syb}"; Components: plugins/normexcite; Flags: {#stdFlags}
-Source: "{#IPlugin}\objexp\*"; DestDir: "{#syb}"; Components: plugins/objexp; Flags: {#stdFlags}
-Source: "{#IPlugin}\partsedit\*"; DestDir: "{#syb}"; Components: plugins/partsedit; Flags: {#stdFlags}
+Source: "{#IPlugin}\NormExcite\*"; DestDir: "{#syb}"; Components: plugins/normexcite; Flags: {#stdFlags}; Check: NOT GetIsCR()
+Source: "{#IPlugin}\objexp\*"; DestDir: "{#syb}"; Components: plugins/objexp; Flags: {#stdFlags}; Check: NOT GetIsCR()
+Source: "{#IPlugin}\partsedit\*"; DestDir: "{#syb}"; Components: plugins/partsedit; Flags: {#stdFlags}; Check: NOT GetIsCR()
 Source: "{#IPlugin}\personaledit\*"; DestDir: "{#syb}"; Components: plugins/personaledit; Flags: {#stdFlags}
-Source: "{#IPlugin}\plugmanage\*"; DestDir: "{#syb}"; Components: plugins/plugmanage; Flags: {#stdFlags}
+Source: "{#IPlugin}\plugmanage\*"; DestDir: "{#syb}"; Components: plugins/plugmanage; Flags: {#stdFlags}; Check: NOT GetIsCR()
 
 Source: "{#IPlugin}\halfundress\*"; DestDir: "{#syb}"; Components: plugins/halfundress; Flags: {#stdFlags}
 Source: "{#IPlugin}\limitBreak\*"; DestDir: "{#syb}"; Components: plugins/limitBreak; Flags: {#stdFlags}
@@ -156,7 +148,8 @@ Source: "{#IPlugin}\texload\core\*"; DestDir: "{#plug}"; Components: plugins/tex
 	Source: "{#IPlugin}\texload\postload\*"; DestDir: "{app}"; Components: plugins/texload/postload; Flags: {#stdFlags}
 Source: "{#IPlugin}\toukascreen\*"; DestDir: "{#syb}"; Components: plugins/toukascreen; Flags: {#stdFlags}
 Source: "{#IPlugin}\voicenormalizer\*"; DestDir: "{#syb}"; Components: plugins/voicenorm; Flags: {#stdFlags}
-Source: "{#IPlugin}\yotutil\*"; DestDir: "{#syb}"; Components: plugins/yotutil; Flags: {#stdFlags}
+Source: "{#IPlugin}\yotutil\*"; DestDir: "{#syb}"; Components: plugins/yotutil; Flags: {#stdFlags}; Check: NOT GetIsCR()
+
 
 ;;Tools
 Source: "{#iMisc}\COM3D2_DLC_Checker\*"; DestDir: "{app}"; Components: tools/dlccheck; Flags: recursesubdirs createallsubdirs solidbreak

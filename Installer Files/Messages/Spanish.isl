@@ -16,7 +16,7 @@ SelectDirDesc=¿Dónde está ubicado tu juego?
 [CustomMessages]
 
 ;Startup Messages
-GameIsCRWarning=Tenga en cuenta que las versiones de CR-Edit (también conocidas como versiones 3,0+ o COM3D2.5) tienen menos compatibilidad con mods y plugins. Puede encontrar que varios plugins no están disponibles en estas versiones que están disponibles en versiónes no CR-Edit e incluso puede encontrar errores que aún no han sido corregidos por los desarrolladores de plugins. ¡Usted ha sido advertido! 
+GameIsCRWarning=Tenga en cuenta que las versiones de CR-Edit (también conocidas como versiones 3.0+ o COM3D2.5) han pasado recientemente por una actualización del game engine. Como resultado, muchos complementos requieren actualizaciones y correcciones de errores. Una vez que los complementos se consideren estables, se 3.0+ sera la versión preferida y principal de COM.
 
 
 ScamWarning=Si pagó por CMI o lo descargó desde cualquier lugar que no sea la página oficial de GitHub, ¡puede ser que ha sido estafado o engañado!
@@ -28,7 +28,7 @@ ReadmeExit=Regrese y léalo antes de instalar CMI
 
 EnglishVersionAlert=Si no tienes una versión en inglés del juego, sal de la instalación ahora mismo y consulta el archivo readme!!%n%n¡¡Se encontró la versión en inglés!! Tenga en cuenta que las versiones en inglés no son tan completas ni tan compatibles como la versión japonesa. 
 EnglishVersionCompatibility=Los plugins de traducción y los componentes relacionados pueden ser dañinos o incompatibles con tu juego de inglés.%n%n¿Deberíamos deshabilitar estos componentes para mantenerte a salvo? (Recomendado)
-CRVersionAlert=Si no tienes una versión CR (COM3D2.5) del juego, sal de la instalación ahora mismo y consulta el archivo readme.%n%n¡¡Se encontró la versión CR!!Tenga en cuenta que las versiones CR no son tan completas ni tan compatibles como la versión estándar. ¡Algunos componentes se desactivarán por su seguridad! 
+CRVersionAlert=Asegúrese de que se encuentra en una versión CR detectada antes de continuar con la instalación. Si no es así, salga y consulte el archivo README.
 
 CMDetected=¡Esto es CM3D2, no COM3D2! ¡CMI no se hizo para CM3D2! Para CM3D2, utilice Legacy Meido Modular Toolbox (LMMT) 
 NotaGameDir=¡Esto no parece ser un directorio COM3D2! Aún podemos continuar con la instalación, pero es posible que esté instalando en el directorio incorrecto, algunas funciones también se volverán ineficaces. ¿Seguimos de todos modos? 

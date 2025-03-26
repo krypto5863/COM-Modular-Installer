@@ -20,7 +20,7 @@ SelectDirDesc=Where is your game located?
 
 ;Startup Messages
 IsGameCR=Is this version of COM to which we are installing today 3.0 or higher? In other words, is it a CR-Edit version(COM3D2.5)?%n%nEnglish versions are never 3.0 and are incompatible at versions 1.09 and below.
-GameIsCRWarning=Keep in mind, CR-Edit versions (AKA 3.0+ versions, AKA COM3D2.5) have diminished mod and plugin support. You may find several plugins are unavailable on these versions that are available on none CR-Edit versions and you may even find bugs that have not yet been corrected by plugin devs. You have been warned!
+GameIsCRWarning=Keep in mind, CR-Edit versions (AKA 3.0+ versions, AKA COM3D2.5) have recently undergone an engine update. As a result, many plugins require updates and bug fixes. Once plugins are considered stable, it will become the preferred and primary version of COM.
 
 ScamWarning=If you paid for CMI or downloaded it from anywhere that is not the official GitHub page, then you have been scammed or misled!
 StorageSpaceLow=We detected that your AppData containing partition(Typically your C drive) does not have enough free space for cache. Please clear a minimum of 5 GiBs to install CMI. You Have %1MBs
@@ -31,7 +31,7 @@ ReadmeExit=Go back and read it before installing CMI
 
 EnglishVersionAlert=If you are not on an English version of the game quit the install right now and refer to the readme!!%n%nEnglish version was found!! Be advised, English versions are not as feature full or as supported as the Japanese version!
 EnglishVersionCompatibility=Translation plugins and related components can be harmful or incompatible to your English game.%n%nShould we disable these components in order to keep you safe? (Recommended)
-CRVersionAlert=COM3D2.5 was made for usage with the KC/CR-Editor, as such any plugins having to do with the legacy editor will be disabled. There are also incompatible plugins that will be disabled. If you are not on a CR (COM3D2.5) version of the game quit the install right now and refer to the readme!!%n%nCR version was found!!
+CRVersionAlert=Please make sure that you are on a CR-Version as detected before continuing the install. If you are not, please quit and refer to the readme.
 
 CMDetected=This is CM3D2 not COM3D2! CMI was not made for CM3D2! For CM3D2, please use Legacy Meido Modular Toolbox (LMMT)
 NotaGameDir=This does not appear to be a COM3d2 Directory! We can still continue the installation but you may be installing to the wrong directory, some functions will also be rendered ineffectual. Do we continue anyways?
@@ -128,3 +128,4 @@ MFInstall=Waiting for Maid Fiddler installer to finish... (Users must follow the
 
 Survey=Open the Feedback Survey for CMI
 OfficialPage=Open the Official CMI Download Site
+Patreon=Visit the Patreon
