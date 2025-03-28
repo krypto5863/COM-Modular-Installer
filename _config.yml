@@ -9,6 +9,8 @@ url: "https://krypto5863.github.io"
 aux_links:
   "CMI Repo":
     - "//github.com/krypto5863/COM-Modular-Installer"
+  "Patreon":
+    - "https://www.patreon.com/krypto5863"
 
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: false
