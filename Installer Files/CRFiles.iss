@@ -24,7 +24,7 @@ Source: "{#ICRBep}\MaidLoader\*"; DestDir: "{#bepp}"; Components: bepinexPlugs/M
 
 Source: "{#ICRBep}\ShaderServant\*"; DestDir: "{#bepp}"; Components: bepinexPlugs/ShaderServant; Flags: {#stdFlags}; Check: GetIsCR()
 
-Source: "{#ICRBep}\ShortMenuLoader\*"; DestDir: "{#bepp}"; Components: bepinexPlugs/ShaderServant; Flags: {#stdFlags}; Check: GetIsCR()
+Source: "{#ICRBep}\ShortMenuLoader\*"; DestDir: "{#bepp}"; Components: bepinexPlugs/ShortMenu; Flags: {#stdFlags}; Check: GetIsCR()
 
 Source: "{#iCRbep}\SliderDelimiter\*"; DestDir: "{#bepp}"; Components: bepinexPlugs/SliderDelimiter; Flags: {#stdFlags}
 
@@ -35,6 +35,7 @@ Source: "{#ICRPlugin}\AlwaysColorChange\*"; DestDir: "{#plug}"; Components: plug
 Source: "{#ICRPlugin}\NormalizeExcite\*"; DestDir: "{#plug}"; Components: plugins/normexcite; Flags: {#stdFlags}; Check: GetIsCR()
 Source: "{#ICRPlugin}\EditSceneUndo\*"; DestDir: "{#plug}"; Components: plugins/editundo; Flags: {#stdFlags}; Check: GetIsCR()
 Source: "{#ICRPlugin}\ExtendRenderingRange"; DestDir: "{#plug}"; Components: plugins/extendrender; Flags: {#stdFlags}; Check: GetIsCR()
+Source: "{#ICRPlugin}\LookAtYourMaster"; DestDir: "{#plug}"; Components: plugins/LookMaster; Flags: {#stdFlags}; Check: GetIsCR()
 Source: "{#ICRPlugin}\PartsEdit\*"; DestDir: "{#plug}"; Components: plugins/partsedit; Flags: {#stdFlags}; Check: GetIsCR()
 Source: "{#ICRPlugin}\PluginManager\*"; DestDir: "{#plug}"; Components: plugins/plugmanage; Flags: {#stdFlags}; Check: GetIsCR()
 Source: "{#ICRPlugin}\ObjectExplorer\*"; DestDir: "{#plug}"; Components: plugins/objexp; Flags: {#stdFlags}; Check: GetIsCR()

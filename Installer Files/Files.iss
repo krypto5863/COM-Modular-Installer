@@ -86,7 +86,7 @@ Source: "{#ibep}\ScriptLoader\Scripts\saveSettingsInGame.cs"; DestDir: "{app}\sc
 Source: "{#ibep}\ScriptLoader\Scripts\skipStartLogo.cs"; DestDir: "{app}\scripts"; Components:scripts/skiplogo; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\report_dupes.cs"; DestDir: "{app}\scripts"; Components:scripts/redupe; Flags: {#stdFlags}
 Source: "{#ibep}\ScriptLoader\Scripts\unlock_all_skills.cs"; DestDir: "{app}\scripts"; Components:scripts/unlockskills; Flags: {#stdFlags}
-Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components:scripts/wrapmode; Flags: {#stdFlags}
+;Source: "{#ibep}\ScriptLoader\Scripts\wrap_mode_extend.cs"; DestDir: "{app}\scripts"; Components:scripts/wrapmode; Flags: {#stdFlags}
 
 ;Patchers
 Source: "{#IPatch}\AutoConverter\*"; DestDir: "{#syb}"; Components: Patchers/autocon; Flags: {#stdFlags}
@@ -124,10 +124,10 @@ Source: "{#IPlugin}\partsedit\*"; DestDir: "{#syb}"; Components: plugins/partsed
 Source: "{#IPlugin}\personaledit\*"; DestDir: "{#syb}"; Components: plugins/personaledit; Flags: {#stdFlags}
 Source: "{#IPlugin}\plugmanage\*"; DestDir: "{#syb}"; Components: plugins/plugmanage; Flags: {#stdFlags}; Check: NOT GetIsCR()
 
-Source: "{#IPlugin}\halfundress\*"; DestDir: "{#syb}"; Components: plugins/halfundress; Flags: {#stdFlags}
+;Source: "{#IPlugin}\halfundress\*"; DestDir: "{#syb}"; Components: plugins/halfundress; Flags: {#stdFlags}
 Source: "{#IPlugin}\limitBreak\*"; DestDir: "{#syb}"; Components: plugins/limitBreak; Flags: {#stdFlags}
 Source: "{#IPlugin}\lookmaid\*"; DestDir: "{#syb}"; Components: plugins/lookmaid; Flags: {#stdFlags}
-Source: "{#IPlugin}\lookmaster\*"; DestDir: "{#syb}"; Components: plugins/lookmaster; Flags: {#stdFlags}
+Source: "{#IPlugin}\lookmaster\*"; DestDir: "{#syb}"; Components: plugins/lookmaster; Flags: {#stdFlags}; Check: NOT GetIsCR()
 Source: "{#IPlugin}\manualmaidsort\*"; DestDir: "{#syb}"; Components: plugins/manualmaidsort; Flags: {#stdFlags}
 Source: "{#IPlugin}\notecolor\*"; DestDir: "{#syb}"; Components: plugins/notecolor; Flags: {#stdFlags}
 Source: "{#IPlugin}\rythmoption\*"; DestDir: "{#syb}"; Components: plugins/rhythmoption; Flags: {#stdFlags}

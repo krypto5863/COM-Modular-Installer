@@ -178,7 +178,7 @@ Name: Scripts; Description: ScriptLoader Scripts;
     Name: Scripts/quickworkschedule; Description: QuickWorkSchedule Script; Types: Full eng notr self hen;
     Name: Scripts/redupe; Description: Report Dupes Script; Types: Full compact eng notr pic self hen;
     Name: Scripts/unlockskills; Description: Unlock All Skills;
-    Name: Scripts/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen;
+    //Name: Scripts/wrapmode; Description: Wrap Mode Extend Script; Types: Full compact eng notr pic self hen;
 
 Name: Patchers; Description: Sybaris Plugins;
 
