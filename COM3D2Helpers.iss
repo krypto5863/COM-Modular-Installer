@@ -1,7 +1,7 @@
 [Code]
 var
-    IsEng: Boolean;
-    IsCR: Boolean;
+	IsEng: Boolean;
+	IsCR: Boolean;
 
 function GetIsEng(const path: String): Integer;
 begin
@@ -24,11 +24,11 @@ end;
 function GetIsEngSimple(const path: String): Boolean;
 begin
 
-    if IsEng then
-    begin
-        result := IsEng
-        exit;
-    end;
+	if IsEng then
+	begin
+		result := IsEng
+		exit;
+	end;
 
 	//True is Eng, any type. False is not eng.
 	if FileExists(AddBackslash(path) + 'localize.dat') then
@@ -48,7 +48,7 @@ end;
 
 function GetRandAbove(const range: Integer; const atOrBelow: Integer): Boolean;
 begin
-    result := Random(range) <= atOrBelow;
+	result := Random(range) <= atOrBelow;
 end;
 
 Function FixComponents(): Boolean;
@@ -56,10 +56,9 @@ var
 	NonCR: Array of string;
 	NonEng: Array of string;
 	CRComps: Array of string;
-    Path: String;
+	Path: String;
 begin
-    
-    Path := ExpandConstant('{app}')
+	Path := ExpandConstant('{app}')
 
 	//If english version is detected, run the below code.
 	if (GetIsEng(path) > 0) AND EngDisable then
@@ -77,46 +76,47 @@ begin
 
 	if IsCR then begin
 		NonCR := [
-      'BodyCategoryAdd',
-      'AdvancedMaterialModifier',
-      'MeidoPhotoStudio',
-      '1900 Poses for MPS',
-      'ShortMenuVanillaDatabase',
-      'ShortStartLoader',
-      'MaidVoicePitch',
-      'AddModsSlider',
-      'DistortCorrect',
-      'ConsistentWindowPosition',
-      'DressDamage',
-      'LimitBreak2',
-      'LookAtYourMaid',
-      'LookAtYourMaster',
-      'ManualMaidSort',
-      'Mirror Props',
-      'MtAccelerator',
-      'AllScene Version',
-      'PNGPlacement',
-      'More PNGs',
-      'SceneCapture',
-      'Modified Pmats',
-      'VR Ini File',
-      'ShaderChange',
-      'SlimeShader',
-      'TextureLoader',
-      'PosterLoader',
-      'ToukaScreenshot',
-      'HalfUndressing'
+			'BodyCategoryAdd',
+			'AdvancedMaterialModifier',
+			'MeidoPhotoStudio',
+			'1900 Poses for MPS',
+			'ShortMenuVanillaDatabase',
+			'ShortStartLoader',
+			'MaidVoicePitch',
+			'AddModsSlider',
+			'DistortCorrect',
+			'ConsistentWindowPosition',
+			'DressDamage',
+			'LimitBreak2',
+			'LookAtYourMaster',
+			'LookAtYourMaid',
+			'ManualMaidSort',
+			'Mirror Props',
+			'MtAccelerator',
+			'AllScene Version',
+			'PNGPlacement',
+			'More PNGs',
+			'SceneCapture',
+			'Modified Pmats',
+			'VR Ini File',
+			'ShaderChange',
+			'SlimeShader',
+			'TextureLoader',
+			'PosterLoader',
+			'ToukaScreenshot',
+			'HalfUndressing'
 		];
 
-        UncheckDisableComponents(NonCR);
+		UncheckDisableComponents(NonCR);
 
 		exit;
 	end;
 
 	//Otherwise if not CR
 	CRComps := [
-    'BodyCategoryAdd 2.5',
-    'SliderDelimiter'
+		'LookAtYourMaster 2.5',
+		'BodyCategoryAdd 2.5',
+		'SliderDelimiter'
 	];
 
 	UncheckDisableComponents(CRComps);
@@ -126,14 +126,14 @@ end;
 Function HandleNutakuSerialization(const GamePath: String): Boolean;
 begin
 
-  If NOT FileExists(AddBackslash(GamePath) + 'serialize_storage_config.cfg') then
-  begin
-	result := true;
-	exit;
-  end;
+	If NOT FileExists(AddBackslash(GamePath) + 'serialize_storage_config.cfg') then
+	begin
+		result := true;
+		exit;
+	end;
 
-  if (MsgBox(CustomMessage('SerializePrompt'), mbConfirmation, MB_YESNO) = MrNO) then
-  begin
+	if (MsgBox(CustomMessage('SerializePrompt'), mbConfirmation, MB_YESNO) = MrNO) then
+	begin
 		Result := true;
 		exit;
 	end;
@@ -158,7 +158,7 @@ begin
 		exit;
 	end;
 
-  result := true;
+	result := true;
 end;
 
 var
@@ -172,8 +172,8 @@ begin
 		'Kite.bmp',
 		'kry.bmp',
 		'pain.bmp',
-        'joco.bmp',
-        'shin.bmp'
+		'joco.bmp',
+		'shin.bmp'
 	];
 
 	if (Sender = nil) then

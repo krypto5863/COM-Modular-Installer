@@ -15,7 +15,7 @@ end;
 procedure TypesComboChange(const Sender: TObject);
 begin
 
-    OriginalTypeComboChangedEvent(Sender)
+	OriginalTypeComboChangedEvent(Sender)
 
 	if (CompareText(WizardSetupType(false),'preset') = 0) then
 		ApplyCustomPreset(AddBackslash(ExpandConstant('{app}')) + PresetFile);

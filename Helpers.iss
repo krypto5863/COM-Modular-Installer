@@ -2,7 +2,7 @@
 
 [Code]
 var
-    EmptyFolder: Boolean;
+	EmptyFolder: Boolean;
 function IsEmptyFolder(): Boolean;
 begin
 	Result := EmptyFolder;
@@ -11,10 +11,10 @@ end;
 Function StringContains(target, substring: String): Boolean;
 begin
 
-    target := AnsiLowercase(target)
-    substring := AnsiLowercase(substring)
+	target := AnsiLowercase(target)
+	substring := AnsiLowercase(substring)
 
-    result := (Pos(substring, target) > 0)
+	result := (Pos(substring, target) > 0)
 
 end;
 
@@ -74,33 +74,33 @@ external 'FileTimeToSystemTime@kernel32.dll stdcall';
 
 function GetCreatedFileDate(const FilePath : String; out DateTimeString : String) : Boolean;
 var 
-    FindRec: TFindRec;  
-    SystemInfo: SYSTEMTIME;  
+	FindRec: TFindRec;  
+	SystemInfo: SYSTEMTIME;  
 begin
-    Try
-        if NOT DirExists(FilePath) AND NOT FileExists(FilePath) then
-        begin
-            Log(FilePath + ' does not exist!')
-            Result := false
-            exit;
-        end;
+	Try
+		if NOT DirExists(FilePath) AND NOT FileExists(FilePath) then
+		begin
+			Log(FilePath + ' does not exist!')
+			Result := false
+			exit;
+		end;
 
-        if NOT FindFirst(FilePath, FindRec) then
-        begin
-            Log(FilePath + ' could not be found!')
-            Result := false
-            exit;
-        end;
+		if NOT FindFirst(FilePath, FindRec) then
+		begin
+			Log(FilePath + ' could not be found!')
+			Result := false
+			exit;
+		end;
 
-        Log('Returning CreationTime DateTimeString for ' + FilePath)
+		Log('Returning CreationTime DateTimeString for ' + FilePath)
 
-        FileTimeToSystemTime( FindRec.CreationTime, SystemInfo);
-        DateTimeString:= format('%.2d.%.2d.%d.%d.%.2d.%.2d', [SystemInfo.Month, SystemInfo.Day, SystemInfo.Year, SystemInfo.Hour, SystemInfo.Minute, SystemInfo.Second])
-        Result := true;
+		FileTimeToSystemTime( FindRec.CreationTime, SystemInfo);
+		DateTimeString:= format('%.2d.%.2d.%d.%d.%.2d.%.2d', [SystemInfo.Month, SystemInfo.Day, SystemInfo.Year, SystemInfo.Hour, SystemInfo.Minute, SystemInfo.Second])
+		Result := true;
 
-    Finally
-        FindClose(FindRec);
-    end;
+	Finally
+		FindClose(FindRec);
+	end;
 end;
 }
 
@@ -144,12 +144,12 @@ end;
 
 Function SaveCustomPreset(const path: String): Boolean;
 var
-    PresetPath: String;
-    FileString: String;
+	PresetPath: String;
+	FileString: String;
 	I: Integer;
 begin
 
-    PresetPath := AddBackSlash(path) + PresetFile
+	PresetPath := AddBackSlash(path) + PresetFile
 
 	if FileExists(PresetPath) then
 	begin
@@ -176,10 +176,10 @@ begin
 			continue;
 		end;
 
-        FileString := FileString + Wizardform.ComponentsList.ItemCaption[I] + #13#10;
+	FileString := FileString + Wizardform.ComponentsList.ItemCaption[I] + #13#10;
 
 	end;
-    
+
 	if NOT SaveStringToFile(PresetPath, Trim(FileString), True) then
 	begin
 		result := false;
@@ -192,36 +192,34 @@ end;
 procedure UncheckDisableComponents(const components: Array of string);
 var
 	M, I: Integer;
-    ToDisable: Array of integer;
+	ToDisable: Array of integer;
 begin
 
-    for M := Wizardform.ComponentsList.Items.Count - 1 downto 0 do
-    begin
+	for M := Wizardform.ComponentsList.Items.Count - 1 downto 0 do
+	begin
 
-        for I := 0 to (GetArrayLength(components)-1) do
-        begin
-            if (CompareText(Wizardform.ComponentsList.ItemCaption[M], components[I]) = 0) then
-            begin
-                
-                SetArrayLength(ToDisable, GetArrayLength(ToDisable) + 1);
-                ToDisable[GetArrayLength(ToDisable) - 1] := M;
+		for I := 0 to (GetArrayLength(components)-1) do
+		begin
+			if (CompareText(Wizardform.ComponentsList.ItemCaption[M], components[I]) = 0) then
+			begin
+				SetArrayLength(ToDisable, GetArrayLength(ToDisable) + 1);
+				ToDisable[GetArrayLength(ToDisable) - 1] := M;
 
-                Wizardform.ComponentsList.ItemEnabled[M] := true;  
+				Wizardform.ComponentsList.ItemEnabled[M] := true;  
 
-                if Wizardform.ComponentsList.Checked[M] AND NOT Wizardform.ComponentsList.CheckItem(M, councheck) then
-                    Log('Failed to uncheck ' + Wizardform.ComponentsList.ItemCaption[M] + '!');
-            
-                break;
+				if Wizardform.ComponentsList.Checked[M] AND NOT Wizardform.ComponentsList.CheckItem(M, councheck) then
+					Log('Failed to uncheck ' + Wizardform.ComponentsList.ItemCaption[M] + '!');
+				break;
 
-            end;
-        end;
+			end;
+		end;
 
-    end;
+	end;
 
-    for M := 0 to (GetArrayLength(ToDisable)-1) do
-    begin
-        Wizardform.ComponentsList.ItemEnabled[ToDisable[M]] := false;
-    end;
+	for M := 0 to (GetArrayLength(ToDisable)-1) do
+	begin
+		Wizardform.ComponentsList.ItemEnabled[ToDisable[M]] := false;
+	end;
 
 end;
 

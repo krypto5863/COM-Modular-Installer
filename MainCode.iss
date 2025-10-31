@@ -5,7 +5,7 @@ var
 	OriginalTypeComboChangedEvent: TNotifyEvent;
 	OriginalResizeEvent: TNotifyEvent;
 	ChangeBannerButton: TNewButton;
-    EngDisable: Boolean;
+	EngDisable: Boolean;
 [/Code]
 
 //The following script contains a bunch of helper functions and methods. They were moved out so better track could be kept.
@@ -78,8 +78,8 @@ begin
 	begin
 		WizardForm.DirEdit.Text := (PathValue)
 	end
-    //Maybe CR is the key so just check it.
-    else if RegQueryStringValue(HKEY_CURRENT_USER, '{#EnglishRegistryCR}','InstallPath', PathValue) then
+	//Maybe CR is the key so just check it.
+	else if RegQueryStringValue(HKEY_CURRENT_USER, '{#EnglishRegistryCR}','InstallPath', PathValue) then
 	begin
 		WizardForm.DirEdit.Text := (PathValue)
 	end
@@ -92,13 +92,13 @@ end;
 
 procedure CurPageChanged(const CurPageID: Integer);
 var
-    Path: string;
+	Path: string;
 begin
 	//Only run the code if wizard is on the components page
 	if (CurPageID <> wpSelectComponents) then
 		exit;
 
-    Path := ExpandConstant('{app}')
+	Path := ExpandConstant('{app}')
 
 	if IsCR then
 		MsgBox(CustomMessage('CRVersionAlert'), mbInformation, MB_OK);
@@ -131,11 +131,11 @@ end;
 
 procedure InstallOps();
 var
-    Path, OldInstallPath: String;
+	Path, OldInstallPath: String;
 begin
 	Log('Beginning Install Ops!');
 
-    Path := ExpandConstant('{app}') 
+	Path := ExpandConstant('{app}') 
 
 	//Saves any custom selections to components on install.
 	if (CompareText(WizardSetupType(false),'custom') = 0) then
@@ -156,8 +156,8 @@ begin
 	//Starts by removing the Read-Only flag if applicable.
 	if WizardIsTaskSelected('readonly') then
 	begin
-    
-        WizardForm.StatusLabel.Caption := 'Removing read-only flags in the game directory! This can take a while...';
+	
+		WizardForm.StatusLabel.Caption := 'Removing read-only flags in the game directory! This can take a while...';
 	
 		while NOT RemoveReadonlyRecursive(path) do
 		begin
@@ -174,10 +174,10 @@ begin
 	//Will now begin the move old install to backup folder if task was selected.
 	if WizardIsTaskSelected('clean/moveold') then
 	begin
-        
-        WizardForm.StatusLabel.Caption := 'Backing up old installations...';
+		
+		WizardForm.StatusLabel.Caption := 'Backing up old installations...';
 
-        OldInstallPath := AddBackSlash(path) + 'OldInstall'
+		OldInstallPath := AddBackSlash(path) + 'OldInstall'
 	
 		while DirExists(OldInstallPath) AND NOT AppendToName(OldInstallPath, GetDateTimeString('ddddd.h.nn.ss', '.', '.')) do
 		begin
@@ -206,7 +206,7 @@ begin
 	if WizardIsTaskSelected('clean/moveold/mods') then
 	begin
 
-        WizardForm.StatusLabel.Caption := 'Backing up old mods...';
+		WizardForm.StatusLabel.Caption := 'Backing up old mods...';
 
 		while NOT MoveOldMod(path, ['{#ModDir}']) do
 		begin
@@ -224,16 +224,16 @@ end;
 
 procedure PostInstallOps();
 var
-    OldInstallPath, Path: String;
+	OldInstallPath, Path: String;
 begin
-    Path := expandConstant('{app}');
+	Path := expandConstant('{app}');
 
 	HandleNutakuSerialization(path);
 
 	if WizardIsTaskSelected('clean/moveold/config') then
 	begin
 
-        WizardForm.StatusLabel.Caption := 'Copying configuration files back...';
+		WizardForm.StatusLabel.Caption := 'Copying configuration files back...';
 	
 		while NOT MoveOldConfigBack(path) do
 		begin
@@ -245,7 +245,7 @@ begin
 		
 	end;
 
-    OldInstallPath := AddBackSlash(path) + 'OldInstall'
+	OldInstallPath := AddBackSlash(path) + 'OldInstall'
 
 	while DirExists(OldInstallPath) AND NOT AppendToName(OldInstallPath, GetDateTimeString('ddddd.h.nn.ss', '.', '.')) do
 	begin
@@ -257,7 +257,7 @@ begin
 
 	if WizardIsTaskSelected('readonly') then
 	begin
-        WizardForm.StatusLabel.Caption := 'Removing readonly (again). This can take a while...';
+		WizardForm.StatusLabel.Caption := 'Removing readonly (again). This can take a while...';
 
 		while NOT RemoveReadonlyRecursive(path) do
 		begin
@@ -269,9 +269,9 @@ begin
 		end;
 	end;
 
-    //Creates a little file to help ID versions only when some component is installed.
-    if (Length(WizardSelectedComponents(false)) <> 0) then
-        SaveStringToFile(AddBackSlash(path) + '{#ShortName}.ver','{#MyAppVersion}', False);
+	//Creates a little file to help ID versions only when some component is installed.
+	if (Length(WizardSelectedComponents(false)) <> 0) then
+		SaveStringToFile(AddBackSlash(path) + '{#ShortName}.ver','{#MyAppVersion}', False);
 end;
 
 procedure CurStepChanged(const CurStep: TSetupStep);
